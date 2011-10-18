@@ -1,0 +1,1 @@
+seventytwolions.ComponentLoader.initializeComponents();
