@@ -285,7 +285,7 @@ var Router = new function(){
 	 */
 	var notifyRegisteredPathChangeMembers = function(path){
 
-		var members = registeredPathMembers[path];
+		var members = registeredPathMembers[this.basepath + path];
 
 		if(members !== undefined){
 

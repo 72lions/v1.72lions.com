@@ -1,4 +1,4 @@
-seventytwolions.model = function(){
+seventytwolions.Model.Base = function(){
 
 	// Declaring the API
 	var api = {};
@@ -45,5 +45,3 @@ seventytwolions.model = function(){
 
 };
 
-// Instantiate the model so that we can use it as a singleton
-seventytwolions.Model = new seventytwolions.model();
