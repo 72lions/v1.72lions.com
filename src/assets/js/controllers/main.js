@@ -7,7 +7,7 @@
 seventytwolions.Controller.Main = function() {
 
     this.postInitialize = function() {
-        seventytwolions.ControllerManager.initializeController('Navigation');
+        seventytwolions.ControllerManager.initializeController('Navigation', 'navigation');
     }
 }
 

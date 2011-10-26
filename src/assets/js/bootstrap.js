@@ -1,2 +1,2 @@
 //seventytwolions.ComponentLoader.initializeComponents();
-seventytwolions.ControllerManager.initializeController('Main');
+seventytwolions.ControllerManager.initializeController('Main', 'main');

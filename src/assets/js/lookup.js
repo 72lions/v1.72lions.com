@@ -13,42 +13,77 @@ seventytwolions.lookup = function() {
 
     /**
      * Returns a controller with a specific name
-     * @param {String} name The name of the controllers
+     * @param {String} className The name of the controllers
+     * @param {String} id The unique id for this controller
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.getController = function(name) {
+    this.getController = function(className, id) {
 
-        try {
-            if(!_controllers[name] && $.isFunction(seventytwolions.Controller[name])) {
-                _controllers[name] = new seventytwolions.Controller[name](name);
-            }
-        } catch(e) {
-            seventytwolions.console(name, e);
+        var exists = -1;
+
+        // Check if there is an array with objects of className type
+        // If not then create a new array
+        if(!_controllers[className] || !$.isArray(_controllers[className])) {
+            _controllers[className] = [];
         }
 
-        return _controllers[name];
+        // Loop through al the items in the array
+        // to check if an item with this id already exists
+        for (var i = _controllers[className].length - 1; i >= 0; i--) {
+            if(_controllers[className][i].id == id){
+                exists = i;
+            }
+        };
+
+        if(exists === -1){
+
+            exists = null;
+            // If it doesn't already exist then push it on the array
+            _controllers[className].push({id: id, class: new seventytwolions.Controller[className]()});
+            return _controllers[className][_controllers[className].length-1].class;
+        } else {
+            return _controllers[className][exists].class;
+        }
+
     };
 
     /**
      * Returns a view with a specific name
      * @param {String} name The name of the controllers
+     * @param {String} id The unique id for this controller
      * @returns A view
      * @type seventytwolions.View.Base
      * @author Thodoris Tsiridis
      */
-    this.getView = function(name) {
+    this.getView = function(className, id) {
 
-        try {
-            if(!_views[name] && $.isFunction(seventytwolions.View[name])) {
-                _views[name] = new seventytwolions.View[name](name);
-            }
-        } catch(e) {
-            seventytwolions.console(name, e);
+        var exists = -1;
+
+        // Check if there is an array with objects of className type
+        // If not then create a new array
+        if(!_views[className] || !$.isArray(_views[className])) {
+            _views[className] = [];
         }
 
-        return _views[name];
+        // Loop through al the items in the array
+        // to check if an item with this id already exists
+        for (var i = _views[className].length - 1; i >= 0; i--) {
+            if(_views[className][i].id == id){
+                exists = i;
+            }
+        };
+
+        if(exists === -1){
+
+            exists = null;
+            // If it doesn't already exist then push it on the array
+            _views[className].push({id: id, class: new seventytwolions.View[className](className)});
+            return _views[className][_views[className].length-1].class;
+        } else {
+            return _views[className][exists].class;
+        }
     };
 
     /**
@@ -62,7 +97,7 @@ seventytwolions.lookup = function() {
 
         try {
             if(!_models[name] && $.isFunction(seventytwolions.Model[name])) {
-                _models[name] = new seventytwolions.Model[name](name);
+                _models[name] = new seventytwolions.Model[name]();
             }
         } catch(e) {
             seventytwolions.console(name, e);

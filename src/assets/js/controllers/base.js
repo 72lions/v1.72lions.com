@@ -9,27 +9,29 @@ seventytwolions.Controller.Base = function() {
     var _view, _model, _registeredEvents = {};
 
     this.data = {};
+    this.id = '';
     this.name = '';
 
-    this.initialize = function(name, data) {
+    this.initialize = function(className, id) {
 
-        this.name = name;
-        this.data = data || {};
-
+        this.name = className;
+        this.id = id;
         // get a reference to view
-        _view = seventytwolions.Lookup.getView(name);
+        _view = seventytwolions.Lookup.getView(className, id);
 
         // get a reference to the model
-        _model = seventytwolions.Lookup.getModel(name);
+        _model = seventytwolions.Lookup.getModel(className);
 
         // ask it to initialize, draw and postDraw
         _view.initialize();
         _view.draw();
         _view.postDraw();
+
+        this.postInitialize();
+
     };
 
     this.postInitialize = function() {
-        console.log('post initialize')
 
     }
 

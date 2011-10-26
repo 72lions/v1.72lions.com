@@ -7,28 +7,22 @@
 seventytwolions.controllerManager = function() {
 
     var newController;
-    this.data = null
+    this.data = null;
 
     /**
      * Initializes a controller with a specific name
-     * @param {String} name The name of the controllers
-     * @param {Object} data The data that the controller should be initialized with
+     * @param {String} className The name of the controllers
+     * @param {String} id The unique id for this controller
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(name, data) {
+    this.initializeController = function(className, id) {
 
-        this.data = data;
-
-        newController = seventytwolions.Lookup.getController(name);
+        newController = seventytwolions.Lookup.getController(className, id);
 
         // Base initialization
-        newController.initialize(name, data);
-
-        if($.isFunction(newController.postInitialize)) {
-            newController.postInitialize();
-        }
+        newController.initialize(className, id);
 
         return newController;
     };

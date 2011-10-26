@@ -38,6 +38,10 @@ seventytwolions.View.Navigation = function(name) {
         addEventListeners();
     };
 
+    this.selectNavigationItem = function(section) {
+        this.domElement.find('.nav-' + section).parent().addClass('active').siblings().removeClass('active');
+    }
+
     /**
      * Registers all the event listeners
      * @private
@@ -46,19 +50,15 @@ seventytwolions.View.Navigation = function(name) {
     var addEventListeners = function(){
         //Router.registerForEvent('push', onPushState);
         $links.bind('click', onLinkClick);
-        Router.registerForPathChange('portfolio', onPortfolio, 0);
     };
 
     var onLinkClick = function(e){
+
         e.preventDefault();
 
         var $item = $(this);
         Router.push(null, $item.attr('title'), $item.attr('href'));
         $item = null;
-    };
-
-    var onPortfolio = function(state){
-        seventytwolions.Console.log(state);
     };
 
 }
