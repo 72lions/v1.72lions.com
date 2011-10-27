@@ -6,6 +6,8 @@
  */
 seventytwolions.View.Base = function() {
 
+    EventTarget.call( this );
+
     this.name = "Base";
     this.domElement = null;
 

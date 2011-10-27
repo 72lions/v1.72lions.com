@@ -6,12 +6,20 @@
  */
 seventytwolions.Controller.Base = function() {
 
+    EventTarget.call( this );
+
     var _view, _model, _registeredEvents = {};
 
     this.data = {};
     this.id = '';
     this.name = '';
 
+    /**
+     * Initializes the plugin
+     * @param {String} className the name of the class that we initialized
+     * @param {String} id The unique id of this class
+     * @author Thodoris Tsiridis
+     */
     this.initialize = function(className, id) {
 
         this.name = className;
@@ -31,6 +39,11 @@ seventytwolions.Controller.Base = function() {
 
     };
 
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
     this.postInitialize = function() {
 
     }
@@ -53,34 +66,6 @@ seventytwolions.Controller.Base = function() {
      */
     this.getModel = function() {
         return _model;
-    };
-
-    /**
-     * Notifies for a specific event. Usually this will be triggered by the view
-     * @param {String} eventName The name of the event
-     * @author Thodoris Tsiridis
-     */
-    this.notify = function(eventName){
-        if(typeof(_registeredEvents[eventName]) !== 'null' && typeof(_registeredEvents[eventName]) !== 'undefined'){
-            _registeredEvents[eventName]();
-        }
-    };
-
-    /**
-     * Registers a callback function for a specific event.
-     * This way the view can talk to the controller
-     * @param {String} eventName The name of the event
-     * @param {Function} callback The function to be executed
-     * @author Thodoris Tsiridis
-     */
-    this.registerEvent = function(eventName, callback){
-
-        if(typeof(_registeredEvents[eventName]) == 'null' || typeof(_registeredEvents[eventName]) == 'undefined'){
-            _registeredEvents[eventName] = [];
-        }
-
-        _registeredEvents[eventName].push(callback);
-
     };
 
 }

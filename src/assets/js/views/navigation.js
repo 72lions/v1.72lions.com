@@ -6,10 +6,11 @@
  */
 seventytwolions.View.Navigation = function(name) {
 
+    var $links;
+    var me = this;
+
 	this.setName(name);
 	this.domElement = $('.navigation');
-
-    var $links;
 
     /**
      * Initializes the view
@@ -38,7 +39,13 @@ seventytwolions.View.Navigation = function(name) {
         addEventListeners();
     };
 
+    /**
+     * Hightlits a menu item
+     * @param {String} section The name of the section that we want to highlight
+     * @author Thodoris Tsiridis
+     */
     this.selectNavigationItem = function(section) {
+        section = section === '' ? 'home' : section;
         this.domElement.find('.nav-' + section).parent().addClass('active').siblings().removeClass('active');
     }
 
@@ -48,16 +55,30 @@ seventytwolions.View.Navigation = function(name) {
      * @author Thodoris Tsiridis
      */
     var addEventListeners = function(){
-        //Router.registerForEvent('push', onPushState);
         $links.bind('click', onLinkClick);
     };
 
+    /**
+     * Triggered when we click a link
+     * @private
+     * @author Thodoris Tsiridis
+     */
     var onLinkClick = function(e){
-
         e.preventDefault();
 
+        // Dispatch the event
+        me.dispatchEvent({type: 'menuClicked', foo:'bar'});
+
+        // Cache the item
         var $item = $(this);
+
+        // Highlight the clicked menu item
+        me.selectNavigationItem($item.attr('href'));
+
+        // Push the current url
         Router.push(null, $item.attr('title'), $item.attr('href'));
+
+        // Clear memory
         $item = null;
     };
 
