@@ -1,0 +1,45 @@
+html, body {
+    height:100%;
+    overflow:hidden;
+}
+
+
+#wrapper {
+    height:100%;
+    margin-left:0px;
+    -webkit-transition:margin-left 0.3s ease-in-out;
+    -moz-transition:margin-left 0.3s ease-in-out;
+    -o-transition:margin-left 0.3s ease-in-out;
+    transition:margin-left 0.3s ease-in-out;
+}
+
+#wrapper section hgroup {
+    display:block;
+    padding:40px 5px 0px 5px;
+}
+
+section.blog,
+section.portfolio,
+section.about,
+section.contact {
+    display:block;
+    width:100%;
+    height:100%;
+    float: left;
+}
+
+section.blog {
+    background-color:#ccc;
+}
+
+section.portfolio {
+ background-color:#999;
+}
+
+section.about {
+    background-color:#666;
+}
+
+section.contact {
+    background-color:#333;
+}

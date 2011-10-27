@@ -35,16 +35,16 @@ seventytwolions.lookup = function() {
             if(_controllers[className][i].id == id){
                 exists = i;
             }
-        };
+        }
 
         if(exists === -1){
 
             exists = null;
             // If it doesn't already exist then push it on the array
-            _controllers[className].push({id: id, class: new seventytwolions.Controller[className]()});
-            return _controllers[className][_controllers[className].length-1].class;
+            _controllers[className].push({id: id, classType: new seventytwolions.Controller[className]()});
+            return _controllers[className][_controllers[className].length-1].classType;
         } else {
-            return _controllers[className][exists].class;
+            return _controllers[className][exists].classType;
         }
 
     };
@@ -73,16 +73,16 @@ seventytwolions.lookup = function() {
             if(_views[className][i].id == id){
                 exists = i;
             }
-        };
+        }
 
         if(exists === -1){
 
             exists = null;
             // If it doesn't already exist then push it on the array
-            _views[className].push({id: id, class: new seventytwolions.View[className](className)});
-            return _views[className][_views[className].length-1].class;
+            _views[className].push({id: id, classType: new seventytwolions.View[className](className)});
+            return _views[className][_views[className].length-1].classType;
         } else {
-            return _views[className][exists].class;
+            return _views[className][exists].classType;
         }
     };
 

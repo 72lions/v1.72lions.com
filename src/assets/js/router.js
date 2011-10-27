@@ -4,7 +4,7 @@
  * @author Thodoris Tsiridis
  * @version 0.2
  */
-var Router = new function(){
+var router = function(){
 
 	var isRefresh = true;
 	var registeredMembers = { push: [], pop: []};
@@ -474,3 +474,5 @@ var Router = new function(){
 	init();
 
 };
+
+var Router = new router();

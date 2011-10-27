@@ -15,6 +15,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/assets/css/reset.css" />
+		<link rel="stylesheet" href="/assets/css/layout.css" />
 		<link rel="stylesheet" href="/assets/css/navigation.css" />
 
 		<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
@@ -25,19 +26,35 @@
 			<nav class="navigation clearfix">
 				<ul>
 					<li><a href="home" class="nav-home" title="Home">Home</a></li>
-					<li><a href="portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
-					<li><a href="blog" class="nav-blog" title="Blog">Blog</a></li>
+					<li><a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
+					<li><a href="category/blog" class="nav-blog" title="Blog">Blog</a></li>
 					<li><a href="about" class="nav-about" title="About">About</a></li>
 					<li><a href="contact" class="nav-contact" title="Contact">Contact</a></li>
 				</ul>
 			</nav>
 		</header>
-
-		<section class="portfolio"></section>
-		<section class="blog"></section>
-		<section class="about"></section>
-		<section class="contact"></section>
-
+		<div id="wrapper">
+			<section class="portfolio">
+				<hgroup>
+					<h1>Portfolio</h1>
+				</hgroup>
+			</section>
+			<section class="blog">
+				<hgroup>
+					<h1>Blog</h1>
+				</hgroup>
+			</section>
+			<section class="about">
+				<hgroup>
+					<h1>About</h1>
+				</hgroup>
+			</section>
+			<section class="contact">
+				<hgroup>
+					<h1>Contact</h1>
+				</hgroup>
+			</section>
+		</div>
 		<footer>
 
 		</footer>
@@ -45,30 +62,30 @@
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/assets/js/libs/jquery-1.6.4.min.js"><\/script>')</script>
-		<script type="text/javascript" src="assets/js/router.js"></script>
-		<script type="text/javascript" src="assets/js/eventtarget.js"></script>
+		<script type="text/javascript" src="/assets/js/router.js"></script>
+		<script type="text/javascript" src="/assets/js/eventtarget.js"></script>
 
 		<!-- source scripts -->
-		<script type="text/javascript" src="assets/js/namespaces.js"></script>
-		<script type="text/javascript" src="assets/js/controllermanager.js"></script>
-		<script type="text/javascript" src="assets/js/lookup.js"></script>
-		<script type="text/javascript" src="assets/js/console.js"></script>
-		<script type="text/javascript" src="assets/js/componentloader.js"></script>
+		<script type="text/javascript" src="/assets/js/namespaces.js"></script>
+		<script type="text/javascript" src="/assets/js/controllermanager.js"></script>
+		<script type="text/javascript" src="/assets/js/lookup.js"></script>
+		<script type="text/javascript" src="/assets/js/console.js"></script>
+		<script type="text/javascript" src="/assets/js/componentloader.js"></script>
 
 
 
-		<script type="text/javascript" src="assets/js/controllers/base.js"></script>
-		<script type="text/javascript" src="assets/js/controllers/main.js"></script>
-		<script type="text/javascript" src="assets/js/controllers/navigation.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/base.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/main.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/navigation.js"></script>
 
-		<script type="text/javascript" src="assets/js/models/base.js"></script>
+		<script type="text/javascript" src="/assets/js/models/base.js"></script>
 
-		<script type="text/javascript" src="assets/js/views/base.js"></script>
-		<script type="text/javascript" src="assets/js/views/main.js"></script>
-		<script type="text/javascript" src="assets/js/views/navigation.js"></script>
+		<script type="text/javascript" src="/assets/js/views/base.js"></script>
+		<script type="text/javascript" src="/assets/js/views/main.js"></script>
+		<script type="text/javascript" src="/assets/js/views/navigation.js"></script>
 
 
-		<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 		<!-- end source scripts-->
 
 		<!-- scripts concatenated and minified via build script -->

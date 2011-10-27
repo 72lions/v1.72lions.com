@@ -47,7 +47,7 @@ seventytwolions.View.Navigation = function(name) {
     this.selectNavigationItem = function(section) {
         section = section === '' ? 'home' : section;
         this.domElement.find('.nav-' + section).parent().addClass('active').siblings().removeClass('active');
-    }
+    };
 
     /**
      * Registers all the event listeners
@@ -66,22 +66,19 @@ seventytwolions.View.Navigation = function(name) {
     var onLinkClick = function(e){
         e.preventDefault();
 
-        // Dispatch the event
-        me.dispatchEvent({type: 'menuClicked', foo:'bar'});
-
         // Cache the item
         var $item = $(this);
 
-        // Highlight the clicked menu item
-        me.selectNavigationItem($item.attr('href'));
-
         // Push the current url
-        Router.push(null, $item.attr('title'), $item.attr('href'));
+        Router.push(null, $item.attr('title'), '/' + $item.attr('href'));
+
+        // Dispatch the event
+        me.dispatchEvent({type: 'menuClicked', path:$item.attr('href')});
 
         // Clear memory
         $item = null;
     };
 
-}
+};
 
 seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();

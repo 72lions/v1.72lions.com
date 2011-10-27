@@ -33,6 +33,6 @@ seventytwolions.View.Main = function(name) {
         seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
-}
+};
 
 seventytwolions.View.Main.prototype = new seventytwolions.View.Base();

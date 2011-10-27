@@ -68,4 +68,4 @@ seventytwolions.View.Base = function() {
 
     };
 
-}
+};

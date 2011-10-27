@@ -18,14 +18,22 @@ seventytwolions.Controller.Base = function() {
      * Initializes the plugin
      * @param {String} className the name of the class that we initialized
      * @param {String} id The unique id of this class
+     * @param {String} viewClassName The class of the view (in case we want a different view)
      * @author Thodoris Tsiridis
      */
-    this.initialize = function(className, id) {
+    this.initialize = function(className, id, viewClassName) {
 
         this.name = className;
         this.id = id;
-        // get a reference to view
-        _view = seventytwolions.Lookup.getView(className, id);
+
+        // Check if the viewClassName is undefined
+        if(typeof(viewClassName) === 'undefined'){
+            // get a reference to view
+            _view = seventytwolions.Lookup.getView(className, id);
+        } else {
+            // get a reference to another view
+            _view = seventytwolions.Lookup.getView(viewClassName, id);
+        }
 
         // get a reference to the model
         _model = seventytwolions.Lookup.getModel(className);
@@ -46,7 +54,7 @@ seventytwolions.Controller.Base = function() {
      */
     this.postInitialize = function() {
 
-    }
+    };
 
     /**
      * Returns the view of the specific controller
@@ -68,4 +76,4 @@ seventytwolions.Controller.Base = function() {
         return _model;
     };
 
-}
+};
