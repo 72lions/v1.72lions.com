@@ -69,11 +69,8 @@ seventytwolions.View.Navigation = function(name) {
         // Cache the item
         var $item = $(this);
 
-        // Push the current url
-        Router.push(null, $item.attr('title'), '/' + $item.attr('href'));
-
         // Dispatch the event
-        me.dispatchEvent({type: 'menuClicked', path:$item.attr('href')});
+        me.dispatchEvent({type: 'menuClicked', path:$item.attr('href'), title:$item.attr('title')});
 
         // Clear memory
         $item = null;

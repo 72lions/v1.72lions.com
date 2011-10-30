@@ -44,9 +44,10 @@ class API {
 
         if ($response && xmlrpc_is_fault($response)) {
             trigger_error("xmlrpc: $response[faultString] ($response[faultCode])");
+            return null;
         } else {
             /*Printing the response on to the console*/
-            print_r($response);
+            return $response;
         }
     }
 

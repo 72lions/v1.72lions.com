@@ -6,40 +6,96 @@ html, body {
 
 #wrapper {
     height:100%;
-    margin-left:0px;
-    -webkit-transition:margin-left 0.3s ease-in-out;
-    -moz-transition:margin-left 0.3s ease-in-out;
-    -o-transition:margin-left 0.3s ease-in-out;
-    transition:margin-left 0.3s ease-in-out;
+    width:100%;
+    position:relative;
+    left:0%;
+    top:0%;
+    -webkit-transition: left 0.3s ease-in-out;
+    -moz-transition: left 0.3s ease-in-out;
+    -o-transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out;
+
 }
 
 #wrapper section hgroup {
     display:block;
     padding:40px 5px 0px 5px;
+    font-family:'Droid Sans';
 }
 
 section.blog,
+section.experiments,
 section.portfolio,
 section.about,
 section.contact {
     display:block;
     width:100%;
     height:100%;
-    float: left;
+    position:absolute;
+    top:0%;
+    z-index:1;
+    overflow:hidden;
 }
 
 section.blog {
     background-color:#ccc;
+    left:200%;
 }
 
 section.portfolio {
- background-color:#999;
+    background-color:#999;
+    left:0%;
 }
 
 section.about {
     background-color:#666;
+    left:300%;
 }
 
 section.contact {
     background-color:#333;
+    left:400%;
 }
+
+section.experiments {
+    background-color:#f3f3f3;
+    left:100%;
+}
+
+/** EXPERIMENTS LAYOUT ____________________________________*/
+
+section.experiments ul {
+    height:85%;
+    width: 9999px;
+    margin:0px;
+    padding:0px;
+}
+
+section.experiments ul li {
+    float:left;
+    list-style:none;
+    display:block;
+    height:99%;
+    width:350px;
+    margin-right:2px;
+    background-color:#000;
+    -webkit-box-shadow:1px 1px 2px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow:1px 1px 2px rgba(0, 0, 0, 0.7);
+    -o-box-shadow:1px 1px 2px rgba(0, 0, 0, 0.7);
+    box-shadow:1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+section.experiments ul li figure {
+
+}
+
+section.experiments ul li figure figcaption {
+    padding:10px;
+    color:#fff;
+    font-family:'Droid Sans';
+    text-transform:uppercase;
+    letter-spacing:-1px;
+    font-size:24px;
+}
+
+/** END EXPERIMENTS LAYOUT ____________________________________*/

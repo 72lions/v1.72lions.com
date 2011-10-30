@@ -29,20 +29,8 @@ seventytwolions.Controller.Navigation = function() {
      */
     var onMenuItemClicked = function(event){
 
-        var path = Router.getState().pathSegments;
-
-        if(path.length){
-            if(path[0] == 'category'){
-                path = path[1];
-            } else {
-                path = path[0];
-            }
-        }
-
-        // Highlight the clicked menu item
-        me.getView().selectNavigationItem(path);
-
-        path = null;
+        // Push the current url
+        Router.push(null, event.title, '/' + event.path);
 
     };
 
@@ -53,33 +41,39 @@ seventytwolions.Controller.Navigation = function() {
      */
     var onPopPushEvent = function(state){
 
-        var path = '';
+        var sectionName = '';
 
-        // Check if it is a page refresh
-        if(state.isRefresh === true){
-            // If the pathSegments are undefined then that
-            // means that Home menu item is selected
-            if(state.pathSegments === undefined){
-                me.getView().selectNavigationItem('');
-            } else {
+        // If the pathSegments are undefined then that
+        // means that Home menu item is selected
+        if(state.pathSegments === undefined){
 
-                if(state.pathSegments.length){
+            me.getView().selectNavigationItem('portfolio');
 
-                    if(state.pathSegments[0] == 'category'){
-                        path = state.pathSegments[1];
-                    } else {
-                        path = state.pathSegments[0];
-                    }
+            // Dispatch the event so that the parent controller can get it
+            me.dispatchEvent({type: 'menuClicked', path:''});
 
+        } else {
+
+            if(state.pathSegments.length){
+
+                if(state.pathSegments[0] == 'category'){
+                    sectionName = state.pathSegments[1];
+                } else {
+                    sectionName = state.pathSegments[0];
                 }
 
-                // Select a specific menu item
-                me.getView().selectNavigationItem(path);
             }
+
+            // Select a specific menu item
+            me.getView().selectNavigationItem(sectionName);
+
+            // Dispatch the event so that the parent controller can get it
+            me.dispatchEvent({type: 'menuClicked', path:sectionName});
 
         }
 
-        path = null;
+        // Clean memory
+        sectionName = null;
     };
 };
 

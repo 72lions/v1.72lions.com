@@ -3,6 +3,7 @@
     top:5px;
     left:5px;
     display:block;
+    z-index:2;
 }
 
 .navigation ul {
