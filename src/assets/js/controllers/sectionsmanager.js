@@ -7,7 +7,7 @@
 seventytwolions.Controller.SectionsManager = function() {
 
     var me = this;
-
+    var initialState = Router.getState();
     /**
      * This function is executed right after the initialized
      * function is called
