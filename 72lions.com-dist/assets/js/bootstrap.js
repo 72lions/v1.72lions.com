@@ -1,0 +1,1 @@
+seventytwolions.ControllerManager.initializeController('Main', 'main');
