@@ -9,7 +9,7 @@ seventytwolions.View.SectionsManager = function(name) {
     var me = this;
 
 	this.setName(name);
-	this.domElement = $('#wrapper');
+	this.domElement = $('#sections-wrapper');
 
     /**
      * Initializes the view

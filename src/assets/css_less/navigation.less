@@ -1,36 +1,80 @@
 @import "lib.less";
 
-.navigation {
-    position:absolute;
-    top:5px;
-    left:5px;
+header.navigation {
+
     display:block;
-    z-index:2;
+    width:100%;
+    position:absolute;
+    top:0%;
+    left:0%;
+    z-index: 100;
+    min-width:480px;
+    background-color:@bodyColor;
 
-    ul {
-        li {
-            float:left;
-            line-height:25px;
-            list-style:none;
-            margin:0px 5px;
-            background-color:#FF0000;
-            cursor:pointer;
+    nav {
 
-            .border-radius(2px);
-            .transition( e('background-color 0.2s, -webkit-box-shadow 0.2s, -moz-box-shadow 0.2s, -o-box-shadow 0.2s, box-shadow 0.2s') );
+        display:block;
+        width:80%;
+        margin:10px auto 10px auto;
+        overflow:hidden;
 
-            &.active, &:hover {
-                background-color:#000;
-                .box-shadow(0px 1px 2px rgba(0,0,0,0.3));
-            }
+        img {
+            width: 70px;
+        }
 
-            a:link,
-            a:visited {
-                text-decoration:none;
-                color:#fff;
-                padding:0px 5px;
-                display:inline-block;
+        ul {
+
+            margin-top:20px;
+
+            li {
+                float:left;
+                line-height:25px;
+                list-style:none;
+                margin:0px 5px;
+                cursor:pointer;
+                border-top:1px dashed #ccc;
+                border-bottom:1px dashed #ccc;
+                text-shadow:0px 1px #fff;
+                background-color: @bodyColor;
+                outline:none;
+
+                .transition(e('border-bottom-color 0.2s, border-bottom-style 0.2s'));
+
+                &.active, &:hover {
+
+                    border-bottom-color:#666;
+                    border-bottom-width:2px;
+                    border-bottom-style:inset;
+
+                }
+
+                &:last-child {
+                    border-bottom:0px;
+                    border-top:0px;
+                    float:right;
+                    width:78px;
+                    padding:5px 0px;
+
+                    a:link,
+                    a:visited {
+                        border-top:1px dashed #ccc;
+                        border-bottom:1px dashed #ccc;
+                        padding:5px;
+
+                    }
+                }
+
+                a:link,
+                a:visited {
+                    text-decoration:none;
+                    color:#666;
+                    padding:0px 5px;
+                    display:inline-block;
+                    font-family: @fontGeorgia;
+                    font-size:14px;
+                }
             }
         }
     }
+
 }
