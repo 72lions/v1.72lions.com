@@ -4,7 +4,7 @@ class API {
     var $username = '';
     var $password = '';
     var $url = '';
-    var$curlHandle = null;
+    var $curlHandle = null;
 
     public function __construct($url, $username, $password){
 
