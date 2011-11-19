@@ -36,9 +36,9 @@ class API {
         if($categoryId !== null ){
 
             $temp = array();
-            $total = count($this->posts);
+            $len = count($this->posts);
 
-            for ($i=0; $i < $total; $i++) {
+            for ($i=0; $i < $len; $i++) {
 
                 $post = $this->posts[$i];
 

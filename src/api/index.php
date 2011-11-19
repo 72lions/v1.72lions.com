@@ -23,7 +23,7 @@
 
         $api = new API();
         $api->parseXML('../data/wp-data.xml');
-        $categories = $api->getPosts(4, 3, 0);
+        $categories = $api->getPosts();
         print_r($categories);
     ?>
 </body>
