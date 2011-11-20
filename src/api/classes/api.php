@@ -23,8 +23,28 @@ class API {
      */
     public function getCategories() {
 
-        //TODO: First check memcache
-        return Category::$categories;
+        $query = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT WHERE WT.term_id =  WTT.term_id AND taxonomy='category'";
+
+        if(MC::get($query) == null){
+
+            $db = new DB();
+            $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
+            $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+            while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+
+                $category = new Category($row);
+                Category::addCategory($category);
+                MC::set('category'.$category->id, $category);
+
+            }
+
+            $db->disconnect();
+            unset($db);
+
+            MC::set($query, Category::$categories);
+        }
+
+        return MC::get($query);
     }
 
     /**
@@ -38,8 +58,6 @@ class API {
      * @author Thodoris Tsiridis
      */
     public function getPosts($categoryId = null, $start = 0, $total = 10, $sort = 'post_date DESC') {
-
-
 
         if($categoryId !== null){
 
@@ -59,9 +77,7 @@ class API {
 
         }
 
-        if(MC::get($query) === null){
-
-            echo 'reading from db';
+        if(MC::get($query) == null){
 
             $db = new DB();
             $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
@@ -70,6 +86,7 @@ class API {
 
                 $post = new Post($row);
                 $this->posts[] = $post;
+                MC::set('post'.$post->id, $post);
 
             }
 
@@ -77,10 +94,11 @@ class API {
             unset($db);
 
             MC::set($query, $this->posts);
-            print_r(MC::get($query));
         }
 
-        return MC::get($query);
+        $data = MC::get($query);
+        MC::close();
+        return $data;
 
 
     }
@@ -97,13 +115,49 @@ class API {
      */
     public function getPages($categoryId = null, $start = 0, $total = 10, $sort = 'post_date DESC') {
 
-        if($categoryId !== null){
-            $query = "SELECT * FROM wp_posts WHERE ";
+       if($categoryId !== null){
+
+            $query = "SELECT * FROM wp_posts
+            WHERE post_status='publish'
+            AND post_type='page'
+            ORDER BY ".$sort."
+            LIMIT ".$start.",".$total;
+
         } else {
-            $query = "SELECT * FROM wp_posts ORDER BY ".mysql_real_escape_string($sort)." LIMIT ".$start.",".$total;
+
+            $query = "SELECT * FROM wp_posts
+            WHERE post_status='page'
+            AND post_type='post'
+            ORDER BY ".$sort."
+            LIMIT ".$start.",".$total;
+
         }
 
-        echo $query;
+        if(MC::get($query) == null){
+
+            echo 'reading from db ';
+
+            $db = new DB();
+            $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
+            $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+            while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+
+                $post = new Post($row);
+                $this->pages[] = $post;
+                MC::set('page'.$post->id, $post);
+
+            }
+
+            $db->disconnect();
+            unset($db);
+
+            MC::set($query, $this->pages);
+        }
+
+        $data = MC::get($query);
+        MC::close();
+
+        return $data;
     }
 
     /**
@@ -126,91 +180,6 @@ class API {
      */
     public function getComments($postId) {
         //TODO: First check memcache
-    }
-
-    /**
-     * Gets the details of a post
-     *
-     * @param {String} $xml The path to the xml
-     * @author Thodoris Tsiridis
-     */
-    public function parseXML($xml) {
-
-        $modifiedDate = 0;
-        $total = 0;
-        $items = array();
-
-        // Save the XML path
-        self::$XML = $xml;
-
-        // Load the xml
-        $xmlData = simplexml_load_file(self::$XML);
-
-        // Get the modified date of the file
-        $modifiedDate = filemtime(self::$XML);
-
-        // TODO: Add logic to check in memcache if the modification date is different for the file
-        if(!$modifiedDate){
-            return false;
-        }
-
-        $categories = $xmlData->xpath('//channel/wp:category');
-        $total = count($categories);
-
-        // Get all the categories
-        for ($i=0; $i < $total; $i++) {
-            $category = new Category($categories[$i], Category::$TYPE_COMPLEX);
-            Category::$categories[$category->nicename] = $category;
-        }
-
-        //print_r($this->getCategories());
-        // Get all the posts
-        $items = $xmlData->xpath('//channel/item');
-        $total = count($items);
-
-        // Get all the categories
-        for ($i=0; $i < $total; $i++) {
-            // Check that it is not an attachment
-            $type = $items[$i]->xpath('wp:post_type');
-            $type = (string)$type[0];
-
-            if($type == 'post') {
-                $this->posts[] = new Post($items[$i]);
-            } else if($type == 'page') {
-                $this->pages[] = new Post($items[$i]);
-            }
-
-            unset($type);
-        }
-
-        unset($modifiedDate);
-        unset($total);
-        unset($categories);
-        unset($items);
-        unset($xmlData);
-
-    }
-
-    /**
-     * Checks to Post objects so that they can be sorted
-     *
-     * @param {Post} $a The first object to check
-     * @param {Post} $b The second object to check
-     * @author Thodoris Tsiridis
-     */
-    protected function custom_sort_post_date_asc($a, $b) {
-        return $a->pubDate > $b->pubDate;
-    }
-
-    /**
-     * Checks to Post objects so that they can be sorted
-     *
-     * @param {Post} $a The first object to check
-     * @param {Post} $b The second object to check
-     * @author Thodoris Tsiridis
-     */
-    protected function custom_sort_post_date_desc($a, $b) {
-        return $a->pubDate < $b->pubDate;
     }
 
 }

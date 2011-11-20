@@ -4,7 +4,8 @@ class MC {
     /**
      * Constants
      */
-    public static $HOST = '127.0.0.1';
+    protected static $HOST = 'localhost';
+    protected static $PORT = 11211;
     public static $isConnected = false;
     protected static $memcache;
     protected static $prefix = '72lions';
@@ -16,8 +17,8 @@ class MC {
      */
     public static function connect() {
          // Connect to memecache
-        self::$memcache = new Memcache();
-        self::$memcache->connect(self::$HOST, 11211) or die ("Could not connect");
+        self::$memcache = new Memcache;
+        self::$memcache->connect(self::$HOST, self::$PORT) or die ("Could not connect");
         self::$isConnected = true;
     }
 
@@ -35,7 +36,7 @@ class MC {
             self::connect();
         }
 
-        self::$memcache->get(self::$prefix . self::$group . ':'.md5($key));
+        return self::$memcache->get(self::$prefix . self::$group . ':'.md5($key));
 
     }
 
@@ -46,14 +47,14 @@ class MC {
      * @author Thodoris Tsiridis
      */
     public static function set($key, $value, $time = 864000) {
+
         // Check if it is connected
         if(!self::$isConnected){
             // Connect
             self::connect();
-            echo 'connected';
         }
 
-        self::$memcache->set(self::$prefix . self::$group . ':' . md5($key), $value, true, $time);
+        self::$memcache->set(self::$prefix . self::$group . ':' . md5($key), $value, false, $time);
     }
 
     /**
@@ -68,6 +69,21 @@ class MC {
         }
 
         self::$memcache->flush();
+
+    }
+
+    /**
+     * Closes memcache connection
+     * @author Thodoris Tsiridis
+     */
+    public static function close() {
+        // Check if it is connected
+        if(self::$isConnected){
+            self::$memcache->close();
+            self::$isConnected = false;
+        }
+
+
 
     }
 

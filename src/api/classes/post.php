@@ -36,6 +36,15 @@ class Post {
     }
 
     /**
+     * Adds it to a specific category
+     * @param {Category} $category The category that it belongs to
+     * @author Thodoris Tsiridis
+     */
+    public function addToCategory($category) {
+        $this->categories[] = $category;
+    }
+
+    /**
      * Checks if a post belongs to a category
      * @param {Number} $id The id of the category
      * @author Thodoris Tsiridis

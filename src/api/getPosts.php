@@ -22,8 +22,10 @@
     if(isset($_REQUEST['srt'])) { $srt = $_REQUEST['srt']; } else { $srt = Post::$SORT_DATE_DESC; }
 
     $api = new API();
-    //$api->parseXML('../data/wp-data.xml');
+
     $posts = $api->getPosts($cid, $s, $t, $srt);
+    $categories = $api->getCategories();
+
     $totalPosts = count($posts);
 
     // Create the JSON object
