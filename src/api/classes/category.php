@@ -7,15 +7,28 @@ class Category {
      public static $TYPE_SIMPLE = 1;
      public static $TYPE_COMPLEX = 2;
      public static $categories = array();
+
      /**
       * Public variables
       */
      public $name = '';
      public $nicename = '';
      public $id = 0;
+
+    /**
+     * Adds a category object to the categories array
+     *
+     * @param {Category} $category The category we want to add to the categories array
+     * @author Thodoris Tsiridis
+     */
+    public static function addCategory($category) {
+        self::$categories[] = $category;
+    }
+
     /**
      * Constructor
      * @param {SimpleXMLObject} $object The object that we need to parse
+     * @author Thodoris Tsiridis
      */
     public function __construct($object, $type = 1) {
 
@@ -37,10 +50,6 @@ class Category {
 
         }
 
-    }
-
-    public static function addCategory($category) {
-        self::$categories[] = $category;
     }
 
 }

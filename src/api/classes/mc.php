@@ -12,6 +12,7 @@ class MC {
 
     /**
      * Connects to memcache
+     * @author Thodoris Tsiridis
      */
     public static function connect() {
          // Connect to memecache
@@ -24,6 +25,7 @@ class MC {
      * Returns an object from memcache
      * @param {String} $key The name of the key that we want to get
      * @return {Object} The object that we want
+     * @author Thodoris Tsiridis
      */
     public static function get($key) {
 
@@ -41,13 +43,14 @@ class MC {
      * Returns an object from memcache
      * @param {String} $key The name of the key that we want to save
      * @param {Object} $value The object that we want to save
+     * @author Thodoris Tsiridis
      */
     public static function set($key, $value, $time = 864000) {
-
         // Check if it is connected
         if(!self::$isConnected){
             // Connect
             self::connect();
+            echo 'connected';
         }
 
         self::$memcache->set(self::$prefix . self::$group . ':' . md5($key), $value, true, $time);
@@ -55,6 +58,7 @@ class MC {
 
     /**
      * Clears memcache
+     * @author Thodoris Tsiridis
      */
     public static function flush() {
         // Check if it is connected
