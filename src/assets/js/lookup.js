@@ -19,9 +19,9 @@ seventytwolions.lookup = function() {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.getController = function(className, id) {
+    this.getController = function(className, id, viewClassName) {
 
-        var exists = -1;
+        var exists = -1, controllerObj;
 
         // Check if there is an array with objects of className type
         // If not then create a new array
@@ -34,16 +34,27 @@ seventytwolions.lookup = function() {
         for (var i = _controllers[className].length - 1; i >= 0; i--) {
             if(_controllers[className][i].id == id){
                 exists = i;
+                break;
             }
         }
 
         if(exists === -1){
 
             exists = null;
-            // If it doesn't already exist then push it on the array
-            _controllers[className].push({id: id, classType: new seventytwolions.Controller[className]()});
-            return _controllers[className][_controllers[className].length-1].classType;
+            // Check if the class that we want to load exists
+            if(seventytwolions.Controller[className] !== undefined){
+                controllerObj = {id: id, classType: new seventytwolions.Controller[className]()};
+            } else {
+                // Create a generic controller
+                controllerObj = {id: id, classType: new seventytwolions.Controller.Base()};
+            }
+
+            _controllers[className].push(controllerObj);
+            controllerObj.classType.initialize(className, id, viewClassName);
+            return controllerObj.classType;
+
         } else {
+
             return _controllers[className][exists].classType;
         }
 
@@ -59,7 +70,7 @@ seventytwolions.lookup = function() {
      */
     this.getView = function(className, id) {
 
-        var exists = -1;
+        var exists = -1, viewObj;
 
         // Check if there is an array with objects of className type
         // If not then create a new array
@@ -78,9 +89,18 @@ seventytwolions.lookup = function() {
         if(exists === -1){
 
             exists = null;
-            // If it doesn't already exist then push it on the array
-            _views[className].push({id: id, classType: new seventytwolions.View[className](className)});
-            return _views[className][_views[className].length-1].classType;
+
+            // Check if the class that we want to load exists
+            if(seventytwolions.View[className] !== undefined){
+                viewObj = {id: id, classType: new seventytwolions.View[className](className)};
+            } else {
+                viewObj = {id: id, classType: new seventytwolions.View.Base(className)};
+            }
+
+            _views[className].push(viewObj);
+
+            return viewObj.classType;
+
         } else {
             return _views[className][exists].classType;
         }
@@ -94,15 +114,15 @@ seventytwolions.lookup = function() {
      * @author Thodoris Tsiridis
      */
     this.getModel = function(name) {
+        var model;
 
-        try {
-            if(!_models[name] && $.isFunction(seventytwolions.Model[name])) {
-                _models[name] = new seventytwolions.Model[name]();
-            }
-        } catch(e) {
-            seventytwolions.console(name, e);
+        if(!_models[name] && $.isFunction(seventytwolions.Model[name])) {
+            model = new seventytwolions.Model[name]();
+        } else {
+            model = new seventytwolions.Model.Base();
         }
 
+        _models[name] = model;
         return _models[name];
     };
 

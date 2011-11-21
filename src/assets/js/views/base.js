@@ -4,11 +4,11 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Base = function() {
+seventytwolions.View.Base = function(name) {
 
     EventTarget.call( this );
 
-    this.name = "Base";
+    this.name = name;
     this.domElement = null;
 
     /**

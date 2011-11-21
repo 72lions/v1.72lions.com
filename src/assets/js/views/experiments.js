@@ -1,13 +1,15 @@
 /**
- * Main View
+ * Experiments View
  *
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Main = function(name) {
+seventytwolions.View.Experiments = function(name) {
+
+    var me = this;
 
 	this.setName(name);
-	this.domElement = null;
+	this.domElement = $('.blog');
 
     /**
      * Initializes the view
@@ -21,9 +23,9 @@ seventytwolions.View.Main = function(name) {
      * Draws the specific view
      * @author Thodoris Tsiridis
      */
-    this.draw = function() {
-        seventytwolions.Console.log('Drawing view with name ' + this.name);
-    };
+	this.draw = function() {
+		seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
 
    /**
      * Executed after the drawing of the view
@@ -35,4 +37,4 @@ seventytwolions.View.Main = function(name) {
 
 };
 
-seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
+seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();

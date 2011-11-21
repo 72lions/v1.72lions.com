@@ -1,5 +1,5 @@
 /**
- * Home View
+ * Sections Manager View
  *
  * @author Thodoris Tsiridis
  * @version 1.0

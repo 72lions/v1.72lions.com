@@ -1,5 +1,5 @@
 /**
- * Home View
+ * Navigation View
  *
  * @author Thodoris Tsiridis
  * @version 1.0

@@ -1,5 +1,5 @@
 /**
- * Index Controller
+ * Main Controller
  *
  * @author Thodoris Tsiridis
  * @version 1.0
@@ -16,7 +16,7 @@ seventytwolions.Controller.Main = function() {
     this.postInitialize = function() {
 
         navigationController = seventytwolions.ControllerManager.initializeController('Navigation', 'navigation');
-        sectionsManager = seventytwolions.ControllerManager.initializeController('SectionsManager', 'sectionsmanager');
+        sectionsManager  = seventytwolions.ControllerManager.initializeController('SectionsManager', 'sectionsmanager');
 
         addEventListeners();
 
@@ -104,6 +104,7 @@ seventytwolions.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var changeSection = function(path){
+
         sectionsManager.showSectionWithName(path);
     };
 };
