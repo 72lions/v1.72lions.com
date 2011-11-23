@@ -23,7 +23,9 @@ class API {
      */
     public function getCategories() {
 
-        $query = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT WHERE WT.term_id =  WTT.term_id AND taxonomy='category'";
+        $query = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT
+                WHERE WT.term_id =  WTT.term_id
+                AND taxonomy='category'";
 
         if(MC::get($query) == null){
 
@@ -59,11 +61,19 @@ class API {
      */
     public function getPosts($categoryId = null, $start = 0, $total = 10, $sort = 'post_date DESC') {
 
+        $db = new DB();
+        $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
         if($categoryId !== null){
 
-            $query = "SELECT * FROM wp_posts
-            WHERE post_status='publish'
-            AND post_type='post'
+            $query = "SELECT * FROM wp_posts WPP,
+            wp_term_taxonomy WPTT,
+            wp_term_relationships WPTR
+            WHERE WPP.post_status='publish'
+            AND WPP.post_type='post'
+            AND WPTT.term_id=".mysql_real_escape_string($categoryId)."
+            AND WPTT.taxonomy='category'
+            AND WPTR.term_taxonomy_id = WPTT.term_taxonomy_id
+            AND WPTR.object_id = WPP.ID
             ORDER BY ".$sort."
             LIMIT ".$start.",".$total;
 
@@ -77,10 +87,10 @@ class API {
 
         }
 
+
+
         if(MC::get($query) == null){
 
-            $db = new DB();
-            $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
             $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
             while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
 
@@ -90,14 +100,15 @@ class API {
 
             }
 
-            $db->disconnect();
-            unset($db);
-
             MC::set($query, $this->posts);
         }
 
-        $data = MC::get($query);
+        $data = $this->posts;//MC::get($query);
+
         MC::close();
+        $db->disconnect();
+        unset($db);
+
         return $data;
 
 

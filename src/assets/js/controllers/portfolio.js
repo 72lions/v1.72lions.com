@@ -23,7 +23,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     this.loadPosts = function() {
         console.log(this.getModel());
-        this.getModel().get(33, onPostsLoaded);
+        this.getModel().get(5, onPostsLoaded);
     };
 
     var onPostsLoaded = function(result) {
