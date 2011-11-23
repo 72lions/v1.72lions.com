@@ -5,6 +5,8 @@ class Category {
      * Constants
      */
      public static $categories = array();
+     public static $SORT_NAME_ASC = 'name ASC';
+     public static $SORT_NAME_DESC = 'name DESC';
 
      /**
       * Public variables

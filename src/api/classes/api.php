@@ -18,14 +18,20 @@ class API {
 
     /**
      * Returns an array with all the categories
+     *
+     * @param {Number} $start The beginning of the result set
+     * @param {Number} $total The total items to laod
+     * @param {String} $sort The sorting
      * @return {Array}
      * @author Thodoris Tsiridis
      */
-    public function getCategories() {
+    public function getCategories($start = 0, $total = 10, $sort = 'name ASC') {
 
         $query = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT
                 WHERE WT.term_id =  WTT.term_id
-                AND taxonomy='category'";
+                AND taxonomy='category'
+                ORDER BY WT.".$sort."
+                LIMIT ".$start.",".$total;
 
         if(MC::get($query) == null){
 
@@ -55,7 +61,7 @@ class API {
      * @param {Number} $categoryId The id of the parent category
      * @param {Number} $start The beginning of the result set
      * @param {Number} $total The total items to laod
-     *
+     * @param {String} $sort The sorting
      * @return {Array}
      * @author Thodoris Tsiridis
      */
@@ -103,13 +109,10 @@ class API {
             MC::set($query, $this->posts);
         }
 
-        $data = $this->posts;//MC::get($query);
-
-        MC::close();
         $db->disconnect();
         unset($db);
 
-        return $data;
+        return MC::get($query);
 
 
     }
@@ -165,10 +168,7 @@ class API {
             MC::set($query, $this->pages);
         }
 
-        $data = MC::get($query);
-        MC::close();
-
-        return $data;
+        return MC::get($query);
     }
 
     /**

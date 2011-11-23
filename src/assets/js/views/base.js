@@ -4,11 +4,12 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Base = function(name) {
+seventytwolions.View.Base = function() {
 
     EventTarget.call( this );
 
-    this.name = name;
+    this.name = null;
+    this.id = null;
     this.domElement = null;
 
     /**
@@ -35,6 +36,15 @@ seventytwolions.View.Base = function(name) {
     };
 
     /**
+     * Sets the name of the view
+     * @param {String} name The name fo the view
+     * @author Thodoris Tsiridis
+     */
+    this.setId = function(id) {
+        this.id = id;
+    };
+
+    /**
      * Returns the main dom element of the view
      * @returns A DOM element
      * @type jQuery DOM element
@@ -42,6 +52,15 @@ seventytwolions.View.Base = function(name) {
      */
     this.getDOMElement = function() {
         return this.domElement;
+    };
+
+    /**
+     * Is triggered before initialization of the view
+     * @author Thodoris Tsiridis
+     */
+    this.preInitialize = function(name, id) {
+        this.setName(name);
+        this.setId(id);
     };
 
     /**

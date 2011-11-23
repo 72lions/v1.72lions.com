@@ -7,6 +7,8 @@
 seventytwolions.Controller.Portfolio = function() {
 
     var me = this;
+    var categoriesModel;
+    var portfolioItems = [];
 
     /**
      * This function is executed right after the initialized
@@ -14,20 +16,38 @@ seventytwolions.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-        var model;
-        model = seventytwolions.Lookup.getModel('Posts');
-        this.setModel(model);
+
+        this.setModel(seventytwolions.Lookup.getModel('Posts'));
 
         this.loadPosts();
+        this.loadCategories();
+
     };
 
     this.loadPosts = function() {
-        console.log(this.getModel());
-        this.getModel().get(5, onPostsLoaded);
+        this.getModel().get(null, 0, 5, onPostsLoaded, this);
     };
 
     var onPostsLoaded = function(result) {
-        console.log(result);
+        var i;
+        for (i = 0; i < result.length; i++) {
+
+            portfolioItems.push(seventytwolions.ControllerManager.initializeController('PortfolioItem', 'portfolioitem' + result[i].Id, null, result));
+            portfolioItems[i].render();
+        }
+    };
+
+    this.loadCategories = function() {
+
+        if(categoriesModel === undefined){
+            categoriesModel = seventytwolions.Lookup.getModel('Categories');
+        }
+
+        categoriesModel.get(0, 5, onCategoriesLoaded, this);
+    };
+
+    var onCategoriesLoaded = function(result) {
+
     };
 
 };

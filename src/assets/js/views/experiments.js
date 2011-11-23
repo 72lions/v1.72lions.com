@@ -4,11 +4,10 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Experiments = function(name) {
+seventytwolions.View.Experiments = function() {
 
     var me = this;
 
-	this.setName(name);
 	this.domElement = $('.blog');
 
     /**

@@ -4,11 +4,10 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.SectionsManager = function(name) {
+seventytwolions.View.SectionsManager = function() {
 
     var me = this;
 
-	this.setName(name);
 	this.domElement = $('#sections-wrapper');
 
     /**

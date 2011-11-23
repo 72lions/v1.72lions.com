@@ -1,18 +1,9 @@
 <?php
     header ("Content-Type:text/plain");
-    /**include('api.php');
-
-    $USERNAME = "admin";
-    $PASSWORD = "m$&8lAWi";
-
-    $api = new API("http://72lions.com/xmlrpc.php", $USERNAME, $PASSWORD );
-    $response = $api->getRecentPosts(10);
-    print_r($response);*/
 
     include('classes/db.php');
     include('classes/api.php');
     include('classes/post.php');
-    include('classes/category.php');
     include('classes/mc.php');
 
     // Get all the post/get variables
@@ -24,7 +15,6 @@
     $api = new API();
 
     $posts = $api->getPosts($cid, $s, $t, $srt);
-    $categories = $api->getCategories();
 
     $totalPosts = count($posts);
 

@@ -4,11 +4,10 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Portfolio = function(name) {
+seventytwolions.View.Portfolio = function() {
 
     var me = this;
 
-	this.setName(name);
 	this.domElement = $('.portfolio');
 
     /**

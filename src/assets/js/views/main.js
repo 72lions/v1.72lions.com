@@ -4,9 +4,8 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Main = function(name) {
+seventytwolions.View.Main = function() {
 
-	this.setName(name);
 	this.domElement = null;
 
     /**

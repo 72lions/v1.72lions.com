@@ -11,33 +11,24 @@ seventytwolions.Controller.Base = function() {
     EventTarget.call( this );
     var _view, _model, _registeredEvents = {};
 
-    this.data = {};
-
     this.id = '';
     this.name = '';
     this.viewClassName = '';
+    this.model = undefined;
 
     /**
      * Initializes the plugin
      * @author Thodoris Tsiridis
      */
-    this.initialize = function(className, id, viewClassName) {
+    this.initialize = function(className, id, viewClassName, model) {
 
         this.id = id;
-        this.name = className;
-        this.viewClassName = viewClassName;
+        this.name = viewClassName || className;
 
-        // Check if the viewClassName is undefined
-        if(typeof(this.viewClassName) === 'undefined'){
-            // get a reference to view
-            _view = seventytwolions.Lookup.getView(this.name, this.id);
-        } else {
-            // get a reference to another view
-            _view = seventytwolions.Lookup.getView(this.viewClassName, this.id);
-        }
+        _view = seventytwolions.Lookup.getView(this.name, this.id);
 
         // get a reference to the model
-        _model = seventytwolions.Lookup.getModel(this.name);
+        _model = this.model = model || seventytwolions.Lookup.getModel(this.name);
 
         // ask it to initialize, draw and postDraw
         _view.initialize();

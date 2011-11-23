@@ -4,12 +4,11 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Navigation = function(name) {
+seventytwolions.View.Navigation = function() {
 
     var $links;
     var me = this;
 
-	this.setName(name);
 	this.domElement = $('.navigation');
 
     /**

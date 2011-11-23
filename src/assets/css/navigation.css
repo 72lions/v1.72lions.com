@@ -7,7 +7,6 @@ header.navigation {
   left: 0%;
   z-index: 100;
   min-width: 480px;
-  background-color: #f2f0f0;
 }
 header.navigation nav {
   display: block;
@@ -20,6 +19,7 @@ header.navigation nav img {
 }
 header.navigation nav ul {
   margin-top: 20px;
+  background-color: #f2f0f0;
 }
 header.navigation nav ul li {
   float: left;

@@ -15,11 +15,13 @@ seventytwolions.lookup = function() {
      * Returns a controller with a specific name
      * @param {String} className The name of the controllers
      * @param {String} id The unique id for this controller
+     * @param {String} viewClassName The name of a different view
+     * @param {Object} model The model that we want to use
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.getController = function(className, id, viewClassName) {
+    this.getController = function(className, id, viewClassName, model) {
 
         var exists = -1, controllerObj;
 
@@ -50,7 +52,7 @@ seventytwolions.lookup = function() {
             }
 
             _controllers[className].push(controllerObj);
-            controllerObj.classType.initialize(className, id, viewClassName);
+            controllerObj.classType.initialize(className, id, viewClassName, model);
             return controllerObj.classType;
 
         } else {
@@ -69,7 +71,6 @@ seventytwolions.lookup = function() {
      * @author Thodoris Tsiridis
      */
     this.getView = function(className, id) {
-
         var exists = -1, viewObj;
 
         // Check if there is an array with objects of className type
@@ -92,13 +93,13 @@ seventytwolions.lookup = function() {
 
             // Check if the class that we want to load exists
             if(seventytwolions.View[className] !== undefined){
-                viewObj = {id: id, classType: new seventytwolions.View[className](className)};
+                viewObj = {id: id, classType: new seventytwolions.View[className]()};
             } else {
-                viewObj = {id: id, classType: new seventytwolions.View.Base(className)};
+                viewObj = {id: id, classType: new seventytwolions.View.Base()};
             }
 
             _views[className].push(viewObj);
-
+            viewObj.classType.preInitialize(className, id);
             return viewObj.classType;
 
         } else {

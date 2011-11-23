@@ -1,21 +1,21 @@
 /**
- * Contact View
+ * Portfolio Item View
  *
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Contact = function() {
+seventytwolions.View.PortfolioItem = function() {
 
     var me = this;
 
-	this.domElement = $('.blog');
+	this.domElement = $('.portfolio');
 
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        seventytwolions.Console.log('Initializing view with name ' + this.name);
+        seventytwolions.Console.log('Initializing view with name ' + this.name + ', ' + this.id);
     };
 
     /**
@@ -36,4 +36,4 @@ seventytwolions.View.Contact = function() {
 
 };
 
-seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
+seventytwolions.View.PortfolioItem.prototype = new seventytwolions.View.Base();
