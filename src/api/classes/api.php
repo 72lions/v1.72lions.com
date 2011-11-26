@@ -100,8 +100,29 @@ class API {
             $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
             while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
 
+                // Get categories
                 $post = new Post($row);
                 $this->posts[] = $post;
+
+                $queryCats = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT, wp_term_relationships WPTR
+                WHERE WT.term_id =  WTT.term_id
+                AND WPTR.term_taxonomy_id = WTT.term_taxonomy_id
+                AND WPTR.object_id = ".$post->id."
+                AND WTT.taxonomy='category'
+                ORDER BY WT.name ASC";
+
+                $resultCats = mysql_query($queryCats) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+                while($rowCat = mysql_fetch_array($resultCats, MYSQL_ASSOC)){
+
+                    if(MC::get('category'.$rowCat['term_id']) == null){
+                        $category = new Category($rowCat);
+                        Category::addCategory($category);
+                        MC::set('category'.$category->id, $category);
+                    }
+
+                    $post->addToCategory(MC::get('category'.$rowCat['term_id']));
+                }
+
                 MC::set('post'.$post->id, $post);
 
             }

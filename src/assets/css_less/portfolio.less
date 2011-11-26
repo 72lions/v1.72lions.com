@@ -1,11 +1,66 @@
+@import "lib.less";
+
 section.portfolio {
 
     ul {
+
+        position:relative;
+        //.hardware-accelerate;
+
         li {
 
             list-style:none;
+            color:#666;
+            display:block;
+            position:absolute;
+
+            a:link,
+            a:visited {
+                margin-top:5px;
+                display:block;
+                color:#666;
+                text-decoration:none;
+                .transition(color  0.1s ease-out);
+
+                &:hover {
+                    color:#F02311;
+                }
+            }
+            //.box-shadow(1px 1px 1px rgba(0,0,0,0.2));
+
+
+            img {
+                width:100%;
+            }
+
+            .body {
+                padding:15px;
+            }
+
+            h1 {
+                text-shadow:0px 1px rgba(255,255,255,1);
+
+            }
+
+            aside {
+                color:#F02311;
+                font-style:italic;
+            }
+
+            p, aside {
+                font-family:fontGeorgia;
+            }
 
         }
+
+        &.animated {
+
+            li {
+                .transition(e('left 0.3s ease-in-out, top 0.3s ease-in-out'));
+            }
+
+        }
+
     }
 
 }

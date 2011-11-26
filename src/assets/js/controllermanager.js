@@ -11,15 +11,19 @@ seventytwolions.controllerManager = function() {
 
     /**
      * Initializes a controller with a specific name
-     * @param {String} className The name of the controllers
-     * @param {String} id The unique id for this controller
-     * @param {String} viewClassName The name of a different view
-     * @param {Object} model The model that we want to use
+     * @param {Object} object The parameters
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(className, id, viewClassName, model) {
+    this.initializeController = function(object) {
+        var className, id, viewClassName, model;
+
+        className = object.type;
+        id = object.id;
+        viewClassName = object.viewClassType;
+        model = object.model;
+
         return seventytwolions.Lookup.getController(className, id, viewClassName, model);
     };
 

@@ -10,6 +10,7 @@ seventytwolions.View.Base = function() {
 
     this.name = null;
     this.id = null;
+    this.model = null;
     this.domElement = null;
 
     /**
@@ -42,6 +43,25 @@ seventytwolions.View.Base = function() {
      */
     this.setId = function(id) {
         this.id = id;
+    };
+
+    /**
+     * Sets the model for the view
+     * @param {seventytwolions.models.Base} model The model
+     * @author Thodoris Tsiridis
+     */
+    this.setModel = function(model) {
+        this.model = model;
+    };
+
+    /**
+     * Gets the model for the view
+     * @return The model
+     * @type {seventytwolions.Model.Base}
+     * @author Thodoris Tsiridis
+     */
+    this.getModel = function() {
+        return this.model;
     };
 
     /**

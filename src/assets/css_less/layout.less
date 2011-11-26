@@ -4,6 +4,7 @@ html, body {
     height:100%;
     background-color:@bodyColor;
     overflow:hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 #wrapper {
@@ -13,10 +14,10 @@ html, body {
     left:0;
     right:0;
     bottom:0;
-    padding-top:139px;
+    padding-top:90px;
     overflow-x:hidden;
     overflow-y:auto;
-    min-width:480px;
+    min-width:500px;
     box-sizing: border-box;
 
     #sections-wrapper {
@@ -35,10 +36,8 @@ html, body {
 
                 width:90%;
                 margin:0px auto;
-                border:1px solid rgba(255,255,255, 0.2);
 
-
-                hgroup {
+                > hgroup {
                     display:block;
                     padding:40px 5px 0px 5px;
                     font-family: @font;

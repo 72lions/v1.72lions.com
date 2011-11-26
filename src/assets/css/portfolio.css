@@ -1,4 +1,45 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+section.portfolio ul {
+  position: relative;
+}
 section.portfolio ul li {
   list-style: none;
+  color: #666;
+  display: block;
+  position: absolute;
+}
+section.portfolio ul li a:link, section.portfolio ul li a:visited {
+  margin-top: 5px;
+  display: block;
+  color: #666;
+  text-decoration: none;
+  -webkit-transition: color 0.1s ease-out;
+  -moz-transition: color 0.1s ease-out;
+  -o-transition: color 0.1s ease-out;
+  transition: color 0.1s ease-out;
+}
+section.portfolio ul li a:link:hover, section.portfolio ul li a:visited:hover {
+  color: #F02311;
+}
+section.portfolio ul li img {
+  width: 100%;
+}
+section.portfolio ul li .body {
+  padding: 15px;
+}
+section.portfolio ul li h1 {
+  text-shadow: 0px 1px #ffffff;
+}
+section.portfolio ul li aside {
+  color: #F02311;
+  font-style: italic;
+}
+section.portfolio ul li p, section.portfolio ul li aside {
+  font-family: fontGeorgia;
+}
+section.portfolio ul.animated li {
+  -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
 }

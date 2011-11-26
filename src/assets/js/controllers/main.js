@@ -15,8 +15,8 @@ seventytwolions.Controller.Main = function() {
 
     this.postInitialize = function() {
 
-        navigationController = seventytwolions.ControllerManager.initializeController('Navigation', 'navigation');
-        sectionsManager  = seventytwolions.ControllerManager.initializeController('SectionsManager', 'sectionsmanager');
+        navigationController = seventytwolions.ControllerManager.initializeController({type:'Navigation', id:'navigation'});
+        sectionsManager  = seventytwolions.ControllerManager.initializeController({type:'SectionsManager', id:'sectionsmanager'});
 
         addEventListeners();
 

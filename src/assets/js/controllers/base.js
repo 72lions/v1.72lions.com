@@ -20,7 +20,7 @@ seventytwolions.Controller.Base = function() {
      * Initializes the plugin
      * @author Thodoris Tsiridis
      */
-    this.initialize = function(className, id, viewClassName, model) {
+    this.initialize = function(className, id, viewClassName, modelData) {
 
         this.id = id;
         this.name = viewClassName || className;
@@ -28,13 +28,13 @@ seventytwolions.Controller.Base = function() {
         _view = seventytwolions.Lookup.getView(this.name, this.id);
 
         // get a reference to the model
-        _model = this.model = model || seventytwolions.Lookup.getModel(this.name);
+        _model = this.model = seventytwolions.Lookup.getModel(this.name, this.id, modelData);
 
-        // ask it to initialize, draw and postDraw
+        // ask it to set the model, initialize, draw and postDraw
+        _view.setModel(_model);
         _view.initialize();
         _view.draw();
         _view.postDraw();
-
         this.postInitialize();
 
     };
@@ -74,6 +74,7 @@ seventytwolions.Controller.Base = function() {
      */
     this.setModel = function(model) {
       _model = model;
+      _view.setModel(model);
     };
 
 };

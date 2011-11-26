@@ -43,8 +43,8 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
  * Also: hot pink! (or customize the background color to match your design)
  */
 
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::-moz-selection { background: #F02311; color: #fff; text-shadow: none; }
+::selection { background: #F02311; color: #fff; text-shadow: none; }
 
 
 /* =============================================================================
@@ -99,8 +99,8 @@ sub { bottom: -0.25em; }
    Lists
    ========================================================================== */
 
-ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
-dd { margin: 0 0 0 40px; }
+ul, ol { margin: 0 0; padding: 0 0 0 0px; }
+dd { margin: 0 0 0 0px; }
 nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
 
 

@@ -110,23 +110,52 @@ seventytwolions.lookup = function() {
     /**
      * Returns a model with a specific name
      * @param {String} name The name of the controllers
+     * @param {Object} modelData The data of the model
      * @returns A model
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
      */
-    this.getModel = function(name) {
-        var model;
+    this.getModel = function(name, id, modelData) {
+        var exists = -1, modelObj;
+        modelData = modelData || {};
 
-        if(!_models[name] && $.isFunction(seventytwolions.Model[name])) {
-            model = new seventytwolions.Model[name]();
-        } else {
-            model = new seventytwolions.Model.Base();
+        // Check if there is an array with objects of className type
+        // If not then create a new array
+        if(!_models[name] || !$.isArray(_models[name])) {
+            _models[name] = [];
         }
 
-        _models[name] = model;
-        return _models[name];
-    };
+        // Loop through al the items in the array
+        // to check if an item with this id already exists
+        for (var i = _models[name].length - 1; i >= 0; i--) {
+            if(_models[name][i].id == id){
+                exists = i;
+            }
+        }
 
+        if(exists === -1){
+
+            exists = null;
+
+            // Check if the class that we want to load exists
+            if(seventytwolions.Model[name] !== undefined){
+                modelObj = {id: id, classType: new seventytwolions.Model[name]()};
+            } else {
+                modelObj = {id: id, classType: new seventytwolions.Model.Base()};
+            }
+
+            _models[name].push(modelObj);
+
+            modelObj.classType.setName(name);
+            modelObj.classType.setId(id);
+            modelObj.classType.setData(modelData);
+
+            return modelObj.classType;
+
+        } else {
+            return modelObj[name][exists].classType;
+        }
+    };
 };
 
 // Instantiate the lookup so that we can use it as a singleton

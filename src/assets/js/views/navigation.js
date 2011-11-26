@@ -16,8 +16,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        seventytwolions.Console.log('Initializing view with name ' + this.name);
-
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('a');
     };
 
@@ -26,7 +25,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -34,7 +33,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
         addEventListeners();
     };
 

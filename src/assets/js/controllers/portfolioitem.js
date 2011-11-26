@@ -17,10 +17,6 @@ seventytwolions.Controller.PortfolioItem = function() {
 
     };
 
-    this.render = function() {
-
-    };
-
 };
 
 seventytwolions.Controller.PortfolioItem.prototype = new seventytwolions.Controller.Base();

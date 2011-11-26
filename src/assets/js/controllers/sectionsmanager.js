@@ -16,11 +16,11 @@ seventytwolions.Controller.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-        portfolio = seventytwolions.ControllerManager.initializeController('Portfolio', 'portfolio');
-        experiments = seventytwolions.ControllerManager.initializeController('Experiments', 'experiments');
-        blog = seventytwolions.ControllerManager.initializeController('Blog', 'blog');
-        about = seventytwolions.ControllerManager.initializeController('About', 'about');
-        contact = seventytwolions.ControllerManager.initializeController('Contact', 'contact');
+        portfolio = seventytwolions.ControllerManager.initializeController({type:'Portfolio', id:'portfolio'});
+        experiments = seventytwolions.ControllerManager.initializeController({type:'Experiments', id:'experiments'});
+        blog = seventytwolions.ControllerManager.initializeController({type:'Blog', id:'blog'});
+        about = seventytwolions.ControllerManager.initializeController({type:'About', id:'about'});
+        contact = seventytwolions.ControllerManager.initializeController({type:'Contact', id:'contact'});
     };
 
     /**

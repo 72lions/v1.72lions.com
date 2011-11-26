@@ -4,6 +4,7 @@
     include('classes/db.php');
     include('classes/api.php');
     include('classes/post.php');
+    include('classes/category.php');
     include('classes/mc.php');
 
     // Get all the post/get variables
@@ -23,6 +24,8 @@
     for ($i=0; $i < $totalPosts; $i++) {
 
         $data = array();
+        $dataCategories = array();
+
         $data['Title'] = $posts[$i]->title;
         $data['Content'] = $posts[$i]->content;
         $data['Link'] = $posts[$i]->link;
@@ -30,6 +33,16 @@
         $data['Creator'] = $posts[$i]->creator;
         $data['Description'] = $posts[$i]->description;
         $data['Id'] = $posts[$i]->id;
+
+        for ($d=0; $d < count($posts[$i]->categories); $d++) {
+            $category = $posts[$i]->categories[$d];
+            $dataCategories[$d] = array();
+            $dataCategories[$d]['Name'] = $category->name;
+            $dataCategories[$d]['Slug'] = $category->slug;
+            $dataCategories[$d]['Id'] = $category->id;
+        }
+
+        $data['Categories'] = $dataCategories;
 
         echo json_encode($data);
 

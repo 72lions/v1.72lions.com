@@ -17,7 +17,7 @@ seventytwolions.Controller.Portfolio = function() {
      */
     this.postInitialize = function(){
 
-        this.setModel(seventytwolions.Lookup.getModel('Posts'));
+        this.setModel(seventytwolions.Lookup.getModel('Posts','posts'));
 
         this.loadPosts();
         this.loadCategories();
@@ -25,22 +25,27 @@ seventytwolions.Controller.Portfolio = function() {
     };
 
     this.loadPosts = function() {
-        this.getModel().get(null, 0, 5, onPostsLoaded, this);
+        this.getModel().get(null, 0, 20, onPostsLoaded, this);
     };
 
     var onPostsLoaded = function(result) {
         var i;
-        for (i = 0; i < result.length; i++) {
 
-            portfolioItems.push(seventytwolions.ControllerManager.initializeController('PortfolioItem', 'portfolioitem' + result[i].Id, null, result));
-            portfolioItems[i].render();
+        for (i = 0; i < result.length; i++) {
+            portfolioItems.push(seventytwolions.ControllerManager.initializeController({type:'PortfolioItem', id:'portfolioitem' + result[i].Id, model:result[i]}));
+            this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+            if(i === 0){
+                portfolioItems[i].getView().setAsFeatured(true);
+            }
         }
+
+        this.getView().positionItems();
     };
 
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
-            categoriesModel = seventytwolions.Lookup.getModel('Categories');
+            categoriesModel = seventytwolions.Lookup.getModel('Categories', 'categories');
         }
 
         categoriesModel.get(0, 5, onCategoriesLoaded, this);
