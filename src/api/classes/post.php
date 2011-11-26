@@ -17,6 +17,8 @@ class Post {
     public $content = '';
     public $creator = '';
     public $categories = array();
+    public $meta = array();
+    public $thumbnail = array('File' => '', 'Data' => null);
     public $id = 0;
 
     /**
@@ -62,5 +64,12 @@ class Post {
         return false;
     }
 
+    /**
+     * Appends a meta to the meta array
+     * @param {Array} $meta The meta data that we want to append to the meta array
+     */
+    public function addMeta($key, $value){
+        $this->meta[$key] = $value;
+    }
 }
 ?>
