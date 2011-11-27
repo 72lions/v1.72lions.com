@@ -40,18 +40,15 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.showSectionWithName = function(section){
-
+        var targetSection;
         // Make sure that we have the correct section
         section = section === '' ? 'portfolio' : section;
-
+        targetSection = me.domElement.find('section.' + section);
         // Get the offset of the target section
-        var sectionOffset = me.domElement.find('section.' + section).css('left');
-
-        // Move the wrapper so that the correct section is visible
-        me.domElement.css('left','-' + sectionOffset);
-
-        // Clean memory
-        sectionOffset = null;
+        targetSection.addClass('active').siblings().removeClass('active');
+        setTimeout(function(){
+            targetSection.css('opacity', 1).siblings().css('opacity', 0);
+        }, 10);
 
     };
 

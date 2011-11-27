@@ -1,36 +1,34 @@
 @import "lib.less";
 
 html, body {
-    height:100%;
     background-color:@bodyColor;
-    overflow:hidden;
     -webkit-font-smoothing: antialiased;
 }
 
 #wrapper {
-
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    padding-top:90px;
-    overflow-x:hidden;
-    overflow-y:auto;
-    min-width:500px;
+    //position:absolute;
+    //top:0;
+    //left:0;
+    //right:0;
+    //bottom:0;
+    //padding-top:90px;
+    //overflow-x:hidden;
+    //overflow-y:auto;
+    min-width:505px;
     box-sizing: border-box;
 
     #sections-wrapper {
 
         position:relative;
         width:100%;
-        height:100%;
 
         .transition(left 0.3s ease-in-out);
 
         section {
 
-            max-height:100%;
+            opacity:0;
+            display:none;
+            .transition(opacity 0.2s);
 
             .centered {
 
@@ -51,19 +49,19 @@ html, body {
             &.portfolio,
             &.about,
             &.contact {
-                display:block;
                 width:100%;
                 position:absolute;
                 top:0%;
                 z-index:1;
             }
 
-            &.portfolio {
-                left:0%;
+            &.active {
+                display:block;
+                //opacity:1;
             }
 
             &.experiments {
-                left:100%;
+                //left:100%;
 
                 .centered {
 
@@ -112,15 +110,15 @@ html, body {
             }
 
             &.blog {
-                left:200%;
+                //left:200%;
             }
 
             &.about {
-                left:300%;
+                //left:300%;
             }
 
             &.contact {
-                left:400%;
+                //left:400%;
             }
 
         }

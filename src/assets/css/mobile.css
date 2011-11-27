@@ -1,0 +1,33 @@
+#wrapper {
+    min-width:100%;
+}
+
+header.navigation {
+    min-width:100%;
+}
+header.navigation nav ul li:last-child {
+    display:none;
+}
+
+header.navigation nav ul li a:link,
+header.navigation nav ul li a:visited {
+    font-size:10px;
+}
+
+section.portfolio ul {
+    margin-top:20px;
+}
+
+section.portfolio ul li {
+    position:static;
+    width:100% !important;
+}
+
+section.portfolio ul li.featured {
+    width:100%;
+}
+
+section.portfolio ul li.featured img {
+    width:100% !important;
+    height:auto !important;
+}

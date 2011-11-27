@@ -6,10 +6,13 @@
  */
 seventytwolions.View.PortfolioItem = function() {
 
+    this.isFeatured = false;
+
     var me = this;
-    var tmpl = '<div class="photo">'+
-                '${image}'+
+    var tmpl =  '<div class="photo">'+
+                '<a href="${link}" title="${title}"><img src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
                 '</div>'+
+                '<time>${publishdate}</time>'+
                 '<hgroup><a href="${link}" title="${title}"><h1>${title}</a></h1></hgroup>'+
                 '<aside>Categories: ${categories}</aside>'+
                 '<p>'+
@@ -32,32 +35,6 @@ seventytwolions.View.PortfolioItem = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		var random, model, body, categories, categoriesStr;
-        categoriesStr= '';
-        model = this.getModel();
-        body = tmpl;
-
-        body = body.replace(/\${title}/g, model.get('Title'));
-        body = body.replace(/\${description}/g, model.get('Description'));
-        body = body.replace(/\${link}/g, model.get('Link'));
-
-        // Create categories
-        categories = model.get('Categories');
-        for (var i = 0; i < categories.length; i++) {
-
-            categoriesStr += categories[i].Name;
-
-            if(i < categories.length - 1){
-                categoriesStr +=', ';
-            }
-
-        }
-
-        body = body.replace(/\${categories}/g, categoriesStr);
-
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
-
-        this.domElement.html(body);
 
 	};
 
@@ -76,12 +53,64 @@ seventytwolions.View.PortfolioItem = function() {
      */
     this.setAsFeatured = function(isFeatured){
 
+        this.isFeatured = isFeatured;
+
         if(isFeatured){
             this.domElement.addClass('featured');
         } else {
             this.domElement.removeClass('featured');
         }
 
+    };
+
+    this.render = function() {
+        var random, model, body, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        categoriesStr= '';
+        hasThumbnail = false;
+        model = this.getModel();
+        body = tmpl;
+        body = body.replace(/\${title}/g, model.get('Title'));
+        body = body.replace(/\${description}/g, model.get('Description'));
+        body = body.replace(/\${link}/g, model.get('Link'));
+        body = body.replace(/\${publishdate}/g, model.get('PublishDate'));
+
+        // Create categories string
+        categories = model.get('Categories');
+        for (var i = 0; i < categories.length; i++) {
+
+            categoriesStr += categories[i].Name;
+
+            if(i < categories.length - 1){
+                categoriesStr +=', ';
+            }
+
+        }
+
+        body = body.replace(/\${categories}/g, categoriesStr);
+
+        thumbnail = model.get('Thumbnail');
+        if(thumbnail.Data !== null && thumbnail.Data !== undefined){
+            hasThumbnail = true;
+            if(this.isFeatured){
+                imgWidth = thumbnail.Data.sizes.medium.width;
+                imgHeight = thumbnail.Data.sizes.medium.height;
+            } else {
+                imgWidth = thumbnail.Data.sizes.thumbnail.width;
+                imgHeight = thumbnail.Data.sizes.thumbnail.height;
+            }
+
+            body = body.replace(/\${image}/g, 'http://192.168.0.64:9011/wp-content/uploads/' + thumbnail.File);
+            body = body.replace(/\${imgwidth}/g, imgWidth);
+            body = body.replace(/\${imgheight}/g, imgHeight);
+
+        }
+        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+
+        this.domElement.html(body);
+
+        if(!hasThumbnail) {
+            this.domElement.find('.photo').css('display', 'none');
+        }
     };
 
 };

@@ -7,6 +7,10 @@ section.portfolio ul li {
   color: #666;
   display: block;
   position: absolute;
+  width: 218px;
+}
+section.portfolio ul li.featured {
+  width: 456px;
 }
 section.portfolio ul li a:link, section.portfolio ul li a:visited {
   margin-top: 5px;
@@ -21,8 +25,22 @@ section.portfolio ul li a:link, section.portfolio ul li a:visited {
 section.portfolio ul li a:link:hover, section.portfolio ul li a:visited:hover {
   color: #F02311;
 }
+section.portfolio ul li .photo {
+  line-height: 0px;
+  margin-bottom: 10px;
+}
 section.portfolio ul li img {
-  width: 100%;
+  border-radius: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+section.portfolio ul li h1 {
+  padding: 0px 0px 5px 0px;
+  margin: 0px;
 }
 section.portfolio ul li .body {
   padding: 15px;
@@ -30,12 +48,21 @@ section.portfolio ul li .body {
 section.portfolio ul li h1 {
   text-shadow: 0px 1px #ffffff;
 }
-section.portfolio ul li aside {
+section.portfolio ul li p, section.portfolio ul li aside, section.portfolio ul li time {
+  font-family: Georgia;
+  font-size: 12px;
+  line-height: 18px;
+}
+section.portfolio ul li aside, section.portfolio ul li time {
   color: #F02311;
   font-style: italic;
+  font-size: 11px;
 }
-section.portfolio ul li p, section.portfolio ul li aside {
-  font-family: fontGeorgia;
+section.portfolio ul li time {
+  font-size: 11px;
+  color: #999;
+  display: block;
+  font-style: italic;
 }
 section.portfolio ul.animated li {
   -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;

@@ -14,7 +14,7 @@ seventytwolions.View.Portfolio = function() {
 
     // Constants
     var COLUMN_MIN = 2;
-    var COLUMN_WIDTH = 280;
+    var COLUMN_WIDTH = 218;
     var COLUMN_MARGIN = 20;
 
     /**
@@ -69,8 +69,8 @@ seventytwolions.View.Portfolio = function() {
         var _8 = 0;
         var minColumns = Math.max(COLUMN_MIN, parseInt(windowWidth / (COLUMN_WIDTH + COLUMN_MARGIN), 0));
 
-        domItems.css("width", COLUMN_WIDTH + "px");
-        domItemsFeatured.css("width", (COLUMN_WIDTH * 2 + COLUMN_MARGIN));
+        //domItems.css("width", COLUMN_WIDTH + "px");
+        //domItemsFeatured.css("width", (COLUMN_WIDTH * 2 + COLUMN_MARGIN));
         for (x = 0; x < minColumns; x++) {
             items[x] = 0;
         }
