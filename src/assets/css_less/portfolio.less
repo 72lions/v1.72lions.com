@@ -1,6 +1,7 @@
 @import "lib.less";
 
-section.portfolio {
+section.portfolio,
+section.blog {
 
     ul {
 
@@ -14,21 +15,94 @@ section.portfolio {
             display:block;
             position:absolute;
             width:218px;
+            border-bottom:1px dashed #ccc;
+            padding:0px 0px 20px 0px;
+
+            box-sizing:border-box;
 
             &.featured {
                 width: 456px;
             }
 
+            &:hover {
+
+                .photo {
+
+                    img {
+                        border-color:#F02311;
+                    }
+
+                }
+
+                a:link,
+                a:visited {
+                    color:#F02311;
+                }
+            }
+
             a:link,
             a:visited {
                 margin-top:5px;
-                display:block;
+                display:inline-block;
                 color:#666;
                 text-decoration:none;
-                .transition(color  0.1s ease-out);
+                font-size:11px;
+                text-shadow:0px 1px rgba(255, 255, 255, 1);
+                .transition(color 0.2s);
 
                 &:hover {
                     color:#F02311;
+                }
+            }
+
+            .github-ribbon {
+                display:none;
+                position:absolute;
+                top:2px;
+                right:2px;
+                z-index:10;
+            }
+
+            a.readmore:link,
+            a.readmore:visited {
+                background-image: linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
+                background-image: -o-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
+                background-image: -moz-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
+                background-image: -webkit-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
+                background-image: -ms-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
+
+                background-image: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    color-stop(0, rgb(220,220,220)),
+                    color-stop(0.5, rgb(242,240,240))
+                );
+                .border-radius(3px);
+                .box-shadow(0px 0px 1px rgba(0, 0, 0, 0.8));
+                padding:5px 10px 5px 10px;
+
+                &:hover {
+                    color:#F02311;
+                }
+
+                &:active {
+                    background-image: linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+                    background-image: -o-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+                    background-image: -moz-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+                    background-image: -webkit-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+                    background-image: -ms-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+
+                    background-image: -webkit-gradient(
+                        linear,
+                        left bottom,
+                        left top,
+                        color-stop(0.5, rgb(230,230,230)),
+                        color-stop(0, rgb(242,240,240))
+                    );
+
+                    .box-shadow(inset 0px 0px 3px rgba(0, 0, 0, 0.3));
+                    border-bottom:1px solid rgba(255, 255, 255, 0.6);
                 }
             }
             //.box-shadow(1px 1px 1px rgba(0,0,0,0.2));
@@ -38,44 +112,48 @@ section.portfolio {
                 line-height:0px;
                 margin-bottom:10px;
 
-                //.transition(border-color 0.3s);
+                img {
+                    box-sizing:border-box;
+                    border:2px solid #fff;
+                    .box-shadow(0px 0px 5px rgba(0,0,0,0.1));
+                    .border-radius(3px);
+                    .transition(border-color 0.3s);
 
-                &:hover {
-                    //border-color:#999;
                 }
             }
 
-            img {
-                border-radius:2px;
-                border-top:1px solid rgba(255,255,255,0.4);
-                border-left:1px solid rgba(255,255,255,0.4);
-                .box-shadow(1px 1px 1px rgba(0,0,0,0.1));
-            }
+
 
             h1 {
-                padding:0px 0px 5px 0px;
+                padding:0px 0px 0px 0px;
                 margin:0px;
+                text-shadow:0px 1px rgba(255,255,255,1);
             }
 
             .body {
                 padding:15px;
             }
 
-            h1 {
-                text-shadow:0px 1px rgba(255,255,255,1);
-
-            }
-
             p, aside, time {
                 font-family:@fontGeorgia;
                 font-size:12px;
                 line-height:18px;
+                display:block;
+            }
+
+            p {
+                margin:0px 0px 10px 0px;
+                display:none;
             }
 
             aside, time {
                 color:#F02311;
                 font-style:italic;
                 font-size:11px;
+            }
+
+            aside {
+                padding-bottom:10px;
             }
 
             time {

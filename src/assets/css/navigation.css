@@ -6,16 +6,14 @@ header.navigation {
 }
 header.navigation nav {
   display: block;
-  width: 90%;
-  margin: 10px auto 10px auto;
   overflow: hidden;
+  margin: 20px 30px 20px 30px;
 }
 header.navigation nav img {
   width: 70px;
 }
 header.navigation nav ul {
   margin-top: 20px;
-  background-color: #f2f0f0;
 }
 header.navigation nav ul li {
   float: left;
@@ -25,27 +23,19 @@ header.navigation nav ul li {
   cursor: pointer;
   border-bottom: 1px dashed #ccc;
   text-shadow: 0px 1px #fff;
-  background-color: #f2f0f0;
   outline: none;
   -webkit-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
   -moz-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
   -o-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
   transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
 }
+header.navigation nav ul li:first-child {
+  margin-left: 0px;
+}
 header.navigation nav ul li.active, header.navigation nav ul li:hover {
   border-bottom-color: #666;
   border-bottom-width: 2px;
   border-bottom-style: inset;
-}
-header.navigation nav ul li:last-child {
-  border-bottom: 0px;
-  border-top: 0px;
-  float: right;
-  width: 78px;
-  padding: 5px 0px;
-}
-header.navigation nav ul li:last-child a:link, header.navigation nav ul li:last-child a:visited {
-  padding: 5px;
 }
 header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   text-decoration: none;

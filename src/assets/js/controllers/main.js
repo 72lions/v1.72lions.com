@@ -58,7 +58,7 @@ seventytwolions.Controller.Main = function() {
         // means that Home menu item is selected
         if(state.pathSegments === undefined){
 
-            navigationController.getView().selectNavigationItem('portfolio');
+            navigationController.getView().selectNavigationItem('blog');
 
             // Change the section
             changeSection('');

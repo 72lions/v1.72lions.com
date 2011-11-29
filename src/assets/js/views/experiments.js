@@ -8,7 +8,7 @@ seventytwolions.View.Experiments = function() {
 
     var me = this;
 
-	this.domElement = $('.blog');
+	this.domElement = $('.experiments');
 
     /**
      * Initializes the view
@@ -32,6 +32,25 @@ seventytwolions.View.Experiments = function() {
      */
     this.postDraw =  function(){
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
     };
 
 };

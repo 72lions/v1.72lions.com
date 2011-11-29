@@ -19,6 +19,7 @@ class Post {
     public $categories = array();
     public $meta = array();
     public $thumbnail = array('File' => '', 'Data' => null);
+    public $slug = '';
     public $id = 0;
 
     /**
@@ -34,6 +35,7 @@ class Post {
         $this->description = $object['post_excerpt'];
         $this->content = $object['post_content'];
         $this->id = $object['ID'];
+        $this->slug = $object['post_name'];
 
     }
 

@@ -34,24 +34,6 @@ seventytwolions.View.SectionsManager = function() {
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
-    /**
-     * Shows a a section with a specific name
-     * @param {String} section The name of the section
-     * @author Thodoris Tsiridis
-     */
-    this.showSectionWithName = function(section){
-        var targetSection;
-        // Make sure that we have the correct section
-        section = section === '' ? 'portfolio' : section;
-        targetSection = me.domElement.find('section.' + section);
-        // Get the offset of the target section
-        targetSection.addClass('active').siblings().removeClass('active');
-        setTimeout(function(){
-            targetSection.css('opacity', 1).siblings().css('opacity', 0);
-        }, 10);
-
-    };
-
 };
 
 seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();

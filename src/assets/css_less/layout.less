@@ -3,6 +3,16 @@
 html, body {
     background-color:@bodyColor;
     -webkit-font-smoothing: antialiased;
+    background-color:#ebebeb;
+    background-image: -moz-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: -webkit-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: -o-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: -ms-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%)
+}
+
+body {
+    border-top:3px solid #F02311;
 }
 
 #wrapper {
@@ -21,19 +31,19 @@ html, body {
 
         position:relative;
         width:100%;
-
+        padding:0px 20px 20px 20px;
         .transition(left 0.3s ease-in-out);
+        box-sizing:border-box;
 
         section {
 
             opacity:0;
             display:none;
-            .transition(opacity 0.2s);
+            .transition(opacity 1s);
 
             .centered {
 
-                width:90%;
-                margin:0px auto;
+                width:100%;
 
                 > hgroup {
                     display:block;
@@ -49,78 +59,30 @@ html, body {
             &.portfolio,
             &.about,
             &.contact {
-                width:100%;
-                position:absolute;
-                top:0%;
                 z-index:1;
             }
 
             &.active {
                 display:block;
-                //opacity:1;
             }
 
             &.experiments {
-                //left:100%;
-
-                .centered {
-
-                    overflow-x:hidden;
-
-                    ul {
-                        width: 9999px;
-                        //height:1300px;
-                        margin:0px;
-                        padding:0px;
-
-                        li {
-                            float:left;
-                            list-style:none;
-                            display:block;
-                            height:99%;
-                            width:350px;
-                            margin-right:2px;
-                            background-color:#000;
-
-                            .box-shadow(1px 1px 2px rgba(0, 0, 0, 0.7));
-
-                            /** FIGURE **/
-                            figure {
-
-                                /** FIGCAPTION **/
-                                figcaption {
-                                    padding:10px;
-                                    color:#fff;
-                                    font-family:@font;
-                                    text-transform:uppercase;
-                                    letter-spacing:-1px;
-                                    font-size:24px;
-                                }
-                                /** END FIGCAPTION **/
-
-                            }
-                            /** END FIGURE **/
-
-                        }
-
-                    }
-
-                }
-
             }
 
             &.blog {
-                //left:200%;
             }
 
             &.about {
-                //left:300%;
+                opacity:1;
             }
 
             &.contact {
-                //left:400%;
             }
 
         }
+    }
+
+    footer {
+
     }
 }

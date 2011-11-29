@@ -10,12 +10,11 @@ header.navigation {
     //z-index: 100;
     min-width:505px;
 
-    nav {
 
+    nav {
         display:block;
-        width:90%;
-        margin:10px auto 10px auto;
         overflow:hidden;
+        margin:20px 30px 20px 30px;
 
         img {
             width: 70px;
@@ -24,7 +23,6 @@ header.navigation {
         ul {
 
             margin-top:20px;
-            background-color:@bodyColor;
 
             li {
                 float:left;
@@ -35,10 +33,13 @@ header.navigation {
                 //border-top:1px dashed #ccc;
                 border-bottom:1px dashed #ccc;
                 text-shadow:0px 1px #fff;
-                background-color: @bodyColor;
                 outline:none;
 
                 .transition(e('border-bottom-color 0.2s, border-bottom-style 0.2s'));
+
+                &:first-child {
+                    margin-left:0px;
+                }
 
                 &.active, &:hover {
 
@@ -46,21 +47,6 @@ header.navigation {
                     border-bottom-width:2px;
                     border-bottom-style:inset;
 
-                }
-
-                &:last-child {
-                    border-bottom:0px;
-                    border-top:0px;
-                    float:right;
-                    width:78px;
-                    padding:5px 0px;
-
-                    a:link,
-                    a:visited {
-
-                        padding:5px;
-
-                    }
                 }
 
                 a:link,

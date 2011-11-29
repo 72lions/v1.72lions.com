@@ -35,27 +35,34 @@
 			<nav>
 				<!--<img src="http://vps.72lions.com/wp-content/themes/wordfolio/images/001/logo.png" alt="72Lions logo" />-->
 				<ul class="clearfix">
-					<li><a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
-					<li><a href="experiments" class="nav-experiments" title="Experiments">Experiments</a></li>
 					<li><a href="category/blog" class="nav-blog" title="Blog">Blog</a></li>
+					<li><a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>
+					<li><a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
 					<li><a href="about" class="nav-about" title="About">About</a></li>
 					<li><a href="contact" class="nav-contact" title="Contact">Contact</a></li>
-					<li>
-						<!-- AddThis Button BEGIN -->
-						<div class="addthis_toolbox addthis_default_style">
-						<a class="addthis_button_preferred_1"></a>
-						<a class="addthis_button_preferred_2"></a>
-						<a class="addthis_button_preferred_3"></a>
-						</div>
-						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ec455a45cbbbc66"></script>
-						<!-- AddThis Button END -->
-					</li>
 				</ul>
 			</nav>
 		</header>
 		<div id="wrapper">
 			<div id="sections-wrapper">
-				<section class="portfolio active">
+
+				<section class="about">
+					<div class="centered">
+						<p>72Lions was started by  Thodoris Tsiridis a Web Developer from Greece. He is specialized in web development.</p>
+
+						<p>"I bring a wide-ranging expertise with one sole purpose; to design &amp; develop interactive websites and applications.</p>
+
+						<p>Every project I undertake is another challenge for me and I constantly bring innovative ideas in order to broaden my technical expertise.</p>
+
+						<p>I like to combine several technologies, such as Flash, AS3, XML, PHP-MySQL, but I also like to play with Web Services, ASP.NET.</p>
+
+						<p>Whatever the project I am working on, the approach remains the same: putting the client’s needs first and enjoying the work I do by injecting quality and creativity into every stage in the process."</p>
+
+						<p>Contact: info(at)72lions.com
+					</div>
+				</section>
+
+				<section class="portfolio">
 					<div class="centered">
 						<ul>
 						</ul>
@@ -70,19 +77,10 @@
 					</div>
 				</section>
 
-				<section class="blog">
+				<section class="blog active">
 					<div class="centered">
-						<hgroup>
-							<h1>Blog</h1>
-						</hgroup>
-					</div>
-				</section>
-
-				<section class="about">
-					<div class="centered">
-						<hgroup>
-							<h1>About</h1>
-						</hgroup>
+						<ul>
+						</ul>
 					</div>
 				</section>
 
@@ -112,6 +110,7 @@
 
 		<!-- source scripts -->
 		<script type="text/javascript" src="/assets/js/namespaces.js"></script>
+		<script type="text/javascript" src="/assets/js/models/locale_en.js"></script>
 		<script type="text/javascript" src="/assets/js/controllermanager.js"></script>
 		<script type="text/javascript" src="/assets/js/lookup.js"></script>
 		<script type="text/javascript" src="/assets/js/console.js"></script>
@@ -128,7 +127,7 @@
 		<script type="text/javascript" src="/assets/js/controllers/blog.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/about.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/contact.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/portfolioitem.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/thumbnailitem.js"></script>
 
 		<script type="text/javascript" src="/assets/js/models/base.js"></script>
 		<script type="text/javascript" src="/assets/js/models/categories.js"></script>
@@ -143,7 +142,7 @@
 		<script type="text/javascript" src="/assets/js/views/blog.js"></script>
 		<script type="text/javascript" src="/assets/js/views/about.js"></script>
 		<script type="text/javascript" src="/assets/js/views/contact.js"></script>
-		<script type="text/javascript" src="/assets/js/views/portfolioitem.js"></script>
+		<script type="text/javascript" src="/assets/js/views/thumbnailitem.js"></script>
 
 
 		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>

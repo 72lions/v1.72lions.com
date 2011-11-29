@@ -43,6 +43,28 @@ seventytwolions.View.Portfolio = function() {
     };
 
     /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+
+        isFirstTime = true;
+        this.positionItems();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+    /**
      * Adds a portfolio item to the view
      * @param {DOMElement} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis

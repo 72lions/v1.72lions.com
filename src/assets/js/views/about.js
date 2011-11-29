@@ -8,7 +8,7 @@ seventytwolions.View.About = function() {
 
     var me = this;
 
-	this.domElement = $('.blog');
+	this.domElement = $('.about');
 
     /**
      * Initializes the view
@@ -32,6 +32,21 @@ seventytwolions.View.About = function() {
      */
     this.postDraw =  function(){
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        this.domElement.slideDown();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.slideUp();
     };
 
 };

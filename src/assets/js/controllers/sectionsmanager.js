@@ -8,7 +8,8 @@ seventytwolions.Controller.SectionsManager = function() {
 
     var me = this;
     var initialState = Router.getState();
-    var portfolio, experiments, blog, about, contact;
+    var portfolio, experiments, blog, about, contact, sections;
+    var totalSections = 4;
 
     /**
      * This function is executed right after the initialized
@@ -21,6 +22,9 @@ seventytwolions.Controller.SectionsManager = function() {
         blog = seventytwolions.ControllerManager.initializeController({type:'Blog', id:'blog'});
         about = seventytwolions.ControllerManager.initializeController({type:'About', id:'about'});
         contact = seventytwolions.ControllerManager.initializeController({type:'Contact', id:'contact'});
+
+        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}, {name:'about', object: about}, {name:'contact', object: contact}];
+
     };
 
     /**
@@ -29,7 +33,21 @@ seventytwolions.Controller.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.showSectionWithName = function(section){
-        me.getView().showSectionWithName(section);
+        var len, i;
+        len = sections.length;
+
+        section = section === '' ? 'blog' : section;
+
+        for (i = 0; i < len; i++) {
+            if(sections[i].name === section){
+                sections[i].object.show();
+            } else {
+                if(section !== 'about'){
+                    sections[i].object.hide();
+                }
+            }
+        }
+
     };
 
 };

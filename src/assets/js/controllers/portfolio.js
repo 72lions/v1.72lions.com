@@ -24,6 +24,21 @@ seventytwolions.Controller.Portfolio = function() {
 
     };
 
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        this.getView().show();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.getView().hide();
+    };
+
     this.loadPosts = function() {
         this.getModel().get(7, 0, 20, onPostsLoaded, this);
     };
@@ -32,13 +47,8 @@ seventytwolions.Controller.Portfolio = function() {
         var i;
 
         for (i = 0; i < result.length; i++) {
-            console.log(result[i]);
-            portfolioItems.push(seventytwolions.ControllerManager.initializeController({type:'PortfolioItem', id:'portfolioitem' + result[i].Id, model:result[i]}));
+            portfolioItems.push(seventytwolions.ControllerManager.initializeController({type:'ThumbnailItem', id:'ThumbnailItem' + result[i].Id, model:result[i]}));
             this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
-
-            if(i === 0){
-                portfolioItems[i].getView().setAsFeatured(true);
-            }
 
             portfolioItems[i].getView().render();
         }

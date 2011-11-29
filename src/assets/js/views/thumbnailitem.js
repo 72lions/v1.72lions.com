@@ -4,21 +4,22 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.PortfolioItem = function() {
+seventytwolions.View.ThumbnailItem = function() {
 
     this.isFeatured = false;
 
     var me = this;
-    var tmpl =  '<div class="photo">'+
+    var tmpl =  '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
+                '<div class="photo">'+
                 '<a href="${link}" title="${title}"><img src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
                 '</div>'+
+                '<hgroup><a href="${link}" title="${title}"><h1>${title}</h1></a></hgroup>'+
                 '<time>${publishdate}</time>'+
-                '<hgroup><a href="${link}" title="${title}"><h1>${title}</a></h1></hgroup>'+
                 '<aside>Categories: ${categories}</aside>'+
                 '<p>'+
                 '${description}'+
-                '<!--<a href="${link}" title="${title}">Read more...</a>-->'+
-                '</p>';
+                '</p>' +
+                '<a href="${link}" title="${title}" class="readmore">Read more</a>';
 
 	this.domElement = $('<li class="portfolio-item"></li>');
 
@@ -64,15 +65,26 @@ seventytwolions.View.PortfolioItem = function() {
     };
 
     this.render = function() {
-        var random, model, body, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        var random, model, meta, body, pdate, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
         body = tmpl;
+
+        meta = model.get('Meta');
+
+        if(meta.showcase !== undefined){
+            this.setAsFeatured(true);
+        }
+
         body = body.replace(/\${title}/g, model.get('Title'));
         body = body.replace(/\${description}/g, model.get('Description'));
         body = body.replace(/\${link}/g, model.get('Link'));
-        body = body.replace(/\${publishdate}/g, model.get('PublishDate'));
+
+        //Firefox doesn't like dates with / in the constructor
+        pDate = new Date(model.get('PublishDate').replace(/-/g ,'/'));
+
+        body = body.replace(/\${publishdate}/g, seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
 
         // Create categories string
         categories = model.get('Categories');
@@ -105,14 +117,29 @@ seventytwolions.View.PortfolioItem = function() {
 
         }
         //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        if(meta.github !== undefined){
+            body = body.replace(/\${github}/g, meta.github);
+        }
 
         this.domElement.html(body);
+
+        if(meta.github === undefined){
+          this.domElement.find('.github-ribbon').css('display', 'none');
+        }
 
         if(!hasThumbnail) {
             this.domElement.find('.photo').css('display', 'none');
         }
+
     };
 
+    this.showDescription = function() {
+        this.domElement.find('p').css('display','block');
+    };
+
+    this.hideDescription = function() {
+        this.domElement.find('p').css('display','none');
+    };
 };
 
-seventytwolions.View.PortfolioItem.prototype = new seventytwolions.View.Base();
+seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();

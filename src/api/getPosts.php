@@ -28,6 +28,7 @@
 
         $data['Title'] = $posts[$i]->title;
         $data['Content'] = $posts[$i]->content;
+        $data['Slug'] = $posts[$i]->slug;
         $data['Link'] = $posts[$i]->link;
         $data['PublishDate'] = $posts[$i]->pubDate;
         $data['Creator'] = $posts[$i]->creator;

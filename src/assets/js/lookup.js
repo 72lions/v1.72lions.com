@@ -153,7 +153,7 @@ seventytwolions.lookup = function() {
             return modelObj.classType;
 
         } else {
-            return modelObj[name][exists].classType;
+            return _models[name][exists].classType;
         }
     };
 };

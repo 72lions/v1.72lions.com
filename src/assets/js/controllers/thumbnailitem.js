@@ -4,7 +4,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.PortfolioItem = function() {
+seventytwolions.Controller.ThumbnailItem = function() {
 
     var me = this;
 
@@ -19,4 +19,4 @@ seventytwolions.Controller.PortfolioItem = function() {
 
 };
 
-seventytwolions.Controller.PortfolioItem.prototype = new seventytwolions.Controller.Base();
+seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();

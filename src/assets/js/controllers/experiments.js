@@ -18,6 +18,22 @@ seventytwolions.Controller.Experiments = function() {
 
     };
 
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+        this.getView().show();
+    };
+
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+        this.getView().hide();
+    };
+
 };
 
 seventytwolions.Controller.Experiments.prototype = new seventytwolions.Controller.Base();

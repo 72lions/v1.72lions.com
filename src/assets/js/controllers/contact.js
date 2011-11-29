@@ -18,6 +18,22 @@ seventytwolions.Controller.Contact = function() {
 
     };
 
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+        this.getView().show();
+    };
+
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+        this.getView().hide();
+    };
+
 };
 
 seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
