@@ -17,14 +17,7 @@ seventytwolions.controllerManager = function() {
      * @author Thodoris Tsiridis
      */
     this.initializeController = function(object) {
-        var className, id, viewClassName, model;
-
-        className = object.type;
-        id = object.id;
-        viewClassName = object.viewClassType;
-        model = object.model;
-
-        return seventytwolions.Lookup.getController(className, id, viewClassName, model);
+        return seventytwolions.Lookup.getController(object);
     };
 
 };

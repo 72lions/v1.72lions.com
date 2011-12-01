@@ -21,9 +21,12 @@ seventytwolions.lookup = function() {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.getController = function(className, id, viewClassName, model) {
+    this.getController = function(attributes) {
+        var className, id, model, controllerObj;
+        var exists = -1;
 
-        var exists = -1, controllerObj;
+        className = attributes.type || 'Base';
+        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
 
         // Check if there is an array with objects of className type
         // If not then create a new array
@@ -52,7 +55,7 @@ seventytwolions.lookup = function() {
             }
 
             _controllers[className].push(controllerObj);
-            controllerObj.classType.initialize(className, id, viewClassName, model);
+            controllerObj.classType.initialize(attributes);
             return controllerObj.classType;
 
         } else {
@@ -115,10 +118,11 @@ seventytwolions.lookup = function() {
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
      */
-    this.getModel = function(name, id, modelData) {
-        var exists = -1, modelObj;
-        modelData = modelData || {};
-
+    this.getModel = function(attributes) {
+        var exists = -1, modelObj, name, modelData;
+        modelData = attributes.data || {};
+        name = attributes.type || 'Base';
+        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
         // Check if there is an array with objects of className type
         // If not then create a new array
         if(!_models[name] || !$.isArray(_models[name])) {

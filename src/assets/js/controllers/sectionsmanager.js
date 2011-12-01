@@ -17,11 +17,48 @@ seventytwolions.Controller.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-        portfolio = seventytwolions.ControllerManager.initializeController({type:'Portfolio', id:'portfolio'});
-        experiments = seventytwolions.ControllerManager.initializeController({type:'Experiments', id:'experiments'});
-        blog = seventytwolions.ControllerManager.initializeController({type:'Blog', id:'blog'});
-        about = seventytwolions.ControllerManager.initializeController({type:'About', id:'about'});
-        contact = seventytwolions.ControllerManager.initializeController({type:'Contact', id:'contact'});
+
+        portfolio = seventytwolions.ControllerManager.initializeController({
+                type:'Portfolio',
+                id:'portfolio',
+                model: seventytwolions.Lookup.getModel({
+                    type:'Posts',
+                    id:'portfolioModel'
+                })
+        });
+
+        experiments = seventytwolions.ControllerManager.initializeController({
+            type:'Experiments',
+            id:'experiments',
+            model: seventytwolions.Lookup.getModel({
+                id:'experimentsModel'
+            })
+        });
+
+        blog = seventytwolions.ControllerManager.initializeController({
+            type:'Blog',
+            id:'blog',
+            model: seventytwolions.Lookup.getModel({
+                type:'Posts',
+                id:'blogModel'
+            })
+        });
+
+        about = seventytwolions.ControllerManager.initializeController({
+            type:'About',
+            id:'about',
+            model: seventytwolions.Lookup.getModel({
+                id:'aboutModel'
+            })
+        });
+
+        contact = seventytwolions.ControllerManager.initializeController({
+            type:'Contact',
+            id:'contact',
+            model: seventytwolions.Lookup.getModel({
+                id:'contactModel'
+            })
+        });
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}, {name:'about', object: about}, {name:'contact', object: contact}];
 

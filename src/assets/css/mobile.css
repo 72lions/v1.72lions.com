@@ -7,11 +7,7 @@ header.navigation {
 }
 
 header.navigation nav{
-    margin:20px 30px 20px 20px;
-}
-
-header.navigation nav ul li:last-child {
-    display:none;
+    margin:20px 0px 0px 20px;
 }
 
 header.navigation nav ul li a:link,

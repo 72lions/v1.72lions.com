@@ -12,11 +12,18 @@ seventytwolions.Controller.Main = function() {
     var popped = ('state' in window.history);
     var initialURL = location.href;
 
-
     this.postInitialize = function() {
 
-        navigationController = seventytwolions.ControllerManager.initializeController({type:'Navigation', id:'navigation'});
-        sectionsManager  = seventytwolions.ControllerManager.initializeController({type:'SectionsManager', id:'sectionsmanager'});
+        navigationController = seventytwolions.ControllerManager.initializeController({
+            type:'Navigation',
+            id:'navigation',
+            model: seventytwolions.Lookup.getModel({})
+        });
+        sectionsManager  = seventytwolions.ControllerManager.initializeController({
+            type:'SectionsManager',
+            id:'sectionsmanager',
+            model: seventytwolions.Lookup.getModel({})
+        });
 
         addEventListeners();
 

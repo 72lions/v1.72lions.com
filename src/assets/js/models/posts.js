@@ -38,17 +38,17 @@ seventytwolions.Model.Posts = function(){
         }
 
         req = $.ajax({
-                    url: POSTS_URL,
-                    dataType: 'json',
-                    data: dataString,
-                    success: function(res){
-                        data.posts = res.Results;
-                        if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                            callback.apply(ctx, [data.posts]);
-                            req = undefined;
-                        }
+                url: POSTS_URL,
+                dataType: 'json',
+                data: dataString,
+                success: function(res){
+                    data.posts = res.Results;
+                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                        callback.apply(ctx, [data.posts]);
+                        req = undefined;
                     }
-                });
+                }
+            });
     };
 
 };

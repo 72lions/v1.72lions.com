@@ -37,11 +37,6 @@ body {
 #wrapper #sections-wrapper section .centered {
   width: 100%;
 }
-#wrapper #sections-wrapper section .centered > hgroup {
-  display: block;
-  padding: 40px 5px 0px 5px;
-  font-family: 'Droid Sans';
-}
 #wrapper #sections-wrapper section.blog,
 #wrapper #sections-wrapper section.experiments,
 #wrapper #sections-wrapper section.portfolio,
