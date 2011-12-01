@@ -8,7 +8,7 @@ seventytwolions.Controller.SectionsManager = function() {
 
     var me = this;
     var initialState = Router.getState();
-    var portfolio, experiments, blog, about, contact, sections;
+    var portfolio, experiments, blog, contact, postDetails, sections;
     var totalSections = 4;
 
     /**
@@ -44,14 +44,6 @@ seventytwolions.Controller.SectionsManager = function() {
             })
         });
 
-        about = seventytwolions.ControllerManager.initializeController({
-            type:'About',
-            id:'about',
-            model: seventytwolions.Lookup.getModel({
-                id:'aboutModel'
-            })
-        });
-
         contact = seventytwolions.ControllerManager.initializeController({
             type:'Contact',
             id:'contact',
@@ -60,29 +52,52 @@ seventytwolions.Controller.SectionsManager = function() {
             })
         });
 
-        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}, {name:'about', object: about}, {name:'contact', object: contact}];
+        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}, {name:'contact', object: contact}];
+
+        postDetails = seventytwolions.ControllerManager.initializeController({
+            type:'PostDetails',
+            id:'postDetails',
+            model: seventytwolions.Lookup.getModel({
+                type:'Posts',
+                id:'postDetailsModel'
+            })
+        });
 
     };
 
     /**
      * Shows a a section with a specific name
-     * @param {String} section The name of the section
+     * @param {Object} state The state of the url
      * @author Thodoris Tsiridis
      */
-    this.showSectionWithName = function(section){
-        var len, i;
+    this.showSectionWithName = function(state){
+        var len, i, section;
         len = sections.length;
 
-        section = section === '' ? 'blog' : section;
+        if(state.pathSegments[0] == 'category'){
 
-        for (i = 0; i < len; i++) {
-            if(sections[i].name === section){
-                sections[i].object.show();
-            } else {
-                if(section !== 'about'){
-                    sections[i].object.hide();
+            section = state.pathSegments[1];
+
+            for (i = 0; i < len; i++) {
+
+                if(sections[i].name === section){
+
+                    sections[i].object.show();
+
+                } else {
+
+                    if(section === 'blog' || section === 'portfolio' || section === 'experiments'){
+                        sections[i].object.hide();
+                    }
+
                 }
+
             }
+            postDetails.hide();
+        } else {
+            section = state.pathSegments[state.pathSegments.length - 1];
+            postDetails.load(section);
+            postDetails.show();
         }
 
     };

@@ -25,21 +25,11 @@ seventytwolions.Controller.Main = function() {
             model: seventytwolions.Lookup.getModel({})
         });
 
-        addEventListeners();
-
         onPopPushEvent(initialState);
 
         Router.registerForEvent('pop', onPopPushEvent);
         Router.registerForEvent('push', onPopPushEvent);
 
-    };
-
-    /**
-     * Registers all event listeners
-     * @author Thodoris Tsiridis
-     */
-    var addEventListeners = function(){
-        navigationController.addEventListener('menuClicked', onMenuClicked);
     };
 
     /**
@@ -68,25 +58,19 @@ seventytwolions.Controller.Main = function() {
             navigationController.getView().selectNavigationItem('blog');
 
             // Change the section
-            changeSection('');
+            changeSection();
 
         } else {
 
             if(state.pathSegments.length){
 
-                if(state.pathSegments[0] == 'category'){
-                    sectionName = state.pathSegments[1];
-                } else {
-                    sectionName = state.pathSegments[0];
-                }
+                // Select a specific menu item
+                navigationController.getView().selectNavigationItem(state.pathSegments[state.pathSegments.length - 1]);
+
+                // Change the section
+                changeSection(state);
 
             }
-
-            // Select a specific menu item
-            navigationController.getView().selectNavigationItem(sectionName);
-
-            // Change the section
-            changeSection(sectionName);
 
         }
 
@@ -95,24 +79,12 @@ seventytwolions.Controller.Main = function() {
     };
 
     /**
-     * Triggered when we get a menuClicked event from the navigation controller
-     * @param {Object} state The state object
-     * @author Thodoris Tsiridis
-     */
-    var onMenuClicked = function(event){
-
-       changeSection(event.path);
-
-    };
-
-    /**
      * Responsible for telling the sectionsManager to change section
-     * @param {String} path The path of the section that we want to show
+     * @param {Object} state The path of the section that we want to show
      * @author Thodoris Tsiridis
      */
-    var changeSection = function(path){
-
-        sectionsManager.showSectionWithName(path);
+    var changeSection = function(state){
+        sectionsManager.showSectionWithName(state);
     };
 };
 

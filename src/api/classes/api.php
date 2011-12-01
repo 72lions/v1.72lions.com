@@ -103,72 +103,11 @@ class API {
             while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
 
                 // Create a post
-                $post = new Post($row);
-
-
-                // Get the attachments
-                $queryAt = "SELECT * FROM wp_postmeta
-                WHERE post_id=".$row['ID'];
-
-                $resultAt = mysql_query($queryAt) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
-                while($rowAt = mysql_fetch_array($resultAt, MYSQL_ASSOC)){
-
-                    //Get the thumbnail
-                    if($rowAt['meta_key'] === '_thumbnail_id') {
-
-                        $queryThumbnail = "SELECT * FROM wp_postmeta
-                        WHERE post_id=" . $rowAt['meta_value'];
-
-                        $resultTh = mysql_query($queryThumbnail) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
-                        while($rowTh = mysql_fetch_array($resultTh, MYSQL_ASSOC)){
-
-                            if($rowTh['meta_key'] === '_wp_attached_file') {
-                                $post->thumbnail['File'] = $rowTh['meta_value'];
-                            }
-
-                            if($rowTh['meta_key'] === '_wp_attachment_metadata') {
-                                $post->thumbnail['Data'] = unserialize($rowTh['meta_value']);
-                            }
-
-                        }
-
-                        unset($resultTh);
-
-                    } else {
-                        // Get the rest of the data
-                        $post->addMeta($rowAt['meta_key'], $rowAt['meta_value']);
-                    }
-
-
-                }
-
-                // Get the categories
-                $queryCats = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT, wp_term_relationships WPTR
-                WHERE WT.term_id =  WTT.term_id
-                AND WPTR.term_taxonomy_id = WTT.term_taxonomy_id
-                AND WPTR.object_id = ".$post->id."
-                AND WTT.taxonomy='category'
-                ORDER BY WT.name ASC";
-
-                $resultCats = mysql_query($queryCats) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
-                while($rowCat = mysql_fetch_array($resultCats, MYSQL_ASSOC)){
-
-                    if(MC::get('category'.$rowCat['term_id']) == null){
-
-                        $category = new Category($rowCat);
-                        Category::addCategory($category);
-                        MC::set('category'.$category->id, $category);
-
-                    }
-
-                    $post->addToCategory(MC::get('category'.$rowCat['term_id']));
-                }
-
+                $post = $this->createPostObject($row);
                 $this->posts[] = $post;
-                MC::set('post'.$post->id, $post);
 
-                unset($resultCats);
-                unset($resultAt);
+                MC::set('post'.$post->id, $post);
+                MC::set($post->slug, $post);
 
             }
 
@@ -216,8 +155,6 @@ class API {
 
         if(MC::get($query) == null){
 
-            echo 'reading from db ';
-
             $db = new DB();
             $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
             $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
@@ -226,6 +163,7 @@ class API {
                 $post = new Post($row);
                 $this->pages[] = $post;
                 MC::set('page'.$post->id, $post);
+                MC::set($post->slug, $post);
 
             }
 
@@ -246,7 +184,41 @@ class API {
      * @author Thodoris Tsiridis
      */
     public function getPostDetails($postId) {
-        //TODO: First check memcache
+
+        if(MC::get($postId) == null) {
+
+            $db = new DB();
+            $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
+
+            $query = "SELECT * FROM wp_posts
+            WHERE post_status='publish'
+            AND (post_type='post' || post_type='page')
+            AND post_name='".mysql_real_escape_string($postId)."'";
+
+            $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+            $row = mysql_fetch_array($result, MYSQL_ASSOC);
+            $total = mysql_num_rows($result);
+
+            if($total > 0) {
+
+                $post = $this->createPostObject($row);
+
+                if($row['post_type'] === 'post'){
+                    MC::set('post'.$post->id, $post);
+                } else {
+                    MC::set('page'.$post->id, $post);
+                }
+
+                MC::set($post->slug, $post);
+            }
+
+            $db->disconnect();
+            unset($db);
+
+        }
+
+        return MC::get($postId);
+
     }
 
     /**
@@ -258,6 +230,74 @@ class API {
      */
     public function getComments($postId) {
         //TODO: First check memcache
+    }
+
+    protected function createPostObject($row) {
+
+        $post = new Post($row);
+
+        // Get the attachments
+        $queryAt = "SELECT * FROM wp_postmeta
+        WHERE post_id=".$row['ID'];
+
+        $resultAt = mysql_query($queryAt) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+        while($rowAt = mysql_fetch_array($resultAt, MYSQL_ASSOC)){
+
+            //Get the thumbnail
+            if($rowAt['meta_key'] === '_thumbnail_id') {
+
+                $queryThumbnail = "SELECT * FROM wp_postmeta
+                WHERE post_id=" . $rowAt['meta_value'];
+
+                $resultTh = mysql_query($queryThumbnail) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+                while($rowTh = mysql_fetch_array($resultTh, MYSQL_ASSOC)){
+
+                    if($rowTh['meta_key'] === '_wp_attached_file') {
+                        $post->thumbnail['File'] = $rowTh['meta_value'];
+                    }
+
+                    if($rowTh['meta_key'] === '_wp_attachment_metadata') {
+                        $post->thumbnail['Data'] = unserialize($rowTh['meta_value']);
+                    }
+
+                }
+
+                unset($resultTh);
+
+            } else {
+                // Get the rest of the data
+                $post->addMeta($rowAt['meta_key'], $rowAt['meta_value']);
+            }
+
+
+        }
+
+        // Get the categories
+        $queryCats = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT, wp_term_relationships WPTR
+        WHERE WT.term_id =  WTT.term_id
+        AND WPTR.term_taxonomy_id = WTT.term_taxonomy_id
+        AND WPTR.object_id = ".$post->id."
+        AND WTT.taxonomy='category'
+        ORDER BY WT.name ASC";
+
+        $resultCats = mysql_query($queryCats) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+        while($rowCat = mysql_fetch_array($resultCats, MYSQL_ASSOC)){
+
+            if(MC::get('category'.$rowCat['term_id']) == null){
+
+                $category = new Category($rowCat);
+                Category::addCategory($category);
+                MC::set('category'.$category->id, $category);
+
+            }
+
+            $post->addToCategory(MC::get('category'.$rowCat['term_id']));
+        }
+
+        unset($resultCats);
+        unset($resultAt);
+
+        return $post;
     }
 
 }

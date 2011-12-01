@@ -17,8 +17,6 @@ seventytwolions.Controller.Portfolio = function() {
      */
     this.postInitialize = function(){
 
-
-
         this.loadPosts();
         this.loadCategories();
 
@@ -39,10 +37,19 @@ seventytwolions.Controller.Portfolio = function() {
         this.getView().hide();
     };
 
+    /**
+     * Forces the model to load the posts
+     * @author Thodoris Tsiridis
+     */
     this.loadPosts = function() {
         this.getModel().get(7, 0, 20, onPostsLoaded, this);
     };
 
+    /**
+     * Callback function that is triggered when the model posts are loaded
+     * @param  {Object} result The result that came back from the model
+     * @author Thodoris Tsiridis
+     */
     var onPostsLoaded = function(result) {
         var i;
 
@@ -64,6 +71,10 @@ seventytwolions.Controller.Portfolio = function() {
         this.getView().positionItems();
     };
 
+    /**
+     * Forces the model to load the categories
+     * @author Thodoris Tsiridis
+     */
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
@@ -76,6 +87,11 @@ seventytwolions.Controller.Portfolio = function() {
         categoriesModel.get(0, 5, onCategoriesLoaded, this);
     };
 
+    /**
+     * Callback function that is triggered when the model categories are loaded
+     * @param  {Object} result The result that came back from the model
+     * @author Thodoris Tsiridis
+     */
     var onCategoriesLoaded = function(result) {
 
     };

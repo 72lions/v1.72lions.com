@@ -65,6 +65,7 @@ seventytwolions.View.ThumbnailItem = function() {
     };
 
     this.render = function() {
+
         var random, model, meta, body, pdate, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
         categoriesStr= '';
         hasThumbnail = false;
@@ -131,15 +132,56 @@ seventytwolions.View.ThumbnailItem = function() {
             this.domElement.find('.photo').css('display', 'none');
         }
 
+
+        addEventListeners();
+
     };
 
+    /**
+     * Shows the description of the item
+     * @author Thodoris Tsiridis
+     */
     this.showDescription = function() {
         this.domElement.find('p').css('display','block');
     };
 
+    /**
+     * Hides the description of the item
+     * @author Thodoris Tsiridis
+     */
     this.hideDescription = function() {
         this.domElement.find('p').css('display','none');
     };
+
+    /**
+     * Registers all the events
+     */
+    var addEventListeners = function() {
+        me.domElement.find('a').bind('click', onThumbnailClicked);
+    };
+
+    /**
+     * Triggered when we click the thumbnail
+     * @param  {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    var onThumbnailClicked = function(event) {
+        var model, pubDate, slug, url;
+
+        event.preventDefault();
+        model = me.getModel();
+
+        pubDate = model.get('PublishDate');
+        slug = model.get('Slug');
+        pubDate = new Date(pubDate.replace(/-/g ,'/'));
+
+        url = pubDate.getFullYear() + '/' + (pubDate.getMonth() + 1) + '/' + slug;
+
+        // Push the current url
+        Router.push(null, $(this).attr('title'), '/' + url);
+
+    };
+
 };
 
 seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();

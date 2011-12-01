@@ -40,13 +40,13 @@ body {
 #wrapper #sections-wrapper section.blog,
 #wrapper #sections-wrapper section.experiments,
 #wrapper #sections-wrapper section.portfolio,
-#wrapper #sections-wrapper section.about,
+#wrapper #sections-wrapper section.post-details,
 #wrapper #sections-wrapper section.contact {
   z-index: 1;
 }
 #wrapper #sections-wrapper section.active {
   display: block;
 }
-#wrapper #sections-wrapper section.about {
+#wrapper #sections-wrapper section.post-details {
   opacity: 1;
 }
