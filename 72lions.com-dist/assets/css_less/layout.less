@@ -1,0 +1,73 @@
+@import "lib.less";
+
+html, body {
+    background-color:@bodyColor;
+    -webkit-font-smoothing: antialiased;
+    background-color:#ebebeb;
+    background-image: -moz-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: -webkit-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: -o-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: -ms-radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%);
+    background-image: radial-gradient(50% 50%, circle farthest-corner, @bodyColor, #e5e5e5  100%)
+}
+
+body {
+    border-top:3px solid #F02311;
+}
+
+#wrapper {
+
+    min-width:505px;
+    box-sizing: border-box;
+
+    #sections-wrapper {
+
+        position:relative;
+        width:100%;
+        padding:0px 20px 20px 20px;
+        .transition(left 0.3s ease-in-out);
+        box-sizing:border-box;
+
+        section {
+
+            opacity:0;
+            display:none;
+            .transition(opacity 1s);
+
+            .centered {
+                width:100%;
+            }
+
+
+            &.blog,
+            &.experiments,
+            &.portfolio,
+            &.post-details,
+            &.contact {
+                z-index:1;
+            }
+
+            &.active {
+                display:block;
+            }
+
+            &.experiments {
+            }
+
+            &.blog {
+            }
+
+            &.post-details {
+                opacity:1;
+            }
+
+            &.contact {
+            }
+
+        }
+    }
+
+    footer {
+
+    }
+}

@@ -1,0 +1,38 @@
+@font: 'Droid Sans';
+@fontGeorgia: Georgia;
+@bodyColor: #F2F0F0;
+
+.transition () {
+    -webkit-transition: @arguments;
+    -moz-transition: @arguments;
+    -o-transition: @arguments;
+    transition: @arguments;
+}
+
+.box-shadow (){
+    -webkit-box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    -o-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+
+.border-radius (){
+    -webkit-border-radius: @arguments;
+    -moz-border-radius: @arguments;
+    -o-border-radius: @arguments;
+    border-radius: @arguments;
+}
+
+.hardware-accelerate () {
+
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.transform () {
+    -webkit-transform: rotate(@arguments);
+    -moz-transform: rotate(@arguments);
+    transform: rotate(@arguments);
+}

@@ -1,5 +1,5 @@
 /**
- * Index Controller
+ * Navigatio Controller
  *
  * @author Thodoris Tsiridis
  * @version 1.0

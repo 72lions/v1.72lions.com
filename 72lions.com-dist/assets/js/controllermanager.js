@@ -11,20 +11,13 @@ seventytwolions.controllerManager = function() {
 
     /**
      * Initializes a controller with a specific name
-     * @param {String} className The name of the controllers
-     * @param {String} id The unique id for this controller
+     * @param {Object} object The parameters
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(className, id) {
-
-        newController = seventytwolions.Lookup.getController(className, id);
-
-        // Base initialization
-        newController.initialize(className, id);
-
-        return newController;
+    this.initializeController = function(object) {
+        return seventytwolions.Lookup.getController(object);
     };
 
 };

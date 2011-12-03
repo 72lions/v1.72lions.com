@@ -1,47 +1,39 @@
 seventytwolions.Model.Base = function(){
 
-	// Declaring the API
-	var api = {};
+    var data = {};
+    this.name = '';
+    this.id = '';
 
-	/**
-	 * Returns an array of categories
-	 * @private
-	 * @param {Function} callback The callback function that will be executed
-	 * @returns An array with objects
-	 * @type Array
-	 * @author Thodoris Tsiridis
-	 */
-	var getCategories = function(callback) {
+    /**
+     * Sets the model data
+     * @param {Object} modelData The model data
+     * @author Thodoris Tsiridis
+     */
+    this.setData = function(modelData) {
+        data = modelData;
+    };
 
-		if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-			callback();
-		}
+    /**
+     * Sets the name of the model
+     * @param {String} name The name/type of the model
+     * @author Thodoris Tsiridis
+     */
+    this.setName = function(name) {
+        this.name = name;
+    };
 
-	};
+    /**
+     * Sets the id of the model
+     * @param {String} id The id of the model
+     * @author Thodoris Tsiridis
+     */
+    this.setId = function (id) {
+        this.id = id;
+    };
 
-	/**
-	 * Returns an array with the posts and all of its details
-	 * @private
-	 * @param {Array} categories An array of the categories from which we want to load the posts
-	 * @param {Function} callback The callback function that will be executed
-	 * @returns It returns an array of posts
-	 * @type Array
-	 * @author Thodoris Tsiridis
-	 */
-	var getPosts = function(categories, callback) {
-
-		if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-			callback();
-		}
-
-	};
-
-	// Exposing functions
-	api.getCategories = getCategories;
-	api.getPosts = getPosts;
-
-	// Return the api
-	return api;
+    this.get = function(key) {
+        return data[key];
+    };
 
 };
 

@@ -3,23 +3,21 @@
 
 
 /* TEAM */
-  <your title>: <your name>
-  Site:
-  Twitter:
-  Location:
+  Thdooris Tsiridis
+  Site: http://72lions.com
+  Twitter: 72Lions
+  Location: Stockholm
 
 /* THANKS */
   Names (& URL):
+  Justin Windle http://soulwire.co.uk
+  Paul Lewis http://aerotwist.com
+  David Lindkvist http://davidlindkvist.com
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: Modernizr, jQuery
+  Components: jQuery
   Software:
-
-
-
-
-
 
 
 

@@ -1,0 +1,159 @@
+/**
+ * Portfolio View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Portfolio = function() {
+
+    this.domElement = $('.portfolio');
+
+    var me = this;
+    var itemsContainer = this.domElement.find('.centered ul');
+    var isFirstTime = true;
+
+    // Constants
+    var COLUMN_MIN = 2;
+    var COLUMN_WIDTH = 218;
+    var COLUMN_MARGIN = 20;
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        $(window).bind("resize", onWindowResize);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+
+        isFirstTime = true;
+        this.positionItems();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+    /**
+     * Adds a portfolio item to the view
+     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @author Thodoris Tsiridis
+     */
+    this.addPortfolioItem = function(item){
+        itemsContainer.append(item);
+    };
+
+    this.positionItems = function() {
+        if(isFirstTime){
+            isFirstTime = false;
+        } else {
+            itemsContainer.addClass('animated');
+        }
+
+        var domItems = itemsContainer.find('li');
+        var domItemsFeatured = itemsContainer.find('li.featured');
+        var windowHeight = itemsContainer.height();
+        var windowWidth = itemsContainer.width();
+        var gridTop = 0;
+        var gridLeft = this.domElement.offset().left;
+        var items = [];
+        var _7 = 0;
+        var _8 = 0;
+        var minColumns = Math.max(COLUMN_MIN, parseInt(windowWidth / (COLUMN_WIDTH + COLUMN_MARGIN), 0));
+
+        //domItems.css("width", COLUMN_WIDTH + "px");
+        //domItemsFeatured.css("width", (COLUMN_WIDTH * 2 + COLUMN_MARGIN));
+        for (x = 0; x < minColumns; x++) {
+            items[x] = 0;
+        }
+
+        domItems.each(function (i, e) {
+            var x, _a, _b, _c, _d = 0;
+            var target_x =0;
+            var target_y = 0;
+            _c = (Math.floor($(e).outerWidth() / COLUMN_WIDTH));
+            _b = 0;
+
+            if (_c > 1) {
+
+                for (x = 0; x < minColumns - (_c - 1); x++) {
+                    _b = (items[x] < items[_b]) ? x : _b;
+                }
+
+                _a = _b;
+
+                for (x = 0; x < _c; x++) {
+                    _d = Math.max(_d, items[_a + x]);
+                }
+
+                for (x = 0; x < _c; x++) {
+                    items[_a + x] = parseInt($(e).outerHeight(), 0) + COLUMN_MARGIN + _d;
+                }
+
+                target_x = _a * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
+                target_y = _d + gridTop;
+
+                _7 = (_d > _7) ? items[_a + _c - 1] : _7;
+
+            } else {
+
+                for (x = 0; x < minColumns; x++) {
+                    _b = (items[x] < items[_b]) ? x : _b;
+                }
+
+                target_x = _b * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
+                target_y = items[_b] + gridTop;
+                items[_b] += $(e).outerHeight() + COLUMN_MARGIN;
+                _7 = (items[_b] > _7) ? items[_b] : _7;
+
+            }
+
+            $(this).css({
+                left: target_x + "px",
+                top: target_y + COLUMN_MARGIN + "px"
+            });
+
+            _8 = (_8 < _b) ? _b : _8;
+
+        });
+
+        var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
+    };
+
+    var onWindowResize = function() {
+        me.positionItems();
+    };
+
+};
+
+seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
