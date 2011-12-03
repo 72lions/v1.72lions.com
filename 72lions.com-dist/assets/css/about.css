@@ -1,0 +1,24 @@
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+section.about {
+  font-family: Georgia;
+  padding-top: 10px;
+  color: #999;
+  margin-left: 20px;
+}
+section.about .left {
+  float: left;
+  width: 200px;
+}
+section.about .columns {
+  float: left;
+  width: 640px;
+}
+section.about .column {
+  float: left;
+  width: 280px;
+  margin-right: 20px;
+}
+section.about p {
+  padding: 0px;
+  margin: 6px 0px 6px 0px;
+}

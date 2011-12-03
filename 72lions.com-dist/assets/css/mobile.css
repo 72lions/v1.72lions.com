@@ -1,0 +1,39 @@
+#wrapper {
+    min-width:100%;
+}
+
+header.navigation {
+    min-width:100%;
+}
+
+header.navigation nav{
+    margin:20px 0px 0px 20px;
+}
+
+header.navigation nav ul li a:link,
+header.navigation nav ul li a:visited {
+    font-size:10px;
+}
+
+section.portfolio ul,
+section.blog ul {
+    margin-top:20px;
+}
+
+section.portfolio ul li,
+section.blog ul li {
+    position:static;
+    width:100% !important;
+    margin-bottom:10px;
+}
+
+section.portfolio ul li.featured,
+section.blog ul li.featured {
+    width:100%;
+}
+
+section.portfolio ul li img,
+section.blog ul li img {
+    width: 100%;
+    height:auto !important;
+}

@@ -8,7 +8,9 @@ seventytwolions.View.Base = function() {
 
     EventTarget.call( this );
 
-    this.name = "Base";
+    this.name = null;
+    this.id = null;
+    this.model = null;
     this.domElement = null;
 
     /**
@@ -35,6 +37,34 @@ seventytwolions.View.Base = function() {
     };
 
     /**
+     * Sets the name of the view
+     * @param {String} name The name fo the view
+     * @author Thodoris Tsiridis
+     */
+    this.setId = function(id) {
+        this.id = id;
+    };
+
+    /**
+     * Sets the model for the view
+     * @param {seventytwolions.models.Base} model The model
+     * @author Thodoris Tsiridis
+     */
+    this.setModel = function(model) {
+        this.model = model;
+    };
+
+    /**
+     * Gets the model for the view
+     * @return The model
+     * @type {seventytwolions.Model.Base}
+     * @author Thodoris Tsiridis
+     */
+    this.getModel = function() {
+        return this.model;
+    };
+
+    /**
      * Returns the main dom element of the view
      * @returns A DOM element
      * @type jQuery DOM element
@@ -42,6 +72,15 @@ seventytwolions.View.Base = function() {
      */
     this.getDOMElement = function() {
         return this.domElement;
+    };
+
+    /**
+     * Is triggered before initialization of the view
+     * @author Thodoris Tsiridis
+     */
+    this.preInitialize = function(name, id) {
+        this.setName(name);
+        this.setId(id);
     };
 
     /**

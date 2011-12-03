@@ -1,14 +1,14 @@
 /**
- * Sections Manager View
+ * Experiments View
  *
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.SectionsManager = function() {
+seventytwolions.View.Experiments = function() {
 
     var me = this;
 
-	this.domElement = $('#sections-wrapper');
+	this.domElement = $('.experiments');
 
     /**
      * Initializes the view
@@ -34,6 +34,25 @@ seventytwolions.View.SectionsManager = function() {
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
 };
 
-seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
+seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();

@@ -1,48 +1,39 @@
 /**
  * Base Controller
- *
+ * @param {String} className the name of the class that we initialized
+ * @param {String} id The unique id of this class
+ * @param {String} viewClassName The class of the view (in case we want a different view)
  * @author Thodoris Tsiridis
  * @version 1.0
  */
 seventytwolions.Controller.Base = function() {
 
     EventTarget.call( this );
-
     var _view, _model, _registeredEvents = {};
 
-    this.data = {};
     this.id = '';
     this.name = '';
+    this.model = undefined;
 
     /**
      * Initializes the plugin
-     * @param {String} className the name of the class that we initialized
-     * @param {String} id The unique id of this class
-     * @param {String} viewClassName The class of the view (in case we want a different view)
      * @author Thodoris Tsiridis
      */
-    this.initialize = function(className, id, viewClassName) {
+    this.initialize = function(attributes) {
 
-        this.name = className;
-        this.id = id;
+        this.id = attributes.id || id;
+        this.name = attributes.type || '';
 
-        // Check if the viewClassName is undefined
-        if(typeof(viewClassName) === 'undefined'){
-            // get a reference to view
-            _view = seventytwolions.Lookup.getView(className, id);
-        } else {
-            // get a reference to another view
-            _view = seventytwolions.Lookup.getView(viewClassName, id);
-        }
-
+        // Get a reference to the view
+        _view = attributes.view || seventytwolions.Lookup.getView(this.name, this.id);
         // get a reference to the model
-        _model = seventytwolions.Lookup.getModel(className);
+        _model = this.model = attributes.model;
 
-        // ask it to initialize, draw and postDraw
+        // ask it to set the model, initialize, draw and postDraw
+        _view.setModel(_model);
         _view.initialize();
         _view.draw();
         _view.postDraw();
-
         this.postInitialize();
 
     };
@@ -74,6 +65,15 @@ seventytwolions.Controller.Base = function() {
      */
     this.getModel = function() {
         return _model;
+    };
+
+    /**
+     * Sets the model of the controller
+     * @param {seventytowlions.Model.Base} model The new model
+     */
+    this.setModel = function(model) {
+      _model = model;
+      _view.setModel(model);
     };
 
 };
