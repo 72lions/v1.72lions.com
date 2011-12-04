@@ -55,6 +55,7 @@
 		<link rel="stylesheet" href="/assets/css/portfolio.css" />
 		<link rel="stylesheet" href="/assets/css/about.css" />
 		<link rel="stylesheet" href="/assets/css/blog.css" />
+		<link rel="stylesheet" href="/assets/css/postdetails.css" />
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile.css" />
 
 		<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>

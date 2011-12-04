@@ -38,7 +38,7 @@ seventytwolions.Controller.Blog = function() {
     };
 
     this.loadBlogPosts = function() {
-        this.getModel().get(3, 0, 20, onBlogPostsLoaded, this);
+        this.getModel().getPosts(3, 0, 20, onBlogPostsLoaded, this);
     };
 
     var onBlogPostsLoaded = function(result) {

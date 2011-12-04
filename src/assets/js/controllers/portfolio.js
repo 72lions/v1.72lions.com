@@ -42,7 +42,7 @@ seventytwolions.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.loadPosts = function() {
-        this.getModel().get(7, 0, 20, onPostsLoaded, this);
+        this.getModel().getPosts(7, 0, 20, onPostsLoaded, this);
     };
 
     /**

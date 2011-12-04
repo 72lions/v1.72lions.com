@@ -6,10 +6,11 @@
  */
 seventytwolions.View.PostDetails = function() {
 
-    var me = this;
-
 	this.domElement = $('.post-details');
 
+    var me = this;
+    var details = null;
+    var contentDomElement = this.domElement.append('<div class="content"></div>');
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -34,6 +35,11 @@ seventytwolions.View.PostDetails = function() {
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
+    this.render = function() {
+        details = this.getModel().get('PostDetails');
+        contentDomElement.html(details.Content);
+    };
+
     /**
      * Shows the view
      * @author Thodoris Tsiridis
@@ -50,6 +56,7 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
+        contentDomElement.html('');
         this.domElement.removeClass('active').css('opacity', 0);
     };
 

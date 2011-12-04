@@ -1,0 +1,8 @@
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+section.post-details {
+  padding: 20px;
+}
+section.post-details .alignnone {
+  display: block;
+  margin-bottom: 20px;
+}

@@ -31,6 +31,10 @@ seventytwolions.Model.Base = function(){
         this.id = id;
     };
 
+    this.set = function(key, value) {
+        data[key] = value;
+    };
+
     this.get = function(key) {
         return data[key];
     };

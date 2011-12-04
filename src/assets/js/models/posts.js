@@ -20,7 +20,7 @@ seventytwolions.Model.Posts = function(){
      * @type Array
      * @author Thodoris Tsiridis
      */
-    this.get = function(categoryid, start, total, callback, ctx) {
+    this.getPosts = function(categoryid, start, total, callback, ctx) {
 
         var dataString;
 
