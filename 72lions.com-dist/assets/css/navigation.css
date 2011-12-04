@@ -1,2 +1,47 @@
-.navigation{position:absolute;top:5px;left:5px;display:block;z-index:2;}.navigation ul li{float:left;line-height:25px;list-style:none;margin:0px 5px;background-color:#FF0000;cursor:pointer;-webkit-border-radius:2px;-moz-border-radius:2px;-o-border-radius:2px;border-radius:2px;-webkit-transition:background-color 0.2s, -webkit-box-shadow 0.2s, -moz-box-shadow 0.2s, -o-box-shadow 0.2s, box-shadow 0.2s;-moz-transition:background-color 0.2s, -webkit-box-shadow 0.2s, -moz-box-shadow 0.2s, -o-box-shadow 0.2s, box-shadow 0.2s;-o-transition:background-color 0.2s, -webkit-box-shadow 0.2s, -moz-box-shadow 0.2s, -o-box-shadow 0.2s, box-shadow 0.2s;transition:background-color 0.2s, -webkit-box-shadow 0.2s, -moz-box-shadow 0.2s, -o-box-shadow 0.2s, box-shadow 0.2s;}.navigation ul li.active,.navigation ul li:hover{background-color:#000;-webkit-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.3);-moz-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.3);-o-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.3);box-shadow:0px 1px 2px rgba(0, 0, 0, 0.3);}
-.navigation ul li a:link,.navigation ul li a:visited{text-decoration:none;color:#fff;padding:0px 5px;display:inline-block;}
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+header.navigation {
+  display: block;
+  width: 100%;
+  min-width: 505px;
+}
+header.navigation nav {
+  display: block;
+  overflow: hidden;
+  margin: 20px 30px 0px 40px;
+}
+header.navigation nav img {
+  width: 70px;
+}
+header.navigation nav ul {
+  margin-top: 20px;
+}
+header.navigation nav ul li {
+  float: left;
+  line-height: 25px;
+  list-style: none;
+  margin: 0px 5px;
+  cursor: pointer;
+  border-bottom: 1px dashed #ccc;
+  text-shadow: 0px 1px #fff;
+  outline: none;
+  -webkit-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+  -moz-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+  -o-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+  transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+}
+header.navigation nav ul li:first-child {
+  margin-left: 0px;
+}
+header.navigation nav ul li.active, header.navigation nav ul li:hover {
+  border-bottom-color: #666;
+  border-bottom-width: 2px;
+  border-bottom-style: inset;
+}
+header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
+  text-decoration: none;
+  color: #666;
+  padding: 0px 5px;
+  display: inline-block;
+  font-family: Georgia;
+  font-size: 14px;
+}

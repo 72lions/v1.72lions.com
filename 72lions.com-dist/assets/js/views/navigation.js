@@ -1,15 +1,14 @@
 /**
- * Home View
+ * Navigation View
  *
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Navigation = function(name) {
+seventytwolions.View.Navigation = function() {
 
     var $links;
     var me = this;
 
-	this.setName(name);
 	this.domElement = $('.navigation');
 
     /**
@@ -17,8 +16,7 @@ seventytwolions.View.Navigation = function(name) {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        seventytwolions.Console.log('Initializing view with name ' + this.name);
-
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('a');
     };
 
@@ -27,7 +25,7 @@ seventytwolions.View.Navigation = function(name) {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -35,7 +33,7 @@ seventytwolions.View.Navigation = function(name) {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
         addEventListeners();
     };
 
