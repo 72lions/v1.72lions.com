@@ -16,12 +16,6 @@ section.blog ul li {
 section.blog ul li.featured {
   width: 456px;
 }
-section.blog ul li:hover .photo img {
-  border-color: #F02311;
-}
-section.blog ul li:hover a:link, section.blog ul li:hover a:visited {
-  color: #F02311;
-}
 section.blog ul li a:link, section.blog ul li a:visited {
   margin-top: 5px;
   display: inline-block;
@@ -74,6 +68,7 @@ section.blog ul li a.readmore:link:active, section.blog ul li a.readmore:visited
   background-image: -webkit-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -ms-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #e6e6e6), color-stop(0, #f2f0f0));
+  border-color: #999;
   -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
   -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
@@ -145,8 +140,8 @@ section.blog ul li .description time {
   font-style: italic;
 }
 section.blog ul.animated li {
-  -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
-  -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
-  -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
-  transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  -webkit-transition: left 0s ease-in-out, top 0s ease-in-out;
+  -moz-transition: left 0s ease-in-out, top 0s ease-in-out;
+  -o-transition: left 0s ease-in-out, top 0s ease-in-out;
+  transition: left 0s ease-in-out, top 0s ease-in-out;
 }

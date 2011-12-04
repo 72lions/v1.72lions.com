@@ -134,9 +134,6 @@
 				<section class="portfolio">
 					<div class="centered">
 						<ul>
-							<noscript>
-
-							</noscript>
 						</ul>
 					</div>
 				</section>

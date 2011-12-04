@@ -24,18 +24,6 @@ section.blog {
 
             &:hover {
 
-                .photo {
-
-                    img {
-                        border-color:#F02311;
-                    }
-
-                }
-
-                a:link,
-                a:visited {
-                    color:#F02311;
-                }
             }
 
             a:link,
@@ -101,6 +89,8 @@ section.blog {
                         color-stop(0.5, rgb(230,230,230)),
                         color-stop(0, rgb(242,240,240))
                     );
+
+                    border-color:#999;
 
                     .box-shadow(inset 0px 0px 5px rgba(0, 0, 0, 0.2));
 
@@ -185,7 +175,7 @@ section.blog {
         &.animated {
 
             li {
-                .transition(e('left 0.3s ease-in-out, top 0.3s ease-in-out'));
+                .transition(e('left 0s ease-in-out, top 0s ease-in-out'));
             }
 
         }
