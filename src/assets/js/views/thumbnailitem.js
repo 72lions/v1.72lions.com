@@ -9,19 +9,21 @@ seventytwolions.View.ThumbnailItem = function() {
     this.isFeatured = false;
 
     var me = this;
-    var tmpl =  '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
-                '<div class="photo">'+
-                '<a href="${link}" title="${title}"><img src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
+    var tmpl = '<div class="photo">'+
+                    '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
+                    '<a href="${link}" title="${title}"><img src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
                 '</div>'+
-                '<hgroup><a href="${link}" title="${title}"><h1>${title}</h1></a></hgroup>'+
-                '<time>${publishdate}</time>'+
-                '<aside>Categories: ${categories}</aside>'+
-                '<p>'+
-                '${description}'+
-                '</p>' +
-                '<a href="${link}" title="${title}" class="readmore">Read more</a>';
+                '<div class="description">'+
+                    '<hgroup><a href="${link}" title="${title}"><h1>${title}</h1></a></hgroup>'+
+                    '<time>${publishdate}</time>'+
+                    '<aside>Categories: ${categories}</aside>'+
+                    '<p>'+
+                    '${description}'+
+                    '</p>' +
+                    '<a href="${link}" title="${title}" class="readmore">Read more</a>'+
+                '</div>';
 
-	this.domElement = $('<li class="portfolio-item"></li>');
+	this.domElement = $('<li class="portfolio-item clearfix"></li>');
 
     /**
      * Initializes the view
@@ -124,8 +126,8 @@ seventytwolions.View.ThumbnailItem = function() {
 
         this.domElement.html(body);
 
-        if(meta.github === undefined){
-          this.domElement.find('.github-ribbon').css('display', 'none');
+        if(meta.github !== undefined){
+          this.domElement.find('.github-ribbon').css('display', 'block');
         }
 
         if(!hasThumbnail) {

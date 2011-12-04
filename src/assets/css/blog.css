@@ -1,26 +1,28 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-section.portfolio ul {
+section.blog ul {
   position: relative;
 }
-section.portfolio ul li {
+section.blog ul li {
+  position: absolute;
   list-style: none;
   color: #666;
   display: block;
-  width: 912px;
+  width: 218px;
   border-bottom: 1px dashed #ccc;
-  padding: 20px 0px 20px 20px;
+  padding-bottom: 20px;
   box-sizing: border-box;
+  float: left;
 }
-section.portfolio ul li.featured {
-  width: 912px;
+section.blog ul li.featured {
+  width: 456px;
 }
-section.portfolio ul li:hover .photo img {
+section.blog ul li:hover .photo img {
   border-color: #F02311;
 }
-section.portfolio ul li:hover a:link, section.portfolio ul li:hover a:visited {
+section.blog ul li:hover a:link, section.blog ul li:hover a:visited {
   color: #F02311;
 }
-section.portfolio ul li a:link, section.portfolio ul li a:visited {
+section.blog ul li a:link, section.blog ul li a:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -32,10 +34,10 @@ section.portfolio ul li a:link, section.portfolio ul li a:visited {
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.portfolio ul li a:link:hover, section.portfolio ul li a:visited:hover {
+section.blog ul li a:link:hover, section.blog ul li a:visited:hover {
   color: #F02311;
 }
-section.portfolio ul li a.readmore:link, section.portfolio ul li a.readmore:visited {
+section.blog ul li a.readmore:link, section.blog ul li a.readmore:visited {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
@@ -51,7 +53,7 @@ section.portfolio ul li a.readmore:link, section.portfolio ul li a.readmore:visi
   -o-transition: background-image 0.2s, border-color 0.2s;
   transition: background-image 0.2s, border-color 0.2s;
 }
-section.portfolio ul li a.readmore:link:hover, section.portfolio ul li a.readmore:visited:hover {
+section.blog ul li a.readmore:link:hover, section.blog ul li a.readmore:visited:hover {
   color: #F02311;
   background-image: linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
   background-image: -o-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
@@ -65,7 +67,7 @@ section.portfolio ul li a.readmore:link:hover, section.portfolio ul li a.readmor
   -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-section.portfolio ul li a.readmore:link:active, section.portfolio ul li a.readmore:visited:active {
+section.blog ul li a.readmore:link:active, section.blog ul li a.readmore:visited:active {
   background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
@@ -77,29 +79,26 @@ section.portfolio ul li a.readmore:link:active, section.portfolio ul li a.readmo
   -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
-section.portfolio ul li .photo {
+section.blog ul li .photo {
   line-height: 0px;
   margin-bottom: 10px;
   position: relative;
-  float: left;
-  margin-right: 20px;
-  width: 456px;
 }
-section.portfolio ul li .photo .github-ribbon {
+section.blog ul li .photo .github-ribbon {
   display: none;
   position: absolute;
   top: 2px;
   right: 2px;
   z-index: 10;
 }
-section.portfolio ul li .photo .github-ribbon img {
+section.blog ul li .photo .github-ribbon img {
   border: none;
   -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
-section.portfolio ul li .photo img {
+section.blog ul li .photo img {
   box-sizing: border-box;
   border: 3px solid #fff;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -111,42 +110,38 @@ section.portfolio ul li .photo img {
   -o-transition: border-color 0.3s;
   transition: border-color 0.3s;
 }
-section.portfolio ul li .description {
-  width: 400px;
-  float: left;
-}
-section.portfolio ul li .description h1 {
+section.blog ul li .description h1 {
   padding: 0px 0px 0px 0px;
   margin: 0px;
   text-shadow: 0px 1px #ffffff;
 }
-section.portfolio ul li .description .body {
+section.blog ul li .description .body {
   padding: 15px;
 }
-section.portfolio ul li .description p, section.portfolio ul li .description aside, section.portfolio ul li .description time {
+section.blog ul li .description p, section.blog ul li .description aside, section.blog ul li .description time {
   font-family: Georgia;
   font-size: 12px;
   line-height: 18px;
   display: block;
 }
-section.portfolio ul li .description p {
+section.blog ul li .description p {
   margin: 0px 0px 10px 0px;
 }
-section.portfolio ul li .description aside, section.portfolio ul li .description time {
+section.blog ul li .description aside, section.blog ul li .description time {
   color: #F02311;
   font-style: italic;
   font-size: 11px;
 }
-section.portfolio ul li .description aside {
+section.blog ul li .description aside {
   padding-bottom: 10px;
 }
-section.portfolio ul li .description time {
+section.blog ul li .description time {
   font-size: 11px;
   color: #999;
   display: block;
   font-style: italic;
 }
-section.portfolio ul.animated li {
+section.blog ul.animated li {
   -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;

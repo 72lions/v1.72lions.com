@@ -54,6 +54,7 @@
 		<link rel="stylesheet" href="/assets/css/navigation.css" />
 		<link rel="stylesheet" href="/assets/css/portfolio.css" />
 		<link rel="stylesheet" href="/assets/css/about.css" />
+		<link rel="stylesheet" href="/assets/css/blog.css" />
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile.css" />
 
 		<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
@@ -74,7 +75,7 @@
 		</header>
 		<div id="wrapper">
 			<div id="sections-wrapper">
-				<noscript>
+				<div class="seo">
 					<ul>
 					<?php
 						include('api/classes/db.php');
@@ -115,7 +116,7 @@
 						}
 					?>
 					</ul>
-				</noscript>
+				</div>
 				<section class="post-details clearfix">
 					<div class="centered">
 						<div class="left">this is left</div>

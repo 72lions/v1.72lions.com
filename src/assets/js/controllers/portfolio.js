@@ -68,7 +68,6 @@ seventytwolions.Controller.Portfolio = function() {
             portfolioItems[i].getView().render();
         }
 
-        this.getView().positionItems();
     };
 
     /**

@@ -74,6 +74,7 @@ seventytwolions.View.Blog = function() {
     };
 
     this.positionItems = function() {
+        console.log('position items...');
         if(isFirstTime){
             isFirstTime = false;
         } else {

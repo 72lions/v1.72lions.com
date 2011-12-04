@@ -6,8 +6,8 @@ header.navigation {
     min-width:100%;
 }
 
-header.navigation nav{
-    margin:20px 0px 0px 20px;
+header.navigation nav {
+    margin:20px 0px 20px 20px;
 }
 
 header.navigation nav ul li a:link,
@@ -15,9 +15,21 @@ header.navigation nav ul li a:visited {
     font-size:10px;
 }
 
+#sections-wrapper {
+
+}
+
 section.portfolio ul,
 section.blog ul {
-    margin-top:20px;
+
+}
+
+section.portfolio ul li .photo,
+section.portfolio ul li .description {
+    float:none;
+    width:100%;
+    padding:0px;
+    margin-right:0px;
 }
 
 section.portfolio ul li,
@@ -25,6 +37,7 @@ section.blog ul li {
     position:static;
     width:100% !important;
     margin-bottom:10px;
+    padding:0px 0px 20px 0px;
 }
 
 section.portfolio ul li.featured,
