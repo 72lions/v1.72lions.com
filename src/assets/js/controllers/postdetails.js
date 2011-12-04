@@ -24,7 +24,6 @@ seventytwolions.Controller.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.load = function(sectionSlug) {
-        console.log(sectionSlug);
         if(this.currentId !== sectionSlug){
             this.currentId = sectionSlug;
             this.getModel().getDetails(sectionSlug, onPostDetailsLoaded, this);

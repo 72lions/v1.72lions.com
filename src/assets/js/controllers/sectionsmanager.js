@@ -91,11 +91,18 @@ seventytwolions.Controller.SectionsManager = function() {
                 }
 
             }
+
             postDetails.hide();
+
         } else {
+
+            for (i = 0; i < len; i++) {
+                sections[i].object.hide();
+            }
             section = state.pathSegments[state.pathSegments.length - 1];
             postDetails.load(section);
             postDetails.show();
+
         }
 
     };

@@ -39,14 +39,18 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        this.domElement.slideDown();
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
     };
     /**
      * Hides the view
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
-        this.domElement.slideUp();
+        this.domElement.removeClass('active').css('opacity', 0);
     };
 
 };

@@ -47,7 +47,7 @@
 		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-		<link href='http://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Six+Caps|Pompiere' rel='stylesheet' type='text/css'>
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/assets/css/reset.css" />
 		<link rel="stylesheet" href="/assets/css/layout.css" />
@@ -119,23 +119,7 @@
 				</div>
 				<section class="post-details clearfix">
 					<div class="centered">
-						<div class="left">this is left</div>
-						<div class="column">
-						<div class="column">
-							<p>72Lions was started by  Thodoris Tsiridis a Web Developer from Greece. He is specialized in web development.</p>
-
-							<p>"I bring a wide-ranging expertise with one sole purpose; to design &amp; develop interactive websites and applications.</p>
-
-							<p>Every project I undertake is another challenge for me and I constantly bring innovative ideas in order to broaden my technical expertise.</p>
-						</div>
-						<div class="column">
-							<p>I like to combine several technologies, such as Flash, AS3, XML, PHP-MySQL, but I also like to play with Web Services, ASP.NET.</p>
-
-							<p>Whatever the project I am working on, the approach remains the same: putting the client’s needs first and enjoying the work I do by injecting quality and creativity into every stage in the process."</p>
-
-							<p>Contact: info(at)72lions.com
-						</div>
-						</div>
+						dsfa ssa fsd
 					</div>
 				</section>
 
