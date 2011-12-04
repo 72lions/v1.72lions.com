@@ -37,11 +37,24 @@ header.navigation nav ul li.active, header.navigation nav ul li:hover {
   border-bottom-width: 2px;
   border-bottom-style: inset;
 }
+header.navigation nav ul li.active a:link,
+header.navigation nav ul li:hover a:link,
+header.navigation nav ul li.active a:visited,
+header.navigation nav ul li:hover a:visited,
+header.navigation nav ul li.active a:hover,
+header.navigation nav ul li:hover a:hover {
+  color: #000;
+}
 header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   text-decoration: none;
   color: #666;
-  padding: 0px 5px;
+  padding: 0px 5px 3px 6px;
   display: inline-block;
-  font-family: Georgia;
-  font-size: 14px;
+  font-family: 'Six Caps';
+  font-size: 36px;
+  letter-spacing: 1px;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
 }

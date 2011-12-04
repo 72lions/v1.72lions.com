@@ -1,16 +1,13 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 html, body {
+  height: 100%;
   background-color: #f2f0f0;
   -webkit-font-smoothing: antialiased;
   background-color: #ebebeb;
-  background-image: -moz-radial-gradient(50% 50%, circle farthest-corner, #f2f0f0, #e5e5e5 100%);
-  background-image: -webkit-radial-gradient(50% 50%, circle farthest-corner, #f2f0f0, #e5e5e5 100%);
-  background-image: -o-radial-gradient(50% 50%, circle farthest-corner, #f2f0f0, #e5e5e5 100%);
-  background-image: -ms-radial-gradient(50% 50%, circle farthest-corner, #f2f0f0, #e5e5e5 100%);
-  background-image: radial-gradient(50% 50%, circle farthest-corner, #f2f0f0, #e5e5e5 100%);
 }
 body {
   border-top: 3px solid #F02311;
+  min-height: 100%;
 }
 #wrapper {
   min-width: 505px;

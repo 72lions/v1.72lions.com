@@ -86,9 +86,7 @@ seventytwolions.Controller.SectionsManager = function() {
 
                 } else {
 
-                    if(section === 'blog' || section === 'portfolio' || section === 'experiments'){
-                        sections[i].object.hide();
-                    }
+                    sections[i].object.hide();
 
                 }
 

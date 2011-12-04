@@ -42,16 +42,24 @@ header.navigation {
                     border-bottom-width:2px;
                     border-bottom-style:inset;
 
+                    a:link,
+                    a:visited,
+                    a:hover {
+                        color:#000;
+                    }
+
                 }
 
                 a:link,
                 a:visited {
                     text-decoration:none;
                     color:#666;
-                    padding:0px 5px;
+                    padding:0px 5px 3px 6px;
                     display:inline-block;
-                    font-family: @fontGeorgia;
-                    font-size:14px;
+                    font-family: @fontSixCaps;
+                    font-size:36px;
+                    letter-spacing:1px;
+                    .transition(color 0.2s);
                 }
             }
         }

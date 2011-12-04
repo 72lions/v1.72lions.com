@@ -119,6 +119,9 @@ section.portfolio ul li .description h1 {
   padding: 0px 0px 0px 0px;
   margin: 0px;
   text-shadow: 0px 1px #ffffff;
+  font-family: 'Six Caps';
+  font-size: 33px;
+  font-weight: normal;
 }
 section.portfolio ul li .description .body {
   padding: 15px;
