@@ -9,6 +9,9 @@ section.portfolio ul li {
   width: 912px;
   border-bottom: 1px dashed #ccc;
   padding: 20px 0px 10px 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-sizing: border-box;
   box-sizing: border-box;
 }
 section.portfolio ul li.featured {
@@ -99,6 +102,9 @@ section.portfolio ul li .photo .github-ribbon img {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
 section.portfolio ul li .photo img {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-sizing: border-box;
   box-sizing: border-box;
   border: 3px solid #fff;
   z-index: 1;
@@ -110,10 +116,10 @@ section.portfolio ul li .description {
   float: left;
 }
 section.portfolio ul li .description h1 {
-  padding: 0px 0px 0px 0px;
+  padding: 0px 0px 5px 0px;
   margin: 0px;
   text-shadow: 0px 1px #ffffff;
-  font-family: 'Six Caps';
+  font-family: 'Oswald';
   font-size: 33px;
   font-weight: normal;
 }

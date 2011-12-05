@@ -50,6 +50,7 @@ seventytwolions.Controller.PostDetails = function() {
         console.log('result', result);
         this.getModel().set('PostDetails', result);
         this.getView().render();
+        this.show();
     };
 
 };

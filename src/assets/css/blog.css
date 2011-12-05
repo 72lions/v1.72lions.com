@@ -10,6 +10,9 @@ section.blog ul li {
   width: 218px;
   border-bottom: 1px dashed #ccc;
   padding-bottom: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-sizing: border-box;
   box-sizing: border-box;
   float: left;
 }
@@ -94,6 +97,9 @@ section.blog ul li .photo .github-ribbon img {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
 section.blog ul li .photo img {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-sizing: border-box;
   box-sizing: border-box;
   border: 3px solid #fff;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -106,11 +112,11 @@ section.blog ul li .photo img {
   transition: border-color 0.3s;
 }
 section.blog ul li .description h1 {
-  padding: 0px 0px 0px 0px;
+  padding: 0px 0px 5px 0px;
   margin: 0px;
   text-shadow: 0px 1px #ffffff;
-  font-family: 'Six Caps';
-  font-size: 33px;
+  font-family: 'Oswald';
+  font-size: 22px;
   font-weight: normal;
 }
 section.blog ul li .description .body {

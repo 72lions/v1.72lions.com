@@ -12,7 +12,7 @@ header.navigation nav {
 
 header.navigation nav ul li a:link,
 header.navigation nav ul li a:visited {
-    font-size:18px;
+    font-size:10px;
 }
 
 #sections-wrapper {
@@ -22,6 +22,11 @@ header.navigation nav ul li a:visited {
 section.portfolio ul,
 section.blog ul {
 
+}
+
+section.portfolio ul li .description h1,
+section.blog ul li .description h1 {
+    font-size:28px;
 }
 
 section.portfolio ul li .photo,
@@ -45,8 +50,32 @@ section.blog ul li.featured {
     width:100%;
 }
 
+section.portfolio ul li .photo .github-ribbon,
+section.blog ul li .photo .github-ribbon {
+    width:85px;
+    height:85px;
+}
+
+section.portfolio ul li .photo {
+    background-size:100% 20px;
+    padding-bottom:15px;
+}
+
 section.portfolio ul li img,
 section.blog ul li img {
     width: 100%;
     height:auto !important;
+}
+
+section.post-details {
+    padding:0px;
+}
+
+section.post-details .content {
+    width:100%;
+    float:none;
+}
+
+section.post-details aside {
+    display:none;
 }

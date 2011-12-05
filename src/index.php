@@ -47,7 +47,7 @@
 		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-		<link href='http://fonts.googleapis.com/css?family=Six+Caps|Pompiere' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/assets/css/reset.css" />
 		<link rel="stylesheet" href="/assets/css/layout.css" />
@@ -56,7 +56,7 @@
 		<link rel="stylesheet" href="/assets/css/about.css" />
 		<link rel="stylesheet" href="/assets/css/blog.css" />
 		<link rel="stylesheet" href="/assets/css/postdetails.css" />
-		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile-hires.css" />
 
 		<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
 	</head>
@@ -119,8 +119,15 @@
 					</ul>
 				</div>
 				<section class="post-details clearfix">
-					<div class="centered">
-						dsfa ssa fsd
+					<div class="centered clearfix">
+						<div class="content">
+							<h1 class="title"></h1>
+							<div class="categories"></div>
+							<div class="text"></div>
+						</div>
+						<aside>
+
+						</aside>
 					</div>
 				</section>
 

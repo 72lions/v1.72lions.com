@@ -10,7 +10,11 @@ seventytwolions.View.PostDetails = function() {
 
     var me = this;
     var details = null;
-    var contentDomElement = this.domElement.append('<div class="content"></div>');
+    var contentDomElement = this.domElement.find('.content');
+    var asideDomElement = this.domElement.find('aside');
+    var titleDomElement = contentDomElement.find('h1.title');
+    var categoriesDomElement = contentDomElement.find('.categories');
+    var textDomElement = contentDomElement.find('.text');
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -36,8 +40,28 @@ seventytwolions.View.PostDetails = function() {
     };
 
     this.render = function() {
+        var asideHTML, categoriesStr;
+        asideHTML = categoriesStr = '';
+
         details = this.getModel().get('PostDetails');
-        contentDomElement.html(details.Content);
+        textDomElement.html(details.Content);
+
+        // Create categories string
+        categories = details.Categories;
+
+        for (var i = 0; i < categories.length; i++) {
+
+            categoriesStr += categories[i].Name;
+
+            if(i < categories.length - 1){
+                categoriesStr +=', ';
+            }
+
+        }
+        console.log(categoriesDomElement);
+        categoriesDomElement.html('Categories:' + categoriesStr);
+        titleDomElement.html(details.Title);
+        asideDomElement.html(asideHTML);
     };
 
     /**
@@ -56,7 +80,6 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
-        contentDomElement.html('');
         this.domElement.removeClass('active').css('opacity', 0);
     };
 

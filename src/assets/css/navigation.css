@@ -50,9 +50,8 @@ header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   color: #666;
   padding: 0px 5px 3px 6px;
   display: inline-block;
-  font-family: 'Six Caps';
-  font-size: 36px;
-  letter-spacing: 1px;
+  font-family: Georgia;
+  font-size: 14px;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;

@@ -29,10 +29,10 @@ body {
 #wrapper #sections-wrapper section {
   opacity: 0;
   display: none;
-  -webkit-transition: opacity 1s;
-  -moz-transition: opacity 1s;
-  -o-transition: opacity 1s;
-  transition: opacity 1s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s;
 }
 #wrapper #sections-wrapper section .centered {
   width: 100%;

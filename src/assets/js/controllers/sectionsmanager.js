@@ -101,7 +101,6 @@ seventytwolions.Controller.SectionsManager = function() {
             }
             section = state.pathSegments[state.pathSegments.length - 1];
             postDetails.load(section);
-            postDetails.show();
 
         }
 
