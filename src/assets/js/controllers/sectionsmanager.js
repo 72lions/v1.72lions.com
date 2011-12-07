@@ -44,15 +44,15 @@ seventytwolions.Controller.SectionsManager = function() {
             })
         });
 
-        contact = seventytwolions.ControllerManager.initializeController({
+        /*contact = seventytwolions.ControllerManager.initializeController({
             type:'Contact',
             id:'contact',
             model: seventytwolions.Lookup.getModel({
                 id:'contactModel'
             })
-        });
+        });*/
 
-        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}, {name:'contact', object: contact}];
+        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}/**, {name:'contact', object: contact}*/];
 
         postDetails = seventytwolions.ControllerManager.initializeController({
             type:'PostDetails',
@@ -74,7 +74,7 @@ seventytwolions.Controller.SectionsManager = function() {
         var len, i, section;
         len = sections.length;
 
-        if(state.pathSegments[0] == 'category'){
+        if(state && state.pathSegments[0] == 'category'){
 
             section = state.pathSegments[1];
 
@@ -94,14 +94,22 @@ seventytwolions.Controller.SectionsManager = function() {
 
             postDetails.hide();
 
-        } else {
-
+        } else if (state) {
+            // if we don't have a path segment with category at its first position
             for (i = 0; i < len; i++) {
                 sections[i].object.hide();
             }
+
             section = state.pathSegments[state.pathSegments.length - 1];
             postDetails.load(section);
 
+        } else {
+            // First time load, so load blog
+            for (i = 0; i < len; i++) {
+                sections[i].object.hide();
+            }
+
+            blog.show();
         }
 
     };

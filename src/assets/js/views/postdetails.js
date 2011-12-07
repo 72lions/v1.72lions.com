@@ -15,6 +15,9 @@ seventytwolions.View.PostDetails = function() {
     var titleDomElement = contentDomElement.find('h1.title');
     var categoriesDomElement = contentDomElement.find('.categories');
     var textDomElement = contentDomElement.find('.text');
+    var timeDomElement = contentDomElement.find('time');
+    var githublinkDomElement = contentDomElement.find('.github-link');
+
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -40,7 +43,7 @@ seventytwolions.View.PostDetails = function() {
     };
 
     this.render = function() {
-        var asideHTML, categoriesStr;
+        var asideHTML, categoriesStr, pDate;
         asideHTML = categoriesStr = '';
 
         details = this.getModel().get('PostDetails');
@@ -58,8 +61,25 @@ seventytwolions.View.PostDetails = function() {
             }
 
         }
-        console.log(categoriesDomElement);
-        categoriesDomElement.html('Categories:' + categoriesStr);
+
+        if(categoriesStr !== '') {
+            categoriesDomElement.html('Categories: ' + categoriesStr);
+            categoriesDomElement.fadeIn(0);
+        } else {
+            categoriesDomElement.fadeOut(0);
+        }
+
+        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        if(details.Meta.github !== undefined){
+            githublinkDomElement.attr('href', details.Meta.github);
+            githublinkDomElement.css('display','block');
+        } else {
+            githublinkDomElement.css('display','none');
+        }
+
+        //Firefox doesn't like dates with / in the constructor
+        pDate = new Date(details.PublishDate.replace(/-/g ,'/'));
+        timeDomElement.html(seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
         titleDomElement.html(details.Title);
         asideDomElement.html(asideHTML);
     };

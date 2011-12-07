@@ -10,9 +10,37 @@ section.post-details {
 
     .content {
 
+        padding-top:10px;
+        max-width:960px;
+        font-family:@fontGeorgia;
+        color:#666;
+        font-size:12px;
+        line-height:18px;
+        font-style:italic;
+        float:left;
+
+        .github-link {
+            background-image:url('/assets/images/icon-github.png');
+            background-repeat:no-repeat;
+            padding-left:20px;
+            line-height:20px;
+            margin-top:15px;
+            display:inline-block;
+            font-family:@fontMain;
+            font-size:20px;
+            font-style:normal;
+            padding-bottom:5px;
+        }
         .categories {
             color:#F02311;
-            padding-bottom:5px;
+        }
+
+        time {
+            font-size:11px;
+            color:#999;
+            display:block;
+            font-style:italic;
+            margin-bottom:0px;
         }
 
         h1 {
@@ -20,19 +48,29 @@ section.post-details {
             font-size:38px;
             font-style:normal;
             font-weight:normal;
-            text-shadow:0px 1px 1px rgba(255,255,2255,0.8);
+            text-shadow:0px 1px 1px rgba(255,255,255,0.8);
             padding:0px;
-            margin:0px 0px 10px 0px;
-            line-height:40px;
+            margin:0px 0px 5px 0px;
+            line-height:45px;
         }
 
-        width:500px;
-        font-family:@fontGeorgia;
-        color:#666;
-        font-size:12px;
-        line-height:18px;
-        font-style:italic;
-        float:left;
+        h2 {
+            font-size:30px;
+            font-family:@fontMain;
+            font-style:normal;
+            font-weight:normal;
+            line-height:37px;
+            text-shadow:0px 1px 1px rgba(255,255,255,0.8)
+        }
+
+        h3 {
+            font-size:25px;
+            line-height:32px;
+            font-family:@fontMain;
+            font-style:normal;
+            font-weight:normal;
+            text-shadow:0px 1px 1px rgba(255,255,255,0.8)
+        }
 
         p {
             padding:5px 0px 5px 0px;
@@ -65,16 +103,10 @@ section.post-details {
             box-sizing:border-box;
             .box-shadow(1px 1px 1px rgba(0,0,0,0.2));
         }
-    }
 
-    aside {
-        margin-left:580px;
-        display:block;
-        font-family:@fontGeorgia;
-        color:#666;
-        font-size:12px;
-        line-height:18px;
-        font-style:italic;
+        .text {
+            margin-top:10px;
+        }
     }
 
     a:link,

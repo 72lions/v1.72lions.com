@@ -70,7 +70,6 @@
 					<li><a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>
 					<li><a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
 					<li><a href="about" class="nav-about" title="About">About</a></li>
-					<li><a href="contact" class="nav-contact" title="Contact">Contact</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -122,12 +121,11 @@
 					<div class="centered clearfix">
 						<div class="content">
 							<h1 class="title"></h1>
+							<time></time>
 							<div class="categories"></div>
+							<a href="#" class="github-link">Fork it on Github</a>
 							<div class="text"></div>
 						</div>
-						<aside>
-
-						</aside>
 					</div>
 				</section>
 
