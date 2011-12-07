@@ -114,7 +114,7 @@ seventytwolions.View.ThumbnailItem = function() {
                 imgHeight = thumbnail.Data.sizes.thumbnail.height;
             }
 
-            body = body.replace(/\${image}/g, 'http://192.168.0.64:9011/wp-content/uploads/' + thumbnail.File);
+            body = body.replace(/\${image}/g, '/wp-content/uploads/' + thumbnail.File);
             body = body.replace(/\${imgwidth}/g, imgWidth);
             body = body.replace(/\${imgheight}/g, imgHeight);
 

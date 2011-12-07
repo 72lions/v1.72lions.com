@@ -2,6 +2,8 @@
 
 section.post-details {
     padding:20px;
+    .box-sizing(border-box);
+    max-width:960px;
 
     .alignnone  {
         display:block;
@@ -11,7 +13,7 @@ section.post-details {
     .content {
 
         padding-top:10px;
-        max-width:960px;
+        max-width:720px;
         font-family:@fontGeorgia;
         color:#666;
         font-size:12px;
@@ -20,17 +22,51 @@ section.post-details {
         float:left;
 
         .github-link {
-            background-image:url('/assets/images/icon-github.png');
-            background-repeat:no-repeat;
-            padding-left:20px;
-            line-height:20px;
-            margin-top:15px;
-            display:inline-block;
-            font-family:@fontMain;
-            font-size:20px;
-            font-style:normal;
-            padding-bottom:5px;
+
+            color: #555;
+            font-weight: bold;
+            font-size: 11px;
+            text-shadow: 0 1px 0 white;
+            text-shadow: 0 0 0 transparent,0 1px 0 white;
+            padding: 5px 10px 5px 10px;
+            margin:10px 0px 5px 0px;
+            border: 1px solid #CCC;
+            border-bottom-color: #AAA;
+            background-image: -moz-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+            background-image: -ms-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+            background-image: -o-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+            background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#f3f3f3),color-stop(100%,#e0e0e0));
+            background-image: -webkit-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+            background-image: linear-gradient(to bottom,#f3f3f3 0,#e0e0e0 100%);
+            .border-radius(4px);
+            .box-shadow(inset 0 0 1px #fff);
+            .transition(all 0.218s);
+
+            &:hover {
+                color:#F02311;
+                background-image: -moz-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+                background-image: -ms-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+                background-image: -o-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+                background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#f3f3f3),color-stop(100%,#e0e0e0));
+                background-image: -webkit-linear-gradient(top,#f3f3f3 0,#e0e0e0 100%);
+                background-image: linear-gradient(to bottom,#f3f3f3 0,#e0e0e0 100%);
+                text-decoration:none;
+                border: 1px solid #AAA;
+                .box-shadow(e('0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff'))
+            }
+
+            span {
+                padding-left:20px;
+                font-family:Arial;
+                font-size:14px;
+                font-style:normal;
+                display:inline-block;
+                background-image:url('/assets/images/icon-github.png');
+                background-repeat:no-repeat;
+                line-height:25px;
+            }
         }
+
         .categories {
             color:#F02311;
         }
@@ -60,7 +96,8 @@ section.post-details {
             font-style:normal;
             font-weight:normal;
             line-height:37px;
-            text-shadow:0px 1px 1px rgba(255,255,255,0.8)
+            text-shadow:0px 1px 1px rgba(255,255,255,0.8);
+            margin:5px 0px 5px 0px;
         }
 
         h3 {
@@ -69,7 +106,8 @@ section.post-details {
             font-family:@fontMain;
             font-style:normal;
             font-weight:normal;
-            text-shadow:0px 1px 1px rgba(255,255,255,0.8)
+            text-shadow:0px 1px 1px rgba(255,255,255,0.8);
+            margin:5px 0px 5px 0px;
         }
 
         p {
@@ -81,11 +119,9 @@ section.post-details {
             max-width:100%;
             height:auto;
             border:3px solid #fff;
-            -webkit-box-sizing:border-box;
-            -moz-box-sizing:border-box;
-            -o-sizing:border-box;
-            box-sizing:border-box;
+            .box-sizing(border-box);
             .box-shadow(1px 1px 1px rgba(0,0,0,0.2));
+            display:block;
         }
 
         ul {
@@ -97,10 +133,7 @@ section.post-details {
 
         iframe {
             margin:10px 0px 10px 0px;
-            -webkit-box-sizing:border-box;
-            -moz-box-sizing:border-box;
-            -o-sizing:border-box;
-            box-sizing:border-box;
+            .box-sizing(border-box);
             .box-shadow(1px 1px 1px rgba(0,0,0,0.2));
         }
 

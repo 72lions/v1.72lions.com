@@ -8,21 +8,86 @@
 	if($section == 'blog') {
 		$id = 3;
 		$title = 'Blog - ';
-	}
-
-	if($section == 'portfolio') {
+	} else if($section == 'portfolio') {
 		$id = 7;
 		$title = 'Portfolio - ';
-	}
-
-	if($section == 'about') {
+	} else if($section == 'about') {
 		$id = 0;
 		$title = 'About - ';
-	}
-
-	if($section == 'contact') {
+	} else if($section == 'contact') {
 		$id = 0;
 		$title = 'Contact - ';
+	} else {
+		$id = $section .' - ';
+	}
+
+	$seoMarkup = '';
+
+	include('api/classes/db.php');
+	include('api/classes/api.php');
+	include('api/classes/post.php');
+	include('api/classes/category.php');
+	include('api/classes/mc.php');
+
+	// Get all the post/get variables
+	$s = 0;
+	$t = 10;
+	$srt = Post::$SORT_DATE_DESC;
+
+	$api = new API();
+
+	// If the id is a number then it means that we are in a category
+	if(is_numeric($id)){
+
+		$posts = $api->getPosts($id, $s, $t, $srt);
+		$totalPosts = count($posts);
+
+		for ($i=0; $i < $totalPosts; $i++) {
+			$post = $posts[$i];
+			$link = date('Y/m', strtotime($post->pubDate)).'/'.$post->slug;
+
+			$postCategories = $post->categories;
+			$totalCategories = count($postCategories);
+			$categoriesHTML = '';
+			for ($s=0; $s < $totalCategories ; $s++) {
+				$pc = $postCategories[$s];
+				$categoriesHTML .= $pc->name;
+				if ($s < $totalCategories - 1){
+					$categoriesHTML .= ',';
+				}
+			}
+
+			$seoMarkup .= '	<li>
+						<a href="'.$link.'" title="'.$post->title.'">'.$post->title.'</a>
+						<time>'.$post->pubDate.'</time>
+						<p>'.$post->description.'</p>
+						<p>'.$categoriesHTML.'</p>
+					</li>';
+		}
+	} else {
+
+		$post = $api->getPostDetails($id);
+	    $data = array();
+	    $dataCategories = array();
+	    $title = $post->title;
+		$description = $post->description;
+
+		$postCategories = $post->categories;
+		$totalCategories = count($postCategories);
+		$categoriesHTML = '';
+
+		for ($s=0; $s < $totalCategories ; $s++) {
+			$pc = $postCategories[$s];
+			$categoriesHTML .= $pc->name;
+			if ($s < $totalCategories - 1){
+				$categoriesHTML .= ',';
+			}
+		}
+
+	    $seoMarkup .= '<h1>'.$post->title.'</h1>';
+	    $seoMarkup .='<time>'.$post->pubDate.'</time>';
+		$seoMarkup .= 'Categories: '. $categoriesHTML;
+		$seoMarkup .= '<div class="text">'.$post->content.'</div>';
 	}
 
 ?>
@@ -67,7 +132,7 @@
 				<!--<img src="http://vps.72lions.com/wp-content/themes/wordfolio/images/001/logo.png" alt="72Lions logo" />-->
 				<ul class="clearfix">
 					<li><a href="category/blog" class="nav-blog" title="Blog">Blog</a></li>
-					<li><a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>
+					<!--<li><a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>-->
 					<li><a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
 					<li><a href="about" class="nav-about" title="About">About</a></li>
 				</ul>
@@ -78,42 +143,7 @@
 				<div class="seo">
 					<ul>
 					<?php
-						include('api/classes/db.php');
-						include('api/classes/api.php');
-						include('api/classes/post.php');
-						include('api/classes/category.php');
-						include('api/classes/mc.php');
-
-						// Get all the post/get variables
-						$s = 0;
-						$t = 10;
-						$srt = Post::$SORT_DATE_DESC;
-
-						$api = new API();
-
-						$posts = $api->getPosts($id, $s, $t, $srt);
-						$totalPosts = count($posts);
-
-						for ($i=0; $i < $totalPosts; $i++) {
-							$post = $posts[$i];
-							$link = date('Y/m', strtotime($post->pubDate)).'/'.$post->slug;
-							$postCategories = $post->categories;
-							$totalCategories = count($postCategories);
-							$categoriesHTML = '';
-							for ($s=0; $s < totalCategories ; $s++) {
-								$pc = $postCategories[$s];
-								$categoriesHTML .= $pc->name;
-								if ($s < totalCategories - 1){
-									$categoriesHTML .= ',';
-								}
-							}
-							echo '	<li>
-										<a href="'.$link.'" title="'.$post->title.'">'.$post->title.'</a>
-										<time>'.$post->pubDate.'</time>
-										<p>'.$post->description.'</p>
-										<p>'.$categoriesHTML.'</p>
-									</li>';
-						}
+						echo $seoMarkup;
 					?>
 					</ul>
 				</div>
@@ -123,7 +153,7 @@
 							<h1 class="title"></h1>
 							<time></time>
 							<div class="categories"></div>
-							<a href="#" class="github-link">Fork it on Github</a>
+							<a href="#" class="github-link" target="_blank"><span>Fork it on Github</span></a>
 							<div class="text"></div>
 						</div>
 					</div>

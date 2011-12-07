@@ -72,7 +72,7 @@ seventytwolions.View.PostDetails = function() {
         //seventytwolions.Console.log('Drawing view with name ' + this.name);
         if(details.Meta.github !== undefined){
             githublinkDomElement.attr('href', details.Meta.github);
-            githublinkDomElement.css('display','block');
+            githublinkDomElement.css('display','inline-block');
         } else {
             githublinkDomElement.css('display','none');
         }
