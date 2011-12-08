@@ -7,6 +7,7 @@
 seventytwolions.View.PostDetails = function() {
 
 	this.domElement = $('.post-details');
+    this.currentId = null;
 
     var me = this;
     var details = null;
@@ -43,10 +44,11 @@ seventytwolions.View.PostDetails = function() {
     };
 
     this.render = function() {
+
         var asideHTML, categoriesStr, pDate;
         asideHTML = categoriesStr = '';
 
-        details = this.getModel().get('PostDetails');
+        details = this.getModel().get('PostDetails'+this.currentId);
         textDomElement.html(details.Content);
 
         // Create categories string

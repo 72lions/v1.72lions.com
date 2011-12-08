@@ -99,8 +99,8 @@ seventytwolions.Controller.SectionsManager = function() {
             for (i = 0; i < len; i++) {
                 sections[i].object.hide();
             }
-
             section = state.pathSegments[state.pathSegments.length - 1];
+            console.log('section to load:', section);
             postDetails.load(section);
 
         } else {

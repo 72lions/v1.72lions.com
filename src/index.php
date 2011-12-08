@@ -181,14 +181,6 @@
 					</div>
 				</section>
 
-				<section class="contact">
-					<div class="centered">
-						<hgroup>
-							<h1>Contact</h1>
-						</hgroup>
-					</div>
-				</section>
-
 			</div>
 			<footer>
 
