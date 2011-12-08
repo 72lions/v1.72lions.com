@@ -47,7 +47,6 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        console.log('show blog');
         var that = this;
         this.domElement.addClass('active');
         setTimeout(function(){

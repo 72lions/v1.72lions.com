@@ -64,11 +64,12 @@ seventytwolions.Controller.SectionsManager = function() {
      */
     this.showSectionWithName = function(state){
         var len, i, section;
-        console.log(state);
 
         len = sections.length;
 
         if(state && state.pathSegments[0] == 'category'){
+            // Trackk ajax calls with google analytics
+            _gaq.push(['_trackPageview', '/' + state.path]);
 
             section = state.pathSegments[1];
 
@@ -91,7 +92,10 @@ seventytwolions.Controller.SectionsManager = function() {
         } else {
 
             if (state) {
-                console.log('we have state');
+
+                // Trackk ajax calls with google analytics
+                _gaq.push(['_trackPageview', '/' + state.path]);
+
                 // if we don't have a path segment with category at its first position
                 for (i = 0; i < len; i++) {
                     sections[i].object.hide();
@@ -101,6 +105,9 @@ seventytwolions.Controller.SectionsManager = function() {
                 postDetails.load(section);
 
             } else {
+
+                // Trackk ajax calls with google analytics
+                _gaq.push(['_trackPageview', '/']);
 
                 postDetails.hide();
                 for (i = 0; i < len; i++) {

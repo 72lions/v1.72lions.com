@@ -51,7 +51,7 @@ seventytwolions.View.PostDetails = function() {
         asideHTML = categoriesStr = '';
 
         details = this.getModel().get('PostDetails'+this.currentId);
-        console.log(details);
+
         textDomElement.html(details.Content);
 
         // Create categories string
