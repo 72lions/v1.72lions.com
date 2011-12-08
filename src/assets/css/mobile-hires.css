@@ -19,13 +19,13 @@ header.navigation nav ul li a:visited {
 
 }
 
-section.portfolio article .description h1,
-section.blog article .description h1 {
+section.portfolio .centered article .description h1,
+section.blog .centered article .description h1 {
     font-size:28px;
 }
 
-section.portfolio article,
-section.blog article {
+section.portfolio .centered article,
+section.blog .centered article {
     position:static;
     width:100% !important;
     margin-bottom:10px;
@@ -33,31 +33,31 @@ section.blog article {
 }
 
 section.portfolio article.featured,
-section.blog ul li.featured {
+section.blog article.featured {
     width:100%;
 }
 
-section.portfolio article .photo,
-section.portfolio article .description {
+section.portfolio .centered article .photo,
+section.portfolio .centered article .description {
     float:none;
     width:100%;
     padding:0px;
     margin-right:0px;
 }
 
-section.portfolio article .photo .github-ribbon,
-section.blog article .photo .github-ribbon {
+section.portfolio .centered article .photo .github-ribbon,
+section.blog .centered article .photo .github-ribbon {
     width:85px;
     height:85px;
 }
 
-section.portfolio article .photo {
+section.portfolio .centered article .photo {
     background-size:100% 20px;
     padding-bottom:15px;
 }
 
-section.portfolio article img,
-section.blog article img {
+section.portfolio .centered article img,
+section.blog .centered article img {
     width: 100%;
     height:auto !important;
 }
