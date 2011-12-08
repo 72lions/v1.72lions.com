@@ -52,20 +52,24 @@ seventytwolions.Controller.Portfolio = function() {
      */
     var onPostsLoaded = function(result) {
         var i;
+        if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
 
-        for (i = 0; i < result.length; i++) {
-            portfolioItems.push(
-                seventytwolions.ControllerManager.initializeController({
-                    type:'ThumbnailItem',
-                    id:'ThumbnailItem' + result[i].Id,
-                    model: seventytwolions.Lookup.getModel({
-                        data:result[i]
+            this.getModel().set('Portfolio', result);
+
+            for (i = 0; i < result.length; i++) {
+                portfolioItems.push(
+                    seventytwolions.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: seventytwolions.Lookup.getModel({
+                            data:result[i]
+                        })
                     })
-                })
-            );
+                );
 
-            this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
-            portfolioItems[i].getView().render();
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+                portfolioItems[i].getView().render();
+            }
         }
 
     };

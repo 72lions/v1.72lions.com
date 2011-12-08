@@ -43,21 +43,28 @@ seventytwolions.Controller.Blog = function() {
 
     var onBlogPostsLoaded = function(result) {
         var i;
-        for (i = 0; i < result.length; i++) {
 
-            portfolioItems.push(
-                seventytwolions.ControllerManager.initializeController({
-                    type:'ThumbnailItem',
-                    id:'ThumbnailItem' + result[i].Id,
-                    model: seventytwolions.Lookup.getModel({
-                        data:result[i]
-                    })
-                 })
-            );
+        if(typeof(this.getModel().get('Blog')) === 'undefined'){
 
-            this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
-            portfolioItems[i].getView().render();
-            portfolioItems[i].getView().showDescription();
+            this.getModel().set('Blog', result);
+
+            for (i = 0; i < result.length; i++) {
+
+                portfolioItems.push(
+                    seventytwolions.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: seventytwolions.Lookup.getModel({
+                            data:result[i]
+                        })
+                     })
+                );
+
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+                portfolioItems[i].getView().render();
+                portfolioItems[i].getView().showDescription();
+            }
+
         }
 
         this.getView().positionItems();
