@@ -9,7 +9,7 @@ seventytwolions.View.Blog = function() {
    this.domElement = $('.blog');
 
     var me = this;
-    var itemsContainer = this.domElement.find('.centered ul');
+    var itemsContainer = this.domElement.find('.centered');
     var isFirstTime = true;
 
     // Constants
@@ -74,15 +74,15 @@ seventytwolions.View.Blog = function() {
     };
 
     this.positionItems = function() {
-        console.log('position items...');
+
         if(isFirstTime){
             isFirstTime = false;
         } else {
             itemsContainer.addClass('animated');
         }
 
-        var domItems = itemsContainer.find('li');
-        var domItemsFeatured = itemsContainer.find('li.featured');
+        var domItems = itemsContainer.find('article');
+        var domItemsFeatured = itemsContainer.find('article.featured');
         var windowHeight = itemsContainer.height();
         var windowWidth = itemsContainer.width();
         var gridTop = 0;

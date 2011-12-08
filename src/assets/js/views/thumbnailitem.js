@@ -23,7 +23,7 @@ seventytwolions.View.ThumbnailItem = function() {
                     '<a href="${link}" title="${title}" class="readmore">Read more</a>'+
                 '</div>';
 
-	this.domElement = $('<li class="portfolio-item clearfix"></li>');
+	this.domElement = $('<article class="portfolio-item clearfix"></article>');
 
     /**
      * Initializes the view

@@ -1,8 +1,8 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-section.portfolio ul {
+section.portfolio .centered {
   position: relative;
 }
-section.portfolio ul li {
+section.portfolio .centered article {
   list-style: none;
   color: #666;
   display: block;
@@ -14,10 +14,10 @@ section.portfolio ul li {
   -o-box-sizing: border-box;
   box-sizing: border-box;
 }
-section.portfolio ul li.featured {
+section.portfolio .centered article.featured {
   width: 912px;
 }
-section.portfolio ul li a:link, section.portfolio ul li a:visited {
+section.portfolio .centered article a:link, section.portfolio .centered article a:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -29,10 +29,10 @@ section.portfolio ul li a:link, section.portfolio ul li a:visited {
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.portfolio ul li a:link:hover, section.portfolio ul li a:visited:hover {
+section.portfolio .centered article a:link:hover, section.portfolio .centered article a:visited:hover {
   color: #F02311;
 }
-section.portfolio ul li a.readmore:link, section.portfolio ul li a.readmore:visited {
+section.portfolio .centered article a.readmore:link, section.portfolio .centered article a.readmore:visited {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
@@ -48,7 +48,7 @@ section.portfolio ul li a.readmore:link, section.portfolio ul li a.readmore:visi
   -o-transition: background-image 0.2s, border-color 0.2s;
   transition: background-image 0.2s, border-color 0.2s;
 }
-section.portfolio ul li a.readmore:link:hover, section.portfolio ul li a.readmore:visited:hover {
+section.portfolio .centered article a.readmore:link:hover, section.portfolio .centered article a.readmore:visited:hover {
   color: #F02311;
   background-image: linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
   background-image: -o-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
@@ -62,7 +62,7 @@ section.portfolio ul li a.readmore:link:hover, section.portfolio ul li a.readmor
   -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-section.portfolio ul li a.readmore:link:active, section.portfolio ul li a.readmore:visited:active {
+section.portfolio .centered article a.readmore:link:active, section.portfolio .centered article a.readmore:visited:active {
   background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
@@ -75,7 +75,7 @@ section.portfolio ul li a.readmore:link:active, section.portfolio ul li a.readmo
   -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
-section.portfolio ul li .photo {
+section.portfolio .centered article .photo {
   line-height: 0px;
   margin-bottom: 10px;
   position: relative;
@@ -87,21 +87,21 @@ section.portfolio ul li .photo {
   background-position: left bottom;
   padding-bottom: 40px;
 }
-section.portfolio ul li .photo .github-ribbon {
+section.portfolio .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
   top: 3px;
   right: 3px;
   z-index: 10;
 }
-section.portfolio ul li .photo .github-ribbon img {
+section.portfolio .centered article .photo .github-ribbon img {
   border: none;
   -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
-section.portfolio ul li .photo img {
+section.portfolio .centered article .photo img {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
@@ -111,11 +111,11 @@ section.portfolio ul li .photo img {
   position: relative;
   display: block;
 }
-section.portfolio ul li .description {
+section.portfolio .centered article .description {
   width: 400px;
   float: left;
 }
-section.portfolio ul li .description h1 {
+section.portfolio .centered article .description h1 {
   padding: 0px 0px 5px 0px;
   margin: 0px;
   text-shadow: 0px 1px #ffffff;
@@ -123,33 +123,33 @@ section.portfolio ul li .description h1 {
   font-size: 33px;
   font-weight: normal;
 }
-section.portfolio ul li .description .body {
+section.portfolio .centered article .description .body {
   padding: 15px;
 }
-section.portfolio ul li .description p, section.portfolio ul li .description aside, section.portfolio ul li .description time {
+section.portfolio .centered article .description p, section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
   font-family: Georgia;
   font-size: 12px;
   line-height: 18px;
   display: block;
 }
-section.portfolio ul li .description p {
+section.portfolio .centered article .description p {
   margin: 0px 0px 10px 0px;
 }
-section.portfolio ul li .description aside, section.portfolio ul li .description time {
+section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
   color: #F02311;
   font-style: italic;
   font-size: 11px;
 }
-section.portfolio ul li .description aside {
+section.portfolio .centered article .description aside {
   padding-bottom: 10px;
 }
-section.portfolio ul li .description time {
+section.portfolio .centered article .description time {
   font-size: 11px;
   color: #999;
   display: block;
   font-style: italic;
 }
-section.portfolio ul.animated li {
+section.portfolio .centered.animated li {
   -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;

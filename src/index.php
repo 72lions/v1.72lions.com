@@ -161,15 +161,12 @@
 
 				<section class="blog active">
 					<div class="centered">
-						<ul>
-						</ul>
+
 					</div>
 				</section>
 
 				<section class="portfolio">
 					<div class="centered">
-						<ul>
-						</ul>
 					</div>
 				</section>
 

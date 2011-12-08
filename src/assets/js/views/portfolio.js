@@ -9,7 +9,7 @@ seventytwolions.View.Portfolio = function() {
     this.domElement = $('.portfolio');
 
     var me = this;
-    var itemsContainer = this.domElement.find('.centered ul');
+    var itemsContainer = this.domElement.find('.centered');
 
     /**
      * Initializes the view

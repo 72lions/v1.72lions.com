@@ -1,8 +1,8 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-section.blog ul {
+section.blog .centered {
   position: relative;
 }
-section.blog ul li {
+section.blog .centered article {
   position: absolute;
   list-style: none;
   color: #666;
@@ -16,10 +16,10 @@ section.blog ul li {
   box-sizing: border-box;
   float: left;
 }
-section.blog ul li.featured {
+section.blog .centered article.featured {
   width: 456px;
 }
-section.blog ul li a:link, section.blog ul li a:visited {
+section.blog .centered article a:link, section.blog .centered article a:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -31,10 +31,10 @@ section.blog ul li a:link, section.blog ul li a:visited {
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.blog ul li a:link:hover, section.blog ul li a:visited:hover {
+section.blog .centered article a:link:hover, section.blog .centered article a:visited:hover {
   color: #F02311;
 }
-section.blog ul li a.readmore:link, section.blog ul li a.readmore:visited {
+section.blog .centered article a.readmore:link, section.blog .centered article a.readmore:visited {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
@@ -50,7 +50,7 @@ section.blog ul li a.readmore:link, section.blog ul li a.readmore:visited {
   -o-transition: background-image 0.2s, border-color 0.2s;
   transition: background-image 0.2s, border-color 0.2s;
 }
-section.blog ul li a.readmore:link:hover, section.blog ul li a.readmore:visited:hover {
+section.blog .centered article a.readmore:link:hover, section.blog .centered article a.readmore:visited:hover {
   color: #F02311;
   background-image: linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
   background-image: -o-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
@@ -64,7 +64,7 @@ section.blog ul li a.readmore:link:hover, section.blog ul li a.readmore:visited:
   -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-section.blog ul li a.readmore:link:active, section.blog ul li a.readmore:visited:active {
+section.blog .centered article a.readmore:link:active, section.blog .centered article a.readmore:visited:active {
   background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
   background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
@@ -77,26 +77,26 @@ section.blog ul li a.readmore:link:active, section.blog ul li a.readmore:visited
   -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
-section.blog ul li .photo {
+section.blog .centered article .photo {
   line-height: 0px;
   margin-bottom: 10px;
   position: relative;
 }
-section.blog ul li .photo .github-ribbon {
+section.blog .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
   top: 2px;
   right: 2px;
   z-index: 10;
 }
-section.blog ul li .photo .github-ribbon img {
+section.blog .centered article .photo .github-ribbon img {
   border: none;
   -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
-section.blog ul li .photo img {
+section.blog .centered article .photo img {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
@@ -111,7 +111,7 @@ section.blog ul li .photo img {
   -o-transition: border-color 0.3s;
   transition: border-color 0.3s;
 }
-section.blog ul li .description h1 {
+section.blog .centered article .description h1 {
   padding: 0px 0px 5px 0px;
   margin: 0px;
   text-shadow: 0px 1px #ffffff;
@@ -119,33 +119,33 @@ section.blog ul li .description h1 {
   font-size: 22px;
   font-weight: normal;
 }
-section.blog ul li .description .body {
+section.blog .centered article .description .body {
   padding: 15px;
 }
-section.blog ul li .description p, section.blog ul li .description aside, section.blog ul li .description time {
+section.blog .centered article .description p, section.blog .centered article .description aside, section.blog .centered article .description time {
   font-family: Georgia;
   font-size: 12px;
   line-height: 18px;
   display: block;
 }
-section.blog ul li .description p {
+section.blog .centered article .description p {
   margin: 0px 0px 10px 0px;
 }
-section.blog ul li .description aside, section.blog ul li .description time {
+section.blog .centered article .description aside, section.blog .centered article .description time {
   color: #F02311;
   font-style: italic;
   font-size: 11px;
 }
-section.blog ul li .description aside {
+section.blog .centered article .description aside {
   padding-bottom: 10px;
 }
-section.blog ul li .description time {
+section.blog .centered article .description time {
   font-size: 11px;
   color: #999;
   display: block;
   font-style: italic;
 }
-section.blog ul.animated li {
+section.blog .centered.animated li {
   -webkit-transition: left 0s ease-in-out, top 0s ease-in-out;
   -moz-transition: left 0s ease-in-out, top 0s ease-in-out;
   -o-transition: left 0s ease-in-out, top 0s ease-in-out;
