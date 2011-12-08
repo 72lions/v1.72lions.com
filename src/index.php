@@ -115,6 +115,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/assets/css/reset.css" />
+		<link rel="stylesheet" href="/assets/css/ui.css" />
 		<link rel="stylesheet" href="/assets/css/layout.css" />
 		<link rel="stylesheet" href="/assets/css/navigation.css" />
 		<link rel="stylesheet" href="/assets/css/portfolio.css" />
@@ -154,6 +155,8 @@
 							<time></time>
 							<div class="categories"></div>
 							<a href="#" class="github-link" target="_blank"><span>Fork it on Github</span></a>
+							<a href="#" class="download-link" target="_blank"><span>Download</span></a>
+							<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
 							<div class="text"></div>
 						</div>
 					</div>

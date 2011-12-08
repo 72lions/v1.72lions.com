@@ -19,50 +19,45 @@ header.navigation nav ul li a:visited {
 
 }
 
-section.portfolio ul,
-section.blog ul {
-
-}
-
-section.portfolio ul li .description h1,
-section.blog ul li .description h1 {
+section.portfolio article .description h1,
+section.blog article .description h1 {
     font-size:28px;
 }
 
-section.portfolio ul li .photo,
-section.portfolio ul li .description {
-    float:none;
-    width:100%;
-    padding:0px;
-    margin-right:0px;
-}
-
-section.portfolio ul li,
-section.blog ul li {
+section.portfolio article,
+section.blog article {
     position:static;
     width:100% !important;
     margin-bottom:10px;
     padding:0px 0px 20px 0px;
 }
 
-section.portfolio ul li.featured,
+section.portfolio article.featured,
 section.blog ul li.featured {
     width:100%;
 }
 
-section.portfolio ul li .photo .github-ribbon,
-section.blog ul li .photo .github-ribbon {
+section.portfolio article .photo,
+section.portfolio article .description {
+    float:none;
+    width:100%;
+    padding:0px;
+    margin-right:0px;
+}
+
+section.portfolio article .photo .github-ribbon,
+section.blog article .photo .github-ribbon {
     width:85px;
     height:85px;
 }
 
-section.portfolio ul li .photo {
+section.portfolio article .photo {
     background-size:100% 20px;
     padding-bottom:15px;
 }
 
-section.portfolio ul li img,
-section.blog ul li img {
+section.portfolio article img,
+section.blog article img {
     width: 100%;
     height:auto !important;
 }

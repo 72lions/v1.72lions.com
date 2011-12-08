@@ -38,7 +38,6 @@ seventytwolions.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var onPopPushEvent = function(state){
-
         // Catch page reload pop event that happens in some browsers
         // and disregard it
         var initialPop = !popped && location.href == initialURL;

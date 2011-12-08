@@ -18,6 +18,8 @@ seventytwolions.View.PostDetails = function() {
     var textDomElement = contentDomElement.find('.text');
     var timeDomElement = contentDomElement.find('time');
     var githublinkDomElement = contentDomElement.find('.github-link');
+    var downloadlinkDomElement = contentDomElement.find('.download-link');
+    var demolinkDomElement = contentDomElement.find('.demo-link');
 
     /**
      * Initializes the view
@@ -49,6 +51,7 @@ seventytwolions.View.PostDetails = function() {
         asideHTML = categoriesStr = '';
 
         details = this.getModel().get('PostDetails'+this.currentId);
+        console.log(details);
         textDomElement.html(details.Content);
 
         // Create categories string
@@ -72,11 +75,25 @@ seventytwolions.View.PostDetails = function() {
         }
 
         //seventytwolions.Console.log('Drawing view with name ' + this.name);
-        if(details.Meta.github !== undefined){
+        if(typeof(details.Meta.github) !== 'undefined'){
             githublinkDomElement.attr('href', details.Meta.github);
-            githublinkDomElement.css('display','inline-block');
+            githublinkDomElement.addClass('visible');
         } else {
-            githublinkDomElement.css('display','none');
+            githublinkDomElement.removeClass('visible');
+        }
+
+        if(typeof(details.Meta.download) !== 'undefined') {
+            downloadlinkDomElement.attr('href', details.Meta.download);
+            downloadlinkDomElement.addClass('visible');
+        } else {
+            downloadlinkDomElement.removeClass('visible');
+        }
+
+        if(typeof(details.Meta.demo) !== 'undefined') {
+            demolinkDomElement.attr('href', details.Meta.demo);
+            demolinkDomElement.addClass('visible');
+        } else {
+            demolinkDomElement.removeClass('visible');
         }
 
         //Firefox doesn't like dates with / in the constructor

@@ -44,14 +44,6 @@ seventytwolions.Controller.SectionsManager = function() {
             })
         });
 
-        /*contact = seventytwolions.ControllerManager.initializeController({
-            type:'Contact',
-            id:'contact',
-            model: seventytwolions.Lookup.getModel({
-                id:'contactModel'
-            })
-        });*/
-
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}/**, {name:'contact', object: contact}*/];
 
         postDetails = seventytwolions.ControllerManager.initializeController({
@@ -72,6 +64,8 @@ seventytwolions.Controller.SectionsManager = function() {
      */
     this.showSectionWithName = function(state){
         var len, i, section;
+        console.log(state);
+
         len = sections.length;
 
         if(state && state.pathSegments[0] == 'category'){
@@ -94,22 +88,34 @@ seventytwolions.Controller.SectionsManager = function() {
 
             postDetails.hide();
 
-        } else if (state) {
-            // if we don't have a path segment with category at its first position
-            for (i = 0; i < len; i++) {
-                sections[i].object.hide();
-            }
-            section = state.pathSegments[state.pathSegments.length - 1];
-            console.log('section to load:', section);
-            postDetails.load(section);
-
         } else {
-            // First time load, so load blog
-            for (i = 0; i < len; i++) {
-                sections[i].object.hide();
+
+            if (state) {
+                console.log('we have state');
+                // if we don't have a path segment with category at its first position
+                for (i = 0; i < len; i++) {
+                    sections[i].object.hide();
+                }
+
+                section = state.pathSegments[state.pathSegments.length - 1];
+                postDetails.load(section);
+
+            } else {
+
+                postDetails.hide();
+                for (i = 0; i < len; i++) {
+
+                    if(sections[i].name !== 'blog'){
+                        sections[i].object.hide();
+                    }
+
+                }
+
+                blog.show();
             }
 
-            blog.show();
+
+
         }
 
     };
