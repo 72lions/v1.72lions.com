@@ -45,21 +45,32 @@ section.portfolio .centered article .description {
     margin-right:0px;
 }
 
+section.portfolio .centered article .photo {
+    padding-bottom:0px;
+    background-image:none;
+}
+
+section.portfolio .centered article img.thumbnail-image,
+section.blog .centered article img.thumbnail-image {
+    width: 100%;
+    min-width:280px;
+    height:auto !important;
+    -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -o-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
 section.portfolio .centered article .photo .github-ribbon,
 section.blog .centered article .photo .github-ribbon {
-    width:85px;
-    height:85px;
-}
+    width:85px !important;
+    height:85px !important;
+    -webkit-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    -o-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    display:none !important;
 
-section.portfolio .centered article .photo {
-    background-size:100% 20px;
-    padding-bottom:25px;
-}
-
-section.portfolio .centered article img,
-section.blog .centered article img {
-    width: 100%;
-    height:auto !important;
 }
 
 section.post-details {

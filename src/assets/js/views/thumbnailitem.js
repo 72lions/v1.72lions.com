@@ -11,7 +11,7 @@ seventytwolions.View.ThumbnailItem = function() {
     var me = this;
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
-                    '<a href="${link}" title="${title}"><img src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
+                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
                 '</div>'+
                 '<div class="description">'+
                     '<hgroup><a href="${link}" title="${title}"><h1>${title}</h1></a></hgroup>'+
@@ -130,12 +130,13 @@ seventytwolions.View.ThumbnailItem = function() {
 
         if(meta.github !== undefined){
           this.domElement.find('.github-ribbon').css('display', 'block');
+        } else {
+            this.domElement.find('.github-ribbon').remove();
         }
 
         if(!hasThumbnail) {
-            this.domElement.find('.photo').css('display', 'none');
+            this.domElement.find('.photo').remove();
         }
-
 
         addEventListeners();
 
