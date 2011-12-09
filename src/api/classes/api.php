@@ -194,7 +194,7 @@ class API {
             WHERE post_status='publish'
             AND (post_type='post' || post_type='page')
             AND post_name='".mysql_real_escape_string($postId)."'";
-
+            echo $query;
             $result = mysql_query($query) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
             $row = mysql_fetch_array($result, MYSQL_ASSOC);
             $total = mysql_num_rows($result);

@@ -29,6 +29,9 @@ var router = function(){
 	 */
 	this.push = function(state, title, url){
 
+		// Change the title
+		document.title = title;
+
 		if(isHistoryAPISupported){
 
 			history.pushState(state, title, this.basePath + url);

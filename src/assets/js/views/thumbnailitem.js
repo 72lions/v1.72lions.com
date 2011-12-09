@@ -68,7 +68,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     this.render = function() {
 
-        var random, model, meta, body, pdate, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        var random, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
@@ -80,14 +80,16 @@ seventytwolions.View.ThumbnailItem = function() {
             this.setAsFeatured(true);
         }
 
-        body = body.replace(/\${title}/g, model.get('Title'));
-        body = body.replace(/\${description}/g, model.get('Description'));
-        body = body.replace(/\${link}/g, model.get('Link'));
-
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(model.get('PublishDate').replace(/-/g ,'/'));
-
         body = body.replace(/\${publishdate}/g, seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+
+        slug = model.get('Slug');
+        url = '/' + pDate.getFullYear() + '/' + (pDate.getMonth() + 1) + '/' + slug;
+
+        body = body.replace(/\${title}/g, model.get('Title'));
+        body = body.replace(/\${description}/g, model.get('Description'));
+        body = body.replace(/\${link}/g, url);
 
         // Create categories string
         categories = model.get('Categories');

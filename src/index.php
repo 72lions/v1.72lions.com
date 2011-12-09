@@ -5,7 +5,7 @@
 	$id = -1;
 	$title = '';
 
-	if($section == 'blog') {
+	if($section == 'blog'|| $section == '') {
 		$id = 3;
 		$title = 'Blog - ';
 	} else if($section == 'portfolio') {
@@ -18,7 +18,7 @@
 		$id = 0;
 		$title = 'Contact - ';
 	} else {
-		$id = $section .' - ';
+		$id = $section;
 	}
 
 	$seoMarkup = '';
@@ -37,10 +37,11 @@
 	$api = new API();
 
 	// If the id is a number then it means that we are in a category
-	if(is_numeric($id)){
+	if(is_numeric($id) || $id === '') {
 
 		$posts = $api->getPosts($id, $s, $t, $srt);
 		$totalPosts = count($posts);
+		$seoMarkup .= '<ul>';
 
 		for ($i=0; $i < $totalPosts; $i++) {
 			$post = $posts[$i];
@@ -64,11 +65,12 @@
 						<p>'.$categoriesHTML.'</p>
 					</li>';
 		}
+
+		$seoMarkup .= '</ul>';
+
 	} else {
 
 		$post = $api->getPostDetails($id);
-	    $data = array();
-	    $dataCategories = array();
 	    $title = $post->title;
 		$description = $post->description;
 
@@ -157,11 +159,9 @@
 		<div id="wrapper">
 			<div id="sections-wrapper">
 				<div class="seo">
-					<ul>
 					<?php
 						echo $seoMarkup;
 					?>
-					</ul>
 				</div>
 				<section class="post-details clearfix">
 					<div class="centered clearfix">
