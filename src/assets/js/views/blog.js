@@ -75,11 +75,6 @@ seventytwolions.View.Blog = function() {
 
     this.positionItems = function() {
 
-        if(isFirstTime){
-            isFirstTime = false;
-        } else {
-            itemsContainer.addClass('animated');
-        }
 
         var domItems = itemsContainer.find('article');
         var domItemsFeatured = itemsContainer.find('article.featured');
@@ -91,9 +86,14 @@ seventytwolions.View.Blog = function() {
         var _7 = 0;
         var _8 = 0;
         var minColumns = Math.max(COLUMN_MIN, parseInt(windowWidth / (COLUMN_WIDTH + COLUMN_MARGIN), 0));
+        var maxHeight = 0;
 
-        //domItems.css("width", COLUMN_WIDTH + "px");
-        //domItemsFeatured.css("width", (COLUMN_WIDTH * 2 + COLUMN_MARGIN));
+        if(isFirstTime){
+            isFirstTime = false;
+        } else {
+            itemsContainer.addClass('animated');
+        }
+
         for (x = 0; x < minColumns; x++) {
             items[x] = 0;
         }
@@ -144,9 +144,16 @@ seventytwolions.View.Blog = function() {
                 top: target_y + COLUMN_MARGIN + "px"
             });
 
+            itemBottom = parseInt($(this).css('top'),0) + $(this).height();
+            if(maxHeight < itemBottom){
+                maxHeight = itemBottom;
+            }
+
             _8 = (_8 < _b) ? _b : _8;
 
         });
+
+        itemsContainer.css('height', maxHeight + 'px');
 
         var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
     };
