@@ -103,9 +103,12 @@ seventytwolions.View.PostDetails = function() {
         asideDomElement.html(asideHTML);
 
         slug = details.Slug;
-        url = '/' + pDate.getFullYear() + '/' + (pDate.getMonth() + 1) + '/' + slug;
+        month = (pDate.getMonth() + 1).toString();
+        month = month.length === 1 ? "0" + month : month;
+        url = '/' + pDate.getFullYear() + '/' + month + '/' + slug;
 
         if(details.Meta.dsq_thread_id) {
+            console.log(details.Meta.dsq_thread_id, url);
             DISQUS.reset({
               reload: true,
               config: function () {
