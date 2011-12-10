@@ -47,7 +47,7 @@ seventytwolions.View.PostDetails = function() {
 
     this.render = function() {
 
-        var asideHTML, categoriesStr, pDate;
+        var asideHTML, categoriesStr, pDate, slug, url;
         asideHTML = categoriesStr = '';
 
         details = this.getModel().get('PostDetails'+this.currentId);
@@ -101,6 +101,19 @@ seventytwolions.View.PostDetails = function() {
         timeDomElement.html(seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
         titleDomElement.html(details.Title);
         asideDomElement.html(asideHTML);
+
+        slug = details.Slug;
+        url = '/' + pDate.getFullYear() + '/' + (pDate.getMonth() + 1) + '/' + slug;
+
+        if(details.Meta.dsq_thread_id) {
+            DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.identifier = details.Meta.dsq_thread_id;
+                this.page.url = "http://72lions.com" + url;
+              }
+            });
+        }
     };
 
     /**

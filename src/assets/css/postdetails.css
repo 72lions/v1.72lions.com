@@ -97,6 +97,19 @@ section.post-details .content iframe {
 section.post-details .content .text {
   margin-top: 10px;
 }
+section.post-details .content .comments {
+  margin-top: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -o-border-radius: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
 section.post-details a:link, section.post-details a:visited {
   color: #F02311;
   text-decoration: none;
