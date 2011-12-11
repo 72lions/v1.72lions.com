@@ -151,7 +151,7 @@
 	<body>
 		<header class="navigation">
 			<div class="logo-container">
-				<a href="/" class="logo">
+				<a href="#" title="72lions.com Homepage" class="logo">
 					<img src="/assets/images/logo.png" alt="72lions logo" />
 				</a>
 				<h1>
