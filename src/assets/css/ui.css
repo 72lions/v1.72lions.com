@@ -90,6 +90,14 @@ a.github-link:link:hover, a.github-link:visited:hover {
   -o-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
 }
+a.github-link:link:active, a.github-link:visited:active {
+  background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0e0e0), color-stop(100%, #f3f3f3));
+  background-image: -webkit-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: linear-gradient(to bottom, #e0e0e0 0, #f3f3f3 100%);
+}
 a.github-link:link span, a.github-link:visited span {
   padding-left: 20px;
   font-family: Arial;
@@ -147,6 +155,18 @@ a.download-link:link:hover, a.download-link:visited:hover {
   -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   -o-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
+}
+a.download-link:link:active, a.download-link:visited:active {
+  background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0e0e0), color-stop(100%, #f3f3f3));
+  background-image: -webkit-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: linear-gradient(to bottom, #e0e0e0 0, #f3f3f3 100%);
+  -webkit-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  -moz-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  -o-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
 }
 a.download-link:link span, a.download-link:visited span {
   font-family: Arial;
@@ -206,6 +226,18 @@ a.demo-link:link:hover, a.demo-link:visited:hover {
   -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   -o-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
+}
+a.demo-link:link:active, a.demo-link:visited:active {
+  background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0e0e0), color-stop(100%, #f3f3f3));
+  background-image: -webkit-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
+  background-image: linear-gradient(to bottom, #e0e0e0 0, #f3f3f3 100%);
+  -webkit-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  -moz-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  -o-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
 }
 a.demo-link:link span, a.demo-link:visited span {
   font-family: Arial;
