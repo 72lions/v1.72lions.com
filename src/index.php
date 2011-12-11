@@ -150,6 +150,17 @@
 
 	<body>
 		<header class="navigation">
+			<div class="logo-container">
+				<a href="/" class="logo">
+					<img src="/assets/images/logo.png" alt="72lions logo" />
+				</a>
+				<h1>
+					Welcome to my playground
+				</h1>
+				<p>
+					My name is Thodoris Tsiridis and I am a web developer from Greece. <br/>I am currently living a great life in Stockholm, Sweden!
+				</p>
+			</div>
 			<nav>
 				<!--<img src="http://vps.72lions.com/wp-content/themes/wordfolio/images/001/logo.png" alt="72Lions logo" />-->
 				<ul class="clearfix">
@@ -206,14 +217,6 @@
 
 				<section class="portfolio">
 					<div class="centered">
-					</div>
-				</section>
-
-				<section class="experiments">
-					<div class="centered">
-						<hgroup>
-							<h1>Experiments</h1>
-						</hgroup>
 					</div>
 				</section>
 

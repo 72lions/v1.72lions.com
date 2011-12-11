@@ -936,6 +936,197 @@ seventytwolions.console = function(){
 
 // Instantiate the model so that we can use it as a singleton
 seventytwolions.Console = new seventytwolions.console();
+/**
+ * Base Controller
+ * @param {String} className the name of the class that we initialized
+ * @param {String} id The unique id of this class
+ * @param {String} viewClassName The class of the view (in case we want a different view)
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Base = function() {
+
+    EventTarget.call( this );
+    var _view, _model, _registeredEvents = {};
+
+    this.id = '';
+    this.name = '';
+    this.model = undefined;
+
+    /**
+     * Initializes the plugin
+     * @author Thodoris Tsiridis
+     */
+    this.initialize = function(attributes) {
+
+        this.id = attributes.id || id;
+        this.name = attributes.type || '';
+
+        // Get a reference to the view
+        _view = attributes.view || seventytwolions.Lookup.getView(this.name, this.id);
+        // get a reference to the model
+        _model = this.model = attributes.model;
+
+        // ask it to set the model, initialize, draw and postDraw
+        _view.setModel(_model);
+        _view.initialize();
+        _view.draw();
+        _view.postDraw();
+        this.postInitialize();
+
+    };
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function() {
+
+    };
+
+    /**
+     * Returns the view of the specific controller
+     * @returns A view
+     * @type seventytwolions.View.Base
+     * @author Thodoris Tsiridis
+     */
+    this.getView = function() {
+        return _view;
+    };
+
+    /**
+     * Returns the model of the specific controller
+     * @returns A view
+     * @type seventytwolions.Model.Base
+     * @author Thodoris Tsiridis
+     */
+    this.getModel = function() {
+        return _model;
+    };
+
+    /**
+     * Sets the model of the controller
+     * @param {seventytowlions.Model.Base} model The new model
+     */
+    this.setModel = function(model) {
+      _model = model;
+      _view.setModel(model);
+    };
+
+};
+
+/**
+ * Base View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Base = function() {
+
+    EventTarget.call( this );
+
+    this.name = null;
+    this.id = null;
+    this.model = null;
+    this.domElement = null;
+
+    /**
+     * Function for when showing the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+    };
+
+    /**
+     * Function for when hiding the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+    };
+
+    /**
+     * Sets the name of the view
+     * @param {String} name The name fo the view
+     * @author Thodoris Tsiridis
+     */
+    this.setName = function(name) {
+        this.name = name;
+    };
+
+    /**
+     * Sets the name of the view
+     * @param {String} name The name fo the view
+     * @author Thodoris Tsiridis
+     */
+    this.setId = function(id) {
+        this.id = id;
+    };
+
+    /**
+     * Sets the model for the view
+     * @param {seventytwolions.models.Base} model The model
+     * @author Thodoris Tsiridis
+     */
+    this.setModel = function(model) {
+        this.model = model;
+    };
+
+    /**
+     * Gets the model for the view
+     * @return The model
+     * @type {seventytwolions.Model.Base}
+     * @author Thodoris Tsiridis
+     */
+    this.getModel = function() {
+        return this.model;
+    };
+
+    /**
+     * Returns the main dom element of the view
+     * @returns A DOM element
+     * @type jQuery DOM element
+     * @author Thodoris Tsiridis
+     */
+    this.getDOMElement = function() {
+        return this.domElement;
+    };
+
+    /**
+     * Is triggered before initialization of the view
+     * @author Thodoris Tsiridis
+     */
+    this.preInitialize = function(name, id) {
+        this.setName(name);
+        this.setId(id);
+    };
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize = function(){
+
+    };
+
+    /**
+     * Draws the view
+     * @author Thodoris Tsiridis
+     */
+    this.draw = function(){
+
+    };
+
+    /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw = function(){
+
+    };
+
+};
+
 seventytwolions.Model.Base = function(){
 
     var data = {};
@@ -979,6 +1170,673 @@ seventytwolions.Model.Base = function(){
 
 };
 
+
+/**
+ * About Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.About = function() {
+
+    var me = this;
+
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+        this.getView().show();
+    };
+
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+        this.getView().hide();
+    };
+
+};
+
+seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Blog Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Blog = function() {
+
+    var me = this;
+    var categoriesModel;
+    var portfolioItems = [];
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+        this.loadBlogPosts();
+        this.loadCategories();
+
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        this.getView().show();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.getView().hide();
+    };
+
+    this.loadBlogPosts = function() {
+        this.getModel().getPosts(3, 0, 80, onBlogPostsLoaded, this);
+    };
+
+    var onBlogPostsLoaded = function(result) {
+        var i;
+
+        if(typeof(this.getModel().get('Blog')) === 'undefined'){
+
+            this.getModel().set('Blog', result);
+
+            for (i = 0; i < result.length; i++) {
+
+                portfolioItems.push(
+                    seventytwolions.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: seventytwolions.Lookup.getModel({
+                            data:result[i]
+                        })
+                     })
+                );
+
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+                portfolioItems[i].getView().render();
+                portfolioItems[i].getView().showDescription();
+            }
+
+        }
+
+        this.getView().positionItems();
+    };
+
+    this.loadCategories = function() {
+
+        if(categoriesModel === undefined){
+            categoriesModel = seventytwolions.Lookup.getModel({
+                type:'Categories',
+                id:'categoriesBlog'
+            });
+        }
+
+        categoriesModel.get(0, 5, onCategoriesLoaded, this);
+    };
+
+    var onCategoriesLoaded = function(result) {
+
+    };
+};
+
+seventytwolions.Controller.Blog.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Contact Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Contact = function() {
+
+    var me = this;
+
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+        this.getView().show();
+    };
+
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+        this.getView().hide();
+    };
+
+};
+
+seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Experiments Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Experiments = function() {
+
+    var me = this;
+
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+        this.getView().show();
+    };
+
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+        this.getView().hide();
+    };
+
+};
+
+seventytwolions.Controller.Experiments.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Main Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Main = function() {
+
+    var navigationController = null;
+    var sectionsManager = null;
+    var initialState = Router.getState();
+    var popped = ('state' in window.history);
+    var initialURL = location.href;
+
+    this.postInitialize = function() {
+
+        navigationController = seventytwolions.ControllerManager.initializeController({
+            type:'Navigation',
+            id:'navigation',
+            model: seventytwolions.Lookup.getModel({})
+        });
+        sectionsManager  = seventytwolions.ControllerManager.initializeController({
+            type:'SectionsManager',
+            id:'sectionsmanager',
+            model: seventytwolions.Lookup.getModel({})
+        });
+
+        onPopPushEvent(initialState);
+
+        Router.registerForEvent('pop', onPopPushEvent);
+        Router.registerForEvent('push', onPopPushEvent);
+
+    };
+
+    /**
+     * Triggered when we have a pop or push event
+     * @param {Object} state The state object
+     * @author Thodoris Tsiridis
+     */
+    var onPopPushEvent = function(state){
+        // Catch page reload pop event that happens in some browsers
+        // and disregard it
+        var initialPop = !popped && location.href == initialURL;
+        popped = true;
+        if ( initialPop ) return;
+
+        // Clean memory
+        initialPop = null;
+        initialState = null;
+
+        var sectionName = '';
+
+        // If the pathSegments are undefined then that
+        // means that Home menu item is selected
+        if(state.pathSegments === undefined){
+
+            navigationController.getView().selectNavigationItem('blog');
+
+            // Change the section
+            changeSection();
+
+        } else {
+
+            if(state.pathSegments.length){
+
+                // Select a specific menu item
+                navigationController.getView().selectNavigationItem(state.pathSegments[state.pathSegments.length - 1]);
+
+                // Change the section
+                changeSection(state);
+
+            }
+
+        }
+
+        // Clean memory
+        sectionName = null;
+    };
+
+    /**
+     * Responsible for telling the sectionsManager to change section
+     * @param {Object} state The path of the section that we want to show
+     * @author Thodoris Tsiridis
+     */
+    var changeSection = function(state){
+        sectionsManager.showSectionWithName(state);
+    };
+};
+
+seventytwolions.Controller.Main.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Navigatio Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Navigation = function() {
+
+    var me = this;
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+        me.getView().addEventListener('menuClicked', onMenuItemClicked);
+
+    };
+
+    /**
+     * Triggered when the view dispatches a menuClicked event
+     * @param {Object} event The event object
+     * @author Thodoris Tsiridis
+     */
+    var onMenuItemClicked = function(event){
+
+        // Push the current url
+        Router.push(null, event.title, '/' + event.path);
+
+    };
+
+};
+
+seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Portfolio Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Portfolio = function() {
+
+    var me = this;
+    var categoriesModel;
+    var portfolioItems = [];
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+        this.loadPosts();
+        this.loadCategories();
+
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        this.getView().show();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.getView().hide();
+    };
+
+    /**
+     * Forces the model to load the posts
+     * @author Thodoris Tsiridis
+     */
+    this.loadPosts = function() {
+        this.getModel().getPosts(7, 0, 80, onPostsLoaded, this);
+    };
+
+    /**
+     * Callback function that is triggered when the model posts are loaded
+     * @param  {Object} result The result that came back from the model
+     * @author Thodoris Tsiridis
+     */
+    var onPostsLoaded = function(result) {
+        var i;
+        if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
+
+            this.getModel().set('Portfolio', result);
+
+            for (i = 0; i < result.length; i++) {
+                portfolioItems.push(
+                    seventytwolions.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: seventytwolions.Lookup.getModel({
+                            data:result[i]
+                        })
+                    })
+                );
+
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+                portfolioItems[i].getView().render();
+            }
+        }
+
+    };
+
+    /**
+     * Forces the model to load the categories
+     * @author Thodoris Tsiridis
+     */
+    this.loadCategories = function() {
+
+        if(categoriesModel === undefined){
+            categoriesModel = seventytwolions.Lookup.getModel({
+                type:'Categories',
+                id:'categoriesPortfolio'
+            });
+        }
+
+        categoriesModel.get(0, 5, onCategoriesLoaded, this);
+    };
+
+    /**
+     * Callback function that is triggered when the model categories are loaded
+     * @param  {Object} result The result that came back from the model
+     * @author Thodoris Tsiridis
+     */
+    var onCategoriesLoaded = function(result) {
+
+    };
+
+};
+
+seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * About Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.PostDetails = function() {
+
+    var me = this;
+    this.currentId = null;
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+    };
+
+    /**
+     * Loads a page or post from the model
+     * @param  {String} sectionSlug The name of the page's slug
+     * @author Thodoris Tsiridis
+     */
+    this.load = function(sectionSlug) {
+        if(this.currentId !== sectionSlug){
+            this.currentId = sectionSlug;
+
+            if(typeof(this.getModel().get('PostDetails'+this.currentId)) !== 'undefined'){
+                onPostDetailsLoaded.call(this, this.getModel().get('PostDetails'+this.currentId));
+            } else {
+                this.getModel().getDetails(sectionSlug, onPostDetailsLoaded, this);
+            }
+
+
+        }
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+        this.getView().show();
+    };
+
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+        this.getView().hide();
+        this.currentId = null;
+    };
+
+    var onPostDetailsLoaded = function(result) {
+        this.getModel().set('PostDetails'+this.currentId, result);
+        this.getView().currentId = this.currentId;
+        this.getView().render();
+        this.show();
+    };
+
+};
+
+seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Sections Manager Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.SectionsManager = function() {
+
+    var me = this;
+    var initialState = Router.getState();
+    var portfolio, experiments, blog, contact, postDetails, sections;
+    var totalSections = 4;
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+        portfolio = seventytwolions.ControllerManager.initializeController({
+                type:'Portfolio',
+                id:'portfolio',
+                model: seventytwolions.Lookup.getModel({
+                    type:'Posts',
+                    id:'portfolioModel'
+                })
+        });
+
+        experiments = seventytwolions.ControllerManager.initializeController({
+            type:'Experiments',
+            id:'experiments',
+            model: seventytwolions.Lookup.getModel({
+                id:'experimentsModel'
+            })
+        });
+
+        blog = seventytwolions.ControllerManager.initializeController({
+            type:'Blog',
+            id:'blog',
+            model: seventytwolions.Lookup.getModel({
+                type:'Posts',
+                id:'blogModel'
+            })
+        });
+
+        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}/**, {name:'contact', object: contact}*/];
+
+        postDetails = seventytwolions.ControllerManager.initializeController({
+            type:'PostDetails',
+            id:'postDetails',
+            model: seventytwolions.Lookup.getModel({
+                type:'Posts',
+                id:'postDetailsModel'
+            })
+        });
+
+    };
+
+    /**
+     * Shows a a section with a specific name
+     * @param {Object} state The state of the url
+     * @author Thodoris Tsiridis
+     */
+    this.showSectionWithName = function(state){
+        var len, i, section;
+
+        len = sections.length;
+
+        if(state && state.pathSegments[0] == 'category'){
+            // Trackk ajax calls with google analytics
+            _gaq.push(['_trackPageview', '/' + state.path]);
+
+            section = state.pathSegments[1];
+
+            for (i = 0; i < len; i++) {
+
+                if(sections[i].name === section){
+
+                    sections[i].object.show();
+
+                } else {
+
+                    sections[i].object.hide();
+
+                }
+
+            }
+
+            postDetails.hide();
+
+        } else {
+
+            if (state) {
+
+                // Trackk ajax calls with google analytics
+                _gaq.push(['_trackPageview', '/' + state.path]);
+
+                // if we don't have a path segment with category at its first position
+                for (i = 0; i < len; i++) {
+                    sections[i].object.hide();
+                }
+
+                section = state.pathSegments[state.pathSegments.length - 1];
+                postDetails.load(section);
+
+            } else {
+
+                // Trackk ajax calls with google analytics
+                _gaq.push(['_trackPageview', '/']);
+
+                postDetails.hide();
+                for (i = 0; i < len; i++) {
+
+                    if(sections[i].name !== 'blog'){
+                        sections[i].object.hide();
+                    }
+
+                }
+
+                blog.show();
+            }
+
+
+
+        }
+
+    };
+
+};
+
+seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Controller.Base();
+
+/**
+ * Portfolio Item Controller
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.ThumbnailItem = function() {
+
+    var me = this;
+
+    /**
+     * This function is executed right after the initialized
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+    };
+
+};
+
+seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();
 
 seventytwolions.Model.Categories = function(){
 
@@ -1200,117 +2058,6 @@ seventytwolions.View.About = function() {
 };
 
 seventytwolions.View.About.prototype = new seventytwolions.View.Base();
-
-/**
- * Base View
- *
- * @author Thodoris Tsiridis
- * @version 1.0
- */
-seventytwolions.View.Base = function() {
-
-    EventTarget.call( this );
-
-    this.name = null;
-    this.id = null;
-    this.model = null;
-    this.domElement = null;
-
-    /**
-     * Function for when showing the view
-     * @author Thodoris Tsiridis
-     */
-    this.show = function() {
-    };
-
-    /**
-     * Function for when hiding the view
-     * @author Thodoris Tsiridis
-     */
-    this.hide = function() {
-    };
-
-    /**
-     * Sets the name of the view
-     * @param {String} name The name fo the view
-     * @author Thodoris Tsiridis
-     */
-    this.setName = function(name) {
-        this.name = name;
-    };
-
-    /**
-     * Sets the name of the view
-     * @param {String} name The name fo the view
-     * @author Thodoris Tsiridis
-     */
-    this.setId = function(id) {
-        this.id = id;
-    };
-
-    /**
-     * Sets the model for the view
-     * @param {seventytwolions.models.Base} model The model
-     * @author Thodoris Tsiridis
-     */
-    this.setModel = function(model) {
-        this.model = model;
-    };
-
-    /**
-     * Gets the model for the view
-     * @return The model
-     * @type {seventytwolions.Model.Base}
-     * @author Thodoris Tsiridis
-     */
-    this.getModel = function() {
-        return this.model;
-    };
-
-    /**
-     * Returns the main dom element of the view
-     * @returns A DOM element
-     * @type jQuery DOM element
-     * @author Thodoris Tsiridis
-     */
-    this.getDOMElement = function() {
-        return this.domElement;
-    };
-
-    /**
-     * Is triggered before initialization of the view
-     * @author Thodoris Tsiridis
-     */
-    this.preInitialize = function(name, id) {
-        this.setName(name);
-        this.setId(id);
-    };
-
-    /**
-     * Initializes the view
-     * @author Thodoris Tsiridis
-     */
-    this.initialize = function(){
-
-    };
-
-    /**
-     * Draws the view
-     * @author Thodoris Tsiridis
-     */
-    this.draw = function(){
-
-    };
-
-    /**
-     * Executed after the drawing of the view
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw = function(){
-
-    };
-
-};
 
 /**
  * Blog View

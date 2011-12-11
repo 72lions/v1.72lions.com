@@ -6,13 +6,33 @@ header.navigation {
     min-width:100%;
 }
 
+header.navigation .logo-container {
+    margin:20px 30px 0px 20px;
+
+}
+
+header.navigation .logo-container .logo img {
+    width:50px;
+    height:50px;
+}
+
+header.navigation .logo-container h1 {
+    margin-left:70px;
+}
+
+header.navigation .logo-container p {
+    clear:both;
+    margin-left:0px;
+}
+
+
 header.navigation nav {
-    margin:20px 0px 20px 20px;
+    margin:10px 0px 20px 20px;
 }
 
 header.navigation nav ul li a:link,
 header.navigation nav ul li a:visited {
-    font-size:10px;
+    font-size:14px;
 }
 
 #sections-wrapper {

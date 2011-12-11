@@ -4,11 +4,36 @@ header.navigation {
   width: 100%;
   min-width: 505px;
 }
+header.navigation .logo-container {
+  margin: 20px 30px 0px 40px;
+}
+header.navigation .logo-container .logo {
+  float: left;
+}
+header.navigation .logo-container h1 {
+  padding: 0px 0px 5px 0px;
+  margin: 5px 0px 0px 90px;
+  text-shadow: 0px 1px #ffffff;
+  font-family: 'Oswald';
+  font-size: 22px;
+  font-weight: normal;
+  color: #666;
+}
+header.navigation .logo-container p {
+  font-family: Georgia;
+  text-shadow: 0px 1px #ffffff;
+  font-size: 14px;
+  line-height: 18px;
+  display: block;
+  color: #666;
+  margin: 0px 0px 0px 90px;
+  padding: 5px 0px 0px 0px;
+}
 header.navigation nav {
   display: block;
   overflow: hidden;
-  margin: 20px 30px 0px 40px;
-  height: 52px;
+  margin: 10px 30px 0px 40px;
+  height: 60px;
 }
 header.navigation nav img {
   width: 70px;
@@ -20,7 +45,7 @@ header.navigation nav ul li {
   float: left;
   line-height: 25px;
   list-style: none;
-  margin: 0px 5px;
+  margin: 0px 9px;
   cursor: pointer;
   border-bottom: 1px dashed #ccc;
   text-shadow: 0px 1px #fff;
@@ -44,15 +69,15 @@ header.navigation nav ul li.active a:visited,
 header.navigation nav ul li:hover a:visited,
 header.navigation nav ul li.active a:hover,
 header.navigation nav ul li:hover a:hover {
-  color: #000;
+  color: #F02311;
 }
 header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   text-decoration: none;
   color: #666;
-  padding: 0px 5px 3px 6px;
+  padding: 6px 5px 6px 6px;
   display: inline-block;
-  font-family: Georgia;
-  font-size: 14px;
+  font-family: 'Oswald';
+  font-size: 24px;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;

@@ -6,11 +6,41 @@ header.navigation {
     width:100%;
     min-width:505px;
 
+    .logo-container {
+        margin:20px 30px 0px 40px;
+
+        .logo {
+            float:left;
+        }
+
+        h1 {
+            padding:0px 0px 5px 0px;
+            margin:5px 0px 0px 90px;
+            text-shadow:0px 1px rgba(255,255,255,1);
+            font-family:@fontMain;
+            font-size:22px;
+            font-weight:normal;
+            color:#666;
+        }
+
+        p {
+            font-family:@fontGeorgia;
+            text-shadow:0px 1px rgba(255,255,255,1);
+            font-size:14px;
+            line-height:18px;
+            display:block;
+            color:#666;
+            margin:0px 0px 0px 90px;
+            padding:5px 0px 0px 0px;
+        }
+
+    }
+
     nav {
         display:block;
         overflow:hidden;
-        margin:20px 30px 0px 40px;
-        height:52px;
+        margin:10px 30px 0px 40px;
+        height:60px;
 
         img {
             width: 70px;
@@ -24,11 +54,12 @@ header.navigation {
                 float:left;
                 line-height:25px;
                 list-style:none;
-                margin:0px 5px;
+                margin:0px 9px;
                 cursor:pointer;
                 border-bottom:1px dashed #ccc;
                 text-shadow:0px 1px #fff;
                 outline:none;
+
 
                 .transition(e('border-bottom-color 0.2s, border-bottom-style 0.2s'));
 
@@ -45,7 +76,7 @@ header.navigation {
                     a:link,
                     a:visited,
                     a:hover {
-                        color:#000;
+                        color:#F02311;
                     }
 
                 }
@@ -54,10 +85,10 @@ header.navigation {
                 a:visited {
                     text-decoration:none;
                     color:#666;
-                    padding:0px 5px 3px 6px;
+                    padding:6px 5px 6px 6px;
                     display:inline-block;
-                    font-family: @fontGeorgia;
-                    font-size:14px;
+                    font-family: @fontMain;
+                    font-size:24px;
                     .transition(color 0.2s);
                 }
             }

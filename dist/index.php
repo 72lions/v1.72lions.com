@@ -173,6 +173,7 @@
 									<script type="text/javascript">
 									    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 									    var disqus_shortname = '72lions'; // required: replace example with your forum shortname
+										var disqus_developer = 1;
 
 									    /* * * DON'T EDIT BELOW THIS LINE * * */
 									    (function() {
@@ -196,14 +197,6 @@
 
 				<section class="portfolio">
 					<div class="centered">
-					</div>
-				</section>
-
-				<section class="experiments">
-					<div class="centered">
-						<hgroup>
-							<h1>Experiments</h1>
-						</hgroup>
 					</div>
 				</section>
 
