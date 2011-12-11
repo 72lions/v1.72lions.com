@@ -1,0 +1,2172 @@
+/*
+ * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
+ *
+ * Uses the built in easing capabilities added In jQuery 1.1
+ * to offer multiple easing options
+ *
+ * TERMS OF USE - jQuery Easing
+ * 
+ * Open source under the BSD License. 
+ * 
+ * Copyright © 2008 George McGinley Smith
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
+ * conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
+ * provided with the distribution.
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
+ * or promote products derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *
+*/
+
+// t: current time, b: begInnIng value, c: change In value, d: duration
+jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+jQuery.extend( jQuery.easing,
+{
+	def: 'easeOutQuad',
+	swing: function (x, t, b, c, d) {
+		//alert(jQuery.easing.default);
+		return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+	},
+	easeInQuad: function (x, t, b, c, d) {
+		return c*(t/=d)*t + b;
+	},
+	easeOutQuad: function (x, t, b, c, d) {
+		return -c *(t/=d)*(t-2) + b;
+	},
+	easeInOutQuad: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	},
+	easeInCubic: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t + b;
+	},
+	easeOutCubic: function (x, t, b, c, d) {
+		return c*((t=t/d-1)*t*t + 1) + b;
+	},
+	easeInOutCubic: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t + b;
+		return c/2*((t-=2)*t*t + 2) + b;
+	},
+	easeInQuart: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t*t + b;
+	},
+	easeOutQuart: function (x, t, b, c, d) {
+		return -c * ((t=t/d-1)*t*t*t - 1) + b;
+	},
+	easeInOutQuart: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+		return -c/2 * ((t-=2)*t*t*t - 2) + b;
+	},
+	easeInQuint: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t*t*t + b;
+	},
+	easeOutQuint: function (x, t, b, c, d) {
+		return c*((t=t/d-1)*t*t*t*t + 1) + b;
+	},
+	easeInOutQuint: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+		return c/2*((t-=2)*t*t*t*t + 2) + b;
+	},
+	easeInSine: function (x, t, b, c, d) {
+		return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+	},
+	easeOutSine: function (x, t, b, c, d) {
+		return c * Math.sin(t/d * (Math.PI/2)) + b;
+	},
+	easeInOutSine: function (x, t, b, c, d) {
+		return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+	},
+	easeInExpo: function (x, t, b, c, d) {
+		return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+	},
+	easeOutExpo: function (x, t, b, c, d) {
+		return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+	},
+	easeInOutExpo: function (x, t, b, c, d) {
+		if (t==0) return b;
+		if (t==d) return b+c;
+		if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+		return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+	},
+	easeInCirc: function (x, t, b, c, d) {
+		return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+	},
+	easeOutCirc: function (x, t, b, c, d) {
+		return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+	},
+	easeInOutCirc: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+		return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+	},
+	easeInElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+	},
+	easeOutElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+	},
+	easeInOutElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+		return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+	},
+	easeInBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158;
+		return c*(t/=d)*t*((s+1)*t - s) + b;
+	},
+	easeOutBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158;
+		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+	},
+	easeInOutBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158; 
+		if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+		return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+	},
+	easeInBounce: function (x, t, b, c, d) {
+		return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b;
+	},
+	easeOutBounce: function (x, t, b, c, d) {
+		if ((t/=d) < (1/2.75)) {
+			return c*(7.5625*t*t) + b;
+		} else if (t < (2/2.75)) {
+			return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+		} else if (t < (2.5/2.75)) {
+			return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+		} else {
+			return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+		}
+	},
+	easeInOutBounce: function (x, t, b, c, d) {
+		if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+		return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+	}
+});
+
+/*
+ *
+ * TERMS OF USE - EASING EQUATIONS
+ * 
+ * Open source under the BSD License. 
+ * 
+ * Copyright © 2001 Robert Penner
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
+ * conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
+ * provided with the distribution.
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
+ * or promote products derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *
+ */
+/** Routing manager is responsible for listening to popstates in order to dispatch events
+ * Clients can register their interest on these events
+ *
+ * @author Thodoris Tsiridis
+ * @version 0.2
+ */
+var router = function(){
+
+	var isRefresh = true;
+	var registeredMembers = { push: [], pop: []};
+	var registeredPathMembers = {};
+	var currentState = null;
+	var hashChangeIntervalId = null;
+	var currentHash = '';
+	var isHistoryAPISupported = true;
+
+	this.basePath = '';
+	this.hashListenInterval = 500;
+
+	/**
+	 * Pushes a new state on the history api
+	 * @public
+	 * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
+	 * @param {String} title The title of the page. Most browsers don't use it yet
+	 * @param {String} url The url that we need to push
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	this.push = function(state, title, url){
+
+		// Change the title
+		document.title = title;
+
+		if(isHistoryAPISupported){
+
+			history.pushState(state, title, this.basePath + url);
+
+		}
+
+		//Get the state
+		currentState = getState();
+
+		//Notify all the members that there was a push event
+		notifyRegisteredMembers('push');
+
+		// If History API is supported then push the path
+		if(isHistoryAPISupported){
+			notifyRegisteredPathChangeMembers(currentState.path);
+		} else {
+			// Else push the hash
+			notifyRegisteredPathChangeMembers(currentState.hash);
+		}
+
+	};
+
+	/**
+	 * Replaces the current state with a new state
+	 * @public
+	 * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
+	 * @param {String} title The title of the page. Most browsers don't use it yet
+	 * @param {String} url The url that we need to push
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	this.replace = function(state, title, url){
+
+		if(isHistoryAPISupported){
+
+			history.replaceState(state, title, this.basePath + url);
+
+		}
+
+		//Get the state
+		currentState = getState();
+
+		//Notify all the members that there was a push event
+		notifyRegisteredMembers('push');
+
+		// If History API is supported then push the path
+		if(isHistoryAPISupported){
+			notifyRegisteredPathChangeMembers(currentState.path);
+		} else {
+			// Else push the hash
+			notifyRegisteredPathChangeMembers(currentState.hash);
+		}
+
+	};
+
+	/**
+	 * Registers a specific callback to a specific event
+	 * @public
+	 * @param {String} eventType The name of the event e.x. push, pop
+	 * @param {Function} callback The function to execute
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	this.registerForEvent = function(eventType, callback){
+
+		// Check if it already registered by going through all registered callbacks
+		// for this event
+		var alreadyRegistered = false;
+
+		for (var i = registeredMembers[eventType].length - 1; i >= 0; i--) {
+
+			if(registeredMembers[eventType][i] === callback){
+				alreadyRegistered = true;
+				break;
+			}
+		}
+
+		if(!alreadyRegistered){
+			registeredMembers[eventType].push(callback);
+		}
+
+		// Clear memory
+		alreadyRegistered = null;
+	};
+
+	/**
+	 * Registers a specific callback to a specific path
+	 * @public
+	 * @param {String} path The name of the event e.x. segment1/segment2
+	 * @param {Function} callback The function to execute
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	this.registerForPathChange = function(path, callback, priority){
+
+		//Save a valid value for the priority
+		priority = priority || 0;
+
+		//Adding the basepath also in the path
+		path = this.basepath + path;
+
+		// Check if it already registered by going through all registered callbacks
+		// for this event
+		var alreadyRegistered = false;
+
+		var cache = registeredPathMembers[path];
+
+		if(cache !== undefined){
+
+			for (var i = cache.length - 1; i >= 0; i--) {
+
+				if( cache[i].callback === callback){
+					alreadyRegistered = true;
+					break;
+				}
+
+			}
+
+		} else {
+			registeredPathMembers[path] = [];
+		}
+
+		if(!alreadyRegistered){
+			registeredPathMembers[path].push( { callback: callback, priority: priority } );
+			sortRegisteredPathMembers(path);
+		}
+
+		// Clear memory
+		cache = null;
+		alreadyRegistered = null;
+
+	};
+
+	/**
+	 * It goes back in history
+	 * @public
+	 * @param {Integer} steps The number of steps that you want to go backwards
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	this.goBack = function(steps){
+		history.go(0 - (steps === null || steps === undefined ? 1 : steps));
+	};
+
+	/**
+	 * It goes forward in history
+	 * @public
+	 * @param {Integer} steps The number of steps that you want to go forward
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	this.goForward = function(steps){
+		history.go(steps === null || steps === undefined ? 1 : steps);
+	};
+	/**
+	 * It returns the state of the object
+	 * @public
+	 * @returns
+	 * @type Object
+	 * @author Thodoris Tsiridis
+	 */
+	this.getState = function(){
+		return getState();
+	};
+
+	/**
+	 * This is function is triggered on a window popstate
+	 * @private
+	 * @param {Object} e The object returned from the event
+	 *
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var onPopstate = function(e) {
+
+		//Get the state
+		currentState = getState();
+
+		// If the popstate runs again then it will not be a refresh but a push
+		// Only the first time of a pop state we know for sure that it is a refresh
+		if(isRefresh){
+			isRefresh = false;
+		}
+
+		//Notify all the members that there was a pop state
+		notifyRegisteredMembers('pop');
+
+		// If History API is supported then push the path
+		if(isHistoryAPISupported){
+			notifyRegisteredPathChangeMembers(currentState.path);
+		} else {
+			// Else push the hash
+			notifyRegisteredPathChangeMembers(currentState.hash);
+		}
+	};
+
+	/**
+	 * Gets the current state by reading the URL
+	 * @private
+	 * @returns Returns an object with the following keys
+	 *		{String} domain The domain of the url
+	 *		{String} hash The hashs value if it exists. If not then it is null
+	 *		{Array} hashSegments An array with all the hashes if more than one
+	 *		{Boolean} isRefresh If the state was poped after a refresh the value is true
+	 *		{String} path The url path
+	 *		{Array} pathSegments An array with all the path segments
+	 *		{String} port The port of the url
+	 *		{String} query The query that follows the ?
+	 *		{String} url The full URL
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var getState = function(){
+
+		var tempState = parseURL(location.href);
+		tempState.isRefresh = isRefresh;
+
+		return tempState;
+	};
+
+	/**
+	 * Notifies all the registered members
+	 * @private
+	 * @param {String} eventType The name of the event e.x. push, pop
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var notifyRegisteredMembers = function(eventType) {
+
+		var members = registeredMembers[eventType];
+
+		for (var i = members.length - 1; i >= 0; i--) {
+			members[i](currentState);
+		}
+
+		// Clear memory
+		members = null;
+	};
+
+	/**
+	 * Notifies all the registered members when a path change happens
+	 * @private
+	 * @param {String} path The path e.x. segment1/segment2
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var notifyRegisteredPathChangeMembers = function(path){
+
+		var members = registeredPathMembers[this.basepath + path];
+
+		if(members !== undefined){
+
+			for (var i = members.length - 1; i >= 0; i--) {
+				members[i].callback(currentState);
+			}
+
+		}
+
+		members = null;
+	};
+
+	/**
+	 * Sorts the array based on priority
+	 * @private
+	 * @param {String} path The path e.x. segment1/segment2
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var sortRegisteredPathMembers = function(path){
+		var cache = registeredPathMembers[path];
+		cache.sort(sortByPriority);
+		cache = null;
+
+	};
+
+	/**
+	 * Performs a check to see if the hash has changed and triggers then onPopstate function
+	 * @private
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var checkHashChange = function(){
+
+		var hash = getState().hash;
+
+		if (currentHash !== hash) {
+			currentHash = hash;
+			onPopstate(null);
+		}
+
+	};
+
+	/**
+	 * Parses a url and returns an object containing the folowing data (if found):
+	 *
+	 * protocol, domain, post, path and path segments, hash and hash segments, query
+	 * string and an object containing a key/value pair representation of the query
+	 *
+	 * @public
+	 * @param {String} url The url that we need to parse
+	 * @returns {Object} The object containing the different segments from the parsed URL
+	 * @author Justin Windle
+	 */
+	var parseURL = function( url ) {
+
+		url = unescape( url );
+
+		// remove protocol, domain and port
+		var cut = url.replace( /^(http(s)?:\/\/)?[^\/]+\/?/i, '' );
+
+		// try to match patterns for the data we need
+		var parse = {
+
+			protocol: url.match( /^(http(s)?):\/\//i ),
+			domain: url.match( /^(http(s)?:\/\/)?([^\/:]+)/i ),
+			query: url.match( /\?([\w\+\-\=&]+)/ ),
+			port: url.match( /\w:(\d{1,5})/ ),
+			hash: url.match( /#([\w\-\/]+)/ ),
+			path: cut.match( /^\/?([\w\-\/\.]+)/ )
+
+		};
+
+		// Create a result form any matches returned
+		var result = {
+
+			protocol: parse.protocol ? parse.protocol[1] : null,
+			domain: parse.domain ? parse.domain[3] : null,
+			query: parse.query ? parse.query[1] : null,
+			port: parse.port ? parse.port[1] : null,
+			hash: parse.hash ? parse.hash[1] : null,
+			path: parse.path ? parse.path[1] : null,
+			 url: url /* return the unescaped url */
+
+		};
+
+		// Split the path into segments
+		if( result.path ) {
+			result.pathSegments = result.path.replace( /^\/|\/$/g, '' ).split( '/' );
+		}
+
+		// Split the hash into segments
+		if( result.hash ) {
+			result.hashSegments = result.hash.replace( /^\/|\/$/g, '' ).split( '/' );
+		}
+
+		// Parse the query parameters
+		if( result.query ) {
+
+			result.params = {};
+
+			var regex = /([\w\+\-]+)\=([\w\+\-]+)/g;
+			var param = regex.exec( result.query );
+
+			while( param ) {
+				result.params[ param[1] ] = param[2];
+				param = regex.exec( result.query );
+			}
+
+		}
+
+		return result;
+	};
+
+	/**
+	 * Checks if the history API is supported
+	 * @public
+	 * @returns A Boolean value
+	 * @type Boolean
+	 * @author Thodoris Tsiridis
+	 */
+	var supportsHistoryAPI = function(){
+		return !!(window.history && history.pushState);
+	};
+
+	/**
+	 * Checks if the onhashchange is supported
+	 * @public
+	 * @returns A Boolean value
+	 * @type Boolean
+	 * @author Thodoris Tsiridis
+	 */
+	var supportsHashChange = function(){
+		return !!(window.onhashchange);
+	};
+
+	/**
+	 * Sorts an array based on the priority key
+	 * @public
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var sortByPriority = function(a, b){
+		var x = parseInt(a.priority, 0);
+		var y = parseInt(b.priority, 0);
+		return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+	};
+
+	/**
+	 * Initalizes the utility
+	 * @public
+	 * @returns
+	 * @type void
+	 * @author Thodoris Tsiridis
+	 */
+	var init = function(){
+
+		// Check if the browser supports the History API
+		if(supportsHistoryAPI()){
+
+			window.onpopstate = onPopstate;
+
+		} else {
+
+			// Use hashes instead
+			isHistoryAPISupported = false;
+
+			if(supportsHashChange()){
+
+				window.onhashchange = onPopstate;
+
+			} else {
+
+				// Listen for changes at specific intervals
+				hashChangeIntervalId = setInterval(function(){
+					checkHashChange();
+				}, this.hashListenInterval);
+
+			}
+		}
+	};
+
+	init();
+
+};
+
+var Router = new router();
+
+/**
+ * @author mr.doob / http://mrdoob.com/
+ */
+
+var EventTarget = function () {
+
+    var listeners = {};
+
+    this.addEventListener = function ( type, listener ) {
+
+        if ( listeners[ type ] === undefined ) {
+
+            listeners[ type ] = [];
+
+        }
+
+        if ( listeners[ type ].indexOf( listener ) === - 1 ) {
+
+            listeners[ type ].push( listener );
+
+        }
+
+    };
+
+    this.dispatchEvent = function ( event ) {
+
+        for ( var listener in listeners[ event.type ] ) {
+
+            listeners[ event.type ][ listener ]( event );
+
+        }
+
+    };
+
+    this.removeEventListener = function ( type, listener ) {
+
+        var index = listeners[ type ].indexOf( listener );
+
+        if ( index !== - 1 ) {
+
+            listeners[ type ].splice( index, 1 );
+
+        }
+
+    };
+
+};
+var seventytwolions = {};
+seventytwolions.Controller = seventytwolions.Controller || {};
+seventytwolions.View = seventytwolions.View || {};
+seventytwolions.Model = seventytwolions.Model || {};
+/**
+ * Lookup for models views and controllers
+ * Initializes or returns new controllers, views or models
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.lookup = function() {
+
+    var _models         = {},
+        _views          = {},
+        _controllers    = {};
+
+    /**
+     * Returns a controller with a specific name
+     * @param {String} className The name of the controllers
+     * @param {String} id The unique id for this controller
+     * @param {String} viewClassName The name of a different view
+     * @param {Object} model The model that we want to use
+     * @returns A controller
+     * @type seventytwolions.Controller.Base
+     * @author Thodoris Tsiridis
+     */
+    this.getController = function(attributes) {
+        var className, id, model, controllerObj;
+        var exists = -1;
+
+        className = attributes.type || 'Base';
+        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
+
+        // Check if there is an array with objects of className type
+        // If not then create a new array
+        if(!_controllers[className] || !$.isArray(_controllers[className])) {
+            _controllers[className] = [];
+        }
+
+        // Loop through al the items in the array
+        // to check if an item with this id already exists
+        for (var i = _controllers[className].length - 1; i >= 0; i--) {
+            if(_controllers[className][i].id == id){
+                exists = i;
+                break;
+            }
+        }
+
+        if(exists === -1){
+
+            exists = null;
+            // Check if the class that we want to load exists
+            if(seventytwolions.Controller[className] !== undefined){
+                controllerObj = {id: id, classType: new seventytwolions.Controller[className]()};
+            } else {
+                // Create a generic controller
+                controllerObj = {id: id, classType: new seventytwolions.Controller.Base()};
+            }
+
+            _controllers[className].push(controllerObj);
+            controllerObj.classType.initialize(attributes);
+            return controllerObj.classType;
+
+        } else {
+
+            return _controllers[className][exists].classType;
+        }
+
+    };
+
+    /**
+     * Returns a view with a specific name
+     * @param {String} name The name of the controllers
+     * @param {String} id The unique id for this controller
+     * @returns A view
+     * @type seventytwolions.View.Base
+     * @author Thodoris Tsiridis
+     */
+    this.getView = function(className, id) {
+        var exists = -1, viewObj;
+
+        // Check if there is an array with objects of className type
+        // If not then create a new array
+        if(!_views[className] || !$.isArray(_views[className])) {
+            _views[className] = [];
+        }
+
+        // Loop through al the items in the array
+        // to check if an item with this id already exists
+        for (var i = _views[className].length - 1; i >= 0; i--) {
+            if(_views[className][i].id == id){
+                exists = i;
+            }
+        }
+
+        if(exists === -1){
+
+            exists = null;
+
+            // Check if the class that we want to load exists
+            if(seventytwolions.View[className] !== undefined){
+                viewObj = {id: id, classType: new seventytwolions.View[className]()};
+            } else {
+                viewObj = {id: id, classType: new seventytwolions.View.Base()};
+            }
+
+            _views[className].push(viewObj);
+            viewObj.classType.preInitialize(className, id);
+            return viewObj.classType;
+
+        } else {
+            return _views[className][exists].classType;
+        }
+    };
+
+    /**
+     * Returns a model with a specific name
+     * @param {String} name The name of the controllers
+     * @param {Object} modelData The data of the model
+     * @returns A model
+     * @type seventytwolions.Model.Base
+     * @author Thodoris Tsiridis
+     */
+    this.getModel = function(attributes) {
+        var exists = -1, modelObj, name, modelData;
+        modelData = attributes.data || {};
+        name = attributes.type || 'Base';
+        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
+        // Check if there is an array with objects of className type
+        // If not then create a new array
+        if(!_models[name] || !$.isArray(_models[name])) {
+            _models[name] = [];
+        }
+
+        // Loop through al the items in the array
+        // to check if an item with this id already exists
+        for (var i = _models[name].length - 1; i >= 0; i--) {
+            if(_models[name][i].id == id){
+                exists = i;
+            }
+        }
+
+        if(exists === -1){
+
+            exists = null;
+
+            // Check if the class that we want to load exists
+            if(seventytwolions.Model[name] !== undefined){
+                modelObj = {id: id, classType: new seventytwolions.Model[name]()};
+            } else {
+                modelObj = {id: id, classType: new seventytwolions.Model.Base()};
+            }
+
+            _models[name].push(modelObj);
+
+            modelObj.classType.setName(name);
+            modelObj.classType.setId(id);
+            modelObj.classType.setData(modelData);
+
+            return modelObj.classType;
+
+        } else {
+            return _models[name][exists].classType;
+        }
+    };
+};
+
+// Instantiate the lookup so that we can use it as a singleton
+seventytwolions.Lookup = new seventytwolions.lookup();
+
+seventytwolions.console = function(){
+
+	// Declaring the API
+	var api = {};
+
+	api.debug = true;
+
+	/**
+	 * Logs out a message
+	 * @private
+	 * @param Multiple arguments
+	 * @returns Nothing
+	 * @type null
+	 * @author Thodoris Tsiridis
+	 */
+	var log = function() {
+
+		if(api.debug){
+			/*console.log(arguments)*/;
+		}
+
+	};
+
+	// Exposing functions
+	api.log = log;
+
+	// Return the api
+	return api;
+
+};
+
+// Instantiate the model so that we can use it as a singleton
+seventytwolions.Console = new seventytwolions.console();
+seventytwolions.Model.Base = function(){
+
+    var data = {};
+    this.name = '';
+    this.id = '';
+
+    /**
+     * Sets the model data
+     * @param {Object} modelData The model data
+     * @author Thodoris Tsiridis
+     */
+    this.setData = function(modelData) {
+        data = modelData;
+    };
+
+    /**
+     * Sets the name of the model
+     * @param {String} name The name/type of the model
+     * @author Thodoris Tsiridis
+     */
+    this.setName = function(name) {
+        this.name = name;
+    };
+
+    /**
+     * Sets the id of the model
+     * @param {String} id The id of the model
+     * @author Thodoris Tsiridis
+     */
+    this.setId = function (id) {
+        this.id = id;
+    };
+
+    this.set = function(key, value) {
+        data[key] = value;
+    };
+
+    this.get = function(key) {
+        return data[key];
+    };
+
+};
+
+
+seventytwolions.Model.Categories = function(){
+
+    var CATEGORIES_URL = '/api/getCategories.php';
+    var DEFAULT_START = 0;
+    var DEFAULT_NUMBER_OF_ITEMS = 10;
+
+    // Declaring the API
+    var api = {};
+    var req;
+    var data = {};
+
+    /**
+     * Returns an array of categories
+     * @private
+     * @param {Number} start The start offset
+     * @param {Number} total The total number of items that we want to get
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @returns An array with objects
+     * @type Array
+     * @author Thodoris Tsiridis
+     */
+    this.get = function(start, total, callback, ctx) {
+        var dataString;
+
+        start = start || DEFAULT_START;
+        total = total || DEFAULT_NUMBER_OF_ITEMS;
+
+        dataString = 's=' + start + '&t=' + total;
+
+        if(req !== undefined){
+            req.abort();
+        }
+
+        req = $.ajax({
+                    url: CATEGORIES_URL,
+                    dataType: 'json',
+                    data: dataString,
+                    success: function(res){
+                        data.posts = res.Results;
+                        if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                            callback.apply(ctx, [data.posts]);
+                            req = undefined;
+                        }
+                    }
+                });
+
+    };
+
+};
+
+seventytwolions.Model.Categories.prototype = new seventytwolions.Model.Base();
+
+seventytwolions.Model.locale = function(){
+
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    /**
+     * Returns the name of the month
+     * @param  {Number} monthIndex The month index
+     * @return {String}
+     */
+    this.getMonthName = function(monthIndex){
+        return months[monthIndex];
+    };
+
+    /**
+     * Returns the name of a day of the week
+     * @param  {Number} dayIndex The day of the week index
+     * @return {String}
+     */
+    this.getDayName = function(dayIndex){
+        return days[dayIndex];
+    };
+
+};
+
+seventytwolions.Model.Locale = new seventytwolions.Model.locale();
+
+seventytwolions.Model.Posts = function(){
+
+    // Constants
+    var POSTS_URL = '/api/getPosts.php';
+    var POST_DETAILS_URL = '/api/getPostDetails.php';
+    var DEFAULT_START = 0;
+    var DEFAULT_NUMBER_OF_ITEMS = 10;
+
+    var req, reqDetails;
+    var data = {};
+
+    /**
+     * Returns an array of posts
+     * @param {Number} categoryId The category of the posts that we want to load
+     * @param {Number} start The start offset
+     * @param {Number} total The total number of items that we want to get
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @returns An array with objects
+     * @type Array
+     * @author Thodoris Tsiridis
+     */
+    this.getPosts = function(categoryid, start, total, callback, ctx) {
+
+        var dataString;
+
+        start = start || DEFAULT_START;
+        total = total || DEFAULT_NUMBER_OF_ITEMS;
+
+        dataString = 's=' + start + '&t=' + total;
+
+        if(categoryid !== null){
+            dataString += '&cid=' + categoryid;
+        }
+
+        if(req !== undefined){
+            req.abort();
+        }
+
+        req = $.ajax({
+                url: POSTS_URL,
+                dataType: 'json',
+                data: dataString,
+                success: function(res){
+                    data.posts = res.Results;
+                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                        callback.apply(ctx, [data.posts]);
+                        req = undefined;
+                    }
+                }
+            });
+    };
+
+    /**
+     * Returns an array of posts
+     * @param {String} slug The slug of the page
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @returns An array with objects
+     * @type Array
+     * @author Thodoris Tsiridis
+     */
+    this.getDetails = function(slug, callback, ctx) {
+
+        if(reqDetails !== undefined){
+            reqDetails.abort();
+        }
+
+        reqDetails = $.ajax({
+                url: POST_DETAILS_URL,
+                dataType: 'json',
+                data: 'id=' + slug,
+                success: function(res){
+                    data.post = res.Results;
+                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                        callback.apply(ctx, [data.post]);
+                        req = undefined;
+                    }
+                }
+            });
+    };
+
+};
+
+seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
+
+/**
+ * About View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.About = function() {
+
+    var me = this;
+
+	this.domElement = $('.about');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        this.domElement.slideDown();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.slideUp();
+    };
+
+};
+
+seventytwolions.View.About.prototype = new seventytwolions.View.Base();
+
+/**
+ * Base View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Base = function() {
+
+    EventTarget.call( this );
+
+    this.name = null;
+    this.id = null;
+    this.model = null;
+    this.domElement = null;
+
+    /**
+     * Function for when showing the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function() {
+    };
+
+    /**
+     * Function for when hiding the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function() {
+    };
+
+    /**
+     * Sets the name of the view
+     * @param {String} name The name fo the view
+     * @author Thodoris Tsiridis
+     */
+    this.setName = function(name) {
+        this.name = name;
+    };
+
+    /**
+     * Sets the name of the view
+     * @param {String} name The name fo the view
+     * @author Thodoris Tsiridis
+     */
+    this.setId = function(id) {
+        this.id = id;
+    };
+
+    /**
+     * Sets the model for the view
+     * @param {seventytwolions.models.Base} model The model
+     * @author Thodoris Tsiridis
+     */
+    this.setModel = function(model) {
+        this.model = model;
+    };
+
+    /**
+     * Gets the model for the view
+     * @return The model
+     * @type {seventytwolions.Model.Base}
+     * @author Thodoris Tsiridis
+     */
+    this.getModel = function() {
+        return this.model;
+    };
+
+    /**
+     * Returns the main dom element of the view
+     * @returns A DOM element
+     * @type jQuery DOM element
+     * @author Thodoris Tsiridis
+     */
+    this.getDOMElement = function() {
+        return this.domElement;
+    };
+
+    /**
+     * Is triggered before initialization of the view
+     * @author Thodoris Tsiridis
+     */
+    this.preInitialize = function(name, id) {
+        this.setName(name);
+        this.setId(id);
+    };
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize = function(){
+
+    };
+
+    /**
+     * Draws the view
+     * @author Thodoris Tsiridis
+     */
+    this.draw = function(){
+
+    };
+
+    /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw = function(){
+
+    };
+
+};
+
+/**
+ * Blog View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Blog = function() {
+
+   this.domElement = $('.blog');
+
+    var me = this;
+    var itemsContainer = this.domElement.find('.centered');
+    var isFirstTime = true;
+
+    // Constants
+    var COLUMN_MIN = 2;
+    var COLUMN_WIDTH = 218;
+    var COLUMN_MARGIN = 20;
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+    this.draw = function() {
+        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+    };
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        $(window).bind("resize", onWindowResize);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+
+        isFirstTime = true;
+        this.positionItems();
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+    /**
+     * Adds a portfolio item to the view
+     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @author Thodoris Tsiridis
+     */
+    this.addPortfolioItem = function(item){
+        itemsContainer.append(item);
+    };
+
+    this.positionItems = function() {
+
+
+        var domItems = itemsContainer.find('article');
+        var domItemsFeatured = itemsContainer.find('article.featured');
+        var windowHeight = itemsContainer.height();
+        var windowWidth = itemsContainer.width();
+        var gridTop = 0;
+        var gridLeft = this.domElement.offset().left;
+        var items = [];
+        var _7 = 0;
+        var _8 = 0;
+        var minColumns = Math.max(COLUMN_MIN, parseInt(windowWidth / (COLUMN_WIDTH + COLUMN_MARGIN), 0));
+        var maxHeight = 0;
+
+        if(isFirstTime){
+            isFirstTime = false;
+        } else {
+            itemsContainer.addClass('animated');
+        }
+
+        for (x = 0; x < minColumns; x++) {
+            items[x] = 0;
+        }
+
+        domItems.each(function (i, e) {
+            var x, _a, _b, _c, _d = 0;
+            var target_x =0;
+            var target_y = 0;
+            _c = (Math.floor($(e).outerWidth() / COLUMN_WIDTH));
+            _b = 0;
+
+            if (_c > 1) {
+
+                for (x = 0; x < minColumns - (_c - 1); x++) {
+                    _b = (items[x] < items[_b]) ? x : _b;
+                }
+
+                _a = _b;
+
+                for (x = 0; x < _c; x++) {
+                    _d = Math.max(_d, items[_a + x]);
+                }
+
+                for (x = 0; x < _c; x++) {
+                    items[_a + x] = parseInt($(e).outerHeight(), 0) + COLUMN_MARGIN + _d;
+                }
+
+                target_x = _a * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
+                target_y = _d + gridTop;
+
+                _7 = (_d > _7) ? items[_a + _c - 1] : _7;
+
+            } else {
+
+                for (x = 0; x < minColumns; x++) {
+                    _b = (items[x] < items[_b]) ? x : _b;
+                }
+
+                target_x = _b * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
+                target_y = items[_b] + gridTop;
+                items[_b] += $(e).outerHeight() + COLUMN_MARGIN;
+                _7 = (items[_b] > _7) ? items[_b] : _7;
+
+            }
+
+            $(this).css({
+                left: target_x + "px",
+                top: target_y + COLUMN_MARGIN + "px"
+            });
+
+            itemBottom = parseInt($(this).css('top'),0) + $(this).height();
+            if(maxHeight < itemBottom){
+                maxHeight = itemBottom;
+            }
+
+            _8 = (_8 < _b) ? _b : _8;
+
+        });
+
+        itemsContainer.css('height', maxHeight + 'px');
+
+        var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
+    };
+
+    var onWindowResize = function() {
+        me.positionItems();
+    };
+
+
+};
+
+seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
+
+/**
+ * Contact View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Contact = function() {
+
+    var me = this;
+
+	this.domElement = $('.contact');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+};
+
+seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
+
+/**
+ * Experiments View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Experiments = function() {
+
+    var me = this;
+
+	this.domElement = $('.experiments');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+};
+
+seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();
+
+/**
+ * Main View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Main = function() {
+
+	this.domElement = null;
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+    this.draw = function() {
+        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+    };
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+};
+
+seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
+
+/**
+ * Navigation View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Navigation = function() {
+
+    var $links;
+    var me = this;
+
+	this.domElement = $('.navigation');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        $links = this.domElement.find('a');
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        addEventListeners();
+    };
+
+    /**
+     * Hightlits a menu item
+     * @param {String} section The name of the section that we want to highlight
+     * @author Thodoris Tsiridis
+     */
+    this.selectNavigationItem = function(section) {
+        section = section === '' ? 'home' : section;
+        this.domElement.find('.nav-' + section).parent().addClass('active').siblings().removeClass('active');
+    };
+
+    /**
+     * Registers all the event listeners
+     * @private
+     * @author Thodoris Tsiridis
+     */
+    var addEventListeners = function(){
+        $links.bind('click', onLinkClick);
+    };
+
+    /**
+     * Triggered when we click a link
+     * @private
+     * @author Thodoris Tsiridis
+     */
+    var onLinkClick = function(e){
+        e.preventDefault();
+
+        // Cache the item
+        var $item = $(this);
+
+        // Dispatch the event
+        me.dispatchEvent({type: 'menuClicked', path:$item.attr('href'), title:$item.attr('title')});
+
+        // Clear memory
+        $item = null;
+    };
+
+};
+
+seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
+
+/**
+ * Portfolio View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Portfolio = function() {
+
+    this.domElement = $('.portfolio');
+
+    var me = this;
+    var itemsContainer = this.domElement.find('.centered');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+    /**
+     * Adds a portfolio item to the view
+     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @author Thodoris Tsiridis
+     */
+    this.addPortfolioItem = function(item){
+        itemsContainer.append(item);
+    };
+
+};
+
+seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
+
+/**
+ * PostDetails View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.PostDetails = function() {
+
+	this.domElement = $('.post-details');
+    this.currentId = null;
+
+    var me = this;
+    var details = null;
+    var contentDomElement = this.domElement.find('.content');
+    var asideDomElement = this.domElement.find('aside');
+    var titleDomElement = contentDomElement.find('h1.title');
+    var categoriesDomElement = contentDomElement.find('.categories');
+    var textDomElement = contentDomElement.find('.text');
+    var timeDomElement = contentDomElement.find('time');
+    var githublinkDomElement = contentDomElement.find('.github-link');
+    var downloadlinkDomElement = contentDomElement.find('.download-link');
+    var demolinkDomElement = contentDomElement.find('.demo-link');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    this.render = function() {
+
+        var asideHTML, categoriesStr, pDate, slug, url;
+        asideHTML = categoriesStr = '';
+
+        details = this.getModel().get('PostDetails'+this.currentId);
+
+        textDomElement.html(details.Content);
+
+        // Create categories string
+        categories = details.Categories;
+
+        for (var i = 0; i < categories.length; i++) {
+
+            categoriesStr += categories[i].Name;
+
+            if(i < categories.length - 1){
+                categoriesStr +=', ';
+            }
+
+        }
+
+        if(categoriesStr !== '') {
+            categoriesDomElement.html('Categories: ' + categoriesStr);
+            categoriesDomElement.fadeIn(0);
+        } else {
+            categoriesDomElement.fadeOut(0);
+        }
+
+        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        if(typeof(details.Meta.github) !== 'undefined'){
+            githublinkDomElement.attr('href', details.Meta.github);
+            githublinkDomElement.addClass('visible');
+        } else {
+            githublinkDomElement.removeClass('visible');
+        }
+
+        if(typeof(details.Meta.download) !== 'undefined') {
+            downloadlinkDomElement.attr('href', details.Meta.download);
+            downloadlinkDomElement.addClass('visible');
+        } else {
+            downloadlinkDomElement.removeClass('visible');
+        }
+
+        if(typeof(details.Meta.demo) !== 'undefined') {
+            demolinkDomElement.attr('href', details.Meta.demo);
+            demolinkDomElement.addClass('visible');
+        } else {
+            demolinkDomElement.removeClass('visible');
+        }
+
+        //Firefox doesn't like dates with / in the constructor
+        pDate = new Date(details.PublishDate.replace(/-/g ,'/'));
+        timeDomElement.html(seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+        titleDomElement.html(details.Title);
+        asideDomElement.html(asideHTML);
+
+        slug = details.Slug;
+        month = (pDate.getMonth() + 1).toString();
+        month = month.length === 1 ? "0" + month : month;
+        url = '/' + pDate.getFullYear() + '/' + month + '/' + slug;
+
+        if(details.Meta.dsq_thread_id) {
+            /*console.log(details.Meta.dsq_thread_id, url)*/;
+            DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.identifier = details.Meta.dsq_thread_id;
+                this.page.url = "http://72lions.com" + url;
+              }
+            });
+        }
+    };
+
+    /**
+     * Shows the view
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+        this.domElement.addClass('active');
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+    };
+    /**
+     * Hides the view
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+};
+
+seventytwolions.View.PostDetails.prototype = new seventytwolions.View.Base();
+
+/**
+ * Sections Manager View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.SectionsManager = function() {
+
+    var me = this;
+
+	this.domElement = $('#sections-wrapper');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+};
+
+seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
+
+/**
+ * Portfolio Item View
+ *
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.ThumbnailItem = function() {
+
+    this.isFeatured = false;
+
+    var me = this;
+    var tmpl = '<div class="photo">'+
+                    '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
+                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
+                '</div>'+
+                '<div class="description">'+
+                    '<hgroup><a href="${link}" title="${title}"><h1>${title}</h1></a></hgroup>'+
+                    '<time>${publishdate}</time>'+
+                    '<aside>Categories: ${categories}</aside>'+
+                    '<p>'+
+                    '${description}'+
+                    '</p>' +
+                    '<a href="${link}" title="${title}" class="readmore">Read more</a>'+
+                '</div>';
+
+	this.domElement = $('<article class="portfolio-item clearfix"></article>');
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name + ', ' + this.id);
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Sets the current item as featured item
+     * @param {Boolean} isFeatured Set to true if we need to render it as a featured item
+     * @author Thodoris Tsiridis
+     */
+    this.setAsFeatured = function(isFeatured){
+
+        this.isFeatured = isFeatured;
+
+        if(isFeatured){
+            this.domElement.addClass('featured');
+        } else {
+            this.domElement.removeClass('featured');
+        }
+
+    };
+
+    this.render = function() {
+
+        var random, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        categoriesStr= '';
+        hasThumbnail = false;
+        model = this.getModel();
+        body = tmpl;
+
+        meta = model.get('Meta');
+
+        if(meta.showcase !== undefined){
+            this.setAsFeatured(true);
+        }
+
+        //Firefox doesn't like dates with / in the constructor
+        pDate = new Date(model.get('PublishDate').replace(/-/g ,'/'));
+        body = body.replace(/\${publishdate}/g, seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+
+        slug = model.get('Slug');
+        url = '/' + pDate.getFullYear() + '/' + (pDate.getMonth() + 1) + '/' + slug;
+
+        body = body.replace(/\${title}/g, model.get('Title'));
+        body = body.replace(/\${description}/g, model.get('Description'));
+        body = body.replace(/\${link}/g, url);
+
+        // Create categories string
+        categories = model.get('Categories');
+        for (var i = 0; i < categories.length; i++) {
+
+            categoriesStr += categories[i].Name;
+
+            if(i < categories.length - 1){
+                categoriesStr +=', ';
+            }
+
+        }
+
+        body = body.replace(/\${categories}/g, categoriesStr);
+
+        thumbnail = model.get('Thumbnail');
+        if(thumbnail.Data !== null && thumbnail.Data !== undefined){
+            hasThumbnail = true;
+            if(this.isFeatured){
+                imgWidth = thumbnail.Data.sizes.medium.width;
+                imgHeight = thumbnail.Data.sizes.medium.height;
+            } else {
+                imgWidth = thumbnail.Data.sizes.thumbnail.width;
+                imgHeight = thumbnail.Data.sizes.thumbnail.height;
+            }
+
+            body = body.replace(/\${image}/g, '/wp-content/uploads/' + thumbnail.File);
+            body = body.replace(/\${imgwidth}/g, imgWidth);
+            body = body.replace(/\${imgheight}/g, imgHeight);
+
+        }
+        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        if(meta.github !== undefined){
+            body = body.replace(/\${github}/g, meta.github);
+        }
+
+        this.domElement.html(body);
+
+        if(meta.github !== undefined){
+          this.domElement.find('.github-ribbon').css('display', 'block');
+        } else {
+            this.domElement.find('.github-ribbon').remove();
+        }
+
+        if(!hasThumbnail) {
+            this.domElement.find('.photo').remove();
+        }
+
+        addEventListeners();
+
+    };
+
+    /**
+     * Shows the description of the item
+     * @author Thodoris Tsiridis
+     */
+    this.showDescription = function() {
+        this.domElement.find('p').css('display','block');
+    };
+
+    /**
+     * Hides the description of the item
+     * @author Thodoris Tsiridis
+     */
+    this.hideDescription = function() {
+        this.domElement.find('p').css('display','none');
+    };
+
+    /**
+     * Registers all the events
+     */
+    var addEventListeners = function() {
+        me.domElement.find('a').bind('click', onThumbnailClicked);
+    };
+
+    /**
+     * Triggered when we click the thumbnail
+     * @param  {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    var onThumbnailClicked = function(event) {
+        var model, pubDate, slug, url;
+
+        event.preventDefault();
+        model = me.getModel();
+
+        pubDate = model.get('PublishDate');
+        slug = model.get('Slug');
+        pubDate = new Date(pubDate.replace(/-/g ,'/'));
+
+        url = pubDate.getFullYear() + '/' + (pubDate.getMonth() + 1) + '/' + slug;
+
+        // Push the current url
+        Router.push(null, $(this).attr('title'), '/' + url);
+
+    };
+
+};
+
+seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();
+
+seventytwolions.ControllerManager.initializeController({
+    type:'Main',
+    id:'main',
+    model: seventytwolions.Lookup.getModel({})
+});
+

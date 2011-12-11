@@ -104,10 +104,10 @@ section.post-details .content .comments {
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  -webkit-border-radius: 4px 4px 4px 4px;
-  -moz-border-radius: 4px 4px 4px 4px;
-  -o-border-radius: 4px 4px 4px 4px;
-  border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
   padding: 20px;
 }
 section.post-details .content .comments iframe {
@@ -119,6 +119,9 @@ section.post-details .content .comments iframe {
 section.post-details .content .comments #dsq-content .dsq-toolbar-item {
   background: none;
   background-color: #F02311;
+}
+section.post-details .content .comments .dsq-toolbar-label {
+  color: #fff;
 }
 section.post-details a:link, section.post-details a:visited {
   color: #F02311;

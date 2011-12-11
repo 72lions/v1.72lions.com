@@ -117,16 +117,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<link rel="icon" href="/favicon.ico" />
 
-		<!--source css-->
-		<link rel="stylesheet" href="/assets/css/reset.css" />
-		<link rel="stylesheet" href="/assets/css/ui.css" />
-		<link rel="stylesheet" href="/assets/css/layout.css" />
-		<link rel="stylesheet" href="/assets/css/navigation.css" />
-		<link rel="stylesheet" href="/assets/css/portfolio.css" />
-		<link rel="stylesheet" href="/assets/css/about.css" />
-		<link rel="stylesheet" href="/assets/css/blog.css" />
-		<link rel="stylesheet" href="/assets/css/postdetails.css" />
-		<!--end source css-->
+		<link rel='stylesheet' href='/assets/css/72lions.merged.min.css' />
 
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile-hires.css" />
 
@@ -230,46 +221,7 @@
  		<script type="text/javascript" src="/assets/js/libs/jquery-1.6.4.min.js"></script>
 		<script type="text/javascript" src="/assets/js/libs/jquery.easing.1.3.js"></script>
 
- 		<!--source scripts-->
-		<script type="text/javascript" src="/assets/js/router.js"></script>
-		<script type="text/javascript" src="/assets/js/eventtarget.js"></script>
-
-		<script type="text/javascript" src="/assets/js/namespaces.js"></script>
-		<script type="text/javascript" src="/assets/js/models/locale_en.js"></script>
-		<script type="text/javascript" src="/assets/js/controllermanager.js"></script>
-		<script type="text/javascript" src="/assets/js/lookup.js"></script>
-		<script type="text/javascript" src="/assets/js/console.js"></script>
-
-		<script type="text/javascript" src="/assets/js/controllers/base.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/main.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/navigation.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/sectionsmanager.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/portfolio.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/experiments.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/blog.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/about.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/contact.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/thumbnailitem.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/postdetails.js"></script>
-
-		<script type="text/javascript" src="/assets/js/models/base.js"></script>
-		<script type="text/javascript" src="/assets/js/models/categories.js"></script>
-		<script type="text/javascript" src="/assets/js/models/posts.js"></script>
-
-		<script type="text/javascript" src="/assets/js/views/base.js"></script>
-		<script type="text/javascript" src="/assets/js/views/main.js"></script>
-		<script type="text/javascript" src="/assets/js/views/navigation.js"></script>
-		<script type="text/javascript" src="/assets/js/views/sectionsmanager.js"></script>
-		<script type="text/javascript" src="/assets/js/views/portfolio.js"></script>
-		<script type="text/javascript" src="/assets/js/views/experiments.js"></script>
-		<script type="text/javascript" src="/assets/js/views/blog.js"></script>
-		<script type="text/javascript" src="/assets/js/views/about.js"></script>
-		<script type="text/javascript" src="/assets/js/views/contact.js"></script>
-		<script type="text/javascript" src="/assets/js/views/thumbnailitem.js"></script>
-		<script type="text/javascript" src="/assets/js/views/postdetails.js"></script>
-
-		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
-		<!--end source scripts-->
+ 		<script src='/assets/js/72lions.merged.min.js'></script>
 
 		<!--[if lt IE 7 ]>
 		<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

@@ -1,1 +1,0 @@
-This is the folder that will contain the distributable version of the website

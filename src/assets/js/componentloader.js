@@ -23,11 +23,11 @@ seventytwolions.componentloader = function(){
 	var $defaultContext						= $('body');
 
 	/**
-	 * Initializes the component loader
-	 * @param {jQuery DOM Element} $context
-	 * @private
-	 * @author Thodoris Tsiridis
-	 */
+	* Initializes the component loader
+	* @param {jQuery DOM Element} $context
+	* @private
+	* @author Thodoris Tsiridis
+	*/
 	var initializeComponents = function($context){
 
 		// Check if a context is provided else use the default one
