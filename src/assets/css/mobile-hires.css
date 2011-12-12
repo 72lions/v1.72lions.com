@@ -21,8 +21,7 @@ header.navigation .logo-container h1 {
 }
 
 header.navigation .logo-container p {
-    clear:both;
-    margin-left:0px;
+    display:none;
 }
 
 

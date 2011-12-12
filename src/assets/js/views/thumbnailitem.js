@@ -68,7 +68,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     this.render = function() {
 
-        var random, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
@@ -85,7 +85,11 @@ seventytwolions.View.ThumbnailItem = function() {
         body = body.replace(/\${publishdate}/g, seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
 
         slug = model.get('Slug');
-        url = '/' + pDate.getFullYear() + '/' + (pDate.getMonth() + 1) + '/' + slug;
+
+        month = (pDate.getMonth() + 1);
+        month = month.toString().length === 1 ? '0' + month : month;
+
+        url = '/' + pDate.getFullYear() + '/' + month + '/' + slug;
 
         body = body.replace(/\${title}/g, model.get('Title'));
         body = body.replace(/\${description}/g, model.get('Description'));
@@ -171,7 +175,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     var onThumbnailClicked = function(event) {
-        var model, pubDate, slug, url;
+        var model, pubDate, slug, url, month;
 
         event.preventDefault();
         model = me.getModel();
@@ -180,7 +184,9 @@ seventytwolions.View.ThumbnailItem = function() {
         slug = model.get('Slug');
         pubDate = new Date(pubDate.replace(/-/g ,'/'));
 
-        url = pubDate.getFullYear() + '/' + (pubDate.getMonth() + 1) + '/' + slug;
+        month = (pubDate.getMonth() + 1);
+        month = month.toString().length === 1 ? '0' + month : month;
+        url = pubDate.getFullYear() + '/' + month + '/' + slug;
 
         // Push the current url
         Router.push(null, $(this).attr('title'), '/' + url);

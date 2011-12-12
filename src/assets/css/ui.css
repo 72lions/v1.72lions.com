@@ -179,7 +179,10 @@ a.download-link:link span, a.download-link:visited span {
   padding-left: 20px;
   line-height: 25px;
 }
-a.demo-link:link, a.demo-link:visited {
+a.demo-link:link,
+a.demo-link:visited,
+a.website-link:link,
+a.website-link:visited {
   color: #555 !important;
   font-weight: bold;
   font-size: 11px;
@@ -209,10 +212,16 @@ a.demo-link:link, a.demo-link:visited {
   transition: all 0.218s !important;
   display: none;
 }
-a.demo-link:link.visible, a.demo-link:visited.visible {
+a.demo-link:link.visible,
+a.demo-link:visited.visible,
+a.website-link:link.visible,
+a.website-link:visited.visible {
   display: inline-block;
 }
-a.demo-link:link:hover, a.demo-link:visited:hover {
+a.demo-link:link:hover,
+a.demo-link:visited:hover,
+a.website-link:link:hover,
+a.website-link:visited:hover {
   color: #F02311 !important;
   background-image: -moz-linear-gradient(top, #f3f3f3 0, #e0e0e0 100%);
   background-image: -ms-linear-gradient(top, #f3f3f3 0, #e0e0e0 100%);
@@ -227,7 +236,10 @@ a.demo-link:link:hover, a.demo-link:visited:hover {
   -o-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
 }
-a.demo-link:link:active, a.demo-link:visited:active {
+a.demo-link:link:active,
+a.demo-link:visited:active,
+a.website-link:link:active,
+a.website-link:visited:active {
   background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
   background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
   background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
@@ -239,7 +251,10 @@ a.demo-link:link:active, a.demo-link:visited:active {
   -o-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
   box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
 }
-a.demo-link:link span, a.demo-link:visited span {
+a.demo-link:link span,
+a.demo-link:visited span,
+a.website-link:link span,
+a.website-link:visited span {
   font-family: Arial;
   font-size: 11px;
   font-style: normal;
@@ -249,4 +264,7 @@ a.demo-link:link span, a.demo-link:visited span {
   background-repeat: no-repeat;
   padding-left: 23px;
   line-height: 25px;
+}
+a.website-link:link span, a.website-link:visited span {
+  background-image: none;
 }

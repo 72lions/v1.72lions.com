@@ -1,6 +1,11 @@
 <?php
-	$path = explode('/', $_SERVER["REQUEST_URI"]);
+	$output = rtrim($_SERVER["REQUEST_URI"], '/');
+	$path = explode('/', $output);
 	$section = $path[count($path) - 1];
+
+	if(count($path) === 4 && $section === '') {
+		$section = $path[count($path) - 2];
+	}
 
 	$id = -1;
 	$title = '';
