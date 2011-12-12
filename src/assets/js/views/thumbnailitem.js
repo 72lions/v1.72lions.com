@@ -175,7 +175,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     var onThumbnailClicked = function(event) {
-        var model, pubDate, slug, url, month;
+        var model, pubDate, slug, url, month, title;
 
         event.preventDefault();
         model = me.getModel();
@@ -187,9 +187,9 @@ seventytwolions.View.ThumbnailItem = function() {
         month = (pubDate.getMonth() + 1);
         month = month.toString().length === 1 ? '0' + month : month;
         url = pubDate.getFullYear() + '/' + month + '/' + slug;
-
+        title = $(this).attr('title') + ' - 72Lions - Thodoris Tsiridis - Web developer';
         // Push the current url
-        Router.push(null, $(this).attr('title'), '/' + url);
+        Router.push(null, title, '/' + url);
 
     };
 

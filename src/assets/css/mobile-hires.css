@@ -8,7 +8,7 @@ header.navigation {
 
 header.navigation .logo-container {
     margin:20px 30px 0px 20px;
-
+    line-height:50px;
 }
 
 header.navigation .logo-container .logo img {
@@ -18,6 +18,9 @@ header.navigation .logo-container .logo img {
 
 header.navigation .logo-container h1 {
     margin-left:70px;
+    height:50px;
+    line-height:25px;
+    padding-top:2px;
 }
 
 header.navigation .logo-container p {
@@ -99,6 +102,11 @@ section.post-details {
 section.post-details .content {
     width:100%;
     float:none;
+    overflow-x:hidden;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 section.post-details aside {
