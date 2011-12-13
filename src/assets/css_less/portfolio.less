@@ -58,8 +58,8 @@ section.portfolio {
                 .github-ribbon {
                     display:none;
                     position:absolute;
-                    top:3px;
-                    right:3px;
+                    top:0px;
+                    right:0px;
                     z-index:10;
 
                     img {
@@ -74,6 +74,10 @@ section.portfolio {
                     z-index:1;
                     position:relative;
                     display:block;
+
+                    &:hover {
+                        border-color:#F02311;
+                    }
                 }
 
             }
@@ -105,6 +109,7 @@ section.portfolio {
 
                 p {
                     margin:0px 0px 10px 0px;
+                    color:#444;
                 }
 
                 aside, time {

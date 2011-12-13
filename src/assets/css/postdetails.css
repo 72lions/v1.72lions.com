@@ -15,7 +15,7 @@ section.post-details .content {
   padding-top: 10px;
   max-width: 720px;
   font-family: Georgia;
-  color: #666;
+  color: #444;
   font-size: 12px;
   line-height: 18px;
   font-style: italic;
@@ -106,10 +106,10 @@ section.post-details .content .text pre {
 section.post-details .content .comments {
   margin-top: 20px;
   background-color: #fff;
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;

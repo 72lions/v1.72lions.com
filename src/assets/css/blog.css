@@ -34,49 +34,6 @@ section.blog .centered article a:link, section.blog .centered article a:visited 
 section.blog .centered article a:link:hover, section.blog .centered article a:visited:hover {
   color: #F02311;
 }
-section.blog .centered article a.readmore:link, section.blog .centered article a.readmore:visited {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  -o-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  border: 1px solid #DDD;
-  padding: 5px 10px 5px 10px;
-  -webkit-transition: background-image 0.2s, border-color 0.2s;
-  -moz-transition: background-image 0.2s, border-color 0.2s;
-  -o-transition: background-image 0.2s, border-color 0.2s;
-  transition: background-image 0.2s, border-color 0.2s;
-}
-section.blog .centered article a.readmore:link:hover, section.blog .centered article a.readmore:visited:hover {
-  color: #F02311;
-  background-image: linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -o-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -moz-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -webkit-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -ms-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dcdcdc), color-stop(0.5, #f2f0f0));
-  border-color: #999;
-  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-  -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-}
-section.blog .centered article a.readmore:link:active, section.blog .centered article a.readmore:visited:active {
-  background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -webkit-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -ms-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #e6e6e6), color-stop(0, #f2f0f0));
-  border-color: #999;
-  -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-}
 section.blog .centered article .photo {
   line-height: 0px;
   margin-bottom: 10px;
@@ -85,8 +42,8 @@ section.blog .centered article .photo {
 section.blog .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0px;
+  right: 0px;
   z-index: 10;
 }
 section.blog .centered article .photo .github-ribbon img {
@@ -111,6 +68,9 @@ section.blog .centered article .photo img {
   -o-transition: border-color 0.3s;
   transition: border-color 0.3s;
 }
+section.blog .centered article .photo img:hover {
+  border-color: #F02311;
+}
 section.blog .centered article .description h1 {
   padding: 0px 0px 5px 0px;
   margin: 0px;
@@ -130,6 +90,7 @@ section.blog .centered article .description p, section.blog .centered article .d
 }
 section.blog .centered article .description p {
   margin: 0px 0px 10px 0px;
+  color: #444;
 }
 section.blog .centered article .description aside, section.blog .centered article .description time {
   color: #F02311;

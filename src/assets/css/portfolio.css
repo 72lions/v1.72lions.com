@@ -47,8 +47,8 @@ section.portfolio .centered article .photo {
 section.portfolio .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 0px;
+  right: 0px;
   z-index: 10;
 }
 section.portfolio .centered article .photo .github-ribbon img {
@@ -67,6 +67,9 @@ section.portfolio .centered article .photo img {
   z-index: 1;
   position: relative;
   display: block;
+}
+section.portfolio .centered article .photo img:hover {
+  border-color: #F02311;
 }
 section.portfolio .centered article .description {
   width: 400px;
@@ -91,6 +94,7 @@ section.portfolio .centered article .description p, section.portfolio .centered 
 }
 section.portfolio .centered article .description p {
   margin: 0px 0px 10px 0px;
+  color: #444;
 }
 section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
   color: #F02311;

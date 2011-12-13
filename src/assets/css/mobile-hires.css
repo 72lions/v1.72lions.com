@@ -1,3 +1,7 @@
+body {
+    background-image:none;
+}
+
 #wrapper {
     min-width:100%;
 }
