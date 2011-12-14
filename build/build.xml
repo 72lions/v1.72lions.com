@@ -117,6 +117,7 @@ Basic usage:
 				about.css
 				blog.css
 				postdetails.css
+				footer.css
 				"/>
 
 		</concat>
