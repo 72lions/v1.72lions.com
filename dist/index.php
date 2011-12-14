@@ -125,6 +125,7 @@
 		<link rel='stylesheet' href='/assets/css/72lions.merged.min.css' />
 
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile-hires.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 768px)" href="/assets/css/ipad.css" />
 
 		<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
 

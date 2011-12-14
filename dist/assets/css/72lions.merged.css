@@ -1024,6 +1024,7 @@ section.post-details .content h1 {
   padding: 0px;
   margin: 0px 0px 5px 0px;
   line-height: 45px;
+  color: #666;
 }
 section.post-details .content h2 {
   font-size: 30px;
@@ -1033,6 +1034,7 @@ section.post-details .content h2 {
   line-height: 37px;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
   margin: 5px 0px 5px 0px;
+  color: #666;
 }
 section.post-details .content h3 {
   font-size: 25px;
@@ -1042,6 +1044,7 @@ section.post-details .content h3 {
   font-weight: normal;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
   margin: 10px 0px 10px 0px;
+  color: #666;
 }
 section.post-details .content p {
   padding: 5px 0px 5px 0px;
@@ -1130,5 +1133,12 @@ section.post-details a:link, section.post-details a:visited {
 }
 section.post-details a:link:hover, section.post-details a:visited:hover {
   border-bottom: 1px dotted #F02311;
+}
+
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+footer .footer-logo {
+  float: right;
+  margin: 20px;
+  display: inline-block;
 }
 

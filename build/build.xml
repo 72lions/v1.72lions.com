@@ -132,7 +132,7 @@ Basic usage:
 		</java>
     </target>
 
-	<!-- Copy IE specific files to dist folder -->
+	<!-- Copy specific files to dist folder -->
 	<target name="copy-selected-files">
 		<copy todir="${dist.dir}" flatten="true">
 			<fileset dir="${src.dir}" includes="*" excludes="assets"/>
@@ -140,13 +140,14 @@ Basic usage:
 		<copy todir="${dist.css.dir}" overwrite="yes">
 			<filelist dir="${src.css.dir}" files="
 			mobile-hires.css
+			ipad.css
 			"/>
 		</copy>
 		<copy todir="${dist.dir}/api">
 			<fileset dir="${src.dir}/api" includes="**/*" />
 		</copy>
 		<copy todir="${dist.js.dir}/libs">
-			<fileset dir="${src.js.dir}/libs" includes="**/*" />
+			<fileset dir="${src.js.dir}/libs" includes="**/*" excludes="jquery.easing.1.3.js" />
 		</copy>
 	</target>
 
@@ -157,25 +158,6 @@ Basic usage:
         <mkdir dir="${dist.dir}/assets/js" />
         <mkdir dir="${dist.dir}/assets/css" />
     </target>
-
-	<target name="clean-js">
-		<delete>
-			<fileset dir="${dist.js.dir}" includes="**/*"/>
-		</delete>
-	</target>
-
-	<target name="clean-css">
-		<delete>
-			<fileset dir="${dist.css.dir}" includes="**/*"/>
-		</delete>
-	</target>
-
-	<target name="clean-src">
-		<delete>
-			<fileset dir="${dist.dir}" includes="*"/>
-		</delete>
-		<delete dir="${dist.dir}/api"></delete>
-	</target>
 
     <!-- Replace the source files with the minified and concatenated -->
     <target name="update-source-with-new-compiled-files">
@@ -188,7 +170,7 @@ Basic usage:
     </target>
 
 	<!-- run all tasks -->
-	<target name="main" depends="clean-src, clean-js, compress-global-js,  clean-css, compress-global-css, copy-selected-files, update-source-with-new-compiled-files">
+	<target name="main" depends="clean, compress-global-js, compress-global-css, copy-selected-files, update-source-with-new-compiled-files">
     </target>
 
 </project>
