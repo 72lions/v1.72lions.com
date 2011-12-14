@@ -2,7 +2,7 @@ seventytwolions.Model.locale = function(){
 
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var pageTitle = "72Lions - The playground of developer Thodoris Tsiridis"
+    var pageTitle = "72Lions - The playground of developer Thodoris Tsiridis";
     /**
      * Returns the name of the month
      * @param  {Number} monthIndex The month index
@@ -27,7 +27,7 @@ seventytwolions.Model.locale = function(){
      */
     this.getPageTitle = function (){
         return pageTitle;
-    }
+    };
 
 };
 
