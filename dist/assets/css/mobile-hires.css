@@ -33,7 +33,8 @@ header.navigation .logo-container p {
 
 
 header.navigation nav {
-    margin:10px 0px 20px 20px;
+    margin:0px 0px 30px 20px;
+    padding:0px;
 }
 
 header.navigation nav ul li a:link,
@@ -42,7 +43,7 @@ header.navigation nav ul li a:visited {
 }
 
 #sections-wrapper {
-
+    padding:0px 20px 20px 20px !important;
 }
 
 section.portfolio .centered article .description h1,
@@ -101,6 +102,10 @@ section.blog .centered article .photo .github-ribbon {
 
 section.post-details {
     padding:0px;
+}
+
+section.post-details .back {
+    display:none;
 }
 
 section.post-details .content {

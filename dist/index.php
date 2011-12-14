@@ -104,7 +104,7 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title><?php echo $title;?>72Lions - Thodoris Tsiridis - Web developer</title>
+		<title><?php echo $title;?>The playground of developer Thodoris Tsiridis</title>
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 
@@ -176,6 +176,7 @@
 					?>
 				</div>
 				<section class="post-details clearfix">
+					<a href="#" title="Back" class="back"> </a>
 					<div class="centered clearfix">
 						<div class="content">
 							<h1 class="title"></h1>

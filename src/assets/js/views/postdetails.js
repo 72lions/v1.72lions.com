@@ -20,7 +20,8 @@ seventytwolions.View.PostDetails = function() {
     var githublinkDomElement = contentDomElement.find('.github-link');
     var downloadlinkDomElement = contentDomElement.find('.download-link');
     var demolinkDomElement = contentDomElement.find('.demo-link');
-
+    var commentsDomElement = this.domElement.find('.comments');
+    var backDomElement = this.domElement.find('.back');
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -42,6 +43,7 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
+        backDomElement.bind('click', onBackClick);
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
@@ -109,6 +111,7 @@ seventytwolions.View.PostDetails = function() {
 
         if(details.Meta.dsq_thread_id) {
             console.log(details.Meta.dsq_thread_id, url);
+            commentsDomElement.css('display', 'block');
             DISQUS.reset({
               reload: true,
               config: function () {
@@ -116,6 +119,8 @@ seventytwolions.View.PostDetails = function() {
                 this.page.url = "http://72lions.com" + url;
               }
             });
+        } else {
+            commentsDomElement.css('display', 'none');
         }
     };
 
@@ -136,6 +141,12 @@ seventytwolions.View.PostDetails = function() {
      */
     this.hide = function(){
         this.domElement.removeClass('active').css('opacity', 0);
+    };
+
+    var onBackClick = function(event){
+        event.preventDefault();
+        Router.goBack(1);
+        console.log('onbackclick');
     };
 
 };

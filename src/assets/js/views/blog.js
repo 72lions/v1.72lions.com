@@ -81,7 +81,7 @@ seventytwolions.View.Blog = function() {
         var windowHeight = itemsContainer.height();
         var windowWidth = itemsContainer.width();
         var gridTop = 0;
-        var gridLeft = this.domElement.offset().left;
+        var gridLeft = 0;// this.domElement.offset().left;
         var items = [];
         var _7 = 0;
         var _8 = 0;
@@ -144,7 +144,7 @@ seventytwolions.View.Blog = function() {
                 top: target_y + COLUMN_MARGIN + "px"
             });
 
-            itemBottom = parseInt($(this).css('top'),0) + $(this).height();
+            itemBottom = parseInt($(this).offset().top,0) + $(this).innerHeight();
             if(maxHeight < itemBottom){
                 maxHeight = itemBottom;
             }

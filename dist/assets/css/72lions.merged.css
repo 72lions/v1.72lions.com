@@ -1,5 +1,5 @@
 /*
- * HTML5 âœ° Boilerplate
+ * HTML5 â?° Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -572,6 +572,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   background-color: #ebebeb;
   height: 100%;
+  min-height: 100%;
 }
 body {
   border-top: 3px solid #F02311;
@@ -585,7 +586,7 @@ body {
 #wrapper #sections-wrapper {
   position: relative;
   width: 100%;
-  padding: 0px 20px 20px 20px;
+  padding: 0px 20px 20px 125px;
   -webkit-transition: left 0.3s ease-in-out;
   -moz-transition: left 0.3s ease-in-out;
   -o-transition: left 0.3s ease-in-out;
@@ -613,6 +614,7 @@ body {
   display: block;
 }
 #wrapper footer {
+  display: none;
   background-color: #333;
   -webkit-box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.2);
@@ -667,7 +669,8 @@ header.navigation .logo-container p {
 header.navigation nav {
   display: block;
   overflow: hidden;
-  margin: 10px 30px 0px 40px;
+  margin: 10px 0px 20px 0px;
+  padding: 0px 30px 0px 125px;
   height: 60px;
 }
 header.navigation nav img {
@@ -984,12 +987,58 @@ section.blog .centered.animated article {
 
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.post-details {
-  padding: 20px;
+  padding: 0px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
   max-width: 960px;
+  position: relative;
+}
+section.post-details .back {
+  width: 60px;
+  height: 36px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  -o-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  border: 1px solid #DDD;
+  padding: 0px 5px 0px 5px;
+  -webkit-transition: background-image 0.2s, border-color 0.2s !important;
+  -moz-transition: background-image 0.2s, border-color 0.2s !important;
+  -o-transition: background-image 0.2s, border-color 0.2s !important;
+  transition: background-image 0.2s, border-color 0.2s !important;
+  color: #333 !important;
+  text-decoration: none;
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: -85px;
+  background-image: url('/assets/images/back-arrow.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+section.post-details .back:hover {
+  background-color: #f3f3f3;
+  border-color: #ccc;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ccc !important;
+}
+section.post-details .back:active {
+  -webkit-box-shadow: inset 0 0px 7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 0px 7px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0 0px 7px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0px 7px rgba(0, 0, 0, 0.2);
+  border: 1px solid #DDD;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 section.post-details .alignnone {
   display: block;
@@ -997,7 +1046,7 @@ section.post-details .alignnone {
 }
 section.post-details .content {
   padding-top: 10px;
-  max-width: 720px;
+  max-width: 550px;
   font-family: Georgia;
   color: #444;
   font-size: 12px;
