@@ -2627,6 +2627,7 @@ seventytwolions.View.PostDetails = function() {
     var demolinkDomElement = contentDomElement.find('.demo-link');
     var commentsDomElement = this.domElement.find('.comments');
     var backDomElement = this.domElement.find('.back');
+
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
