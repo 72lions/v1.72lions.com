@@ -26,8 +26,8 @@ section.portfolio {
 
             }
 
-            a:link,
-            a:visited {
+            a.title:link,
+            a.title:visited {
                 margin-top:5px;
                 display:inline-block;
                 color:#666;
@@ -74,6 +74,7 @@ section.portfolio {
                     z-index:1;
                     position:relative;
                     display:block;
+                    .transition(border-color 0.3s);
 
                     &:hover {
                         border-color:#F02311;
@@ -134,7 +135,7 @@ section.portfolio {
 
         &.animated {
 
-            li {
+            article {
                 .transition(e('left 0.3s ease-in-out, top 0.3s ease-in-out'));
             }
 

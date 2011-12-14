@@ -127,10 +127,11 @@
 		<link rel="stylesheet" href="/assets/css/ui.css" />
 		<link rel="stylesheet" href="/assets/css/layout.css" />
 		<link rel="stylesheet" href="/assets/css/navigation.css" />
+		<link rel="stylesheet" href="/assets/css/blog.css" />
 		<link rel="stylesheet" href="/assets/css/portfolio.css" />
 		<link rel="stylesheet" href="/assets/css/about.css" />
-		<link rel="stylesheet" href="/assets/css/blog.css" />
 		<link rel="stylesheet" href="/assets/css/postdetails.css" />
+		<link rel="stylesheet" href="/assets/css/footer.css" />
 		<!--end source css-->
 
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile-hires.css" />
@@ -227,7 +228,11 @@
 
 			</div>
 			<footer>
-
+				<aside class="footer-logo clearfix">
+					<a href="http://www.w3.org/html/logo/">
+						<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
+					</a>
+				</aside>
 			</footer>
 		</div>
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->

@@ -17,7 +17,7 @@ section.portfolio .centered article {
 section.portfolio .centered article.featured {
   width: 912px;
 }
-section.portfolio .centered article a:link, section.portfolio .centered article a:visited {
+section.portfolio .centered article a.title:link, section.portfolio .centered article a.title:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -29,7 +29,7 @@ section.portfolio .centered article a:link, section.portfolio .centered article 
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.portfolio .centered article a:link:hover, section.portfolio .centered article a:visited:hover {
+section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.portfolio .centered article .photo {
@@ -67,6 +67,10 @@ section.portfolio .centered article .photo img {
   z-index: 1;
   position: relative;
   display: block;
+  -webkit-transition: border-color 0.3s;
+  -moz-transition: border-color 0.3s;
+  -o-transition: border-color 0.3s;
+  transition: border-color 0.3s;
 }
 section.portfolio .centered article .photo img:hover {
   border-color: #F02311;
@@ -110,7 +114,7 @@ section.portfolio .centered article .description time {
   display: block;
   font-style: italic;
 }
-section.portfolio .centered.animated li {
+section.portfolio .centered.animated article {
   -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;

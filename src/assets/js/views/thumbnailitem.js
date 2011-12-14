@@ -14,7 +14,7 @@ seventytwolions.View.ThumbnailItem = function() {
                     '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
                 '</div>'+
                 '<div class="description">'+
-                    '<hgroup><a href="${link}" title="${title}"><h1>${title}</h1></a></hgroup>'+
+                    '<hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup>'+
                     '<time>${publishdate}</time>'+
                     '<aside>Categories: ${categories}</aside>'+
                     '<p>'+

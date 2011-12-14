@@ -19,7 +19,7 @@ section.blog .centered article {
 section.blog .centered article.featured {
   width: 456px;
 }
-section.blog .centered article a:link, section.blog .centered article a:visited {
+section.blog .centered article a.title:link, section.blog .centered article a.title:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -31,7 +31,7 @@ section.blog .centered article a:link, section.blog .centered article a:visited 
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.blog .centered article a:link:hover, section.blog .centered article a:visited:hover {
+section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.blog .centered article .photo {
@@ -106,7 +106,7 @@ section.blog .centered article .description time {
   display: block;
   font-style: italic;
 }
-section.blog .centered.animated li {
+section.blog .centered.animated article {
   -webkit-transition: left 0s ease-in-out, top 0s ease-in-out;
   -moz-transition: left 0s ease-in-out, top 0s ease-in-out;
   -o-transition: left 0s ease-in-out, top 0s ease-in-out;

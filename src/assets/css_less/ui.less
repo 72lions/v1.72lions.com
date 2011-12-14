@@ -3,17 +3,17 @@
 a.readmore:link,
 a.readmore:visited {
 
-
     .border-radius(3px);
     .box-shadow(0 1px 1px rgba(255, 255, 255, 0.5));
     border:1px solid #DDD;
     padding:5px 10px 5px 10px;
-
-    .transition(e('background-image 0.2s, border-color 0.2s'));
+    .transition(e('background-image 0.2s, border-color 0.2s !important'));
+    color:#333 !important;
+    text-decoration:none;
 
     &:hover {
 
-        color:#F02311;
+        color:#F02311 !important;
 
         background-image: linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
         background-image: -o-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
@@ -97,12 +97,23 @@ a.github-link:visited {
     }
 
     &:active {
-        background-image: -moz-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -ms-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -o-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#e0e0e0),color-stop(100%,#f3f3f3));
-        background-image: -webkit-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: linear-gradient(to bottom,#e0e0e0 0,#f3f3f3 100%);
+        background-image: linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -o-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -moz-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -webkit-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -ms-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+
+        background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.5, rgb(230,230,230)),
+            color-stop(0, rgb(242,240,240))
+        );
+
+        border-color:#999;
+
+        .box-shadow(inset 0px 0px 5px rgba(0, 0, 0, 0.2));
     }
 
     span {
@@ -154,17 +165,27 @@ a.download-link:visited {
         background-image: linear-gradient(to bottom,#f3f3f3 0,#e0e0e0 100%);
         text-decoration:none;
         border: 1px solid #AAA !important;
-        .box-shadow(e('0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff'))
+        .box-shadow(e('0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff'));
     }
 
     &:active {
-        background-image: -moz-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -ms-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -o-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#e0e0e0),color-stop(100%,#f3f3f3));
-        background-image: -webkit-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: linear-gradient(to bottom,#e0e0e0 0,#f3f3f3 100%);
-        .box-shadow(e('0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff'));
+        background-image: linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -o-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -moz-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -webkit-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -ms-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+
+        background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.5, rgb(230,230,230)),
+            color-stop(0, rgb(242,240,240))
+        );
+
+        border-color:#999;
+
+        .box-shadow(inset 0px 0px 5px rgba(0, 0, 0, 0.2));
     }
 
     span {
@@ -223,13 +244,23 @@ a.website-link:visited {
     }
 
     &:active {
-        background-image: -moz-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -ms-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -o-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#e0e0e0),color-stop(100%,#f3f3f3));
-        background-image: -webkit-linear-gradient(top,#e0e0e0 0,#f3f3f3 100%);
-        background-image: linear-gradient(to bottom,#e0e0e0 0,#f3f3f3 100%);
-        .box-shadow(e('0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff'));
+        background-image: linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -o-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -moz-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -webkit-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+        background-image: -ms-linear-gradient(bottom, rgb(230,230,230) 50%, rgb(242,240,240) 0%);
+
+        background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.5, rgb(230,230,230)),
+            color-stop(0, rgb(242,240,240))
+        );
+
+        border-color:#999;
+
+        .box-shadow(inset 0px 0px 5px rgba(0, 0, 0, 0.2));
     }
 
     span {
