@@ -40,22 +40,46 @@ Basic usage:
 	<!-- Merges all javascript files into one. Remember, order matters! -->
 	<target name="merge-global-js">
 		<concat destfile="${dist.merged.file.js}" fixlastline="yes" append="no">
-			<filelist><file name="${src.js.dir}/libs/jquery.easing.1.3.js"/></filelist>
-			<filelist><file name="${src.js.dir}/router.js"/></filelist>
-			<filelist><file name="${src.js.dir}/eventtarget.js"/></filelist>
-			<filelist><file name="${src.js.dir}/namespaces.js"/></filelist>
-			<filelist><file name="${src.js.dir}/lookup.js"/></filelist>
-			<filelist><file name="${src.js.dir}/console.js"/></filelist>
+			<filelist>
+				<file name="${src.js.dir}/libs/jquery.easing.1.3.js"/>
 
-			<filelist><file name="${src.js.dir}/controllers/base.js"/></filelist>
-			<filelist><file name="${src.js.dir}/views/base.js"/></filelist>
-			<filelist><file name="${src.js.dir}/models/base.js"/></filelist>
+				<file name="${src.js.dir}/router.js"/>
+				<file name="${src.js.dir}/eventtarget.js"/>
+				<file name="${src.js.dir}/namespaces.js"/>
+				<file name="${src.js.dir}/lookup.js"/>
+				<file name="${src.js.dir}/console.js"/>
 
-			<fileset dir="${src.js.dir}" includes="controllers/*"  excludes="controllers/base.js"/>
-			<fileset dir="${src.js.dir}" includes="models/*" excludes="models/base.js"/>
-			<fileset dir="${src.js.dir}" includes="views/*" excludes="views/base.js"/>
-			<!-- include the 72lions bootstrap last -->
-			<filelist><file name="${src.js.dir}/bootstrap.js"/></filelist>
+				<file name="${src.js.dir}/views/base.js"/>
+				<file name="${src.js.dir}/models/base.js"/>
+				<file name="${src.js.dir}/controllers/base.js"/>
+
+				<file name="${src.js.dir}/controllers/main.js"/>
+				<file name="${src.js.dir}/controllers/navigation.js"/>
+				<file name="${src.js.dir}/controllers/sectionsmanager.js"/>
+				<file name="${src.js.dir}/controllers/portfolio.js"/>
+				<file name="${src.js.dir}/controllers/experiments.js"/>
+				<file name="${src.js.dir}/controllers/blog.js"/>
+				<file name="${src.js.dir}/controllers/about.js"/>
+				<file name="${src.js.dir}/controllers/contact.js"/>
+				<file name="${src.js.dir}/controllers/thumbnailitem.js"/>
+				<file name="${src.js.dir}/controllers/postdetails.js"/>
+
+				<file name="${src.js.dir}/models/categories.js"/>
+				<file name="${src.js.dir}/models/posts.js"/>
+
+				<file name="${src.js.dir}/views/main.js"/>
+				<file name="${src.js.dir}/views/navigation.js"/>
+				<file name="${src.js.dir}/views/sectionsmanager.js"/>
+				<file name="${src.js.dir}/views/portfolio.js"/>
+				<file name="${src.js.dir}/views/experiments.js"/>
+				<file name="${src.js.dir}/views/blog.js"/>
+				<file name="${src.js.dir}/views/about.js"/>
+				<file name="${src.js.dir}/views/contact.js"/>
+				<file name="${src.js.dir}/views/thumbnailitem.js"/>
+				<file name="${src.js.dir}/views/postdetails.js"/>
+
+				<file name="${src.js.dir}/bootstrap.js"/>
+			</filelist>
 		</concat>
 	</target>
 

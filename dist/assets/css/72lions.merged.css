@@ -1,5 +1,5 @@
 /*
- * HTML5 â?° Boilerplate
+ * HTML5 âœ° Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -298,13 +298,15 @@ a.readmore:link, a.readmore:visited {
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   border: 1px solid #DDD;
   padding: 5px 10px 5px 10px;
-  -webkit-transition: background-image 0.2s, border-color 0.2s;
-  -moz-transition: background-image 0.2s, border-color 0.2s;
-  -o-transition: background-image 0.2s, border-color 0.2s;
-  transition: background-image 0.2s, border-color 0.2s;
+  -webkit-transition: background-image 0.2s, border-color 0.2s !important;
+  -moz-transition: background-image 0.2s, border-color 0.2s !important;
+  -o-transition: background-image 0.2s, border-color 0.2s !important;
+  transition: background-image 0.2s, border-color 0.2s !important;
+  color: #333 !important;
+  text-decoration: none;
 }
 a.readmore:link:hover, a.readmore:visited:hover {
-  color: #F02311;
+  color: #F02311 !important;
   background-image: linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
   background-image: -o-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
   background-image: -moz-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
@@ -379,12 +381,17 @@ a.github-link:link:hover, a.github-link:visited:hover {
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
 }
 a.github-link:link:active, a.github-link:visited:active {
-  background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0e0e0), color-stop(100%, #f3f3f3));
-  background-image: -webkit-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: linear-gradient(to bottom, #e0e0e0 0, #f3f3f3 100%);
+  background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -webkit-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -ms-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #e6e6e6), color-stop(0, #f2f0f0));
+  border-color: #999;
+  -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 a.github-link:link span, a.github-link:visited span {
   padding-left: 20px;
@@ -445,16 +452,17 @@ a.download-link:link:hover, a.download-link:visited:hover {
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
 }
 a.download-link:link:active, a.download-link:visited:active {
-  background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0e0e0), color-stop(100%, #f3f3f3));
-  background-image: -webkit-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: linear-gradient(to bottom, #e0e0e0 0, #f3f3f3 100%);
-  -webkit-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
-  -moz-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
-  -o-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
-  box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+  background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -webkit-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -ms-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #e6e6e6), color-stop(0, #f2f0f0));
+  border-color: #999;
+  -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 a.download-link:link span, a.download-link:visited span {
   font-family: Arial;
@@ -467,7 +475,10 @@ a.download-link:link span, a.download-link:visited span {
   padding-left: 20px;
   line-height: 25px;
 }
-a.demo-link:link, a.demo-link:visited {
+a.demo-link:link,
+a.demo-link:visited,
+a.website-link:link,
+a.website-link:visited {
   color: #555 !important;
   font-weight: bold;
   font-size: 11px;
@@ -497,10 +508,16 @@ a.demo-link:link, a.demo-link:visited {
   transition: all 0.218s !important;
   display: none;
 }
-a.demo-link:link.visible, a.demo-link:visited.visible {
+a.demo-link:link.visible,
+a.demo-link:visited.visible,
+a.website-link:link.visible,
+a.website-link:visited.visible {
   display: inline-block;
 }
-a.demo-link:link:hover, a.demo-link:visited:hover {
+a.demo-link:link:hover,
+a.demo-link:visited:hover,
+a.website-link:link:hover,
+a.website-link:visited:hover {
   color: #F02311 !important;
   background-image: -moz-linear-gradient(top, #f3f3f3 0, #e0e0e0 100%);
   background-image: -ms-linear-gradient(top, #f3f3f3 0, #e0e0e0 100%);
@@ -515,19 +532,26 @@ a.demo-link:link:hover, a.demo-link:visited:hover {
   -o-box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),inset 0 0 3px #fff;
 }
-a.demo-link:link:active, a.demo-link:visited:active {
-  background-image: -moz-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -ms-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -o-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0e0e0), color-stop(100%, #f3f3f3));
-  background-image: -webkit-linear-gradient(top, #e0e0e0 0, #f3f3f3 100%);
-  background-image: linear-gradient(to bottom, #e0e0e0 0, #f3f3f3 100%);
-  -webkit-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
-  -moz-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
-  -o-box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
-  box-shadow: 0 0px 0px rgba(0,0,0,0),inset 0 0 3px #fff;
+a.demo-link:link:active,
+a.demo-link:visited:active,
+a.website-link:link:active,
+a.website-link:visited:active {
+  background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -webkit-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -ms-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #e6e6e6), color-stop(0, #f2f0f0));
+  border-color: #999;
+  -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
-a.demo-link:link span, a.demo-link:visited span {
+a.demo-link:link span,
+a.demo-link:visited span,
+a.website-link:link span,
+a.website-link:visited span {
   font-family: Arial;
   font-size: 11px;
   font-style: normal;
@@ -538,17 +562,21 @@ a.demo-link:link span, a.demo-link:visited span {
   padding-left: 23px;
   line-height: 25px;
 }
+a.website-link:link span, a.website-link:visited span {
+  background-image: none;
+}
 
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 html, body {
-  height: 100%;
   background-color: #f2f0f0;
   -webkit-font-smoothing: antialiased;
   background-color: #ebebeb;
+  height: 100%;
 }
 body {
   border-top: 3px solid #F02311;
   min-height: 100%;
+  background-image: url('/assets/images/stripe_e7eb00fc0caa9bf17359f52ecb7f3416.png');
 }
 #wrapper {
   min-width: 505px;
@@ -584,6 +612,16 @@ body {
 #wrapper #sections-wrapper section.active {
   display: block;
 }
+#wrapper footer {
+  background-color: #333;
+  -webkit-box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.2);
+  height: 100px;
+  margin-top: 30px;
+  border-top: 1px solid white;
+}
 
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 header.navigation {
@@ -591,11 +629,46 @@ header.navigation {
   width: 100%;
   min-width: 505px;
 }
+header.navigation .logo-container {
+  margin: 20px 30px 0px 40px;
+}
+header.navigation .logo-container .logo {
+  float: left;
+}
+header.navigation .logo-container .logo img {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  -o-box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+header.navigation .logo-container h1 {
+  padding: 0px 0px 5px 0px;
+  margin: 5px 0px 0px 90px;
+  text-shadow: 0px 1px #ffffff;
+  font-family: 'Oswald';
+  font-size: 22px;
+  font-weight: normal;
+  color: #666;
+}
+header.navigation .logo-container p {
+  font-family: Georgia;
+  text-shadow: 0px 1px #ffffff;
+  font-size: 14px;
+  line-height: 18px;
+  display: block;
+  color: #666;
+  margin: 0px 0px 0px 90px;
+  padding: 5px 0px 0px 0px;
+}
 header.navigation nav {
   display: block;
   overflow: hidden;
-  margin: 20px 30px 0px 40px;
-  height: 52px;
+  margin: 10px 30px 0px 40px;
+  height: 60px;
 }
 header.navigation nav img {
   width: 70px;
@@ -607,7 +680,7 @@ header.navigation nav ul li {
   float: left;
   line-height: 25px;
   list-style: none;
-  margin: 0px 5px;
+  margin: 0px 9px;
   cursor: pointer;
   border-bottom: 1px dashed #ccc;
   text-shadow: 0px 1px #fff;
@@ -631,15 +704,15 @@ header.navigation nav ul li.active a:visited,
 header.navigation nav ul li:hover a:visited,
 header.navigation nav ul li.active a:hover,
 header.navigation nav ul li:hover a:hover {
-  color: #000;
+  color: #F02311;
 }
 header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   text-decoration: none;
   color: #666;
-  padding: 0px 5px 3px 6px;
+  padding: 6px 5px 6px 6px;
   display: inline-block;
-  font-family: Georgia;
-  font-size: 14px;
+  font-family: 'Oswald';
+  font-size: 24px;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
@@ -665,7 +738,7 @@ section.portfolio .centered article {
 section.portfolio .centered article.featured {
   width: 912px;
 }
-section.portfolio .centered article a:link, section.portfolio .centered article a:visited {
+section.portfolio .centered article a.title:link, section.portfolio .centered article a.title:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -677,7 +750,7 @@ section.portfolio .centered article a:link, section.portfolio .centered article 
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.portfolio .centered article a:link:hover, section.portfolio .centered article a:visited:hover {
+section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.portfolio .centered article .photo {
@@ -695,8 +768,8 @@ section.portfolio .centered article .photo {
 section.portfolio .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 0px;
+  right: 0px;
   z-index: 10;
 }
 section.portfolio .centered article .photo .github-ribbon img {
@@ -715,6 +788,13 @@ section.portfolio .centered article .photo img {
   z-index: 1;
   position: relative;
   display: block;
+  -webkit-transition: border-color 0.3s;
+  -moz-transition: border-color 0.3s;
+  -o-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+}
+section.portfolio .centered article .photo img:hover {
+  border-color: #F02311;
 }
 section.portfolio .centered article .description {
   width: 400px;
@@ -739,6 +819,7 @@ section.portfolio .centered article .description p, section.portfolio .centered 
 }
 section.portfolio .centered article .description p {
   margin: 0px 0px 10px 0px;
+  color: #444;
 }
 section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
   color: #F02311;
@@ -754,7 +835,7 @@ section.portfolio .centered article .description time {
   display: block;
   font-style: italic;
 }
-section.portfolio .centered.animated li {
+section.portfolio .centered.animated article {
   -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
@@ -807,7 +888,7 @@ section.blog .centered article {
 section.blog .centered article.featured {
   width: 456px;
 }
-section.blog .centered article a:link, section.blog .centered article a:visited {
+section.blog .centered article a.title:link, section.blog .centered article a.title:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -819,51 +900,8 @@ section.blog .centered article a:link, section.blog .centered article a:visited 
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.blog .centered article a:link:hover, section.blog .centered article a:visited:hover {
+section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   color: #F02311;
-}
-section.blog .centered article a.readmore:link, section.blog .centered article a.readmore:visited {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  -o-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-  border: 1px solid #DDD;
-  padding: 5px 10px 5px 10px;
-  -webkit-transition: background-image 0.2s, border-color 0.2s;
-  -moz-transition: background-image 0.2s, border-color 0.2s;
-  -o-transition: background-image 0.2s, border-color 0.2s;
-  transition: background-image 0.2s, border-color 0.2s;
-}
-section.blog .centered article a.readmore:link:hover, section.blog .centered article a.readmore:visited:hover {
-  color: #F02311;
-  background-image: linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -o-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -moz-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -webkit-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -ms-linear-gradient(bottom, #dcdcdc 0%, #f2f0f0 50%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dcdcdc), color-stop(0.5, #f2f0f0));
-  border-color: #999;
-  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-  -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-}
-section.blog .centered article a.readmore:link:active, section.blog .centered article a.readmore:visited:active {
-  background-image: linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -o-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -moz-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -webkit-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -ms-linear-gradient(bottom, #e6e6e6 50%, #f2f0f0 0%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #e6e6e6), color-stop(0, #f2f0f0));
-  border-color: #999;
-  -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 section.blog .centered article .photo {
   line-height: 0px;
@@ -873,8 +911,8 @@ section.blog .centered article .photo {
 section.blog .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0px;
+  right: 0px;
   z-index: 10;
 }
 section.blog .centered article .photo .github-ribbon img {
@@ -899,6 +937,9 @@ section.blog .centered article .photo img {
   -o-transition: border-color 0.3s;
   transition: border-color 0.3s;
 }
+section.blog .centered article .photo img:hover {
+  border-color: #F02311;
+}
 section.blog .centered article .description h1 {
   padding: 0px 0px 5px 0px;
   margin: 0px;
@@ -918,6 +959,7 @@ section.blog .centered article .description p, section.blog .centered article .d
 }
 section.blog .centered article .description p {
   margin: 0px 0px 10px 0px;
+  color: #444;
 }
 section.blog .centered article .description aside, section.blog .centered article .description time {
   color: #F02311;
@@ -933,7 +975,7 @@ section.blog .centered article .description time {
   display: block;
   font-style: italic;
 }
-section.blog .centered.animated li {
+section.blog .centered.animated article {
   -webkit-transition: left 0s ease-in-out, top 0s ease-in-out;
   -moz-transition: left 0s ease-in-out, top 0s ease-in-out;
   -o-transition: left 0s ease-in-out, top 0s ease-in-out;
@@ -957,7 +999,7 @@ section.post-details .content {
   padding-top: 10px;
   max-width: 720px;
   font-family: Georgia;
-  color: #666;
+  color: #444;
   font-size: 12px;
   line-height: 18px;
   font-style: italic;
@@ -999,7 +1041,7 @@ section.post-details .content h3 {
   font-style: normal;
   font-weight: normal;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
-  margin: 5px 0px 5px 0px;
+  margin: 10px 0px 10px 0px;
 }
 section.post-details .content p {
   padding: 5px 0px 5px 0px;
@@ -1039,13 +1081,19 @@ section.post-details .content iframe {
 section.post-details .content .text {
   margin-top: 10px;
 }
+section.post-details .content .text pre {
+  tab-size: 4;
+  -o-tab-size: 4;
+  -moz-tab-size: 4;
+  -webkit-tab-size: 4;
+}
 section.post-details .content .comments {
   margin-top: 20px;
   background-color: #fff;
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;

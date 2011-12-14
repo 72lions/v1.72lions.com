@@ -1,6 +1,11 @@
 <?php
-	$path = explode('/', $_SERVER["REQUEST_URI"]);
+	$output = rtrim($_SERVER["REQUEST_URI"], '/');
+	$path = explode('/', $output);
 	$section = $path[count($path) - 1];
+
+	if(count($path) === 4 && $section === '') {
+		$section = $path[count($path) - 2];
+	}
 
 	$id = -1;
 	$title = '';
@@ -141,6 +146,17 @@
 
 	<body>
 		<header class="navigation">
+			<div class="logo-container">
+				<a href="#" title="72lions.com Homepage" class="logo">
+					<img src="/assets/images/logo.png" alt="72lions logo" />
+				</a>
+				<h1>
+					Welcome to my playground
+				</h1>
+				<p>
+					My name is Thodoris Tsiridis and I am a web developer from Greece. <br/>I am currently living a great life in Stockholm, Sweden!
+				</p>
+			</div>
 			<nav>
 				<!--<img src="http://vps.72lions.com/wp-content/themes/wordfolio/images/001/logo.png" alt="72Lions logo" />-->
 				<ul class="clearfix">
@@ -202,7 +218,11 @@
 
 			</div>
 			<footer>
-
+				<aside class="footer-logo clearfix">
+					<a href="http://www.w3.org/html/logo/">
+						<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
+					</a>
+				</aside>
 			</footer>
 		</div>
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
