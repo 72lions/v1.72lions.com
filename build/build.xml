@@ -149,6 +149,14 @@ Basic usage:
 		</copy>
 	</target>
 
+    <target name="clean">
+        <delete dir="${dist.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${dist.dir}/assets/" />
+        <mkdir dir="${dist.dir}/assets/js" />
+        <mkdir dir="${dist.dir}/assets/css" />
+    </target>
+
 	<target name="clean-js">
 		<delete>
 			<fileset dir="${dist.js.dir}" includes="**/*"/>
