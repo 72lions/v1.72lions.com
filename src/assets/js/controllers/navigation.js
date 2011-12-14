@@ -27,7 +27,7 @@ seventytwolions.Controller.Navigation = function() {
     var onMenuItemClicked = function(event){
 
         // Push the current url
-        Router.push(null, event.title, '/' + event.path);
+        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), '/' + event.path);
 
     };
 

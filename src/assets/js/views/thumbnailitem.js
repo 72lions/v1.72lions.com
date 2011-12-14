@@ -189,7 +189,7 @@ seventytwolions.View.ThumbnailItem = function() {
         url = pubDate.getFullYear() + '/' + month + '/' + slug;
         title = $(this).attr('title') + ' - 72Lions - Thodoris Tsiridis - Web developer';
         // Push the current url
-        Router.push(null, title, '/' + url);
+        Router.push(null, title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), '/' + url);
 
     };
 
