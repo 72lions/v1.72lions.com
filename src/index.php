@@ -186,7 +186,7 @@
 					?>
 				</div>
 				<section class="post-details clearfix">
-					<a href="#" title="Back" class="back"> </a>
+					<a href="#" title="Back" class="back"><span></span></a>
 					<div class="centered clearfix">
 						<div class="content">
 							<h1 class="title"></h1>

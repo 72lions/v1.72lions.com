@@ -34,7 +34,7 @@ section.portfolio .centered article a.title:link:hover, section.portfolio .cente
 }
 section.portfolio .centered article .photo {
   line-height: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   position: relative;
   float: left;
   margin-right: 20px;
