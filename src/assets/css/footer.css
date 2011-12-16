@@ -1,6 +1,45 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-footer .footer-logo {
-  float: right;
-  margin: 20px;
+footer aside {
+  padding: 20px;
   display: inline-block;
+}
+footer aside.menu {
+  padding-left: 120px;
+  float: left;
+  min-width: 100px;
+}
+footer aside.menu nav a:link, footer aside.menu nav a:visited {
+  text-decoration: none;
+  color: #ccc;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  display: block;
+  font-size: 15px;
+  font-family: 'Oswald';
+  padding: 2px 0px 2px 0px;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+footer aside.menu nav a:link:hover, footer aside.menu nav a:visited:hover {
+  color: #F02311;
+}
+footer aside.latest-tweets {
+  float: left;
+  color: #ccc;
+  max-width: 350px;
+  font-size: 15px;
+  font-family: 'Oswald';
+}
+footer aside.latest-tweets hgroup h1 {
+  padding: 0px;
+  margin: 0px;
+  font-weight: normal;
+}
+footer aside.latest-tweets p {
+  font-family: Georgia;
+  font-size: 12px;
+}
+footer aside.footer-logo {
+  float: right;
 }

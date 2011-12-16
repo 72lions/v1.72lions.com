@@ -123,6 +123,8 @@ seventytwolions.View.PostDetails = function() {
         } else {
             commentsDomElement.css('display', 'none');
         }
+
+        document.title = details.Title + ' - ' + seventytwolions.Model.Locale.getPageTitle();
     };
 
     /**
@@ -147,7 +149,6 @@ seventytwolions.View.PostDetails = function() {
     var onBackClick = function(event){
         event.preventDefault();
         Router.goBack(1);
-        console.log('onbackclick');
     };
 
 };

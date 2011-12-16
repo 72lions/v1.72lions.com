@@ -229,7 +229,22 @@
 				</section>
 
 			</div>
-			<footer>
+			<footer class="clearfix">
+				<aside class="menu">
+					<nav>
+						<a href="category/blog" class="nav-blog" title="Blog">Blog</a>
+						<!--<a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a>-->
+						<a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
+						<a href="about" class="nav-about" title="About">About</a>
+					</nav>
+				</aside>
+				<aside class="latest-tweets">
+					<article>
+						<hgroup><h1>Latest Tweets</h1></hgroup>
+						<p>@JacekZ @fmmm Sthlm's way to say welcome! Throw a pile of snow on your head! Same happened when I first came in Sthlm.</p>
+						<p>@claudioguglieri true!</p>
+					</article>
+				</aside>
 				<aside class="footer-logo clearfix">
 					<a href="http://www.w3.org/html/logo/">
 						<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">

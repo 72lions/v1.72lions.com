@@ -5,7 +5,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.lookup = function() {
+seventytwolions.Lookup = (function(global) {
 
     var _models         = {},
         _views          = {},
@@ -160,7 +160,10 @@ seventytwolions.lookup = function() {
             return _models[name][exists].classType;
         }
     };
-};
+
+    return this;
+
+})(window);
 
 // Instantiate the lookup so that we can use it as a singleton
-seventytwolions.Lookup = new seventytwolions.lookup();
+//seventytwolions.Lookup = new seventytwolions.lookup();

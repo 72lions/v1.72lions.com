@@ -2,9 +2,63 @@
 
 footer {
 
-    .footer-logo {
-        float: right;
-        margin:20px;
+    aside {
+
+        padding:20px;
         display:inline-block;
+
+        &.menu {
+
+            padding-left:120px;
+            float:left;
+            min-width:100px;
+
+            nav {
+
+                a:link,
+                a:visited {
+                    text-decoration:none;
+                    color:#ccc;
+                    text-shadow:0px 1px 1px rgba(0, 0, 0, 0.5);
+                    display:block;
+                    font-size:15px;
+                    font-family:@fontMain;
+                    padding:2px 0px 2px 0px;
+                    .transition(color 0.2s);
+
+                    &:hover {
+                        color:#F02311;
+                    }
+                }
+
+            }
+
+        }
+
+        &.latest-tweets {
+            float:left;
+            color:#ccc;
+            max-width:350px;
+            font-size:15px;
+            font-family:@fontMain;
+
+            hgroup {
+
+                h1 {
+                    padding:0px;
+                    margin:0px;
+                    font-weight:normal;
+                }
+            }
+
+            p {
+                font-family:@fontGeorgia;
+                font-size:12px;
+            }
+        }
+
+        &.footer-logo {
+            float: right;
+        }
     }
 }

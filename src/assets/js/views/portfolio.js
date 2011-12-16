@@ -46,6 +46,8 @@ seventytwolions.View.Portfolio = function() {
             that.domElement.css('opacity', 1);
         }, 10);
 
+        document.title = 'Portfolio - ' + seventytwolions.Model.Locale.getPageTitle();
+
     };
     /**
      * Hides the view
