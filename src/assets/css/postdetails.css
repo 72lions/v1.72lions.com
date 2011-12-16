@@ -168,16 +168,8 @@ section.post-details .content .text pre {
 }
 section.post-details .content .comments {
   margin-top: 20px;
-  background-color: #fff;
-  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  -o-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
   padding: 20px;
+  border-top: 1px dashed #999;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
