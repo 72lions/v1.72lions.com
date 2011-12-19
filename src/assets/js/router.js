@@ -53,7 +53,7 @@ var Router = (function(global){
     /**
      * Replaces the current state with a new state
      * @public
-     * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
+     * @param {Ojbect} state The state could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
      * @param {String} url The url that we need to push
      * @returns
@@ -120,6 +120,7 @@ var Router = (function(global){
      * @public
      * @param {String} path The name of the event e.x. segment1/segment2
      * @param {Function} callback The function to execute
+     * @param {Number} priority The priority of the callback function
      * @returns
      * @type void
      * @author Thodoris Tsiridis
@@ -202,7 +203,6 @@ var Router = (function(global){
      * This is function is triggered on a window popstate
      * @private
      * @param {Object} e The object returned from the event
-     *
      * @returns
      * @type void
      * @author Thodoris Tsiridis
