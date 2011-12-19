@@ -14,6 +14,10 @@ header.navigation .logo-container {
     padding:20px 30px 0px 20px;
     line-height:50px;
 }
+header.navigation .logo-container .logo {
+    position:static;
+    float:left;
+}
 
 header.navigation .logo-container .logo img {
     width:50px;

@@ -164,10 +164,10 @@
 			<nav>
 				<!--<img src="http://vps.72lions.com/wp-content/themes/wordfolio/images/001/logo.png" alt="72Lions logo" />-->
 				<ul class="clearfix">
-					<li><a href="category/blog" class="nav-blog" title="Blog">Blog</a></li>
+					<li><a href="/category/blog" class="nav-blog" title="Blog">Blog</a></li>
 					<!--<li><a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>-->
-					<li><a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
-					<li><a href="about" class="nav-about" title="About">About</a></li>
+					<li><a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
+					<li><a href="/about" class="nav-about" title="About">About</a></li>
 				</ul>
 			</nav>
 		</header>

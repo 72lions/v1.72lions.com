@@ -4,10 +4,13 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.controllerManager = function() {
+seventytwolions.ControllerManager = (function(global) {
 
     var newController;
-    this.data = null;
+    var api = {};
+
+    api.data = null;
+
 
     /**
      * Initializes a controller with a specific name
@@ -16,11 +19,10 @@ seventytwolions.controllerManager = function() {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(object) {
+    api.initializeController = function(object) {
         return seventytwolions.Lookup.getController(object);
     };
 
-};
+    return api;
 
-// Instantiate the controller manager so that we can use it as a singleton
-seventytwolions.ControllerManager = new seventytwolions.controllerManager();
+})(window);

@@ -1,5 +1,5 @@
 /*
- * HTML5 âœ° Boilerplate
+ * HTML5 â?° Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -641,7 +641,10 @@ header.navigation .logo-container {
   padding: 20px 30px 0px 40px;
 }
 header.navigation .logo-container .logo {
-  float: left;
+  position: fixed;
+  top: 25px;
+  left: 24px;
+  z-index: 1000;
 }
 header.navigation .logo-container .logo img {
   -webkit-border-radius: 5px;
@@ -655,7 +658,7 @@ header.navigation .logo-container .logo img {
 }
 header.navigation .logo-container h1 {
   padding: 0px 0px 5px 0px;
-  margin: 2px 0px 0px 90px;
+  margin: 2px 0px 0px 84px;
   text-shadow: 0px 1px #ffffff;
   font-family: 'Oswald';
   font-size: 22px;
@@ -669,7 +672,7 @@ header.navigation .logo-container p {
   line-height: 18px;
   display: block;
   color: #666;
-  margin: 0px 0px 0px 90px;
+  margin: 0px 0px 0px 84px;
   padding: 5px 0px 0px 0px;
 }
 header.navigation nav {
@@ -1011,7 +1014,7 @@ section.post-details .back {
   -o-box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   border: 1px solid #DDD !important;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 11px 5px 10px;
   -webkit-transition: background-image 0.2s, border-color 0.2s !important;
   -moz-transition: background-image 0.2s, border-color 0.2s !important;
   -o-transition: background-image 0.2s, border-color 0.2s !important;
@@ -1021,8 +1024,8 @@ section.post-details .back {
   font-size: 11px;
   display: inline-block;
   position: fixed;
-  top: 201px;
-  left: 40px;
+  top: 205px;
+  left: 39px;
 }
 section.post-details .back:hover {
   color: #F02311 !important;
@@ -1055,7 +1058,7 @@ section.post-details .back span {
   display: inline-block;
   background-image: url('/assets/images/back-arrow.png');
   background-repeat: no-repeat;
-  background-position: center 3px;
+  background-position: center 4px;
   padding: 0px 5px 0px 5px;
   width: 25px;
   height: 20px;

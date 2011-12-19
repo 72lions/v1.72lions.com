@@ -9,7 +9,10 @@ header.navigation .logo-container {
   padding: 20px 30px 0px 40px;
 }
 header.navigation .logo-container .logo {
-  float: left;
+  position: fixed;
+  top: 25px;
+  left: 24px;
+  z-index: 1000;
 }
 header.navigation .logo-container .logo img {
   -webkit-border-radius: 5px;
@@ -23,7 +26,7 @@ header.navigation .logo-container .logo img {
 }
 header.navigation .logo-container h1 {
   padding: 0px 0px 5px 0px;
-  margin: 2px 0px 0px 90px;
+  margin: 2px 0px 0px 84px;
   text-shadow: 0px 1px #ffffff;
   font-family: 'Oswald';
   font-size: 22px;
@@ -37,7 +40,7 @@ header.navigation .logo-container p {
   line-height: 18px;
   display: block;
   color: #666;
-  margin: 0px 0px 0px 90px;
+  margin: 0px 0px 0px 84px;
   padding: 5px 0px 0px 0px;
 }
 header.navigation nav {

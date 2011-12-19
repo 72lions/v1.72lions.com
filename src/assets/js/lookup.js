@@ -9,7 +9,8 @@ seventytwolions.Lookup = (function(global) {
 
     var _models         = {},
         _views          = {},
-        _controllers    = {};
+        _controllers    = {},
+        api             = {};
 
     /**
      * Returns a controller with a specific name
@@ -21,7 +22,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.getController = function(attributes) {
+    api.getController = function(attributes) {
         var className, id, model, controllerObj;
         var exists = -1;
 
@@ -73,7 +74,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.View.Base
      * @author Thodoris Tsiridis
      */
-    this.getView = function(className, id) {
+    api.getView = function(className, id) {
         var exists = -1, viewObj;
 
         // Check if there is an array with objects of className type
@@ -118,7 +119,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
      */
-    this.getModel = function(attributes) {
+    api.getModel = function(attributes) {
         var exists = -1, modelObj, name, modelData;
         modelData = attributes.data || {};
         name = attributes.type || 'Base';
@@ -161,9 +162,6 @@ seventytwolions.Lookup = (function(global) {
         }
     };
 
-    return this;
+    return api;
 
 })(window);
-
-// Instantiate the lookup so that we can use it as a singleton
-//seventytwolions.Lookup = new seventytwolions.lookup();

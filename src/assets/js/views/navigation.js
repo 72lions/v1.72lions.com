@@ -10,7 +10,7 @@ seventytwolions.View.Navigation = function() {
     var me = this;
 
 	this.domElement = $('.navigation');
-
+    this.clickedItem = undefined;
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -62,13 +62,27 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     var onLinkClick = function(e){
+        var $item;
+
         e.preventDefault();
 
         // Cache the item
-        var $item = $(this);
+        $item = me.clickedItem = $(this);
 
-        // Dispatch the event
-        me.dispatchEvent({type: 'menuClicked', path:$item.attr('href'), title:$item.attr('title')});
+        // Check if the item that was clicked was the logo
+        // and if it was use a delay so that we first scroll up
+        if($item.hasClass('logo')){
+            delay = 200;
+            // Scroll to top
+            $('body,html').stop().animate({scrollTop:0}, delay, 'easeOutQuint');
+        } else {
+            delay = 0;
+        }
+
+        setTimeout(function(){
+            // Dispatch the event
+            me.dispatchEvent({type: 'menuClicked', path: me.clickedItem.attr('href'), title: me.clickedItem.attr('title')});
+        }, delay + 100);
 
         // Clear memory
         $item = null;

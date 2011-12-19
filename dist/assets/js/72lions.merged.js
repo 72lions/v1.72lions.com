@@ -53,7 +53,7 @@ var Router = (function(global){
     /**
      * Replaces the current state with a new state
      * @public
-     * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
+     * @param {Ojbect} state The state could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
      * @param {String} url The url that we need to push
      * @returns
@@ -120,6 +120,7 @@ var Router = (function(global){
      * @public
      * @param {String} path The name of the event e.x. segment1/segment2
      * @param {Function} callback The function to execute
+     * @param {Number} priority The priority of the callback function
      * @returns
      * @type void
      * @author Thodoris Tsiridis
@@ -202,7 +203,6 @@ var Router = (function(global){
      * This is function is triggered on a window popstate
      * @private
      * @param {Object} e The object returned from the event
-     *
      * @returns
      * @type void
      * @author Thodoris Tsiridis
@@ -486,15 +486,11 @@ var EventTarget = function () {
     this.addEventListener = function ( type, listener ) {
 
         if ( listeners[ type ] === undefined ) {
-
             listeners[ type ] = [];
-
         }
 
         if ( listeners[ type ].indexOf( listener ) === - 1 ) {
-
             listeners[ type ].push( listener );
-
         }
 
     };
@@ -502,9 +498,7 @@ var EventTarget = function () {
     this.dispatchEvent = function ( event ) {
 
         for ( var listener in listeners[ event.type ] ) {
-
             listeners[ event.type ][ listener ]( event );
-
         }
 
     };
@@ -514,14 +508,13 @@ var EventTarget = function () {
         var index = listeners[ type ].indexOf( listener );
 
         if ( index !== - 1 ) {
-
             listeners[ type ].splice( index, 1 );
-
         }
 
     };
 
 };
+
 var seventytwolions = {};
 seventytwolions.Controller = seventytwolions.Controller || {};
 seventytwolions.View = seventytwolions.View || {};
@@ -567,10 +560,13 @@ seventytwolions.Model.Locale = new seventytwolions.Model.locale();
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.controllerManager = function() {
+seventytwolions.ControllerManager = (function(global) {
 
     var newController;
-    this.data = null;
+    var api = {};
+
+    api.data = null;
+
 
     /**
      * Initializes a controller with a specific name
@@ -579,14 +575,13 @@ seventytwolions.controllerManager = function() {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(object) {
+    api.initializeController = function(object) {
         return seventytwolions.Lookup.getController(object);
     };
 
-};
+    return api;
 
-// Instantiate the controller manager so that we can use it as a singleton
-seventytwolions.ControllerManager = new seventytwolions.controllerManager();
+})(window);
 
 /**
  * Lookup for models views and controllers
@@ -599,7 +594,8 @@ seventytwolions.Lookup = (function(global) {
 
     var _models         = {},
         _views          = {},
-        _controllers    = {};
+        _controllers    = {},
+        api             = {};
 
     /**
      * Returns a controller with a specific name
@@ -611,7 +607,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    this.getController = function(attributes) {
+    api.getController = function(attributes) {
         var className, id, model, controllerObj;
         var exists = -1;
 
@@ -663,7 +659,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.View.Base
      * @author Thodoris Tsiridis
      */
-    this.getView = function(className, id) {
+    api.getView = function(className, id) {
         var exists = -1, viewObj;
 
         // Check if there is an array with objects of className type
@@ -708,7 +704,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
      */
-    this.getModel = function(attributes) {
+    api.getModel = function(attributes) {
         var exists = -1, modelObj, name, modelData;
         modelData = attributes.data || {};
         name = attributes.type || 'Base';
@@ -751,46 +747,41 @@ seventytwolions.Lookup = (function(global) {
         }
     };
 
-    return this;
+    return api;
 
 })(window);
 
-// Instantiate the lookup so that we can use it as a singleton
-//seventytwolions.Lookup = new seventytwolions.lookup();
+seventytwolions.Console = (function(global){
 
-seventytwolions.console = function(){
+    // Declaring the API
+    var api = {};
 
-	// Declaring the API
-	var api = {};
+    api.debug = true;
 
-	api.debug = true;
+    /**
+     * Logs out a message
+     * @private
+     * @param Multiple arguments
+     * @returns Nothing
+     * @type null
+     * @author Thodoris Tsiridis
+     */
+    var log = function() {
 
-	/**
-	 * Logs out a message
-	 * @private
-	 * @param Multiple arguments
-	 * @returns Nothing
-	 * @type null
-	 * @author Thodoris Tsiridis
-	 */
-	var log = function() {
+        if(api.debug){
+            /*console.log(arguments)*/;
+        }
 
-		if(api.debug){
-			/*console.log(arguments)*/;
-		}
+    };
 
-	};
+    // Exposing functions
+    api.log = log;
 
-	// Exposing functions
-	api.log = log;
+    // Return the api
+    return api;
 
-	// Return the api
-	return api;
+})(window);
 
-};
-
-// Instantiate the model so that we can use it as a singleton
-seventytwolions.Console = new seventytwolions.console();
 /**
  * Base View
  *
@@ -1146,7 +1137,7 @@ seventytwolions.Controller.Navigation = function() {
     var onMenuItemClicked = function(event){
 
         // Push the current url
-        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), '/' + event.path);
+        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
 
     };
 
@@ -1882,7 +1873,7 @@ seventytwolions.View.Navigation = function() {
     var me = this;
 
 	this.domElement = $('.navigation');
-
+    this.clickedItem = undefined;
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -1934,13 +1925,27 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     var onLinkClick = function(e){
+        var $item;
+
         e.preventDefault();
 
         // Cache the item
-        var $item = $(this);
+        $item = me.clickedItem = $(this);
 
-        // Dispatch the event
-        me.dispatchEvent({type: 'menuClicked', path:$item.attr('href'), title:$item.attr('title')});
+        // Check if the item that was clicked was the logo
+        // and if it was use a delay so that we first scroll up
+        if($item.hasClass('logo')){
+            delay = 200;
+            // Scroll to top
+            $('body,html').stop().animate({scrollTop:0}, delay, 'easeOutQuint');
+        } else {
+            delay = 0;
+        }
+
+        setTimeout(function(){
+            // Dispatch the event
+            me.dispatchEvent({type: 'menuClicked', path: me.clickedItem.attr('href'), title: me.clickedItem.attr('title')});
+        }, delay + 100);
 
         // Clear memory
         $item = null;
