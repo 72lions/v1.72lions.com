@@ -9,38 +9,21 @@
   Location: Stockholm
 
 /* THANKS */
-  Names (& URL):
   Justin Windle http://soulwire.co.uk
   Paul Lewis http://aerotwist.com
   David Lindkvist http://davidlindkvist.com
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: jQuery
-  Software:
+  Components: jQuery, Router
+  Software: Sublime Text 2
 
 
 
-                               -o/-
-                               +oo//-
-                              :ooo+//:
-                             -ooooo///-
-                             /oooooo//:
-                            :ooooooo+//-
-                           -+oooooooo///-
-           -://////////////+oooooooooo++////////////::
-            :+ooooooooooooooooooooooooooooooooooooo+:::-
-              -/+ooooooooooooooooooooooooooooooo+/::////:-
-                -:+oooooooooooooooooooooooooooo/::///////:-
-                  --/+ooooooooooooooooooooo+::://////:-
-                     -:+ooooooooooooooooo+:://////:--
-                       /ooooooooooooooooo+//////:-
-                      -ooooooooooooooooooo////-
-                      /ooooooooo+oooooooooo//:
-                     :ooooooo+/::/+oooooooo+//-
-                    -oooooo/::///////+oooooo///-
-                    /ooo+::://////:---:/+oooo//:
-                   -o+/::///////:-      -:/+o+//-
-                   :-:///////:-            -:/://
-                     -////:-                 --//:
-                       --                       -:
+ ________    ___    __
+/\_____  \ /'___`\ /\ \       __
+\/___//'/'/\_\ /\ \\ \ \     /\_\    ___     ___     ____
+    /' /' \/_/// /__\ \ \  __\/\ \  / __`\ /' _ `\  /',__\
+  /' /'      // /_\ \\ \ \L\ \\ \ \/\ \L\ \/\ \/\ \/\__, `\
+ /\_/       /\______/ \ \____/ \ \_\ \____/\ \_\ \_\/\____/
+ \//        \/_____/   \/___/   \/_/\/___/  \/_/\/_/\/___/

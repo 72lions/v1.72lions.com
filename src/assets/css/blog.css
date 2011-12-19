@@ -69,7 +69,7 @@ section.blog .centered article .photo img {
   transition: border-color 0.3s;
 }
 section.blog .centered article .photo img:hover {
-  border-color: #F02311;
+  border-color: #f3f3f3;
 }
 section.blog .centered article .description h1 {
   padding: 0px 0px 5px 0px;
@@ -90,7 +90,7 @@ section.blog .centered article .description p, section.blog .centered article .d
 }
 section.blog .centered article .description p {
   margin: 0px 0px 10px 0px;
-  color: #444;
+  color: #555;
 }
 section.blog .centered article .description aside, section.blog .centered article .description time {
   color: #F02311;
@@ -102,7 +102,7 @@ section.blog .centered article .description aside {
 }
 section.blog .centered article .description time {
   font-size: 11px;
-  color: #999;
+  color: #666;
   display: block;
   font-style: italic;
 }

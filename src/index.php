@@ -105,11 +105,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 		<title><?php echo $title;?>72Lions - The playground of developer Thodoris Tsiridis</title>
-		<meta name="description" content="" />
-		<meta name="author" content="" />
+		<meta name="description" content="My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!" />
+		<meta name="author" content="Thodoris Tsiridis" />
 
 		<!-- Mobile viewport optimized: j.mp/bplateviewport -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<link rel="author" href="humans.txt" />
+
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<!-- For iPhone 4 with high-resolution Retina display: -->
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
@@ -158,7 +161,7 @@
 	<body>
 		<header class="navigation">
 			<div class="logo-container">
-				<a href="#" title="72lions.com Homepage" class="logo">
+				<a href="/category/blog" class="logo" title="Blog" class="logo">
 					<img src="/assets/images/logo.png" alt="72lions logo" />
 				</a>
 				<h1>

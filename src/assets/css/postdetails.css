@@ -76,17 +76,17 @@ section.post-details .content {
   max-width: 550px;
   font-family: Georgia;
   color: #444;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 18px;
-  font-style: italic;
   float: left;
 }
 section.post-details .content .categories {
   color: #F02311;
+  font-style: italic;
 }
 section.post-details .content time {
   font-size: 11px;
-  color: #999;
+  color: #666;
   display: block;
   font-style: italic;
   margin-bottom: 0px;
@@ -94,7 +94,6 @@ section.post-details .content time {
 section.post-details .content h1 {
   font-family: 'Oswald';
   font-size: 38px;
-  font-style: normal;
   font-weight: normal;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
   padding: 0px;
@@ -105,7 +104,6 @@ section.post-details .content h1 {
 section.post-details .content h2 {
   font-size: 30px;
   font-family: 'Oswald';
-  font-style: normal;
   font-weight: normal;
   line-height: 37px;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
@@ -116,7 +114,6 @@ section.post-details .content h3 {
   font-size: 25px;
   line-height: 32px;
   font-family: 'Oswald';
-  font-style: normal;
   font-weight: normal;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
   margin: 10px 0px 10px 0px;
