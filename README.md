@@ -12,7 +12,7 @@ This is the entire source code for 72lions.com. Along with the source code there
 ### Important
 The app is only tested in modern browsers like Chrome, Firefox, Safari, iPhone 3/4/4s and iPad Mobile Safari.  
 Although I have added support for IE it is not tested in that browser.  
-The reason for doing this is because I don't want to waste my time in order to support a crappy browser like IE when most of the people that will be interested in reading my website won't user IE in any case.  
+The reason for doing this is because I don't want to waste my time in order to support a crappy browser like IE when most of the people that will be interested in reading my website won't use IE in any case.  
 
 ### Dependencies
 1. jQuery 1.6.4 http://jquery.com/ (included in the src)
