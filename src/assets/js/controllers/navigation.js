@@ -1,6 +1,10 @@
 /**
- * Navigatio Controller
+ * Navigation Controller
  *
+ * @module 72lions
+ * @class Navigation
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

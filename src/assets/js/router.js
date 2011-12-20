@@ -1,8 +1,10 @@
-/** Routing manager is responsible for listening to popstates in order to dispatch events
- * Clients can register their interest on these events
+/**
+ * Routing manager is responsible for listening to popstates in order to dispatch events. Clients can register their interest on these events
  *
+ * @module Router
+ * @class Router
  * @author Thodoris Tsiridis
- * @version 0.2
+ * @version 1.0
  */
 var Router = (function(global){
 
@@ -18,12 +20,13 @@ var Router = (function(global){
 
     /**
      * Pushes a new state on the history api
+     *
+     * @method push
+     *
      * @public
      * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
      * @param {String} url The url that we need to push
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.push = function(state, title, url){
@@ -52,12 +55,13 @@ var Router = (function(global){
 
     /**
      * Replaces the current state with a new state
+     *
+     * @method replace
+     *
      * @public
      * @param {Ojbect} state The state could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
      * @param {String} url The url that we need to push
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.replace = function(state, title, url){
@@ -86,11 +90,12 @@ var Router = (function(global){
 
     /**
      * Registers a specific callback to a specific event
+     *
+     * @method registerForEvent
+     *
      * @public
      * @param {String} eventType The name of the event e.x. push, pop
      * @param {Function} callback The function to execute
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.registerForEvent = function(eventType, callback){
@@ -117,12 +122,13 @@ var Router = (function(global){
 
     /**
      * Registers a specific callback to a specific path
+     *
+     * @method registerForPathChange
+     *
      * @public
      * @param {String} path The name of the event e.x. segment1/segment2
      * @param {Function} callback The function to execute
      * @param {Number} priority The priority of the callback function
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.registerForPathChange = function(path, callback, priority){
@@ -167,10 +173,11 @@ var Router = (function(global){
 
     /**
      * It goes back in history
+     *
+     * @method goBack
+     *
      * @public
      * @param {Integer} steps The number of steps that you want to go backwards
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.goBack = function(steps){
@@ -179,20 +186,24 @@ var Router = (function(global){
 
     /**
      * It goes forward in history
+     *
+     * @method goForward
+     *
      * @public
      * @param {Integer} steps The number of steps that you want to go forward
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.goForward = function(steps){
         history.go(steps === null || steps === undefined ? 1 : steps);
     };
+
     /**
      * It returns the state of the object
+     *
+     * @method getState
+     *
      * @public
-     * @returns
-     * @type Object
+     * @return {Object}
      * @author Thodoris Tsiridis
      */
     this.getState = function(){
@@ -201,10 +212,11 @@ var Router = (function(global){
 
     /**
      * This is function is triggered on a window popstate
+     *
+     * @method onPopstate
+     *
      * @private
      * @param {Object} e The object returned from the event
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var onPopstate = function(e) {
@@ -232,18 +244,11 @@ var Router = (function(global){
 
     /**
      * Gets the current state by reading the URL
+     *
+     * @method getState
+     *
      * @private
-     * @returns Returns an object with the following keys
-     *      {String} domain The domain of the url
-     *      {String} hash The hashs value if it exists. If not then it is null
-     *      {Array} hashSegments An array with all the hashes if more than one
-     *      {Boolean} isRefresh If the state was poped after a refresh the value is true
-     *      {String} path The url path
-     *      {Array} pathSegments An array with all the path segments
-     *      {String} port The port of the url
-     *      {String} query The query that follows the ?
-     *      {String} url The full URL
-     * @type void
+     * @return {Object} Returns an object with the following keys
      * @author Thodoris Tsiridis
      */
     var getState = function(){
@@ -255,10 +260,11 @@ var Router = (function(global){
 
     /**
      * Notifies all the registered members
+     *
+     * @method notifyRegisteredMembers
+     *
      * @private
      * @param {String} eventType The name of the event e.x. push, pop
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var notifyRegisteredMembers = function(eventType) {
@@ -275,10 +281,11 @@ var Router = (function(global){
 
     /**
      * Notifies all the registered members when a path change happens
+     *
+     * @method notifyRegisteredPathChangeMembers
+     *
      * @private
      * @param {String} path The path e.x. segment1/segment2
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var notifyRegisteredPathChangeMembers = function(path){
@@ -298,10 +305,11 @@ var Router = (function(global){
 
     /**
      * Sorts the array based on priority
+     *
+     * @method sortRegisteredPathMembers
+     *
      * @private
      * @param {String} path The path e.x. segment1/segment2
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var sortRegisteredPathMembers = function(path){
@@ -313,9 +321,10 @@ var Router = (function(global){
 
     /**
      * Performs a check to see if the hash has changed and triggers then onPopstate function
+     *
+     * @method checkHashChange
+     *
      * @private
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var checkHashChange = function(){
@@ -330,14 +339,13 @@ var Router = (function(global){
     };
 
     /**
-     * Parses a url and returns an object containing the folowing data (if found):
+     * Parses a url and returns an object containing the folowing data (if found): protocol, domain, post, path and path segments, hash and hash segments, query string and an object containing a key/value pair representation of the query
      *
-     * protocol, domain, post, path and path segments, hash and hash segments, query
-     * string and an object containing a key/value pair representation of the query
+     * @method parseURL
      *
-     * @public
+     * @private
      * @param {String} url The url that we need to parse
-     * @returns {Object} The object containing the different segments from the parsed URL
+     * @return {Object} The object containing the different segments from the parsed URL
      * @author Justin Windle
      */
     var parseURL = function( url ) {
@@ -402,9 +410,11 @@ var Router = (function(global){
 
     /**
      * Checks if the history API is supported
-     * @public
-     * @returns A Boolean value
-     * @type Boolean
+     *
+     * @method supportsHistoryAPI
+     *
+     * @private
+     * @return {Boolean} True if the history api is supported
      * @author Thodoris Tsiridis
      */
     var supportsHistoryAPI = function(){
@@ -413,9 +423,11 @@ var Router = (function(global){
 
     /**
      * Checks if the onhashchange is supported
-     * @public
-     * @returns A Boolean value
-     * @type Boolean
+     *
+     * @method supportsHashChange
+     *
+     * @private
+     * @return {Boolean} True if hash change event is supported
      * @author Thodoris Tsiridis
      */
     var supportsHashChange = function(){
@@ -424,9 +436,10 @@ var Router = (function(global){
 
     /**
      * Sorts an array based on the priority key
-     * @public
-     * @returns
-     * @type void
+     *
+     * @method sortByPriority
+     *
+     * @private
      * @author Thodoris Tsiridis
      */
     var sortByPriority = function(a, b){
@@ -437,9 +450,10 @@ var Router = (function(global){
 
     /**
      * Initalizes the utility
-     * @public
-     * @returns
-     * @type void
+     *
+     * @method init
+     *
+     * @private
      * @author Thodoris Tsiridis
      */
     var init = function(){

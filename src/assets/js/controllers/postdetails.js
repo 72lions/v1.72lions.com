@@ -1,6 +1,10 @@
 /**
- * About Controller
+ * PostDetails Controller
  *
+ * @module 72lions
+ * @class PostDetails
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

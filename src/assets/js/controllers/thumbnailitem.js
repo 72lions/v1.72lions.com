@@ -1,6 +1,10 @@
 /**
- * Portfolio Item Controller
+ * ThumbnailItem Controller
  *
+ * @module 72lions
+ * @class ThumbnailItem
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

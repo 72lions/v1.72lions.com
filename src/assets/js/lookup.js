@@ -1,7 +1,9 @@
 /**
- * Lookup for models views and controllers
- * Initializes or returns new controllers, views or models
+ * Lookup up utility that loads or creates controllers, views and models
  *
+ * @module 72lions
+ * @class Lookup
+ * @namespace seventytwolions
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -14,6 +16,9 @@ seventytwolions.Lookup = (function(global) {
 
     /**
      * Returns a controller with a specific name
+     *
+     * @method getController
+     *
      * @param {String} className The name of the controllers
      * @param {String} id The unique id for this controller
      * @param {String} viewClassName The name of a different view
@@ -68,6 +73,9 @@ seventytwolions.Lookup = (function(global) {
 
     /**
      * Returns a view with a specific name
+     *
+     * @method getView
+     *
      * @param {String} name The name of the controllers
      * @param {String} id The unique id for this controller
      * @returns A view
@@ -113,6 +121,9 @@ seventytwolions.Lookup = (function(global) {
 
     /**
      * Returns a model with a specific name
+     *
+     * @method getModel
+     *
      * @param {String} name The name of the controllers
      * @param {Object} modelData The data of the model
      * @returns A model

@@ -1,6 +1,10 @@
 /**
  * About View
  *
+ * @module 72lions
+ * @class About
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

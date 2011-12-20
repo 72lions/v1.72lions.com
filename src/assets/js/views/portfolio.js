@@ -1,6 +1,10 @@
 /**
  * Portfolio View
  *
+ * @module 72lions
+ * @class Portfolio
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

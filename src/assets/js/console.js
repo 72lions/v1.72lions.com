@@ -1,3 +1,12 @@
+/**
+ * Console is used for outputing console.log messages
+ *
+ * @module 72lions
+ * @class Console
+ * @namespace seventytwolions
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Console = (function(global){
 
     // Declaring the API

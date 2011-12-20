@@ -122,7 +122,6 @@
 		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<link rel="icon" href="/favicon.ico" />
 
 		<!--source css-->
@@ -137,6 +136,7 @@
 		<link rel="stylesheet" href="/assets/css/footer.css" />
 		<!--end source css-->
 
+		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile-hires.css" />
 		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 768px)" href="/assets/css/ipad.css" />
 
@@ -204,7 +204,6 @@
 									<script type="text/javascript">
 									    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 									    var disqus_shortname = '72lions'; // required: replace example with your forum shortname
-										var disqus_developer = 1;
 
 									    /* * * DON'T EDIT BELOW THIS LINE * * */
 									    (function() {

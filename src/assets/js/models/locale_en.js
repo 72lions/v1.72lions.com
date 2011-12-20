@@ -1,4 +1,14 @@
-seventytwolions.Model.locale = function(){
+/**
+ * Locale Model
+ *
+ * @module 72lions
+ * @class Locale
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Model.Locale = (function(global){
 
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -29,6 +39,6 @@ seventytwolions.Model.locale = function(){
         return pageTitle;
     };
 
-};
+    return this;
 
-seventytwolions.Model.Locale = new seventytwolions.Model.locale();
+})(window);

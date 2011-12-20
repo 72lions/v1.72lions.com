@@ -1,8 +1,10 @@
-/** Routing manager is responsible for listening to popstates in order to dispatch events
- * Clients can register their interest on these events
+/**
+ * Routing manager is responsible for listening to popstates in order to dispatch events. Clients can register their interest on these events
  *
+ * @module Router
+ * @class Router
  * @author Thodoris Tsiridis
- * @version 0.2
+ * @version 1.0
  */
 var Router = (function(global){
 
@@ -18,12 +20,13 @@ var Router = (function(global){
 
     /**
      * Pushes a new state on the history api
+     *
+     * @method push
+     *
      * @public
      * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
      * @param {String} url The url that we need to push
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.push = function(state, title, url){
@@ -52,12 +55,13 @@ var Router = (function(global){
 
     /**
      * Replaces the current state with a new state
+     *
+     * @method replace
+     *
      * @public
      * @param {Ojbect} state The state could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
      * @param {String} url The url that we need to push
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.replace = function(state, title, url){
@@ -86,11 +90,12 @@ var Router = (function(global){
 
     /**
      * Registers a specific callback to a specific event
+     *
+     * @method registerForEvent
+     *
      * @public
      * @param {String} eventType The name of the event e.x. push, pop
      * @param {Function} callback The function to execute
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.registerForEvent = function(eventType, callback){
@@ -117,12 +122,13 @@ var Router = (function(global){
 
     /**
      * Registers a specific callback to a specific path
+     *
+     * @method registerForPathChange
+     *
      * @public
      * @param {String} path The name of the event e.x. segment1/segment2
      * @param {Function} callback The function to execute
      * @param {Number} priority The priority of the callback function
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.registerForPathChange = function(path, callback, priority){
@@ -167,10 +173,11 @@ var Router = (function(global){
 
     /**
      * It goes back in history
+     *
+     * @method goBack
+     *
      * @public
      * @param {Integer} steps The number of steps that you want to go backwards
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.goBack = function(steps){
@@ -179,20 +186,24 @@ var Router = (function(global){
 
     /**
      * It goes forward in history
+     *
+     * @method goForward
+     *
      * @public
      * @param {Integer} steps The number of steps that you want to go forward
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     this.goForward = function(steps){
         history.go(steps === null || steps === undefined ? 1 : steps);
     };
+
     /**
      * It returns the state of the object
+     *
+     * @method getState
+     *
      * @public
-     * @returns
-     * @type Object
+     * @return {Object}
      * @author Thodoris Tsiridis
      */
     this.getState = function(){
@@ -201,10 +212,11 @@ var Router = (function(global){
 
     /**
      * This is function is triggered on a window popstate
+     *
+     * @method onPopstate
+     *
      * @private
      * @param {Object} e The object returned from the event
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var onPopstate = function(e) {
@@ -232,18 +244,11 @@ var Router = (function(global){
 
     /**
      * Gets the current state by reading the URL
+     *
+     * @method getState
+     *
      * @private
-     * @returns Returns an object with the following keys
-     *      {String} domain The domain of the url
-     *      {String} hash The hashs value if it exists. If not then it is null
-     *      {Array} hashSegments An array with all the hashes if more than one
-     *      {Boolean} isRefresh If the state was poped after a refresh the value is true
-     *      {String} path The url path
-     *      {Array} pathSegments An array with all the path segments
-     *      {String} port The port of the url
-     *      {String} query The query that follows the ?
-     *      {String} url The full URL
-     * @type void
+     * @return {Object} Returns an object with the following keys
      * @author Thodoris Tsiridis
      */
     var getState = function(){
@@ -255,10 +260,11 @@ var Router = (function(global){
 
     /**
      * Notifies all the registered members
+     *
+     * @method notifyRegisteredMembers
+     *
      * @private
      * @param {String} eventType The name of the event e.x. push, pop
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var notifyRegisteredMembers = function(eventType) {
@@ -275,10 +281,11 @@ var Router = (function(global){
 
     /**
      * Notifies all the registered members when a path change happens
+     *
+     * @method notifyRegisteredPathChangeMembers
+     *
      * @private
      * @param {String} path The path e.x. segment1/segment2
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var notifyRegisteredPathChangeMembers = function(path){
@@ -298,10 +305,11 @@ var Router = (function(global){
 
     /**
      * Sorts the array based on priority
+     *
+     * @method sortRegisteredPathMembers
+     *
      * @private
      * @param {String} path The path e.x. segment1/segment2
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var sortRegisteredPathMembers = function(path){
@@ -313,9 +321,10 @@ var Router = (function(global){
 
     /**
      * Performs a check to see if the hash has changed and triggers then onPopstate function
+     *
+     * @method checkHashChange
+     *
      * @private
-     * @returns
-     * @type void
      * @author Thodoris Tsiridis
      */
     var checkHashChange = function(){
@@ -330,14 +339,13 @@ var Router = (function(global){
     };
 
     /**
-     * Parses a url and returns an object containing the folowing data (if found):
+     * Parses a url and returns an object containing the folowing data (if found): protocol, domain, post, path and path segments, hash and hash segments, query string and an object containing a key/value pair representation of the query
      *
-     * protocol, domain, post, path and path segments, hash and hash segments, query
-     * string and an object containing a key/value pair representation of the query
+     * @method parseURL
      *
-     * @public
+     * @private
      * @param {String} url The url that we need to parse
-     * @returns {Object} The object containing the different segments from the parsed URL
+     * @return {Object} The object containing the different segments from the parsed URL
      * @author Justin Windle
      */
     var parseURL = function( url ) {
@@ -402,9 +410,11 @@ var Router = (function(global){
 
     /**
      * Checks if the history API is supported
-     * @public
-     * @returns A Boolean value
-     * @type Boolean
+     *
+     * @method supportsHistoryAPI
+     *
+     * @private
+     * @return {Boolean} True if the history api is supported
      * @author Thodoris Tsiridis
      */
     var supportsHistoryAPI = function(){
@@ -413,9 +423,11 @@ var Router = (function(global){
 
     /**
      * Checks if the onhashchange is supported
-     * @public
-     * @returns A Boolean value
-     * @type Boolean
+     *
+     * @method supportsHashChange
+     *
+     * @private
+     * @return {Boolean} True if hash change event is supported
      * @author Thodoris Tsiridis
      */
     var supportsHashChange = function(){
@@ -424,9 +436,10 @@ var Router = (function(global){
 
     /**
      * Sorts an array based on the priority key
-     * @public
-     * @returns
-     * @type void
+     *
+     * @method sortByPriority
+     *
+     * @private
      * @author Thodoris Tsiridis
      */
     var sortByPriority = function(a, b){
@@ -437,9 +450,10 @@ var Router = (function(global){
 
     /**
      * Initalizes the utility
-     * @public
-     * @returns
-     * @type void
+     *
+     * @method init
+     *
+     * @private
      * @author Thodoris Tsiridis
      */
     var init = function(){
@@ -476,9 +490,13 @@ var Router = (function(global){
 })(window);
 
 /**
- * @author mr.doob / http://mrdoob.com/
+ * Event target is used as a mixin so that the classes can support dispatch events and add events commands
+ *
+ * @module EventTarget
+ * @class EventTarget
+ * @author Thodoris Tsiridis
+ * @version 1.0
  */
-
 var EventTarget = function () {
 
     var listeners = {};
@@ -519,7 +537,17 @@ var seventytwolions = {};
 seventytwolions.Controller = seventytwolions.Controller || {};
 seventytwolions.View = seventytwolions.View || {};
 seventytwolions.Model = seventytwolions.Model || {};
-seventytwolions.Model.locale = function(){
+/**
+ * Locale Model
+ *
+ * @module 72lions
+ * @class Locale
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Model.Locale = (function(global){
 
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -550,19 +578,28 @@ seventytwolions.Model.locale = function(){
         return pageTitle;
     };
 
-};
+    return this;
 
-seventytwolions.Model.Locale = new seventytwolions.Model.locale();
+})(window);
 
 /**
- * Controller Manager
+ * The controller manager is responsible for instantiating controllers
  *
+ * @module 72lions
+ * @class ControllerManager
+ * @namespace seventytwolions
  * @author Thodoris Tsiridis
  * @version 1.0
  */
 seventytwolions.ControllerManager = (function(global) {
 
     var newController;
+    /**
+     * Will be used to expose private functions
+     *
+     * @private
+     * @type Object
+     */
     var api = {};
 
     api.data = null;
@@ -571,22 +608,25 @@ seventytwolions.ControllerManager = (function(global) {
     /**
      * Initializes a controller with a specific name
      * @param {Object} object The parameters
-     * @returns A controller
-     * @type seventytwolions.Controller.Base
+     * @return {seventytwolions.Controller.Base}
      * @author Thodoris Tsiridis
      */
-    api.initializeController = function(object) {
+    var initializeController = function(object) {
         return seventytwolions.Lookup.getController(object);
     };
+
+    api.initializeController = initializeController;
 
     return api;
 
 })(window);
 
 /**
- * Lookup for models views and controllers
- * Initializes or returns new controllers, views or models
+ * Lookup up utility that loads or creates controllers, views and models
  *
+ * @module 72lions
+ * @class Lookup
+ * @namespace seventytwolions
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -599,6 +639,9 @@ seventytwolions.Lookup = (function(global) {
 
     /**
      * Returns a controller with a specific name
+     *
+     * @method getController
+     *
      * @param {String} className The name of the controllers
      * @param {String} id The unique id for this controller
      * @param {String} viewClassName The name of a different view
@@ -653,6 +696,9 @@ seventytwolions.Lookup = (function(global) {
 
     /**
      * Returns a view with a specific name
+     *
+     * @method getView
+     *
      * @param {String} name The name of the controllers
      * @param {String} id The unique id for this controller
      * @returns A view
@@ -698,6 +744,9 @@ seventytwolions.Lookup = (function(global) {
 
     /**
      * Returns a model with a specific name
+     *
+     * @method getModel
+     *
      * @param {String} name The name of the controllers
      * @param {Object} modelData The data of the model
      * @returns A model
@@ -751,6 +800,15 @@ seventytwolions.Lookup = (function(global) {
 
 })(window);
 
+/**
+ * Console is used for outputing console.log messages
+ *
+ * @module 72lions
+ * @class Console
+ * @namespace seventytwolions
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Console = (function(global){
 
     // Declaring the API
@@ -785,6 +843,9 @@ seventytwolions.Console = (function(global){
 /**
  * Base View
  *
+ * @module 72lions
+ * @class Base
+ * @namespace seventytwolions.View
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -893,6 +954,15 @@ seventytwolions.View.Base = function() {
 
 };
 
+/**
+ * Base Model
+ *
+ * @module 72lions
+ * @class Base
+ * @namespace seventytwolions.Model
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Model.Base = function(){
 
     var data = {};
@@ -939,9 +1009,10 @@ seventytwolions.Model.Base = function(){
 
 /**
  * Base Controller
- * @param {String} className the name of the class that we initialized
- * @param {String} id The unique id of this class
- * @param {String} viewClassName The class of the view (in case we want a different view)
+ *
+ * @module 72lions
+ * @class Base
+ * @namespace seventytwolions.Controller
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1020,6 +1091,10 @@ seventytwolions.Controller.Base = function() {
 /**
  * Main Controller
  *
+ * @module 72lions
+ * @class Main
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1109,8 +1184,12 @@ seventytwolions.Controller.Main = function() {
 seventytwolions.Controller.Main.prototype = new seventytwolions.Controller.Base();
 
 /**
- * Navigatio Controller
+ * Navigation Controller
  *
+ * @module 72lions
+ * @class Navigation
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1146,8 +1225,12 @@ seventytwolions.Controller.Navigation = function() {
 seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
 
 /**
- * Sections Manager Controller
+ * SectionsManager Controller
  *
+ * @module 72lions
+ * @class SectionsManager
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1281,6 +1364,10 @@ seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Contr
 /**
  * Portfolio Controller
  *
+ * @module 72lions
+ * @class Portfolio
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1386,6 +1473,10 @@ seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.
 /**
  * Experiments Controller
  *
+ * @module 72lions
+ * @class Experiments
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1426,6 +1517,10 @@ seventytwolions.Controller.Experiments.prototype = new seventytwolions.Controlle
 /**
  * Blog Controller
  *
+ * @module 72lions
+ * @class Blog
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1517,6 +1612,10 @@ seventytwolions.Controller.Blog.prototype = new seventytwolions.Controller.Base(
 /**
  * About Controller
  *
+ * @module 72lions
+ * @class About
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1557,6 +1656,10 @@ seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base
 /**
  * Contact Controller
  *
+ * @module 72lions
+ * @class Contact
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1595,8 +1698,12 @@ seventytwolions.Controller.Contact = function() {
 seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
 
 /**
- * Portfolio Item Controller
+ * ThumbnailItem Controller
  *
+ * @module 72lions
+ * @class ThumbnailItem
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1618,8 +1725,12 @@ seventytwolions.Controller.ThumbnailItem = function() {
 seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();
 
 /**
- * About Controller
+ * PostDetails Controller
  *
+ * @module 72lions
+ * @class PostDetails
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1684,6 +1795,16 @@ seventytwolions.Controller.PostDetails = function() {
 
 seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
 
+/**
+ * Categories Model
+ *
+ * @module 72lions
+ * @class Categories
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Model.Categories = function(){
 
     var CATEGORIES_URL = '/api/getCategories.php';
@@ -1737,6 +1858,16 @@ seventytwolions.Model.Categories = function(){
 
 seventytwolions.Model.Categories.prototype = new seventytwolions.Model.Base();
 
+/**
+ * Posts Model
+ *
+ * @module 72lions
+ * @class Posts
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Model.Posts = function(){
 
     // Constants
@@ -1826,6 +1957,10 @@ seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
 /**
  * Main View
  *
+ * @module 72lions
+ * @class Main
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1864,6 +1999,10 @@ seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
 /**
  * Navigation View
  *
+ * @module 72lions
+ * @class Navigation
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -1956,15 +2095,30 @@ seventytwolions.View.Navigation = function() {
 seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
 
 /**
- * Sections Manager View
+ * SectionsManager View
  *
+ * @module 72lions
+ * @class SectionsManager
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
 seventytwolions.View.SectionsManager = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.SectionsManager
+     */
     var me = this;
 
+    /**
+     * The HTML Element
+     *
+     * @type Object
+     */
 	this.domElement = $('#sections-wrapper');
 
     /**
@@ -1998,6 +2152,10 @@ seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base()
 /**
  * Portfolio View
  *
+ * @module 72lions
+ * @class Portfolio
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -2070,6 +2228,10 @@ seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
 /**
  * Experiments View
  *
+ * @module 72lions
+ * @class Experiments
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -2129,6 +2291,10 @@ seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();
 /**
  * Blog View
  *
+ * @module 72lions
+ * @class Blog
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -2301,6 +2467,10 @@ seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
 /**
  * About View
  *
+ * @module 72lions
+ * @class About
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -2356,6 +2526,10 @@ seventytwolions.View.About.prototype = new seventytwolions.View.Base();
 /**
  * Contact View
  *
+ * @module 72lions
+ * @class Contact
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -2413,8 +2587,12 @@ seventytwolions.View.Contact = function() {
 seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
 
 /**
- * Portfolio Item View
+ * ThumbnailItem View
  *
+ * @module 72lions
+ * @class ThumbnailItem
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
@@ -2622,6 +2800,10 @@ seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();
 /**
  * PostDetails View
  *
+ * @module 72lions
+ * @class PostDetails
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

@@ -1,13 +1,11 @@
 /**
- * Component loader
+ * The component loader initializes components
  *
- * The component loaded is responsible for identifying all the components
- * by searching the DOM tree and it then creates and instanciates all the
- * components
- *
+ * @module 72lions
+ * @class Componentloader
+ * @namespace seventytwolions
  * @author Thodoris Tsiridis
- * @version 1
- * @requires jQuery
+ * @version 1.0
  */
 seventytwolions.Componentloader = (function(global){
 
@@ -24,8 +22,9 @@ seventytwolions.Componentloader = (function(global){
 
     /**
     * Initializes the component loader
-    * @param {jQuery DOM Element} $context
+    *
     * @private
+    * @param {jQuery DOM Element} $context
     * @author Thodoris Tsiridis
     */
     var initializeComponents = function($context){
@@ -74,9 +73,10 @@ seventytwolions.Componentloader = (function(global){
 
     /**
      * Returns an instance of a instanciated component
+     *
      * @private
      * @param {String} id The id of the instance
-     * @returns The instance of a function
+     * @return The instance of a function
      * @type {Function}
      * @author Thodoris Tsiridis
      */
@@ -96,6 +96,7 @@ seventytwolions.Componentloader = (function(global){
 
     /**
      * Registers a component with the component loader
+     *
      * @private
      * @param {String} name The name of the component
      * @param {Funcion} component The component itself

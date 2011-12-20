@@ -1,6 +1,10 @@
 /**
  * PostDetails View
  *
+ * @module 72lions
+ * @class PostDetails
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

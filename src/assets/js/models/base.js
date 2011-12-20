@@ -1,3 +1,12 @@
+/**
+ * Base Model
+ *
+ * @module 72lions
+ * @class Base
+ * @namespace seventytwolions.Model
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Model.Base = function(){
 
     var data = {};

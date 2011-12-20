@@ -1,6 +1,10 @@
 /**
  * Contact View
  *
+ * @module 72lions
+ * @class Contact
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

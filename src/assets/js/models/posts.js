@@ -1,3 +1,13 @@
+/**
+ * Posts Model
+ *
+ * @module 72lions
+ * @class Posts
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Model.Posts = function(){
 
     // Constants

@@ -1,6 +1,10 @@
 /**
  * Blog View
  *
+ * @module 72lions
+ * @class Blog
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

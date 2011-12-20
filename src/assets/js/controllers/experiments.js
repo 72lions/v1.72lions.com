@@ -1,6 +1,10 @@
 /**
  * Experiments Controller
  *
+ * @module 72lions
+ * @class Experiments
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */

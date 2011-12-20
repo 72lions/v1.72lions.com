@@ -1,7 +1,11 @@
 /**
- * @author mr.doob / http://mrdoob.com/
+ * Event target is used as a mixin so that the classes can support dispatch events and add events commands
+ *
+ * @module EventTarget
+ * @class EventTarget
+ * @author Thodoris Tsiridis
+ * @version 1.0
  */
-
 var EventTarget = function () {
 
     var listeners = {};

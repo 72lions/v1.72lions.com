@@ -1,8 +1,9 @@
 /**
  * Base Controller
- * @param {String} className the name of the class that we initialized
- * @param {String} id The unique id of this class
- * @param {String} viewClassName The class of the view (in case we want a different view)
+ *
+ * @module 72lions
+ * @class Base
+ * @namespace seventytwolions.Controller
  * @author Thodoris Tsiridis
  * @version 1.0
  */

@@ -1,12 +1,21 @@
 /**
- * Controller Manager
+ * The controller manager is responsible for instantiating controllers
  *
+ * @module 72lions
+ * @class ControllerManager
+ * @namespace seventytwolions
  * @author Thodoris Tsiridis
  * @version 1.0
  */
 seventytwolions.ControllerManager = (function(global) {
 
     var newController;
+    /**
+     * Will be used to expose private functions
+     *
+     * @private
+     * @type Object
+     */
     var api = {};
 
     api.data = null;
@@ -15,13 +24,14 @@ seventytwolions.ControllerManager = (function(global) {
     /**
      * Initializes a controller with a specific name
      * @param {Object} object The parameters
-     * @returns A controller
-     * @type seventytwolions.Controller.Base
+     * @return {seventytwolions.Controller.Base}
      * @author Thodoris Tsiridis
      */
-    api.initializeController = function(object) {
+    var initializeController = function(object) {
         return seventytwolions.Lookup.getController(object);
     };
+
+    api.initializeController = initializeController;
 
     return api;
 

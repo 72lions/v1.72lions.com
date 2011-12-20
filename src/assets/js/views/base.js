@@ -1,6 +1,9 @@
 /**
  * Base View
  *
+ * @module 72lions
+ * @class Base
+ * @namespace seventytwolions.View
  * @author Thodoris Tsiridis
  * @version 1.0
  */

@@ -1,13 +1,28 @@
 /**
- * Sections Manager View
+ * SectionsManager View
  *
+ * @module 72lions
+ * @class SectionsManager
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
 seventytwolions.View.SectionsManager = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.SectionsManager
+     */
     var me = this;
 
+    /**
+     * The HTML Element
+     *
+     * @type Object
+     */
 	this.domElement = $('#sections-wrapper');
 
     /**

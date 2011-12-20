@@ -1,3 +1,13 @@
+/**
+ * Categories Model
+ *
+ * @module 72lions
+ * @class Categories
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 seventytwolions.Model.Categories = function(){
 
     var CATEGORIES_URL = '/api/getCategories.php';
