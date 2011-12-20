@@ -3,21 +3,37 @@
 
 
 /* TEAM */
-  Thdooris Tsiridis
-  Site: http://72lions.com
-  Twitter: 72Lions
-  Location: Stockholm
+Thdooris Tsiridis
+Site: http://72lions.com
+Twitter: 72Lions
+Location: Stockholm
 
 /* THANKS */
-  Justin Windle http://soulwire.co.uk
-  Paul Lewis http://aerotwist.com
-  David Lindkvist http://davidlindkvist.com
+Justin Windle http://soulwire.co.uk
+Paul Lewis http://aerotwist.com
+David Lindkvist http://davidlindkvist.com
 
 /* SITE */
-  Standards: HTML5, CSS3
-  Components: jQuery, Router
-  Software: Sublime Text 2
+Standards: HTML5, CSS3
+Components: jQuery, Router
+Software: Sublime Text 2
 
+/* DEPENDENCIES */
+1. jQuery 1.6.4 http://jquery.com/ (included in the src)
+2. Modernizr 2.0.6 http://www.modernizr.com/ (included in the src)
+3. jQuery Easing 1.3 http://gsgd.co.uk/sandbox/jquery/easing/ (included in the src)
+4. EventTarget https://github.com/mrdoob/eventtarget.js/ (included in the src)
+5. Router https://github.com/72lions/Router (included in the src)
+6. Memcached PHP http://memcached.org/ (NOT included. You need to install it)
+   For Windows check http://pureform.wordpress.com/2008/01/10/installing-memcache-on-windows-for-php/)
+   For OSX check http://www.lecloud.net/post/3102678831/install-memcached-php-memcached-extension-under-mac
+   For Linux distributions check http://amiworks.co.in/talk/step-by-step-guide-to-install-memcache-on-linux/
+   These are just examples of how to install memcached on the most popular OS, so it might be the case that won't work on everybody. You can search on Google on how to setup memcached if you need more help.
+7. PHP http://php.net
+8. Apache with mod_rewrite enabled http://www.apache.org/
+9. MySQL http://www.mysql.com/
+10.Wordpress 3.2+ http://wordpress.org/
+11.Ant http://ant.apache.org/ (for building the entire website)
 
 
  ________    ___    __
