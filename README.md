@@ -9,12 +9,12 @@
 
 This is the entire source code for 72lions.com. Along with the source code there is a build folder that uses ant for building the website.  
 
-## Important
+### Important
 The app is only tested in modern browsers like Chrome, Firefox, Safari, iPhone 3/4/4s and iPad Mobile Safari.  
 Although I have added support for IE it is not tested in that browser.  
 The reason for doing this is because I don't want to waste my time in order to support a crappy browser like IE when most of the people that will be interested in reading my website won't user IE in any case.  
 
-## Dependencies
+### Dependencies
 1. jQuery 1.6.4 http://jquery.com/ (included in the src)
 2. Modernizr 2.0.6 http://www.modernizr.com/ (included in the src)
 3. jQuery Easing 1.3 http://gsgd.co.uk/sandbox/jquery/easing/ (included in the src)
@@ -31,7 +31,7 @@ The reason for doing this is because I don't want to waste my time in order to s
 10.Wordpress 3.2+ http://wordpress.org/
 11.Ant http://ant.apache.org/ (for building the entire website)
 
-## Config
+### Config
 1. MySQL connection  
    Go to src/api/classes/api.php and modified the following variables  
 
@@ -62,7 +62,7 @@ The reason for doing this is because I don't want to waste my time in order to s
 
 ### That's it! You are all set!
 
-## Build  
+### Build  
 1. Go into the build folder  
 2. Run ant (make sure that you have properly installed ant on your computer)  
 
