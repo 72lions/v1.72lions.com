@@ -52,6 +52,7 @@ seventytwolions.View.Blog = function() {
         document.title = 'Blog - ' + seventytwolions.Model.Locale.getPageTitle();
 
         this.domElement.addClass('active');
+
         setTimeout(function(){
             that.domElement.css('opacity', 1);
         }, 10);
@@ -77,7 +78,6 @@ seventytwolions.View.Blog = function() {
     };
 
     this.positionItems = function() {
-
 
         var domItems = itemsContainer.find('article');
         var domItemsFeatured = itemsContainer.find('article.featured');

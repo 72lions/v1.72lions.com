@@ -1,4 +1,10 @@
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+a:hover {
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
 a.readmore:link, a.readmore:visited {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

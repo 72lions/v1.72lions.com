@@ -2180,6 +2180,7 @@ seventytwolions.View.Blog = function() {
         document.title = 'Blog - ' + seventytwolions.Model.Locale.getPageTitle();
 
         this.domElement.addClass('active');
+
         setTimeout(function(){
             that.domElement.css('opacity', 1);
         }, 10);
@@ -2205,7 +2206,6 @@ seventytwolions.View.Blog = function() {
     };
 
     this.positionItems = function() {
-
 
         var domItems = itemsContainer.find('article');
         var domItemsFeatured = itemsContainer.find('article.featured');
@@ -2591,19 +2591,27 @@ seventytwolions.View.ThumbnailItem = function() {
     var onThumbnailClicked = function(event) {
         var model, pubDate, slug, url, month, title;
 
+        // Prevent the default functionality
         event.preventDefault();
+
+        // Get the model
         model = me.getModel();
 
+        // Create the link by using the publish date and the slug
         pubDate = model.get('PublishDate');
         slug = model.get('Slug');
         pubDate = new Date(pubDate.replace(/-/g ,'/'));
-
         month = (pubDate.getMonth() + 1);
         month = month.toString().length === 1 ? '0' + month : month;
+
         url = pubDate.getFullYear() + '/' + month + '/' + slug;
         title = $(this).attr('title') + ' - 72Lions - Thodoris Tsiridis - Web developer';
+
         // Push the current url
         Router.push(null, title, '/' + url);
+
+        // Move to top
+        window.scrollTo(0, 0);
 
     };
 

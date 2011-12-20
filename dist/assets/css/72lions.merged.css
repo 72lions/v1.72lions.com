@@ -1,5 +1,5 @@
 /*
- * HTML5 â?° Boilerplate
+ * HTML5 âœ° Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -287,6 +287,12 @@ td { vertical-align: top; }
 }
 
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+a:hover {
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
 a.readmore:link, a.readmore:visited {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -757,12 +763,12 @@ section.portfolio .centered article a.title:link, section.portfolio .centered ar
   text-decoration: none;
   font-size: 11px;
   text-shadow: 0px 1px #ffffff;
+}
+section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
   transition: color 0.2s;
-}
-section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.portfolio .centered article .photo {
@@ -907,12 +913,12 @@ section.blog .centered article a.title:link, section.blog .centered article a.ti
   text-decoration: none;
   font-size: 11px;
   text-shadow: 0px 1px #ffffff;
+}
+section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
   transition: color 0.2s;
-}
-section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.blog .centered article .photo {

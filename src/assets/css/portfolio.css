@@ -24,12 +24,12 @@ section.portfolio .centered article a.title:link, section.portfolio .centered ar
   text-decoration: none;
   font-size: 11px;
   text-shadow: 0px 1px #ffffff;
+}
+section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
   transition: color 0.2s;
-}
-section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.portfolio .centered article .photo {

@@ -26,12 +26,12 @@ section.blog .centered article a.title:link, section.blog .centered article a.ti
   text-decoration: none;
   font-size: 11px;
   text-shadow: 0px 1px #ffffff;
+}
+section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
   transition: color 0.2s;
-}
-section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.blog .centered article .photo {
