@@ -59,7 +59,7 @@ The reason for doing this is because I don't want to waste my time in order to s
    Make sure that you set the src folder as the root on Apache.
    If you don't want the app to be on the root then you have to modify the Router basePath (read the documentation) and the path for the CSS/JS and image files.
 
-## That's it! You are all set!
+### That's it! You are all set!
 
 ## Build
 1. Go into the build folder
