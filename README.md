@@ -44,7 +44,7 @@ protected static $DB_HOST = '';
 // The mysql db name  
 protected static $DB_NAME = '';  
 
-**Memcached connection  **
+**Memcached connection**  
 Go to src/api/classes/mc.php and modified the following variables  
 
 // The memcached server host   
