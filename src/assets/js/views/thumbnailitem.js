@@ -13,9 +13,11 @@ seventytwolions.View.ThumbnailItem = function() {
     this.isFeatured = false;
 
     var me = this;
+    var IMAGES_PATH = 'http://72lions.com/wp-content/uploads/';
+
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
-                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
+                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" /></a>'+
                 '</div>'+
                 '<div class="description">'+
                     '<hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup>'+
@@ -77,7 +79,7 @@ seventytwolions.View.ThumbnailItem = function() {
      */
     this.render = function() {
 
-        var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail, thumbnailFile;
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
@@ -119,19 +121,24 @@ seventytwolions.View.ThumbnailItem = function() {
         body = body.replace(/\${categories}/g, categoriesStr);
 
         thumbnail = model.get('Thumbnail');
+        thumbnailFile = thumbnail.File.split('/');
+        thumbnailFile = thumbnailFile[0] + '/' + thumbnailFile[1] + '/';
+
         if(thumbnail.Data !== null && thumbnail.Data !== undefined){
+
             hasThumbnail = true;
+
             if(this.isFeatured){
                 imgWidth = thumbnail.Data.sizes.medium.width;
                 imgHeight = thumbnail.Data.sizes.medium.height;
+                thumbnailFile += thumbnail.Data.sizes.medium.file;
             } else {
                 imgWidth = thumbnail.Data.sizes.thumbnail.width;
                 imgHeight = thumbnail.Data.sizes.thumbnail.height;
+                thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
             }
 
-            body = body.replace(/\${image}/g, '/wp-content/uploads/' + thumbnail.File);
-            body = body.replace(/\${imgwidth}/g, imgWidth);
-            body = body.replace(/\${imgheight}/g, imgHeight);
+            body = body.replace(/\${image}/g, IMAGES_PATH + thumbnailFile);
 
         }
         //seventytwolions.Console.log('Drawing view with name ' + this.name);

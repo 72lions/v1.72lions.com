@@ -24,6 +24,16 @@ seventytwolions.Model.Base = function(){
     };
 
     /**
+     * Gets the model data
+     *
+     * @return {Object} The data
+     * @author Thodoris Tsiridis
+     */
+    this.getData = function() {
+        return data;
+    };
+
+    /**
      * Sets the name of the model
      *
      * @param {String} name The name/type of the model
