@@ -63,7 +63,7 @@ seventytwolions.View.Portfolio = function() {
 
     /**
      * Adds a portfolio item to the view
-     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){

@@ -15,6 +15,7 @@ seventytwolions.View.Navigation = function() {
 
 	this.domElement = $('.navigation');
     this.clickedItem = undefined;
+
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -53,6 +54,7 @@ seventytwolions.View.Navigation = function() {
 
     /**
      * Registers all the event listeners
+     *
      * @private
      * @author Thodoris Tsiridis
      */
@@ -62,7 +64,9 @@ seventytwolions.View.Navigation = function() {
 
     /**
      * Triggered when we click a link
+     *
      * @private
+     * @param {Object} e The event
      * @author Thodoris Tsiridis
      */
     var onLinkClick = function(e){

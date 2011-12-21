@@ -18,6 +18,8 @@ seventytwolions.Controller.Base = function() {
 
     /**
      * Initializes the plugin
+     *
+     * @param {Object} attributes The attributes to be used while initializing a controller
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
@@ -40,8 +42,7 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function() {
@@ -49,9 +50,8 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
-     * Returns the view of the specific controller
-     * @returns A view
-     * @type seventytwolions.View.Base
+     * Returns the view of the specific view
+     * @return {seventytwolions.View.Base} The Base view
      * @author Thodoris Tsiridis
      */
     this.getView = function() {
@@ -59,9 +59,8 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
-     * Returns the model of the specific controller
-     * @returns A view
-     * @type seventytwolions.Model.Base
+     * Returns the model of the specific model
+     * @return {seventytwolions.Model.Base} The Base model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -71,6 +70,7 @@ seventytwolions.Controller.Base = function() {
     /**
      * Sets the model of the controller
      * @param {seventytowlions.Model.Base} model The new model
+     * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
       _model = model;

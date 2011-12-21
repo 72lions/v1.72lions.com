@@ -45,6 +45,7 @@ seventytwolions.View.About = function() {
     this.show = function(){
         this.domElement.slideDown();
     };
+
     /**
      * Hides the view
      * @author Thodoris Tsiridis

@@ -55,6 +55,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Sets the current item as featured item
+     *
      * @param {Boolean} isFeatured Set to true if we need to render it as a featured item
      * @author Thodoris Tsiridis
      */
@@ -70,6 +71,10 @@ seventytwolions.View.ThumbnailItem = function() {
 
     };
 
+   /**
+     * Renders the specific view
+     * @author Thodoris Tsiridis
+     */
     this.render = function() {
 
         var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
@@ -168,6 +173,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Registers all the events
+     * @author Thodoris Tsiridis
      */
     var addEventListeners = function() {
         me.domElement.find('a').bind('click', onThumbnailClicked);
@@ -175,6 +181,8 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Triggered when we click the thumbnail
+     *
+     * @private
      * @param  {Object} event The event
      * @author Thodoris Tsiridis
      */

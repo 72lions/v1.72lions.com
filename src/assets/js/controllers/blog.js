@@ -15,8 +15,7 @@ seventytwolions.Controller.Blog = function() {
     var portfolioItems = [];
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -41,10 +40,21 @@ seventytwolions.Controller.Blog = function() {
         this.getView().hide();
     };
 
+    /**
+     * Loads the data from the model
+     * @author Thodoris Tsiridis
+     */
     this.loadBlogPosts = function() {
         this.getModel().getPosts(3, 0, 80, onBlogPostsLoaded, this);
     };
 
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
     var onBlogPostsLoaded = function(result) {
         var i;
 
@@ -74,6 +84,12 @@ seventytwolions.Controller.Blog = function() {
         this.getView().positionItems();
     };
 
+    /**
+     * Loads the categories from the api
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
@@ -86,6 +102,13 @@ seventytwolions.Controller.Blog = function() {
         categoriesModel.get(0, 5, onCategoriesLoaded, this);
     };
 
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
     var onCategoriesLoaded = function(result) {
 
     };

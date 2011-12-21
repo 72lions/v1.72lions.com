@@ -14,8 +14,7 @@ seventytwolions.Controller.PostDetails = function() {
     this.currentId = null;
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -58,6 +57,13 @@ seventytwolions.Controller.PostDetails = function() {
         this.currentId = null;
     };
 
+    /**
+     * Shows a a section with a specific name
+     *
+     * @private
+     * @param {Object} result The data that came from the model
+     * @author Thodoris Tsiridis
+     */
     var onPostDetailsLoaded = function(result) {
         this.getModel().set('PostDetails'+this.currentId, result);
         this.getView().currentId = this.currentId;

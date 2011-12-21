@@ -1,5 +1,5 @@
 /**
- * SectionsManager View
+ * Sections Manager View
  *
  * @module 72lions
  * @class SectionsManager

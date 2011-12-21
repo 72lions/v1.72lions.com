@@ -25,6 +25,8 @@ seventytwolions.Controller.Navigation = function() {
 
     /**
      * Triggered when the view dispatches a menuClicked event
+     *
+     * @private
      * @param {Object} event The event object
      * @author Thodoris Tsiridis
      */

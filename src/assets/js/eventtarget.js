@@ -1,7 +1,7 @@
 /**
  * Event target is used as a mixin so that the classes can support dispatch events and add events commands
  *
- * @module EventTarget
+ * @module 72lions
  * @class EventTarget
  * @author Thodoris Tsiridis
  * @version 1.0
@@ -10,6 +10,12 @@ var EventTarget = function () {
 
     var listeners = {};
 
+    /**
+     * Registers an event
+     * @param {String} type The event type
+     * @param {Function} listener The callback function
+     * @author Thodoris Tsiridis
+     */
     this.addEventListener = function ( type, listener ) {
 
         if ( listeners[ type ] === undefined ) {
@@ -22,6 +28,11 @@ var EventTarget = function () {
 
     };
 
+    /**
+     * Dispatches an event
+     * @param {String} type The event type
+     * @author Thodoris Tsiridis
+     */
     this.dispatchEvent = function ( event ) {
 
         for ( var listener in listeners[ event.type ] ) {
@@ -30,6 +41,12 @@ var EventTarget = function () {
 
     };
 
+    /**
+     * Removes an event
+     * @param {String} type The event type
+     * @param {Function} listener The callback function
+     * @author Thodoris Tsiridis
+     */
     this.removeEventListener = function ( type, listener ) {
 
         var index = listeners[ type ].indexOf( listener );

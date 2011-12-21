@@ -15,8 +15,7 @@ seventytwolions.Controller.Portfolio = function() {
     var portfolioItems = [];
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -33,6 +32,7 @@ seventytwolions.Controller.Portfolio = function() {
     this.show = function(){
         this.getView().show();
     };
+
     /**
      * Hides the view
      * @author Thodoris Tsiridis
@@ -51,6 +51,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     /**
      * Callback function that is triggered when the model posts are loaded
+     *
      * @param  {Object} result The result that came back from the model
      * @author Thodoris Tsiridis
      */

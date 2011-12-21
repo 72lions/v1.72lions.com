@@ -15,7 +15,6 @@ seventytwolions.Model.Categories = function(){
     var DEFAULT_NUMBER_OF_ITEMS = 10;
 
     // Declaring the API
-    var api = {};
     var req;
     var data = {};
 
@@ -26,8 +25,7 @@ seventytwolions.Model.Categories = function(){
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @returns An array with objects
-     * @type Array
+     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.get = function(start, total, callback, ctx) {

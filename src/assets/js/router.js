@@ -1,7 +1,7 @@
 /**
  * Routing manager is responsible for listening to popstates in order to dispatch events. Clients can register their interest on these events
  *
- * @module Router
+ * @module 72lions
  * @class Router
  * @author Thodoris Tsiridis
  * @version 1.0
@@ -207,7 +207,7 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     this.getState = function(){
-        return getState();
+        return getAPIState();
     };
 
     /**
@@ -245,13 +245,13 @@ var Router = (function(global){
     /**
      * Gets the current state by reading the URL
      *
-     * @method getState
+     * @method getAPIState
      *
      * @private
      * @return {Object} Returns an object with the following keys
      * @author Thodoris Tsiridis
      */
-    var getState = function(){
+    var getAPIState = function(){
 
         var tempState = parseURL(location.href);
         tempState.isRefresh = isRefresh;

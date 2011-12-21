@@ -23,6 +23,8 @@ seventytwolions.Controller.Main = function() {
             id:'navigation',
             model: seventytwolions.Lookup.getModel({})
         });
+
+
         sectionsManager  = seventytwolions.ControllerManager.initializeController({
             type:'SectionsManager',
             id:'sectionsmanager',
@@ -38,6 +40,8 @@ seventytwolions.Controller.Main = function() {
 
     /**
      * Triggered when we have a pop or push event
+     *
+     * @private
      * @param {Object} state The state object
      * @author Thodoris Tsiridis
      */
@@ -83,6 +87,8 @@ seventytwolions.Controller.Main = function() {
 
     /**
      * Responsible for telling the sectionsManager to change section
+     *
+     * @private
      * @param {Object} state The path of the section that we want to show
      * @author Thodoris Tsiridis
      */

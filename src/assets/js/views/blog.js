@@ -74,13 +74,17 @@ seventytwolions.View.Blog = function() {
 
     /**
      * Adds a portfolio item to the view
-     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
         itemsContainer.append(item);
     };
 
+    /**
+     * Positions the grid items based on the page width
+     * @author Thodoris Tsiridis
+     */
     this.positionItems = function() {
 
         var domItems = itemsContainer.find('article');
@@ -165,6 +169,12 @@ seventytwolions.View.Blog = function() {
         var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
     };
 
+    /**
+     * Triggered when the window is resized
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
     var onWindowResize = function() {
         me.positionItems();
     };

@@ -1,5 +1,5 @@
 /**
- * SectionsManager Controller
+ * Sections Manager Controller
  *
  * @module 72lions
  * @class SectionsManager
@@ -16,8 +16,7 @@ seventytwolions.Controller.SectionsManager = function() {
     var totalSections = 4;
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){

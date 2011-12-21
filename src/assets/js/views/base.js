@@ -50,7 +50,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Sets the model for the view
-     * @param {seventytwolions.models.Base} model The model
+     * @param {seventytwolions.Model.Base} model The model
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
@@ -59,8 +59,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Gets the model for the view
-     * @return The model
-     * @type {seventytwolions.Model.Base}
+     * @return {seventytwolions.Model.Base} The model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -69,8 +68,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Returns the main dom element of the view
-     * @returns A DOM element
-     * @type jQuery DOM element
+     * @return {Object} A DOM element
      * @author Thodoris Tsiridis
      */
     this.getDOMElement = function() {

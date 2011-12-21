@@ -12,10 +12,8 @@ seventytwolions.Controller.Contact = function() {
 
     var me = this;
 
-
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){

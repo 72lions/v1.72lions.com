@@ -52,6 +52,10 @@ seventytwolions.View.PostDetails = function() {
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
+   /**
+     * Renders the view
+     * @author Thodoris Tsiridis
+     */
     this.render = function() {
 
         var asideHTML, categoriesStr, pDate, slug, url;
@@ -150,6 +154,13 @@ seventytwolions.View.PostDetails = function() {
         this.domElement.removeClass('active').css('opacity', 0);
     };
 
+   /**
+     * Triggered when the back button is clicked
+     *
+     * @private
+     * @param {Object} event The event
+     * @author Thodoris Tsiridis
+     */
     var onBackClick = function(event){
         event.preventDefault();
         Router.goBack(1);
