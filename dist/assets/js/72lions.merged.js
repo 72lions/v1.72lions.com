@@ -488,7 +488,6 @@ var Router = (function(global){
     return this;
 
 })(window);
-
 /**
  * Event target is used as a mixin so that the classes can support dispatch events and add events commands
  *
@@ -549,7 +548,6 @@ var EventTarget = function () {
     };
 
 };
-
 var seventytwolions = {};
 seventytwolions.Controller = seventytwolions.Controller || {};
 seventytwolions.View = seventytwolions.View || {};
@@ -602,7 +600,6 @@ seventytwolions.Model.Locale = (function(global){
     return this;
 
 })(window);
-
 /**
  * The controller manager is responsible for instantiating controllers
  *
@@ -641,7 +638,6 @@ seventytwolions.ControllerManager = (function(global) {
     return api;
 
 })(window);
-
 /**
  * Lookup up utility that loads or creates controllers, views and models
  *
@@ -820,7 +816,6 @@ seventytwolions.Lookup = (function(global) {
     return api;
 
 })(window);
-
 /**
  * Console is used for outputing console.log messages
  *
@@ -860,7 +855,6 @@ seventytwolions.Console = (function(global){
     return api;
 
 })(window);
-
 /**
  * Base View
  *
@@ -972,7 +966,6 @@ seventytwolions.View.Base = function() {
     };
 
 };
-
 /**
  * Base Model
  *
@@ -996,6 +989,16 @@ seventytwolions.Model.Base = function(){
      */
     this.setData = function(modelData) {
         data = modelData;
+    };
+
+    /**
+     * Gets the model data
+     *
+     * @return {Object} The data
+     * @author Thodoris Tsiridis
+     */
+    this.getData = function() {
+        return data;
     };
 
     /**
@@ -1041,7 +1044,6 @@ seventytwolions.Model.Base = function(){
     };
 
 };
-
 
 /**
  * Base Controller
@@ -1123,7 +1125,6 @@ seventytwolions.Controller.Base = function() {
     };
 
 };
-
 /**
  * Main Controller
  *
@@ -1172,17 +1173,20 @@ seventytwolions.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var onPopPushEvent = function(state){
+        var initialPop, sectionName;
+
         // Catch page reload pop event that happens in some browsers
         // and disregard it
-        var initialPop = !popped && location.href == initialURL;
+        initialPop = !popped && location.href == initialURL;
         popped = true;
-        if ( initialPop ) return;
+        //alert(initialPop + ", " + popped);
+        //if ( initialPop ) return;
 
         // Clean memory
         initialPop = null;
         initialState = null;
 
-        var sectionName = '';
+        sectionName = '';
 
         // If the pathSegments are undefined then that
         // means that Home menu item is selected
@@ -1224,7 +1228,6 @@ seventytwolions.Controller.Main = function() {
 };
 
 seventytwolions.Controller.Main.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Navigation Controller
  *
@@ -1267,7 +1270,6 @@ seventytwolions.Controller.Navigation = function() {
 };
 
 seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Sections Manager Controller
  *
@@ -1392,6 +1394,7 @@ seventytwolions.Controller.SectionsManager = function() {
                 }
 
                 blog.show();
+
             }
 
 
@@ -1403,7 +1406,6 @@ seventytwolions.Controller.SectionsManager = function() {
 };
 
 seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Portfolio Controller
  *
@@ -1513,7 +1515,6 @@ seventytwolions.Controller.Portfolio = function() {
 };
 
 seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Experiments Controller
  *
@@ -1556,7 +1557,6 @@ seventytwolions.Controller.Experiments = function() {
 };
 
 seventytwolions.Controller.Experiments.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Blog Controller
  *
@@ -1578,9 +1578,8 @@ seventytwolions.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-
         this.loadBlogPosts();
-        this.loadCategories();
+        //this.loadCategories();
 
     };
 
@@ -1674,7 +1673,6 @@ seventytwolions.Controller.Blog = function() {
 };
 
 seventytwolions.Controller.Blog.prototype = new seventytwolions.Controller.Base();
-
 /**
  * About Controller
  *
@@ -1717,7 +1715,6 @@ seventytwolions.Controller.About = function() {
 };
 
 seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Contact Controller
  *
@@ -1759,7 +1756,6 @@ seventytwolions.Controller.Contact = function() {
 };
 
 seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
-
 /**
  * ThumbnailItem Controller
  *
@@ -1785,7 +1781,6 @@ seventytwolions.Controller.ThumbnailItem = function() {
 };
 
 seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();
-
 /**
  * PostDetails Controller
  *
@@ -1862,7 +1857,6 @@ seventytwolions.Controller.PostDetails = function() {
 };
 
 seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
-
 /**
  * Categories Model
  *
@@ -1923,7 +1917,6 @@ seventytwolions.Model.Categories = function(){
 };
 
 seventytwolions.Model.Categories.prototype = new seventytwolions.Model.Base();
-
 /**
  * Posts Model
  *
@@ -2019,7 +2012,6 @@ seventytwolions.Model.Posts = function(){
 };
 
 seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
-
 /**
  * Main View
  *
@@ -2061,7 +2053,6 @@ seventytwolions.View.Main = function() {
 };
 
 seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
-
 /**
  * Navigation View
  *
@@ -2163,7 +2154,6 @@ seventytwolions.View.Navigation = function() {
 };
 
 seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
-
 /**
  * Sections Manager View
  *
@@ -2218,7 +2208,6 @@ seventytwolions.View.SectionsManager = function() {
 };
 
 seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
-
 /**
  * Portfolio View
  *
@@ -2294,7 +2283,6 @@ seventytwolions.View.Portfolio = function() {
 };
 
 seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
-
 /**
  * Experiments View
  *
@@ -2357,7 +2345,6 @@ seventytwolions.View.Experiments = function() {
 };
 
 seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();
-
 /**
  * Blog View
  *
@@ -2543,7 +2530,6 @@ seventytwolions.View.Blog = function() {
 };
 
 seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
-
 /**
  * About View
  *
@@ -2603,7 +2589,6 @@ seventytwolions.View.About = function() {
 };
 
 seventytwolions.View.About.prototype = new seventytwolions.View.Base();
-
 /**
  * Contact View
  *
@@ -2666,7 +2651,6 @@ seventytwolions.View.Contact = function() {
 };
 
 seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
-
 /**
  * ThumbnailItem View
  *
@@ -2682,9 +2666,11 @@ seventytwolions.View.ThumbnailItem = function() {
     this.isFeatured = false;
 
     var me = this;
+    var IMAGES_PATH = 'http://72lions.com/wp-content/uploads/';
+
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
-                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imgwidth}" height="${imgheight}" /></a>'+
+                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a>'+
                 '</div>'+
                 '<div class="description">'+
                     '<hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup>'+
@@ -2695,6 +2681,7 @@ seventytwolions.View.ThumbnailItem = function() {
                     '</p>' +
                     '<a href="${link}" title="${title}" class="readmore">Read more</a>'+
                 '</div>';
+
 
 	this.domElement = $('<article class="portfolio-item clearfix"></article>');
 
@@ -2746,15 +2733,14 @@ seventytwolions.View.ThumbnailItem = function() {
      */
     this.render = function() {
 
-        var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
+        var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail, thumbnailFile;
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
         body = tmpl;
 
         meta = model.get('Meta');
-
-        if(meta.showcase !== undefined){
+        if(meta && meta.showcase !== undefined){
             this.setAsFeatured(true);
         }
 
@@ -2788,23 +2774,30 @@ seventytwolions.View.ThumbnailItem = function() {
         body = body.replace(/\${categories}/g, categoriesStr);
 
         thumbnail = model.get('Thumbnail');
+        thumbnailFile = thumbnail.File.split('/');
+        thumbnailFile = thumbnailFile[0] + '/' + thumbnailFile[1] + '/';
+
         if(thumbnail.Data !== null && thumbnail.Data !== undefined){
+
             hasThumbnail = true;
+
             if(this.isFeatured){
                 imgWidth = thumbnail.Data.sizes.medium.width;
                 imgHeight = thumbnail.Data.sizes.medium.height;
+                thumbnailFile += thumbnail.Data.sizes.medium.file;
             } else {
                 imgWidth = thumbnail.Data.sizes.thumbnail.width;
                 imgHeight = thumbnail.Data.sizes.thumbnail.height;
+                thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
             }
 
-            body = body.replace(/\${image}/g, '/wp-content/uploads/' + thumbnail.File);
-            body = body.replace(/\${imgwidth}/g, imgWidth);
-            body = body.replace(/\${imgheight}/g, imgHeight);
+            body = body.replace(/\${image}/g, IMAGES_PATH + thumbnailFile);
+            body = body.replace(/\${imagewidth}/g, imgWidth);
+            body = body.replace(/\${imageheight}/g, imgHeight);
 
         }
         //seventytwolions.Console.log('Drawing view with name ' + this.name);
-        if(meta.github !== undefined){
+        if(meta && meta.github !== undefined){
             body = body.replace(/\${github}/g, meta.github);
         }
 
@@ -2885,7 +2878,6 @@ seventytwolions.View.ThumbnailItem = function() {
 };
 
 seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();
-
 /**
  * PostDetails View
  *
@@ -3057,10 +3049,8 @@ seventytwolions.View.PostDetails = function() {
 };
 
 seventytwolions.View.PostDetails.prototype = new seventytwolions.View.Base();
-
 seventytwolions.ControllerManager.initializeController({
     type:'Main',
     id:'main',
     model: seventytwolions.Lookup.getModel({})
 });
-

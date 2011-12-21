@@ -285,7 +285,6 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
-
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 a:hover {
   -webkit-transition: color 0.2s;
@@ -572,7 +571,6 @@ a.website-link:visited span {
 a.website-link:link span, a.website-link:visited span {
   background-image: none;
 }
-
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 html {
   height: 100%;
@@ -635,7 +633,6 @@ body {
   border-top: 1px solid white;
   min-height: 200px;
 }
-
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 header.navigation {
   display: block;
@@ -736,8 +733,6 @@ header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.portfolio .centered {
   position: relative;
 }
@@ -763,12 +758,12 @@ section.portfolio .centered article a.title:link, section.portfolio .centered ar
   text-decoration: none;
   font-size: 11px;
   text-shadow: 0px 1px #ffffff;
-}
-section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
   transition: color 0.2s;
+}
+section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.portfolio .centered article .photo {
@@ -812,7 +807,7 @@ section.portfolio .centered article .photo img {
   transition: border-color 0.3s;
 }
 section.portfolio .centered article .photo img:hover {
-  border-color: #F02311;
+  border-color: #fff;
 }
 section.portfolio .centered article .description {
   width: 400px;
@@ -831,7 +826,7 @@ section.portfolio .centered article .description .body {
 }
 section.portfolio .centered article .description p, section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
   font-family: Georgia;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 18px;
   display: block;
 }
@@ -842,13 +837,13 @@ section.portfolio .centered article .description p {
 section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
   color: #F02311;
   font-style: italic;
-  font-size: 11px;
+  font-size: 12px;
 }
 section.portfolio .centered article .description aside {
   padding-bottom: 10px;
 }
 section.portfolio .centered article .description time {
-  font-size: 11px;
+  font-size: 12px;
   color: #666;
   display: block;
   font-style: italic;
@@ -859,7 +854,6 @@ section.portfolio .centered.animated article {
   -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
 }
-
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.about {
   font-family: Georgia;
@@ -884,8 +878,6 @@ section.about p {
   padding: 0px;
   margin: 6px 0px 6px 0px;
 }
-
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.blog .centered {
   position: relative;
 }
@@ -913,12 +905,12 @@ section.blog .centered article a.title:link, section.blog .centered article a.ti
   text-decoration: none;
   font-size: 11px;
   text-shadow: 0px 1px #ffffff;
-}
-section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -o-transition: color 0.2s;
   transition: color 0.2s;
+}
+section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.blog .centered article .photo {
@@ -956,7 +948,7 @@ section.blog .centered article .photo img {
   transition: border-color 0.3s;
 }
 section.blog .centered article .photo img:hover {
-  border-color: #f3f3f3;
+  border-color: #fff;
 }
 section.blog .centered article .description h1 {
   padding: 0px 0px 5px 0px;
@@ -971,7 +963,7 @@ section.blog .centered article .description .body {
 }
 section.blog .centered article .description p, section.blog .centered article .description aside, section.blog .centered article .description time {
   font-family: Georgia;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 18px;
   display: block;
 }
@@ -982,13 +974,13 @@ section.blog .centered article .description p {
 section.blog .centered article .description aside, section.blog .centered article .description time {
   color: #F02311;
   font-style: italic;
-  font-size: 11px;
+  font-size: 12px;
 }
 section.blog .centered article .description aside {
   padding-bottom: 10px;
 }
 section.blog .centered article .description time {
-  font-size: 11px;
+  font-size: 12px;
   color: #666;
   display: block;
   font-style: italic;
@@ -999,7 +991,6 @@ section.blog .centered.animated article {
   -o-transition: left 0s ease-in-out, top 0s ease-in-out;
   transition: left 0s ease-in-out, top 0s ease-in-out;
 }
-
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.post-details {
   padding: 0px;
@@ -1201,7 +1192,6 @@ section.post-details a:link, section.post-details a:visited {
 section.post-details a:link:hover, section.post-details a:visited:hover {
   border-bottom: 1px dotted #F02311;
 }
-
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 footer aside {
   padding: 20px;
@@ -1247,4 +1237,3 @@ footer aside.latest-tweets p {
 footer aside.footer-logo {
   float: right;
 }
-

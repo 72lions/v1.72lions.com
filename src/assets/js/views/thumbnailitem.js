@@ -17,7 +17,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
-                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}"  /></a>'+
+                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a>'+
                 '</div>'+
                 '<div class="description">'+
                     '<hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup>'+
@@ -87,8 +87,7 @@ seventytwolions.View.ThumbnailItem = function() {
         body = tmpl;
 
         meta = model.get('Meta');
-
-        if(meta.showcase !== undefined){
+        if(meta && meta.showcase !== undefined){
             this.setAsFeatured(true);
         }
 
@@ -140,10 +139,12 @@ seventytwolions.View.ThumbnailItem = function() {
             }
 
             body = body.replace(/\${image}/g, IMAGES_PATH + thumbnailFile);
+            body = body.replace(/\${imagewidth}/g, imgWidth);
+            body = body.replace(/\${imageheight}/g, imgHeight);
 
         }
         //seventytwolions.Console.log('Drawing view with name ' + this.name);
-        if(meta.github !== undefined){
+        if(meta && meta.github !== undefined){
             body = body.replace(/\${github}/g, meta.github);
         }
 

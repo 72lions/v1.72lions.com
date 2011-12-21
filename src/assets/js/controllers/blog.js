@@ -19,9 +19,8 @@ seventytwolions.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-
         this.loadBlogPosts();
-        this.loadCategories();
+        //this.loadCategories();
 
     };
 

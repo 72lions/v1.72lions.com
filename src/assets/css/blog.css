@@ -6,7 +6,7 @@ section.blog .centered article {
   list-style: none;
   color: #666;
   display: block;
-  width: 224px;
+  width: 218px;
   border-bottom: 1px dashed #ccc;
   padding-bottom: 20px;
   -webkit-box-sizing: border-box;
@@ -16,7 +16,7 @@ section.blog .centered article {
   float: left;
 }
 section.blog .centered article.featured {
-  width: 462px;
+  width: 456px;
 }
 section.blog .centered article a.title:link, section.blog .centered article a.title:visited {
   margin-top: 5px;

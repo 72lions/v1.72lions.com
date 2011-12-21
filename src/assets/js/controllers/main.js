@@ -46,17 +46,20 @@ seventytwolions.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var onPopPushEvent = function(state){
+        var initialPop, sectionName;
+
         // Catch page reload pop event that happens in some browsers
         // and disregard it
-        var initialPop = !popped && location.href == initialURL;
+        initialPop = !popped && location.href == initialURL;
         popped = true;
-        if ( initialPop ) return;
+        //alert(initialPop + ", " + popped);
+        //if ( initialPop ) return;
 
         // Clean memory
         initialPop = null;
         initialState = null;
 
-        var sectionName = '';
+        sectionName = '';
 
         // If the pathSegments are undefined then that
         // means that Home menu item is selected

@@ -122,6 +122,7 @@ seventytwolions.Controller.SectionsManager = function() {
                 }
 
                 blog.show();
+
             }
 
 
