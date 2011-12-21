@@ -17,7 +17,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
-                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" /></a>'+
+                    '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}"  /></a>'+
                 '</div>'+
                 '<div class="description">'+
                     '<hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup>'+
@@ -28,6 +28,7 @@ seventytwolions.View.ThumbnailItem = function() {
                     '</p>' +
                     '<a href="${link}" title="${title}" class="readmore">Read more</a>'+
                 '</div>';
+
 
 	this.domElement = $('<article class="portfolio-item clearfix"></article>');
 
