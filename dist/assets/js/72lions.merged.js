@@ -1,7 +1,7 @@
 /**
  * Routing manager is responsible for listening to popstates in order to dispatch events. Clients can register their interest on these events
  *
- * @module Router
+ * @module 72lions
  * @class Router
  * @author Thodoris Tsiridis
  * @version 1.0
@@ -207,7 +207,7 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     this.getState = function(){
-        return getState();
+        return getAPIState();
     };
 
     /**
@@ -245,13 +245,13 @@ var Router = (function(global){
     /**
      * Gets the current state by reading the URL
      *
-     * @method getState
+     * @method getAPIState
      *
      * @private
      * @return {Object} Returns an object with the following keys
      * @author Thodoris Tsiridis
      */
-    var getState = function(){
+    var getAPIState = function(){
 
         var tempState = parseURL(location.href);
         tempState.isRefresh = isRefresh;
@@ -492,7 +492,7 @@ var Router = (function(global){
 /**
  * Event target is used as a mixin so that the classes can support dispatch events and add events commands
  *
- * @module EventTarget
+ * @module 72lions
  * @class EventTarget
  * @author Thodoris Tsiridis
  * @version 1.0
@@ -501,6 +501,12 @@ var EventTarget = function () {
 
     var listeners = {};
 
+    /**
+     * Registers an event
+     * @param {String} type The event type
+     * @param {Function} listener The callback function
+     * @author Thodoris Tsiridis
+     */
     this.addEventListener = function ( type, listener ) {
 
         if ( listeners[ type ] === undefined ) {
@@ -513,6 +519,11 @@ var EventTarget = function () {
 
     };
 
+    /**
+     * Dispatches an event
+     * @param {String} type The event type
+     * @author Thodoris Tsiridis
+     */
     this.dispatchEvent = function ( event ) {
 
         for ( var listener in listeners[ event.type ] ) {
@@ -521,6 +532,12 @@ var EventTarget = function () {
 
     };
 
+    /**
+     * Removes an event
+     * @param {String} type The event type
+     * @param {Function} listener The callback function
+     * @author Thodoris Tsiridis
+     */
     this.removeEventListener = function ( type, listener ) {
 
         var index = listeners[ type ].indexOf( listener );
@@ -552,8 +569,10 @@ seventytwolions.Model.Locale = (function(global){
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var pageTitle = "72Lions - The playground of developer Thodoris Tsiridis";
+
     /**
      * Returns the name of the month
+     *
      * @param  {Number} monthIndex The month index
      * @return {String}
      */
@@ -563,6 +582,7 @@ seventytwolions.Model.Locale = (function(global){
 
     /**
      * Returns the name of a day of the week
+     *
      * @param  {Number} dayIndex The day of the week index
      * @return {String}
      */
@@ -572,6 +592,7 @@ seventytwolions.Model.Locale = (function(global){
 
     /**
      * Returns the title of the page
+     *
      * @return {String}
      */
     this.getPageTitle = function (){
@@ -892,7 +913,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Sets the model for the view
-     * @param {seventytwolions.models.Base} model The model
+     * @param {seventytwolions.Model.Base} model The model
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
@@ -901,8 +922,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Gets the model for the view
-     * @return The model
-     * @type {seventytwolions.Model.Base}
+     * @return {seventytwolions.Model.Base} The model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -911,8 +931,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Returns the main dom element of the view
-     * @returns A DOM element
-     * @type jQuery DOM element
+     * @return {Object} A DOM element
      * @author Thodoris Tsiridis
      */
     this.getDOMElement = function() {
@@ -971,6 +990,7 @@ seventytwolions.Model.Base = function(){
 
     /**
      * Sets the model data
+     *
      * @param {Object} modelData The model data
      * @author Thodoris Tsiridis
      */
@@ -980,6 +1000,7 @@ seventytwolions.Model.Base = function(){
 
     /**
      * Sets the name of the model
+     *
      * @param {String} name The name/type of the model
      * @author Thodoris Tsiridis
      */
@@ -989,6 +1010,7 @@ seventytwolions.Model.Base = function(){
 
     /**
      * Sets the id of the model
+     *
      * @param {String} id The id of the model
      * @author Thodoris Tsiridis
      */
@@ -996,10 +1018,24 @@ seventytwolions.Model.Base = function(){
         this.id = id;
     };
 
+    /**
+     * Saves a value to a specific key of the model
+     *
+     * @param {String} key The key of the data object to be set
+     * @param {Object || String || Number || Array} value The value to save on the specific key
+     * @author Thodoris Tsiridis
+     */
     this.set = function(key, value) {
         data[key] = value;
     };
 
+    /**
+     * Returns a value to a specific key of the model
+     *
+     * @param {String} key The key of the data object to be set
+     * @return {Object || String || Number || Array} The value of the specific data key
+     * @author Thodoris Tsiridis
+     */
     this.get = function(key) {
         return data[key];
     };
@@ -1027,6 +1063,8 @@ seventytwolions.Controller.Base = function() {
 
     /**
      * Initializes the plugin
+     *
+     * @param {Object} attributes The attributes to be used while initializing a controller
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
@@ -1049,8 +1087,7 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function() {
@@ -1058,9 +1095,8 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
-     * Returns the view of the specific controller
-     * @returns A view
-     * @type seventytwolions.View.Base
+     * Returns the view of the specific view
+     * @return {seventytwolions.View.Base} The Base view
      * @author Thodoris Tsiridis
      */
     this.getView = function() {
@@ -1068,9 +1104,8 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
-     * Returns the model of the specific controller
-     * @returns A view
-     * @type seventytwolions.Model.Base
+     * Returns the model of the specific model
+     * @return {seventytwolions.Model.Base} The Base model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -1080,6 +1115,7 @@ seventytwolions.Controller.Base = function() {
     /**
      * Sets the model of the controller
      * @param {seventytowlions.Model.Base} model The new model
+     * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
       _model = model;
@@ -1113,6 +1149,8 @@ seventytwolions.Controller.Main = function() {
             id:'navigation',
             model: seventytwolions.Lookup.getModel({})
         });
+
+
         sectionsManager  = seventytwolions.ControllerManager.initializeController({
             type:'SectionsManager',
             id:'sectionsmanager',
@@ -1128,6 +1166,8 @@ seventytwolions.Controller.Main = function() {
 
     /**
      * Triggered when we have a pop or push event
+     *
+     * @private
      * @param {Object} state The state object
      * @author Thodoris Tsiridis
      */
@@ -1173,6 +1213,8 @@ seventytwolions.Controller.Main = function() {
 
     /**
      * Responsible for telling the sectionsManager to change section
+     *
+     * @private
      * @param {Object} state The path of the section that we want to show
      * @author Thodoris Tsiridis
      */
@@ -1210,6 +1252,8 @@ seventytwolions.Controller.Navigation = function() {
 
     /**
      * Triggered when the view dispatches a menuClicked event
+     *
+     * @private
      * @param {Object} event The event object
      * @author Thodoris Tsiridis
      */
@@ -1225,7 +1269,7 @@ seventytwolions.Controller.Navigation = function() {
 seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
 
 /**
- * SectionsManager Controller
+ * Sections Manager Controller
  *
  * @module 72lions
  * @class SectionsManager
@@ -1242,8 +1286,7 @@ seventytwolions.Controller.SectionsManager = function() {
     var totalSections = 4;
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1378,8 +1421,7 @@ seventytwolions.Controller.Portfolio = function() {
     var portfolioItems = [];
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1396,6 +1438,7 @@ seventytwolions.Controller.Portfolio = function() {
     this.show = function(){
         this.getView().show();
     };
+
     /**
      * Hides the view
      * @author Thodoris Tsiridis
@@ -1414,6 +1457,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     /**
      * Callback function that is triggered when the model posts are loaded
+     *
      * @param  {Object} result The result that came back from the model
      * @author Thodoris Tsiridis
      */
@@ -1486,8 +1530,7 @@ seventytwolions.Controller.Experiments = function() {
 
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1531,8 +1574,7 @@ seventytwolions.Controller.Blog = function() {
     var portfolioItems = [];
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1557,10 +1599,21 @@ seventytwolions.Controller.Blog = function() {
         this.getView().hide();
     };
 
+    /**
+     * Loads the data from the model
+     * @author Thodoris Tsiridis
+     */
     this.loadBlogPosts = function() {
         this.getModel().getPosts(3, 0, 80, onBlogPostsLoaded, this);
     };
 
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
     var onBlogPostsLoaded = function(result) {
         var i;
 
@@ -1590,6 +1643,12 @@ seventytwolions.Controller.Blog = function() {
         this.getView().positionItems();
     };
 
+    /**
+     * Loads the categories from the api
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
@@ -1602,6 +1661,13 @@ seventytwolions.Controller.Blog = function() {
         categoriesModel.get(0, 5, onCategoriesLoaded, this);
     };
 
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
     var onCategoriesLoaded = function(result) {
 
     };
@@ -1625,8 +1691,7 @@ seventytwolions.Controller.About = function() {
 
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1667,10 +1732,8 @@ seventytwolions.Controller.Contact = function() {
 
     var me = this;
 
-
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1712,8 +1775,7 @@ seventytwolions.Controller.ThumbnailItem = function() {
     var me = this;
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1740,8 +1802,7 @@ seventytwolions.Controller.PostDetails = function() {
     this.currentId = null;
 
     /**
-     * This function is executed right after the initialized
-     * function is called
+     * This function is executed right after the initialized function is called
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -1784,6 +1845,13 @@ seventytwolions.Controller.PostDetails = function() {
         this.currentId = null;
     };
 
+    /**
+     * Shows a a section with a specific name
+     *
+     * @private
+     * @param {Object} result The data that came from the model
+     * @author Thodoris Tsiridis
+     */
     var onPostDetailsLoaded = function(result) {
         this.getModel().set('PostDetails'+this.currentId, result);
         this.getView().currentId = this.currentId;
@@ -1812,7 +1880,6 @@ seventytwolions.Model.Categories = function(){
     var DEFAULT_NUMBER_OF_ITEMS = 10;
 
     // Declaring the API
-    var api = {};
     var req;
     var data = {};
 
@@ -1823,8 +1890,7 @@ seventytwolions.Model.Categories = function(){
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @returns An array with objects
-     * @type Array
+     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.get = function(start, total, callback, ctx) {
@@ -1881,13 +1947,13 @@ seventytwolions.Model.Posts = function(){
 
     /**
      * Returns an array of posts
+     *
      * @param {Number} categoryId The category of the posts that we want to load
      * @param {Number} start The start offset
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @returns An array with objects
-     * @type Array
+     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getPosts = function(categoryid, start, total, callback, ctx) {
@@ -1923,11 +1989,11 @@ seventytwolions.Model.Posts = function(){
 
     /**
      * Returns an array of posts
+     *
      * @param {String} slug The slug of the page
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @returns An array with objects
-     * @type Array
+     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getDetails = function(slug, callback, ctx) {
@@ -2013,6 +2079,7 @@ seventytwolions.View.Navigation = function() {
 
 	this.domElement = $('.navigation');
     this.clickedItem = undefined;
+
     /**
      * Initializes the view
      * @author Thodoris Tsiridis
@@ -2051,6 +2118,7 @@ seventytwolions.View.Navigation = function() {
 
     /**
      * Registers all the event listeners
+     *
      * @private
      * @author Thodoris Tsiridis
      */
@@ -2060,7 +2128,9 @@ seventytwolions.View.Navigation = function() {
 
     /**
      * Triggered when we click a link
+     *
      * @private
+     * @param {Object} e The event
      * @author Thodoris Tsiridis
      */
     var onLinkClick = function(e){
@@ -2095,7 +2165,7 @@ seventytwolions.View.Navigation = function() {
 seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
 
 /**
- * SectionsManager View
+ * Sections Manager View
  *
  * @module 72lions
  * @class SectionsManager
@@ -2214,7 +2284,7 @@ seventytwolions.View.Portfolio = function() {
 
     /**
      * Adds a portfolio item to the view
-     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
@@ -2364,13 +2434,17 @@ seventytwolions.View.Blog = function() {
 
     /**
      * Adds a portfolio item to the view
-     * @param {DOMElement} item The dom element that we want to append to the portfolio page
+     * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
         itemsContainer.append(item);
     };
 
+    /**
+     * Positions the grid items based on the page width
+     * @author Thodoris Tsiridis
+     */
     this.positionItems = function() {
 
         var domItems = itemsContainer.find('article');
@@ -2455,6 +2529,12 @@ seventytwolions.View.Blog = function() {
         var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
     };
 
+    /**
+     * Triggered when the window is resized
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
     var onWindowResize = function() {
         me.positionItems();
     };
@@ -2511,6 +2591,7 @@ seventytwolions.View.About = function() {
     this.show = function(){
         this.domElement.slideDown();
     };
+
     /**
      * Hides the view
      * @author Thodoris Tsiridis
@@ -2643,6 +2724,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Sets the current item as featured item
+     *
      * @param {Boolean} isFeatured Set to true if we need to render it as a featured item
      * @author Thodoris Tsiridis
      */
@@ -2658,6 +2740,10 @@ seventytwolions.View.ThumbnailItem = function() {
 
     };
 
+   /**
+     * Renders the specific view
+     * @author Thodoris Tsiridis
+     */
     this.render = function() {
 
         var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail;
@@ -2756,6 +2842,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Registers all the events
+     * @author Thodoris Tsiridis
      */
     var addEventListeners = function() {
         me.domElement.find('a').bind('click', onThumbnailClicked);
@@ -2763,6 +2850,8 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Triggered when we click the thumbnail
+     *
+     * @private
      * @param  {Object} event The event
      * @author Thodoris Tsiridis
      */
@@ -2851,6 +2940,10 @@ seventytwolions.View.PostDetails = function() {
         //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
+   /**
+     * Renders the view
+     * @author Thodoris Tsiridis
+     */
     this.render = function() {
 
         var asideHTML, categoriesStr, pDate, slug, url;
@@ -2949,6 +3042,13 @@ seventytwolions.View.PostDetails = function() {
         this.domElement.removeClass('active').css('opacity', 0);
     };
 
+   /**
+     * Triggered when the back button is clicked
+     *
+     * @private
+     * @param {Object} event The event
+     * @author Thodoris Tsiridis
+     */
     var onBackClick = function(event){
         event.preventDefault();
         Router.goBack(1);
