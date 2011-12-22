@@ -10,12 +10,24 @@
  */
 seventytwolions.View.Experiments = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.Experiments
+     */
     var me = this;
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
 	this.domElement = $('.experiments');
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
@@ -24,6 +36,7 @@ seventytwolions.View.Experiments = function() {
 
     /**
      * Draws the specific view
+     *
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
@@ -32,6 +45,7 @@ seventytwolions.View.Experiments = function() {
 
    /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
@@ -40,6 +54,7 @@ seventytwolions.View.Experiments = function() {
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function(){
@@ -51,6 +66,7 @@ seventytwolions.View.Experiments = function() {
     };
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function(){

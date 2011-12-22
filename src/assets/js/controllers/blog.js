@@ -10,12 +10,35 @@
  */
 seventytwolions.Controller.Blog = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.Blog
+     */
     var me = this;
-    var categoriesModel;
+
+    /**
+     * The categories Model
+     *
+     * @private
+     * @type seventytwolions.Model.Categories
+     * @default undefined
+     */
+    var categoriesModel = undefined;
+
+    /**
+     * An array with all the portfolio items
+     *
+     * @private
+     * @type Array
+     * @default []
+     */
     var portfolioItems = [];
 
     /**
      * This function is executed right after the initialized function is called
+     *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -26,6 +49,7 @@ seventytwolions.Controller.Blog = function() {
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function(){
@@ -33,6 +57,7 @@ seventytwolions.Controller.Blog = function() {
     };
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
@@ -41,6 +66,7 @@ seventytwolions.Controller.Blog = function() {
 
     /**
      * Loads the data from the model
+     *
      * @author Thodoris Tsiridis
      */
     this.loadBlogPosts = function() {

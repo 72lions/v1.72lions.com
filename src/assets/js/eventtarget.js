@@ -7,11 +7,17 @@
  * @version 1.0
  */
 var EventTarget = function () {
-
+    /**
+     * The object that will hold all the event listeners
+     *
+     * @private
+     * @type Object
+     */
     var listeners = {};
 
     /**
      * Registers an event
+     *
      * @param {String} type The event type
      * @param {Function} listener The callback function
      * @author Thodoris Tsiridis
@@ -30,6 +36,7 @@ var EventTarget = function () {
 
     /**
      * Dispatches an event
+     *
      * @param {String} type The event type
      * @author Thodoris Tsiridis
      */
@@ -43,6 +50,7 @@ var EventTarget = function () {
 
     /**
      * Removes an event
+     *
      * @param {String} type The event type
      * @param {Function} listener The callback function
      * @author Thodoris Tsiridis

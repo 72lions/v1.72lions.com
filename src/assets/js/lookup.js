@@ -9,15 +9,32 @@
  */
 seventytwolions.Lookup = (function(global) {
 
-    var _models         = {},
-        _views          = {},
-        _controllers    = {},
-        api             = {};
+    /**
+     * An object holding all the different models
+     *
+     * @private
+     * @type Object
+     */
+    var _models         = {};
+
+    /**
+     * An object holding all the different views
+     *
+     * @private
+     * @type Object
+     */
+    var _views          = {};
+
+    /**
+     * An object holding all the different controllers
+     *
+     * @private
+     * @type Object
+     */
+    var _controllers    = {};
 
     /**
      * Returns a controller with a specific name
-     *
-     * @method getController
      *
      * @param {String} className The name of the controllers
      * @param {String} id The unique id for this controller
@@ -27,7 +44,7 @@ seventytwolions.Lookup = (function(global) {
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
      */
-    api.getController = function(attributes) {
+    this.getController = function(attributes) {
         var className, id, model, controllerObj;
         var exists = -1;
 
@@ -74,15 +91,13 @@ seventytwolions.Lookup = (function(global) {
     /**
      * Returns a view with a specific name
      *
-     * @method getView
-     *
      * @param {String} name The name of the controllers
      * @param {String} id The unique id for this controller
      * @returns A view
      * @type seventytwolions.View.Base
      * @author Thodoris Tsiridis
      */
-    api.getView = function(className, id) {
+    this.getView = function(className, id) {
         var exists = -1, viewObj;
 
         // Check if there is an array with objects of className type
@@ -122,15 +137,13 @@ seventytwolions.Lookup = (function(global) {
     /**
      * Returns a model with a specific name
      *
-     * @method getModel
-     *
      * @param {String} name The name of the controllers
      * @param {Object} modelData The data of the model
      * @returns A model
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
      */
-    api.getModel = function(attributes) {
+    this.getModel = function(attributes) {
         var exists = -1, modelObj, name, modelData;
         modelData = attributes.data || {};
         name = attributes.type || 'Base';
@@ -173,6 +186,6 @@ seventytwolions.Lookup = (function(global) {
         }
     };
 
-    return api;
+    return this;
 
 })(window);

@@ -10,10 +10,47 @@
 seventytwolions.Controller.Base = function() {
 
     EventTarget.call( this );
-    var _view, _model, _registeredEvents = {};
 
+    /**
+     * A reference to this controller's view
+     *
+     * @private
+     * @type seventytwolions.View.Base
+     * @default undefined
+     */
+    var _view = undefined;
+
+    /**
+     * A reference to this controller's model
+     *
+     * @private
+     * @type seventytwolions.Controller.Base
+     * @default undefined
+     */
+    var _model = undefined;
+
+    /**
+     * The controller id
+     *
+     * @type String
+     * @default ''
+     */
     this.id = '';
+
+    /**
+     * The controller name
+     *
+     * @type String
+     * @default ''
+     */
     this.name = '';
+
+    /**
+     * A reference to this controller's model
+     *
+     * @type seventytwolions.Controller.Base
+     * @default undefined
+     */
     this.model = undefined;
 
     /**
@@ -43,6 +80,7 @@ seventytwolions.Controller.Base = function() {
 
     /**
      * This function is executed right after the initialized function is called
+     *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function() {
@@ -51,6 +89,7 @@ seventytwolions.Controller.Base = function() {
 
     /**
      * Returns the view of the specific view
+     *
      * @return {seventytwolions.View.Base} The Base view
      * @author Thodoris Tsiridis
      */
@@ -60,6 +99,7 @@ seventytwolions.Controller.Base = function() {
 
     /**
      * Returns the model of the specific model
+     *
      * @return {seventytwolions.Model.Base} The Base model
      * @author Thodoris Tsiridis
      */
@@ -69,6 +109,7 @@ seventytwolions.Controller.Base = function() {
 
     /**
      * Sets the model of the controller
+     *
      * @param {seventytowlions.Model.Base} model The new model
      * @author Thodoris Tsiridis
      */

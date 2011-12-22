@@ -10,19 +10,71 @@
  */
 seventytwolions.View.Blog = function() {
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
    this.domElement = $('.blog');
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.Blog
+     */
     var me = this;
+
+    /**
+     * The items container DOM Element
+     *
+     * @private
+     * @type Object
+     */
     var itemsContainer = this.domElement.find('.centered');
+
+    /**
+     * Its true the first time we load the website
+     *
+     * @private
+     * @type Boolean
+     * @default true
+     */
     var isFirstTime = true;
 
-    // Constants
+    /**
+     * The minimum columns that we can have
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 1
+     */
     var COLUMN_MIN = 2;
+
+    /**
+     * The column width
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 218
+     */
     var COLUMN_WIDTH = 218;
+
+    /**
+     * The column margin
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 20
+     */
     var COLUMN_MARGIN = 20;
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
@@ -31,6 +83,7 @@ seventytwolions.View.Blog = function() {
 
     /**
      * Draws the specific view
+     *
      * @author Thodoris Tsiridis
      */
     this.draw = function() {
@@ -39,6 +92,7 @@ seventytwolions.View.Blog = function() {
 
    /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
@@ -48,6 +102,7 @@ seventytwolions.View.Blog = function() {
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function(){
@@ -66,6 +121,7 @@ seventytwolions.View.Blog = function() {
     };
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
@@ -74,6 +130,7 @@ seventytwolions.View.Blog = function() {
 
     /**
      * Adds a portfolio item to the view
+     *
      * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */
@@ -83,6 +140,7 @@ seventytwolions.View.Blog = function() {
 
     /**
      * Positions the grid items based on the page width
+     *
      * @author Thodoris Tsiridis
      */
     this.positionItems = function() {

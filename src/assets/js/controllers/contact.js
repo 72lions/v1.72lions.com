@@ -10,10 +10,17 @@
  */
 seventytwolions.Controller.Contact = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.Contact
+     */
     var me = this;
 
     /**
      * This function is executed right after the initialized function is called
+     *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -22,6 +29,7 @@ seventytwolions.Controller.Contact = function() {
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function() {
@@ -30,6 +38,7 @@ seventytwolions.Controller.Contact = function() {
 
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function() {

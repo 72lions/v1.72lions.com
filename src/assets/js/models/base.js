@@ -9,8 +9,27 @@
  */
 seventytwolions.Model.Base = function(){
 
+    /**
+     * The object that holds the data
+     *
+     * @type String
+     */
     var data = {};
+
+    /**
+     * The view name
+     *
+     * @type String
+     * @default ''
+     */
     this.name = '';
+
+    /**
+     * The view id
+     *
+     * @type String
+     * @default ''
+     */
     this.id = '';
 
     /**

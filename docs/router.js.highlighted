@@ -1,0 +1,524 @@
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Routing manager is responsible for listening to popstates in order to dispatch events. Clients can register their interest on these events</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class Router</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">Router</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It is set to true the first time we get a popstate</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Boolean</span>
+<span class="cm">     * @default true</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">isRefresh</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It holds all the registered events for the pop and push</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @default { push: [], pop: []}</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">registeredMembers</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">push</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">pop</span><span class="o">:</span> <span class="p">[]};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It holds all the registered events for the path changes</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @default {}</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">registeredPathMembers</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It holds the current state</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @default null</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">currentState</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Holds the intervalId for the setInterval function if the History API isn&#39;t supported and hashes are used instead</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default null</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">hashChangeIntervalId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The current hash</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &#39;&#39;</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">currentHash</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It is true if the History API is supported</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Boolean</span>
+<span class="cm">     * @default true</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">isHistoryAPISupported</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The base path</span>
+<span class="cm">     *</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &#39;&#39;</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">basePath</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * After how many milliseconds the app will listen for a hash change</span>
+<span class="cm">     *</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 500</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hashListenInterval</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Pushes a new state on the history api</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate</span>
+<span class="cm">     * @param {String} title The title of the page. Most browsers don&#39;t use it yet</span>
+<span class="cm">     * @param {String} url The url that we need to push</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">push</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">url</span><span class="p">){</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
+
+            <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">basePath</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
+
+        <span class="p">}</span>
+
+        <span class="c1">//Get the state</span>
+        <span class="nx">currentState</span> <span class="o">=</span> <span class="nx">getState</span><span class="p">();</span>
+
+        <span class="c1">//Notify all the members that there was a push event</span>
+        <span class="nx">notifyRegisteredMembers</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">);</span>
+
+        <span class="c1">// If History API is supported then push the path</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
+            <span class="nx">notifyRegisteredPathChangeMembers</span><span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">path</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Else push the hash</span>
+            <span class="nx">notifyRegisteredPathChangeMembers</span><span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Replaces the current state with a new state</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @param {Ojbect} state The state could be a JSON object that is passed on the popstate</span>
+<span class="cm">     * @param {String} title The title of the page. Most browsers don&#39;t use it yet</span>
+<span class="cm">     * @param {String} url The url that we need to push</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">replace</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">url</span><span class="p">){</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
+
+            <span class="nx">history</span><span class="p">.</span><span class="nx">replaceState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">basePath</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
+
+        <span class="p">}</span>
+
+        <span class="c1">//Get the state</span>
+        <span class="nx">currentState</span> <span class="o">=</span> <span class="nx">getState</span><span class="p">();</span>
+
+        <span class="c1">//Notify all the members that there was a push event</span>
+        <span class="nx">notifyRegisteredMembers</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">);</span>
+
+        <span class="c1">// If History API is supported then push the path</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
+            <span class="nx">notifyRegisteredPathChangeMembers</span><span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">path</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Else push the hash</span>
+            <span class="nx">notifyRegisteredPathChangeMembers</span><span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Registers a specific callback to a specific event</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @param {String} eventType The name of the event e.x. push, pop</span>
+<span class="cm">     * @param {Function} callback The function to execute</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">registerForEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">callback</span><span class="p">){</span>
+
+        <span class="c1">// Check if it already registered by going through all registered callbacks</span>
+        <span class="c1">// for this event</span>
+        <span class="kd">var</span> <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">registeredMembers</span><span class="p">[</span><span class="nx">eventType</span><span class="p">].</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="nx">registeredMembers</span><span class="p">[</span><span class="nx">eventType</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">callback</span><span class="p">){</span>
+                <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">alreadyRegistered</span><span class="p">){</span>
+            <span class="nx">registeredMembers</span><span class="p">[</span><span class="nx">eventType</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Clear memory</span>
+        <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Registers a specific callback to a specific path</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @param {String} path The name of the event e.x. segment1/segment2</span>
+<span class="cm">     * @param {Function} callback The function to execute</span>
+<span class="cm">     * @param {Number} priority The priority of the callback function</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">registerForPathChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">priority</span><span class="p">){</span>
+
+        <span class="c1">//Save a valid value for the priority</span>
+        <span class="nx">priority</span> <span class="o">=</span> <span class="nx">priority</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="c1">//Adding the basepath also in the path</span>
+        <span class="nx">path</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">basepath</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
+
+        <span class="c1">// Check if it already registered by going through all registered callbacks</span>
+        <span class="c1">// for this event</span>
+        <span class="kd">var</span> <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">registeredPathMembers</span><span class="p">[</span><span class="nx">path</span><span class="p">];</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">cache</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="k">if</span><span class="p">(</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">callback</span> <span class="o">===</span> <span class="nx">callback</span><span class="p">){</span>
+                    <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+
+            <span class="p">}</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">registeredPathMembers</span><span class="p">[</span><span class="nx">path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">alreadyRegistered</span><span class="p">){</span>
+            <span class="nx">registeredPathMembers</span><span class="p">[</span><span class="nx">path</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span> <span class="p">{</span> <span class="nx">callback</span><span class="o">:</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">priority</span><span class="o">:</span> <span class="nx">priority</span> <span class="p">}</span> <span class="p">);</span>
+            <span class="nx">sortRegisteredPathMembers</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Clear memory</span>
+        <span class="nx">cache</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It goes back in history</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @param {Integer} steps The number of steps that you want to go backwards</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">goBack</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">steps</span><span class="p">){</span>
+        <span class="nx">history</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">steps</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">steps</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nx">steps</span><span class="p">));</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It goes forward in history</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @param {Integer} steps The number of steps that you want to go forward</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">goForward</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">steps</span><span class="p">){</span>
+        <span class="nx">history</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="nx">steps</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">steps</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nx">steps</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * It returns the state of the object</span>
+<span class="cm">     *</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @return {Object}</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">getAPIState</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * This is function is triggered on a window popstate</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Object} e The object returned from the event</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onPopstate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//Get the state</span>
+        <span class="nx">currentState</span> <span class="o">=</span> <span class="nx">getState</span><span class="p">();</span>
+
+        <span class="c1">// If the popstate runs again then it will not be a refresh but a push</span>
+        <span class="c1">// Only the first time of a pop state we know for sure that it is a refresh</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">isRefresh</span><span class="p">){</span>
+            <span class="nx">isRefresh</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">//Notify all the members that there was a pop state</span>
+        <span class="nx">notifyRegisteredMembers</span><span class="p">(</span><span class="s1">&#39;pop&#39;</span><span class="p">);</span>
+
+        <span class="c1">// If History API is supported then push the path</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
+            <span class="nx">notifyRegisteredPathChangeMembers</span><span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">path</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Else push the hash</span>
+            <span class="nx">notifyRegisteredPathChangeMembers</span><span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Gets the current state by reading the URL</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @return {Object} Returns an object with the following keys</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">getAPIState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+        <span class="kd">var</span> <span class="nx">tempState</span> <span class="o">=</span> <span class="nx">parseURL</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+        <span class="nx">tempState</span><span class="p">.</span><span class="nx">isRefresh</span> <span class="o">=</span> <span class="nx">isRefresh</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">tempState</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Notifies all the registered members</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {String} eventType The name of the event e.x. push, pop</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">notifyRegisteredMembers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventType</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">members</span> <span class="o">=</span> <span class="nx">registeredMembers</span><span class="p">[</span><span class="nx">eventType</span><span class="p">];</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">members</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">members</span><span class="p">[</span><span class="nx">i</span><span class="p">](</span><span class="nx">currentState</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Clear memory</span>
+        <span class="nx">members</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Notifies all the registered members when a path change happens</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {String} path The path e.x. segment1/segment2</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">notifyRegisteredPathChangeMembers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">){</span>
+
+        <span class="kd">var</span> <span class="nx">members</span> <span class="o">=</span> <span class="nx">registeredPathMembers</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">basepath</span> <span class="o">+</span> <span class="nx">path</span><span class="p">];</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">members</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">members</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">members</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">callback</span><span class="p">(</span><span class="nx">currentState</span><span class="p">);</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+
+        <span class="nx">members</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sorts the array based on priority</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {String} path The path e.x. segment1/segment2</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">sortRegisteredPathMembers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">registeredPathMembers</span><span class="p">[</span><span class="nx">path</span><span class="p">];</span>
+        <span class="nx">cache</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">sortByPriority</span><span class="p">);</span>
+        <span class="nx">cache</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Performs a check to see if the hash has changed and triggers then onPopstate function</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">checkHashChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+        <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">getState</span><span class="p">().</span><span class="nx">hash</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">currentHash</span> <span class="o">!==</span> <span class="nx">hash</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">currentHash</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">;</span>
+            <span class="nx">onPopstate</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Parses a url and returns an object containing the folowing data (if found): protocol, domain, post, path and path segments, hash and hash segments, query string and an object containing a key/value pair representation of the query</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {String} url The url that we need to parse</span>
+<span class="cm">     * @return {Object} The object containing the different segments from the parsed URL</span>
+<span class="cm">     * @author Justin Windle</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">parseURL</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">url</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">url</span> <span class="o">=</span> <span class="nx">unescape</span><span class="p">(</span> <span class="nx">url</span> <span class="p">);</span>
+
+        <span class="c1">// remove protocol, domain and port</span>
+        <span class="kd">var</span> <span class="nx">cut</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^(http(s)?:\/\/)?[^\/]+\/?/i</span><span class="p">,</span> <span class="s1">&#39;&#39;</span> <span class="p">);</span>
+
+        <span class="c1">// try to match patterns for the data we need</span>
+        <span class="kd">var</span> <span class="nx">parse</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="nx">protocol</span><span class="o">:</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/^(http(s)?):\/\//i</span> <span class="p">),</span>
+            <span class="nx">domain</span><span class="o">:</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/^(http(s)?:\/\/)?([^\/:]+)/i</span> <span class="p">),</span>
+            <span class="nx">query</span><span class="o">:</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/\?([\w\+\-\=&amp;]+)/</span> <span class="p">),</span>
+            <span class="nx">port</span><span class="o">:</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/\w:(\d{1,5})/</span> <span class="p">),</span>
+            <span class="nx">hash</span><span class="o">:</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/#([\w\-\/]+)/</span> <span class="p">),</span>
+            <span class="nx">path</span><span class="o">:</span> <span class="nx">cut</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/^\/?([\w\-\/\.]+)/</span> <span class="p">)</span>
+
+        <span class="p">};</span>
+
+        <span class="c1">// Create a result form any matches returned</span>
+        <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="nx">protocol</span><span class="o">:</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">?</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">protocol</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">domain</span><span class="o">:</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">domain</span> <span class="o">?</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">domain</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">query</span><span class="o">:</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">query</span> <span class="o">?</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">query</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">port</span><span class="o">:</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">port</span> <span class="o">?</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">port</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">hash</span><span class="o">:</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">hash</span> <span class="o">?</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">hash</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">path</span><span class="o">:</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">path</span> <span class="o">?</span> <span class="nx">parse</span><span class="p">.</span><span class="nx">path</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+             <span class="nx">url</span><span class="o">:</span> <span class="nx">url</span> <span class="cm">/* return the unescaped url */</span>
+
+        <span class="p">};</span>
+
+        <span class="c1">// Split the path into segments</span>
+        <span class="k">if</span><span class="p">(</span> <span class="nx">result</span><span class="p">.</span><span class="nx">path</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">pathSegments</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^\/|\/$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span> <span class="p">).</span><span class="nx">split</span><span class="p">(</span> <span class="s1">&#39;/&#39;</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Split the hash into segments</span>
+        <span class="k">if</span><span class="p">(</span> <span class="nx">result</span><span class="p">.</span><span class="nx">hash</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">hashSegments</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^\/|\/$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span> <span class="p">).</span><span class="nx">split</span><span class="p">(</span> <span class="s1">&#39;/&#39;</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Parse the query parameters</span>
+        <span class="k">if</span><span class="p">(</span> <span class="nx">result</span><span class="p">.</span><span class="nx">query</span> <span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">result</span><span class="p">.</span><span class="nx">params</span> <span class="o">=</span> <span class="p">{};</span>
+
+            <span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/([\w\+\-]+)\=([\w\+\-]+)/g</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">param</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span> <span class="nx">result</span><span class="p">.</span><span class="nx">query</span> <span class="p">);</span>
+
+            <span class="k">while</span><span class="p">(</span> <span class="nx">param</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">result</span><span class="p">.</span><span class="nx">params</span><span class="p">[</span> <span class="nx">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">param</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+                <span class="nx">param</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span> <span class="nx">result</span><span class="p">.</span><span class="nx">query</span> <span class="p">);</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Checks if the history API is supported</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @return {Boolean} True if the history api is supported</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">supportsHistoryAPI</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="o">!!</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">history</span> <span class="o">&amp;&amp;</span> <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Checks if the onhashchange is supported</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @return {Boolean} True if hash change event is supported</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">supportsHashChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="o">!!</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">onhashchange</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sorts an array based on the priority key</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">sortByPriority</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">priority</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">priority</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">((</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span><span class="p">)</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="p">((</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">y</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initalizes the utility</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+        <span class="c1">// Check if the browser supports the History API</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">supportsHistoryAPI</span><span class="p">()){</span>
+
+            <span class="nb">window</span><span class="p">.</span><span class="nx">onpopstate</span> <span class="o">=</span> <span class="nx">onPopstate</span><span class="p">;</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="c1">// Use hashes instead</span>
+            <span class="nx">isHistoryAPISupported</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="nx">supportsHashChange</span><span class="p">()){</span>
+
+                <span class="nb">window</span><span class="p">.</span><span class="nx">onhashchange</span> <span class="o">=</span> <span class="nx">onPopstate</span><span class="p">;</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+                <span class="c1">// Listen for changes at specific intervals</span>
+                <span class="nx">hashChangeIntervalId</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+                    <span class="nx">checkHashChange</span><span class="p">();</span>
+                <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">hashListenInterval</span><span class="p">);</span>
+
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">init</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
+</pre></div>

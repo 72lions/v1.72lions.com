@@ -10,10 +10,35 @@
  */
 seventytwolions.View.Navigation = function() {
 
-    var $links;
+    /**
+     * The links DOM Elements
+     *
+     * @type Array
+     * @default undefined
+     */
+    var $links = undefined;
+
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.Navigation
+     */
     var me = this;
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
 	this.domElement = $('.navigation');
+
+    /**
+     * The clicked DOM Element
+     *
+     * @type Object
+     * @default undefined
+     */
     this.clickedItem = undefined;
 
     /**

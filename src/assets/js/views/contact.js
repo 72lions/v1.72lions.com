@@ -10,8 +10,19 @@
  */
 seventytwolions.View.Contact = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.Contact
+     */
     var me = this;
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
 	this.domElement = $('.contact');
 
     /**

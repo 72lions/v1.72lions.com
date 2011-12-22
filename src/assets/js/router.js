@@ -8,20 +8,87 @@
  */
 var Router = (function(global){
 
+    /**
+     * It is set to true the first time we get a popstate
+     *
+     * @private
+     * @type Boolean
+     * @default true
+     */
     var isRefresh = true;
+
+    /**
+     * It holds all the registered events for the pop and push
+     *
+     * @private
+     * @type Object
+     * @default { push: [], pop: []}
+     */
     var registeredMembers = { push: [], pop: []};
+
+    /**
+     * It holds all the registered events for the path changes
+     *
+     * @private
+     * @type Object
+     * @default {}
+     */
     var registeredPathMembers = {};
+
+    /**
+     * It holds the current state
+     *
+     * @private
+     * @type Object
+     * @default null
+     */
     var currentState = null;
+
+    /**
+     * Holds the intervalId for the setInterval function if the History API isn't supported and hashes are used instead
+     *
+     * @private
+     * @type Number
+     * @default null
+     */
     var hashChangeIntervalId = null;
+
+    /**
+     * The current hash
+     *
+     * @private
+     * @type String
+     * @default ''
+     */
     var currentHash = '';
+
+    /**
+     * It is true if the History API is supported
+     *
+     * @private
+     * @type Boolean
+     * @default true
+     */
     var isHistoryAPISupported = true;
+
+    /**
+     * The base path
+     *
+     * @type String
+     * @default ''
+     */
     this.basePath = '';
+
+    /**
+     * After how many milliseconds the app will listen for a hash change
+     *
+     * @type Number
+     * @default 500
+     */
     this.hashListenInterval = 500;
 
     /**
      * Pushes a new state on the history api
-     *
-     * @method push
      *
      * @public
      * @param {Ojbect} state The state; could be a JSON object that is passed on the popstate
@@ -56,8 +123,6 @@ var Router = (function(global){
     /**
      * Replaces the current state with a new state
      *
-     * @method replace
-     *
      * @public
      * @param {Ojbect} state The state could be a JSON object that is passed on the popstate
      * @param {String} title The title of the page. Most browsers don't use it yet
@@ -91,8 +156,6 @@ var Router = (function(global){
     /**
      * Registers a specific callback to a specific event
      *
-     * @method registerForEvent
-     *
      * @public
      * @param {String} eventType The name of the event e.x. push, pop
      * @param {Function} callback The function to execute
@@ -122,8 +185,6 @@ var Router = (function(global){
 
     /**
      * Registers a specific callback to a specific path
-     *
-     * @method registerForPathChange
      *
      * @public
      * @param {String} path The name of the event e.x. segment1/segment2
@@ -174,8 +235,6 @@ var Router = (function(global){
     /**
      * It goes back in history
      *
-     * @method goBack
-     *
      * @public
      * @param {Integer} steps The number of steps that you want to go backwards
      * @author Thodoris Tsiridis
@@ -186,8 +245,6 @@ var Router = (function(global){
 
     /**
      * It goes forward in history
-     *
-     * @method goForward
      *
      * @public
      * @param {Integer} steps The number of steps that you want to go forward
@@ -200,8 +257,6 @@ var Router = (function(global){
     /**
      * It returns the state of the object
      *
-     * @method getState
-     *
      * @public
      * @return {Object}
      * @author Thodoris Tsiridis
@@ -212,8 +267,6 @@ var Router = (function(global){
 
     /**
      * This is function is triggered on a window popstate
-     *
-     * @method onPopstate
      *
      * @private
      * @param {Object} e The object returned from the event
@@ -245,8 +298,6 @@ var Router = (function(global){
     /**
      * Gets the current state by reading the URL
      *
-     * @method getAPIState
-     *
      * @private
      * @return {Object} Returns an object with the following keys
      * @author Thodoris Tsiridis
@@ -260,8 +311,6 @@ var Router = (function(global){
 
     /**
      * Notifies all the registered members
-     *
-     * @method notifyRegisteredMembers
      *
      * @private
      * @param {String} eventType The name of the event e.x. push, pop
@@ -281,8 +330,6 @@ var Router = (function(global){
 
     /**
      * Notifies all the registered members when a path change happens
-     *
-     * @method notifyRegisteredPathChangeMembers
      *
      * @private
      * @param {String} path The path e.x. segment1/segment2
@@ -306,8 +353,6 @@ var Router = (function(global){
     /**
      * Sorts the array based on priority
      *
-     * @method sortRegisteredPathMembers
-     *
      * @private
      * @param {String} path The path e.x. segment1/segment2
      * @author Thodoris Tsiridis
@@ -321,8 +366,6 @@ var Router = (function(global){
 
     /**
      * Performs a check to see if the hash has changed and triggers then onPopstate function
-     *
-     * @method checkHashChange
      *
      * @private
      * @author Thodoris Tsiridis
@@ -340,8 +383,6 @@ var Router = (function(global){
 
     /**
      * Parses a url and returns an object containing the folowing data (if found): protocol, domain, post, path and path segments, hash and hash segments, query string and an object containing a key/value pair representation of the query
-     *
-     * @method parseURL
      *
      * @private
      * @param {String} url The url that we need to parse
@@ -411,8 +452,6 @@ var Router = (function(global){
     /**
      * Checks if the history API is supported
      *
-     * @method supportsHistoryAPI
-     *
      * @private
      * @return {Boolean} True if the history api is supported
      * @author Thodoris Tsiridis
@@ -423,8 +462,6 @@ var Router = (function(global){
 
     /**
      * Checks if the onhashchange is supported
-     *
-     * @method supportsHashChange
      *
      * @private
      * @return {Boolean} True if hash change event is supported
@@ -437,8 +474,6 @@ var Router = (function(global){
     /**
      * Sorts an array based on the priority key
      *
-     * @method sortByPriority
-     *
      * @private
      * @author Thodoris Tsiridis
      */
@@ -450,8 +485,6 @@ var Router = (function(global){
 
     /**
      * Initalizes the utility
-     *
-     * @method init
      *
      * @private
      * @author Thodoris Tsiridis

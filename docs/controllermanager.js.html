@@ -1,0 +1,356 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: 72lions
+    
+    
+      &rarr; controllermanager.js (file)
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="72lions">72lions</a> v1.0.0
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="72lions">72lions</a>
+          &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
+          
+          
+            &rarr; file controllermanager.js
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_72lions.html">72lions</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="seventytwolions.Console.html">seventytwolions.Console</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.About.html">seventytwolions.Controller.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Base.html">seventytwolions.Controller.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Blog.html">seventytwolions.Controller.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Contact.html">seventytwolions.Controller.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Experiments.html">seventytwolions.Controller.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Main.html">seventytwolions.Controller.Main</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Navigation.html">seventytwolions.Controller.Navigation</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.Portfolio.html">seventytwolions.Controller.Portfolio</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.PostDetails.html">seventytwolions.Controller.PostDetails</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.SectionsManager.html">seventytwolions.Controller.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Controller.ThumbnailItem.html">seventytwolions.Controller.ThumbnailItem</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.ControllerManager.html">seventytwolions.ControllerManager</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.EventTarget.html">seventytwolions.EventTarget</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Router.html">seventytwolions.Router</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Navigation.html">seventytwolions.View.Navigation</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Portfolio.html">seventytwolions.View.Portfolio</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.PostDetails.html">seventytwolions.View.PostDetails</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.SectionsManager.html">seventytwolions.View.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.ThumbnailItem.html">seventytwolions.View.ThumbnailItem</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="about.js.html">about.js</a>
+                  </li>
+                  <li >
+                    <a href="base.js.html">base.js</a>
+                  </li>
+                  <li >
+                    <a href="blog.js.html">blog.js</a>
+                  </li>
+                  <li >
+                    <a href="bootstrap.js.html">bootstrap.js</a>
+                  </li>
+                  <li >
+                    <a href="categories.js.html">categories.js</a>
+                  </li>
+                  <li >
+                    <a href="console.js.html">console.js</a>
+                  </li>
+                  <li >
+                    <a href="contact.js.html">contact.js</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="controllermanager.js.html">controllermanager.js</a>
+                  </li>
+                  <li >
+                    <a href="eventtarget.js.html">eventtarget.js</a>
+                  </li>
+                  <li >
+                    <a href="experiments.js.html">experiments.js</a>
+                  </li>
+                  <li >
+                    <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
+                  </li>
+                  <li >
+                    <a href="jquery.easing.1.3.js.html">jquery.easing.1.3.js</a>
+                  </li>
+                  <li >
+                    <a href="locale_en.js.html">locale_en.js</a>
+                  </li>
+                  <li >
+                    <a href="lookup.js.html">lookup.js</a>
+                  </li>
+                  <li >
+                    <a href="main.js.html">main.js</a>
+                  </li>
+                  <li >
+                    <a href="modernizr-2.0.6.min.js.html">modernizr-2.0.6.min.js</a>
+                  </li>
+                  <li >
+                    <a href="namespaces.js.html">namespaces.js</a>
+                  </li>
+                  <li >
+                    <a href="navigation.js.html">navigation.js</a>
+                  </li>
+                  <li >
+                    <a href="portfolio.js.html">portfolio.js</a>
+                  </li>
+                  <li >
+                    <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
+                  </li>
+                  <li >
+                    <a href="router.js.html">router.js</a>
+                  </li>
+                  <li >
+                    <a href="sectionsmanager.js.html">sectionsmanager.js</a>
+                  </li>
+                  <li >
+                    <a href="thumbnailitem.js.html">thumbnailitem.js</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>controllermanager.js</strong>
+          </h2>
+
+          <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * The controller manager is responsible for instantiating controllers</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class ControllerManager</span>
+<span class="cm"> * @namespace seventytwolions</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initializes a controller with a specific name</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {Object} object The parameters</span>
+<span class="cm">     * @return {seventytwolions.Controller.Base}</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initializeController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
+</pre></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2011 72lions. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

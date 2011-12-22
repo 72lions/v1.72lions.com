@@ -10,13 +10,32 @@
  */
 seventytwolions.View.Portfolio = function() {
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
     this.domElement = $('.portfolio');
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.Portfolio
+     */
     var me = this;
+
+    /**
+     * The items container DOM Element
+     *
+     * @private
+     * @type Object
+     */
     var itemsContainer = this.domElement.find('.centered');
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
@@ -25,6 +44,7 @@ seventytwolions.View.Portfolio = function() {
 
     /**
      * Draws the specific view
+     *
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
@@ -33,6 +53,7 @@ seventytwolions.View.Portfolio = function() {
 
    /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
@@ -41,6 +62,7 @@ seventytwolions.View.Portfolio = function() {
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function(){
@@ -55,6 +77,7 @@ seventytwolions.View.Portfolio = function() {
     };
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
@@ -63,6 +86,7 @@ seventytwolions.View.Portfolio = function() {
 
     /**
      * Adds a portfolio item to the view
+     *
      * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */

@@ -1,0 +1,69 @@
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Event target is used as a mixin so that the classes can support dispatch events and add events commands</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class EventTarget</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">EventTarget</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * The object that will hold all the event listeners</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">listeners</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Registers an event</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {String} type The event type</span>
+<span class="cm">     * @param {Function} listener The callback function</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span> <span class="nx">listener</span> <span class="p">)</span> <span class="o">===</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">].</span><span class="nx">push</span><span class="p">(</span> <span class="nx">listener</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Dispatches an event</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {String} type The event type</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">listener</span> <span class="k">in</span> <span class="nx">listeners</span><span class="p">[</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span> <span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">listeners</span><span class="p">[</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span> <span class="p">][</span> <span class="nx">listener</span> <span class="p">](</span> <span class="nx">event</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Removes an event</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {String} type The event type</span>
+<span class="cm">     * @param {Function} listener The callback function</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">removeEventListener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span> <span class="nx">listener</span> <span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">index</span> <span class="o">!==</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">].</span><span class="nx">splice</span><span class="p">(</span> <span class="nx">index</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span>
+</pre></div>

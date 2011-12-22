@@ -10,10 +10,16 @@
  */
 seventytwolions.View.Main = function() {
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
 	this.domElement = null;
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
@@ -22,6 +28,7 @@ seventytwolions.View.Main = function() {
 
     /**
      * Draws the specific view
+     *
      * @author Thodoris Tsiridis
      */
     this.draw = function() {
@@ -30,6 +37,7 @@ seventytwolions.View.Main = function() {
 
    /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){

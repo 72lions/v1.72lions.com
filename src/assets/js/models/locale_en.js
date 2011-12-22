@@ -10,8 +10,31 @@
  */
 seventytwolions.Model.Locale = (function(global){
 
+    /**
+     * An array of all the months
+     *
+     * @private
+     * @type Array
+     * @default ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+     */
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    /**
+     * An array of all the week days
+     *
+     * @private
+     * @type Array
+     * @default ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+     */
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    /**
+     * The page title
+     *
+     * @private
+     * @type String
+     * @default "72Lions - The playground of developer Thodoris Tsiridis"
+     */
     var pageTitle = "72Lions - The playground of developer Thodoris Tsiridis";
 
     /**

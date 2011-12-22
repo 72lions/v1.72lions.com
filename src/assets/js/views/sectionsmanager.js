@@ -27,6 +27,7 @@ seventytwolions.View.SectionsManager = function() {
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
@@ -35,6 +36,7 @@ seventytwolions.View.SectionsManager = function() {
 
     /**
      * Draws the specific view
+     *
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
@@ -43,6 +45,7 @@ seventytwolions.View.SectionsManager = function() {
 
    /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){

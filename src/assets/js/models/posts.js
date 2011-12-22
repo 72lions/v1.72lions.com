@@ -10,13 +10,69 @@
  */
 seventytwolions.Model.Posts = function(){
 
-    // Constants
+    /**
+     * The api url for the posts
+     *
+     * @private
+     * @final
+     * @type String
+     * @default '/api/getPosts.php'
+     */
     var POSTS_URL = '/api/getPosts.php';
+
+    /**
+     * The api url for the posts details
+     *
+     * @private
+     * @final
+     * @type String
+     * @default '/api/getPostDetails.php'
+     */
     var POST_DETAILS_URL = '/api/getPostDetails.php';
+
+    /**
+     * The start offset for the categories
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 0
+     */
     var DEFAULT_START = 0;
+
+    /**
+     * The total number of items to retrieve from the api
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 10
+     */
     var DEFAULT_NUMBER_OF_ITEMS = 10;
 
-    var req, reqDetails;
+    /**
+     * The ajax request as returned from jQuery.ajax()
+     *
+     * @private
+     * @type jqXHR
+     * @default undefined
+     */
+    var req = undefined;
+
+    /**
+     * The ajax request for the details call as returned from jQuery.ajax()
+     *
+     * @private
+     * @type jqXHR
+     * @default undefined
+     */
+    var reqDetails = undefined;
+
+    /**
+     * The object that holds the data
+     *
+     * @type String
+     */
     var data = {};
 
     /**

@@ -9,29 +9,27 @@
  */
 seventytwolions.Console = (function(global){
 
-    // Declaring the API
-    var api = {};
-
-    api.debug = true;
+    /**
+     * Set to true and debug will be enabled
+     *
+     * @type {Boolean}
+     * @default true
+     */
+    this.debug = true;
 
     /**
      * Logs out a message
-     * @private
-     * @param Multiple arguments
-     * @returns Nothing
-     * @type null
+     *
+     * @param {Object || Array || Number || String || Arguments} arguments The message to pass down to console.log
      * @author Thodoris Tsiridis
      */
-    var log = function() {
+    this.log = function() {
 
-        if(api.debug){
+        if(this.debug){
             console.log(arguments);
         }
 
     };
-
-    // Exposing functions
-    api.log = log;
 
     // Return the api
     return api;

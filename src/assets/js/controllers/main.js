@@ -10,12 +10,53 @@
  */
 seventytwolions.Controller.Main = function() {
 
+    /**
+     * A reference to the navigation controller
+     *
+     * @private
+     * @type seventytwolions.Controller.NaviMaingation
+     * @default null
+     */
     var navigationController = null;
+
+    /**
+     * A reference to the sections manager controller
+     *
+     * @private
+     * @type seventytwolions.Controller.SectionsManager
+     * @default null
+     */
     var sectionsManager = null;
+
+    /**
+     * The initial state of the website
+     *
+     * @private
+     * @type Object
+     */
     var initialState = Router.getState();
+
+    /**
+     * Its true if there is a state object in the windows history. Chrome triggers a popstate on load so that is true
+     *
+     * @private
+     * @type Boolean
+     */
     var popped = ('state' in window.history);
+
+    /**
+     * The page url upon loading
+     *
+     * @private
+     * @type String
+     */
     var initialURL = location.href;
 
+    /**
+     * This function is executed right after the initialized function is called
+     *
+     * @author Thodoris Tsiridis
+     */
     this.postInitialize = function() {
 
         navigationController = seventytwolions.ControllerManager.initializeController({

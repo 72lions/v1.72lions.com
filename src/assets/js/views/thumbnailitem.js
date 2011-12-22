@@ -10,11 +10,45 @@
  */
 seventytwolions.View.ThumbnailItem = function() {
 
+    /**
+     * If the thumbnail item is of type featured then this value is set to true
+     *
+     * @type Boolean
+     * @default false
+     */
     this.isFeatured = false;
 
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
+    this.domElement = $('<article class="portfolio-item clearfix"></article>');
+
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.ThumbnailItem
+     */
     var me = this;
+
+    /**
+     * The path to the images
+     *
+     * @private
+     * @type String
+     * @default 'http://72lions.com/wp-content/uploads/'
+     */
     var IMAGES_PATH = 'http://72lions.com/wp-content/uploads/';
 
+    /**
+     * The HTML template for the thumbnail item
+     *
+     * @private
+     * @type String
+     * @default '<div class="photo"><a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a><a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a></div><div class="description"><hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup><time>${publishdate}</time><aside>Categories: ${categories}</aside><p>${description}</p><a href="${link}" title="${title}" class="readmore">Read more</a></div>'
+     */
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
                     '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a>'+
@@ -30,10 +64,11 @@ seventytwolions.View.ThumbnailItem = function() {
                 '</div>';
 
 
-	this.domElement = $('<article class="portfolio-item clearfix"></article>');
+
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
@@ -42,6 +77,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Draws the specific view
+     *
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
@@ -50,6 +86,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
    /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
@@ -76,6 +113,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
    /**
      * Renders the specific view
+     *
      * @author Thodoris Tsiridis
      */
     this.render = function() {
@@ -166,6 +204,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Shows the description of the item
+     *
      * @author Thodoris Tsiridis
      */
     this.showDescription = function() {
@@ -174,6 +213,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Hides the description of the item
+     *
      * @author Thodoris Tsiridis
      */
     this.hideDescription = function() {
@@ -182,6 +222,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
     /**
      * Registers all the events
+     *
      * @author Thodoris Tsiridis
      */
     var addEventListeners = function() {

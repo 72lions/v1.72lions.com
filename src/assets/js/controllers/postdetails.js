@@ -9,12 +9,25 @@
  * @version 1.0
  */
 seventytwolions.Controller.PostDetails = function() {
-
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.ThumbnailItem
+     */
     var me = this;
+
+    /**
+     * The id of the current article
+     *
+     * @type String
+     * @default null
+     */
     this.currentId = null;
 
     /**
      * This function is executed right after the initialized function is called
+     *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -23,6 +36,7 @@ seventytwolions.Controller.PostDetails = function() {
 
     /**
      * Loads a page or post from the model
+     *
      * @param  {String} sectionSlug The name of the page's slug
      * @author Thodoris Tsiridis
      */
@@ -42,6 +56,7 @@ seventytwolions.Controller.PostDetails = function() {
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function() {
@@ -50,6 +65,7 @@ seventytwolions.Controller.PostDetails = function() {
 
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function() {

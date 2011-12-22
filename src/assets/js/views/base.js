@@ -11,13 +11,41 @@ seventytwolions.View.Base = function() {
 
     EventTarget.call( this );
 
-    this.name = null;
-    this.id = null;
-    this.model = null;
+    /**
+     * The view name
+     *
+     * @type String
+     * @default ''
+     */
+    this.name = '';
+
+    /**
+     * The view id
+     *
+     * @type String
+     * @default ''
+     */
+    this.id = '';
+
+    /**
+     * A reference to this view's model
+     *
+     * @type seventytwolions.View.Base
+     * @default undefined
+     */
+    this.model = undefined;
+
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     * @default null
+     */
     this.domElement = null;
 
     /**
      * Function for when showing the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function() {
@@ -25,6 +53,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Function for when hiding the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function() {
@@ -32,6 +61,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Sets the name of the view
+     *
      * @param {String} name The name fo the view
      * @author Thodoris Tsiridis
      */
@@ -41,6 +71,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Sets the name of the view
+     *
      * @param {String} name The name fo the view
      * @author Thodoris Tsiridis
      */
@@ -50,6 +81,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Sets the model for the view
+     *
      * @param {seventytwolions.Model.Base} model The model
      * @author Thodoris Tsiridis
      */
@@ -59,6 +91,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Gets the model for the view
+     *
      * @return {seventytwolions.Model.Base} The model
      * @author Thodoris Tsiridis
      */
@@ -68,6 +101,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Returns the main dom element of the view
+     *
      * @return {Object} A DOM element
      * @author Thodoris Tsiridis
      */
@@ -77,6 +111,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Is triggered before initialization of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.preInitialize = function(name, id) {
@@ -86,6 +121,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Initializes the view
+     *
      * @author Thodoris Tsiridis
      */
     this.initialize = function(){
@@ -94,6 +130,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Draws the view
+     *
      * @author Thodoris Tsiridis
      */
     this.draw = function(){
@@ -102,6 +139,7 @@ seventytwolions.View.Base = function() {
 
     /**
      * Executed after the drawing of the view
+     *
      * @author Thodoris Tsiridis
      */
     this.postDraw = function(){

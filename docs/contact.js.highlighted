@@ -1,0 +1,74 @@
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Contact View</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class Contact</span>
+<span class="cm"> * @namespace seventytwolions.View</span>
+<span class="cm"> * @extends seventytwolions.View.Base</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Contact</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * A reference to this class</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type seventytwolions.View.Contact</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The DOM Element</span>
+<span class="cm">     *</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.contact&#39;</span><span class="p">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initializes the view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//seventytwolions.Console.log(&#39;Initializing view with name &#39; + this.name);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Draws the specific view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">//seventytwolions.Console.log(&#39;Drawing view with name &#39; + this.name);</span>
+	<span class="p">};</span>
+
+   <span class="cm">/**</span>
+<span class="cm">     * Executed after the drawing of the view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">postDraw</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//seventytwolions.Console.log(&#39;Post draw view with name &#39; + this.name);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Shows the view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">that</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Hides the view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="p">};</span>
+
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Contact</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+</pre></div>

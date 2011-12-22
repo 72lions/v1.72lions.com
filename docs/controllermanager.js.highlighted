@@ -1,0 +1,26 @@
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * The controller manager is responsible for instantiating controllers</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class ControllerManager</span>
+<span class="cm"> * @namespace seventytwolions</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initializes a controller with a specific name</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {Object} object The parameters</span>
+<span class="cm">     * @return {seventytwolions.Controller.Base}</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initializeController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
+</pre></div>

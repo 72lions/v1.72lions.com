@@ -10,6 +10,12 @@
  */
 seventytwolions.Controller.ThumbnailItem = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.ThumbnailItem
+     */
     var me = this;
 
     /**

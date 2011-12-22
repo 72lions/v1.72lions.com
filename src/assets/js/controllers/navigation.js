@@ -10,10 +10,17 @@
  */
 seventytwolions.Controller.Navigation = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.Navigation
+     */
     var me = this;
 
     /**
      * This function is executed right after the initialized
+     *
      * function is called
      * @author Thodoris Tsiridis
      */

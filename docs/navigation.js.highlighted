@@ -1,0 +1,127 @@
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Navigation View</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class Navigation</span>
+<span class="cm"> * @namespace seventytwolions.View</span>
+<span class="cm"> * @extends seventytwolions.View.Base</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Navigation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The links DOM Elements</span>
+<span class="cm">     *</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @default undefined</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">$links</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * A reference to this class</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type seventytwolions.View.Navigation</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The DOM Element</span>
+<span class="cm">     *</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.navigation&#39;</span><span class="p">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The clicked DOM Element</span>
+<span class="cm">     *</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @default undefined</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clickedItem</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initializes the view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//seventytwolions.Console.log(&#39;Initializing view with name &#39; + this.name);</span>
+        <span class="nx">$links</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Draws the specific view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">//seventytwolions.Console.log(&#39;Drawing view with name &#39; + this.name);</span>
+	<span class="p">};</span>
+
+   <span class="cm">/**</span>
+<span class="cm">     * Executed after the drawing of the view</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">postDraw</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//seventytwolions.Console.log(&#39;Post draw view with name &#39; + this.name);</span>
+        <span class="nx">addEventListeners</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Hightlits a menu item</span>
+<span class="cm">     * @param {String} section The name of the section that we want to highlight</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">selectNavigationItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">section</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">section</span> <span class="o">=</span> <span class="nx">section</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span> <span class="o">?</span> <span class="s1">&#39;home&#39;</span> <span class="o">:</span> <span class="nx">section</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.nav-&#39;</span> <span class="o">+</span> <span class="nx">section</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">).</span><span class="nx">siblings</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Registers all the event listeners</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">addEventListeners</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">$links</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">onLinkClick</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Triggered when we click a link</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Object} e The event</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onLinkClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">$item</span><span class="p">;</span>
+
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+        <span class="c1">// Cache the item</span>
+        <span class="nx">$item</span> <span class="o">=</span> <span class="nx">me</span><span class="p">.</span><span class="nx">clickedItem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+        <span class="c1">// Check if the item that was clicked was the logo</span>
+        <span class="c1">// and if it was use a delay so that we first scroll up</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">$item</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;logo&#39;</span><span class="p">)){</span>
+            <span class="nx">delay</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+            <span class="c1">// Scroll to top</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body,html&#39;</span><span class="p">).</span><span class="nx">stop</span><span class="p">().</span><span class="nx">animate</span><span class="p">({</span><span class="nx">scrollTop</span><span class="o">:</span><span class="mi">0</span><span class="p">},</span> <span class="nx">delay</span><span class="p">,</span> <span class="s1">&#39;easeOutQuint&#39;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// Dispatch the event</span>
+            <span class="nx">me</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;menuClicked&#39;</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="nx">me</span><span class="p">.</span><span class="nx">clickedItem</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">),</span> <span class="nx">title</span><span class="o">:</span> <span class="nx">me</span><span class="p">.</span><span class="nx">clickedItem</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)});</span>
+        <span class="p">},</span> <span class="nx">delay</span> <span class="o">+</span> <span class="mi">100</span><span class="p">);</span>
+
+        <span class="c1">// Clear memory</span>
+        <span class="nx">$item</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+
+<span class="p">};</span>
+
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Navigation</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+</pre></div>

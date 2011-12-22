@@ -9,30 +9,17 @@
  */
 seventytwolions.ControllerManager = (function(global) {
 
-    var newController;
-    /**
-     * Will be used to expose private functions
-     *
-     * @private
-     * @type Object
-     */
-    var api = {};
-
-    api.data = null;
-
-
     /**
      * Initializes a controller with a specific name
+     *
      * @param {Object} object The parameters
      * @return {seventytwolions.Controller.Base}
      * @author Thodoris Tsiridis
      */
-    var initializeController = function(object) {
+    this.initializeController = function(object) {
         return seventytwolions.Lookup.getController(object);
     };
 
-    api.initializeController = initializeController;
-
-    return api;
+    return this;
 
 })(window);

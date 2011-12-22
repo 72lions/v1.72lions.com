@@ -10,13 +10,88 @@
  */
 seventytwolions.Controller.SectionsManager = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.SectionsManager
+     */
     var me = this;
+
+    /**
+     * The initial state of the website
+     *
+     * @private
+     * @type Object
+     */
     var initialState = Router.getState();
-    var portfolio, experiments, blog, contact, postDetails, sections;
+
+    /**
+     * The Portfolio Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Portfolio
+     * @default undefined
+     */
+    var portfolio = undefined;
+
+    /**
+     * The Experiments Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Experiments
+     * @default undefined
+     */
+    var experiments = undefined;
+
+    /**
+     * The Blog Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Blog
+     * @default undefined
+     */
+    var blog = undefined;
+
+    /**
+     * The initial state of the website
+     *
+     * @private
+     * @type seventytwolions.Controller.Contact
+     * @default undefined
+     */
+    var contact = undefined;
+
+    /**
+     * The Post Details Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.PostDetails
+     * @default undefined
+     */
+    var postDetails = undefined;
+
+    /**
+     * The array that will hold all the sections
+     *
+     * @private
+     * @type Array
+     * @default undefined
+     */
+    var sections = undefined;
+
+    /**
+     * The number of total sections
+     *
+     * @private
+     * @type Number
+     * @default 4
+     */
     var totalSections = 4;
 
     /**
      * This function is executed right after the initialized function is called
+     *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
@@ -47,7 +122,7 @@ seventytwolions.Controller.SectionsManager = function() {
             })
         });
 
-        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}/**, {name:'contact', object: contact}*/];
+        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
         postDetails = seventytwolions.ControllerManager.initializeController({
             type:'PostDetails',
@@ -62,6 +137,7 @@ seventytwolions.Controller.SectionsManager = function() {
 
     /**
      * Shows a a section with a specific name
+     *
      * @param {Object} state The state of the url
      * @author Thodoris Tsiridis
      */

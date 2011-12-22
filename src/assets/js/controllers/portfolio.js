@@ -10,23 +10,47 @@
  */
 seventytwolions.Controller.Portfolio = function() {
 
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.Portfolio
+     */
     var me = this;
-    var categoriesModel;
+
+    /**
+     * The categories Model
+     *
+     * @private
+     * @type seventytwolions.Model.Categories
+     * @default undefined
+     */
+    var categoriesModel = undefined;
+
+    /**
+     * An array with all the portfolio items
+     *
+     * @private
+     * @type Array
+     * @default []
+     */
     var portfolioItems = [];
 
     /**
      * This function is executed right after the initialized function is called
+     *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
 
         this.loadPosts();
-        this.loadCategories();
+        //this.loadCategories();
 
     };
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
     this.show = function(){
@@ -35,6 +59,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
@@ -43,6 +68,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     /**
      * Forces the model to load the posts
+     *
      * @author Thodoris Tsiridis
      */
     this.loadPosts = function() {
@@ -81,6 +107,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     /**
      * Forces the model to load the categories
+     *
      * @author Thodoris Tsiridis
      */
     this.loadCategories = function() {
@@ -97,6 +124,7 @@ seventytwolions.Controller.Portfolio = function() {
 
     /**
      * Callback function that is triggered when the model categories are loaded
+     *
      * @param  {Object} result The result that came back from the model
      * @author Thodoris Tsiridis
      */
