@@ -16,7 +16,7 @@ seventytwolions.View.Navigation = function() {
      * @type Array
      * @default undefined
      */
-    var $links = undefined;
+    var $links;
 
     /**
      * A reference to this class

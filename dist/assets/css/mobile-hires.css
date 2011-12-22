@@ -125,3 +125,23 @@ section.post-details .content {
 section.post-details aside {
     display:none;
 }
+
+footer .menu {
+    padding-left:20px !important;
+    float:none;
+}
+
+footer .latest-tweets  {
+    float:none;
+    margin-top:0px;
+
+    display:block;
+    width: 85% !important;
+}
+
+footer .footer-logo:after {
+    clear:both;
+    height:0px;
+    display:block;
+    content:" ";
+}

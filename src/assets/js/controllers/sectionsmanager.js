@@ -33,7 +33,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Portfolio
      * @default undefined
      */
-    var portfolio = undefined;
+    var portfolio;
 
     /**
      * The Experiments Controller
@@ -42,7 +42,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Experiments
      * @default undefined
      */
-    var experiments = undefined;
+    var experiments;
 
     /**
      * The Blog Controller
@@ -51,7 +51,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Blog
      * @default undefined
      */
-    var blog = undefined;
+    var blog;
 
     /**
      * The initial state of the website
@@ -60,7 +60,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Contact
      * @default undefined
      */
-    var contact = undefined;
+    var contact;
 
     /**
      * The Post Details Controller
@@ -69,7 +69,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.PostDetails
      * @default undefined
      */
-    var postDetails = undefined;
+    var postDetails;
 
     /**
      * The array that will hold all the sections
@@ -78,7 +78,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type Array
      * @default undefined
      */
-    var sections = undefined;
+    var sections;
 
     /**
      * The number of total sections

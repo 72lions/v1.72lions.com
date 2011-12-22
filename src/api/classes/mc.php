@@ -44,6 +44,7 @@ class MC {
      * Returns an object from memcache
      * @param {String} $key The name of the key that we want to save
      * @param {Object} $value The object that we want to save
+     * @param {Number} $time The time that the object will stay in memory
      * @author Thodoris Tsiridis
      */
     public static function set($key, $value, $time = 864000) {

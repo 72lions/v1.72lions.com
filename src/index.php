@@ -235,24 +235,25 @@
 			<footer class="clearfix">
 				<aside class="menu">
 					<nav>
-						<a href="category/blog" class="nav-blog" title="Blog">Blog</a>
+						<a href="/category/blog" class="nav-blog" title="Blog">Blog</a>
 						<!--<a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a>-->
-						<a href="category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
-						<a href="about" class="nav-about" title="About">About</a>
+						<a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
+						<a href="/about" class="nav-about" title="About">About</a>
 					</nav>
 				</aside>
-				<aside class="latest-tweets">
-					<article>
-						<hgroup><h1>Latest Tweets</h1></hgroup>
-						<p>@JacekZ @fmmm Sthlm's way to say welcome! Throw a pile of snow on your head! Same happened when I first came in Sthlm.</p>
-						<p>@claudioguglieri true!</p>
-					</article>
-				</aside>
+
 				<aside class="footer-logo clearfix">
 					<a href="http://www.w3.org/html/logo/">
 						<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
 					</a>
 				</aside>
+
+				<aside class="latest-tweets">
+					<article>
+						<hgroup><h1>Latest Tweets</h1></hgroup>
+					</article>
+				</aside>
+
 			</footer>
 		</div>
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
@@ -285,10 +286,12 @@
 		<script type="text/javascript" src="/assets/js/controllers/contact.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/thumbnailitem.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/postdetails.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/footer.js"></script>
 
 		<script type="text/javascript" src="/assets/js/models/base.js"></script>
 		<script type="text/javascript" src="/assets/js/models/categories.js"></script>
 		<script type="text/javascript" src="/assets/js/models/posts.js"></script>
+		<script type="text/javascript" src="/assets/js/models/footer.js"></script>
 
 		<script type="text/javascript" src="/assets/js/views/base.js"></script>
 		<script type="text/javascript" src="/assets/js/views/main.js"></script>
@@ -301,6 +304,7 @@
 		<script type="text/javascript" src="/assets/js/views/contact.js"></script>
 		<script type="text/javascript" src="/assets/js/views/thumbnailitem.js"></script>
 		<script type="text/javascript" src="/assets/js/views/postdetails.js"></script>
+		<script type="text/javascript" src="/assets/js/views/footer.js"></script>
 
 		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 		<!--end source scripts-->

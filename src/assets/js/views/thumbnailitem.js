@@ -117,8 +117,8 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-
         var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail, thumbnailFile;
+
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();

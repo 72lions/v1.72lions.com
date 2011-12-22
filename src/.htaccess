@@ -2,8 +2,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} !^72lions\.com
-RewriteRule (.*) http://72lions.com/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} !^72lions\.com
+#RewriteRule (.*) http://72lions.com/$1 [R=301,L]
 
 RewriteBase /
 RewriteRule ^index\.php$ - [L]

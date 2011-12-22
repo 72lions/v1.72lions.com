@@ -47,11 +47,12 @@ seventytwolions.Model.Categories = function(){
      * @type jqXHR
      * @default undefined
      */
-    var req = undefined;
+    var req;
 
     /**
      * The object that holds the data
      *
+     * @private
      * @type String
      */
     var data = {};
@@ -68,7 +69,9 @@ seventytwolions.Model.Categories = function(){
      * @author Thodoris Tsiridis
      */
     this.get = function(start, total, callback, ctx) {
-        var dataString;
+        var dataString, me;
+
+        me = this;
 
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
@@ -84,9 +87,9 @@ seventytwolions.Model.Categories = function(){
                     dataType: 'json',
                     data: dataString,
                     success: function(res){
-                        data.posts = res.Results;
+                        me.set('posts', res.Results);
                         if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                            callback.apply(ctx, [data.posts]);
+                            callback.apply(ctx, [me.get('posts')]);
                             req = undefined;
                         }
                     }

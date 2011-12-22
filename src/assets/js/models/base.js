@@ -12,6 +12,7 @@ seventytwolions.Model.Base = function(){
     /**
      * The object that holds the data
      *
+     * @private
      * @type String
      */
     var data = {};
@@ -39,7 +40,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.setData = function(modelData) {
-        data = modelData;
+        this.data = modelData;
     };
 
     /**
@@ -49,7 +50,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.getData = function() {
-        return data;
+        return this.data;
     };
 
     /**
@@ -80,7 +81,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.set = function(key, value) {
-        data[key] = value;
+        this.data[key] = value;
     };
 
     /**
@@ -91,7 +92,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.get = function(key) {
-        return data[key];
+        return this.data[key];
     };
 
 };

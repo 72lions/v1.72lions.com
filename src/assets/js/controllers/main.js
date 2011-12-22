@@ -29,6 +29,15 @@ seventytwolions.Controller.Main = function() {
     var sectionsManager = null;
 
     /**
+     * A reference to the footer controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Footer
+     * @default null
+     */
+    var footerController = null;
+
+    /**
      * The initial state of the website
      *
      * @private
@@ -70,6 +79,15 @@ seventytwolions.Controller.Main = function() {
             type:'SectionsManager',
             id:'sectionsmanager',
             model: seventytwolions.Lookup.getModel({})
+        });
+
+        footerController  = seventytwolions.ControllerManager.initializeController({
+            type:'Footer',
+            id:'Footer',
+            model: seventytwolions.Lookup.getModel({
+               type: 'Footer',
+               id: 'footter'
+            })
         });
 
         onPopPushEvent(initialState);
@@ -137,7 +155,9 @@ seventytwolions.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var changeSection = function(state){
+        footerController.hide();
         sectionsManager.showSectionWithName(state);
+        footerController.show();
     };
 };
 

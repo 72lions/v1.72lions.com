@@ -57,7 +57,7 @@ seventytwolions.Model.Posts = function(){
      * @type jqXHR
      * @default undefined
      */
-    var req = undefined;
+    var req;
 
     /**
      * The ajax request for the details call as returned from jQuery.ajax()
@@ -66,7 +66,7 @@ seventytwolions.Model.Posts = function(){
      * @type jqXHR
      * @default undefined
      */
-    var reqDetails = undefined;
+    var reqDetails;
 
     /**
      * The object that holds the data
@@ -87,8 +87,9 @@ seventytwolions.Model.Posts = function(){
      * @author Thodoris Tsiridis
      */
     this.getPosts = function(categoryid, start, total, callback, ctx) {
+        var dataString, me;
 
-        var dataString;
+        me = this;
 
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
@@ -104,17 +105,17 @@ seventytwolions.Model.Posts = function(){
         }
 
         req = $.ajax({
-                url: POSTS_URL,
-                dataType: 'json',
-                data: dataString,
-                success: function(res){
-                    data.posts = res.Results;
-                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [data.posts]);
-                        req = undefined;
-                    }
+            url: POSTS_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('posts', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('posts')]);
+                    req = undefined;
                 }
-            });
+            }
+        });
     };
 
     /**
@@ -127,6 +128,9 @@ seventytwolions.Model.Posts = function(){
      * @author Thodoris Tsiridis
      */
     this.getDetails = function(slug, callback, ctx) {
+        var me;
+
+        me = this;
 
         if(reqDetails !== undefined){
             reqDetails.abort();
@@ -137,9 +141,9 @@ seventytwolions.Model.Posts = function(){
                 dataType: 'json',
                 data: 'id=' + slug,
                 success: function(res){
-                    data.post = res.Results;
+                    me.set('post', res.Results);
                     if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [data.post]);
+                        callback.apply(ctx, [me.get('post')]);
                         req = undefined;
                     }
                 }

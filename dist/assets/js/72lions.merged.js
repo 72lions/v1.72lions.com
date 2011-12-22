@@ -919,7 +919,7 @@ seventytwolions.Console = (function(global){
     };
 
     // Return the api
-    return api;
+    return this;
 
 })(window);
 
@@ -1087,6 +1087,7 @@ seventytwolions.Model.Base = function(){
     /**
      * The object that holds the data
      *
+     * @private
      * @type String
      */
     var data = {};
@@ -1114,7 +1115,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.setData = function(modelData) {
-        data = modelData;
+        this.data = modelData;
     };
 
     /**
@@ -1124,7 +1125,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.getData = function() {
-        return data;
+        return this.data;
     };
 
     /**
@@ -1155,7 +1156,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.set = function(key, value) {
-        data[key] = value;
+        this.data[key] = value;
     };
 
     /**
@@ -1166,7 +1167,7 @@ seventytwolions.Model.Base = function(){
      * @author Thodoris Tsiridis
      */
     this.get = function(key) {
-        return data[key];
+        return this.data[key];
     };
 
 };
@@ -1325,6 +1326,15 @@ seventytwolions.Controller.Main = function() {
     var sectionsManager = null;
 
     /**
+     * A reference to the footer controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Footer
+     * @default null
+     */
+    var footerController = null;
+
+    /**
      * The initial state of the website
      *
      * @private
@@ -1366,6 +1376,15 @@ seventytwolions.Controller.Main = function() {
             type:'SectionsManager',
             id:'sectionsmanager',
             model: seventytwolions.Lookup.getModel({})
+        });
+
+        footerController  = seventytwolions.ControllerManager.initializeController({
+            type:'Footer',
+            id:'Footer',
+            model: seventytwolions.Lookup.getModel({
+               type: 'Footer',
+               id: 'footter'
+            })
         });
 
         onPopPushEvent(initialState);
@@ -1433,7 +1452,9 @@ seventytwolions.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var changeSection = function(state){
+        footerController.hide();
         sectionsManager.showSectionWithName(state);
+        footerController.show();
     };
 };
 
@@ -1524,7 +1545,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Portfolio
      * @default undefined
      */
-    var portfolio = undefined;
+    var portfolio;
 
     /**
      * The Experiments Controller
@@ -1533,7 +1554,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Experiments
      * @default undefined
      */
-    var experiments = undefined;
+    var experiments;
 
     /**
      * The Blog Controller
@@ -1542,7 +1563,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Blog
      * @default undefined
      */
-    var blog = undefined;
+    var blog;
 
     /**
      * The initial state of the website
@@ -1551,7 +1572,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Contact
      * @default undefined
      */
-    var contact = undefined;
+    var contact;
 
     /**
      * The Post Details Controller
@@ -1560,7 +1581,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.PostDetails
      * @default undefined
      */
-    var postDetails = undefined;
+    var postDetails;
 
     /**
      * The array that will hold all the sections
@@ -1569,7 +1590,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type Array
      * @default undefined
      */
-    var sections = undefined;
+    var sections;
 
     /**
      * The number of total sections
@@ -1919,7 +1940,7 @@ seventytwolions.Controller.Blog = function() {
      * @type seventytwolions.Model.Categories
      * @default undefined
      */
-    var categoriesModel = undefined;
+    var categoriesModel;
 
     /**
      * An array with all the portfolio items
@@ -2264,6 +2285,92 @@ seventytwolions.Controller.PostDetails = function() {
 seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
 
 /**
+ * Footer Controller
+ *
+ * @module 72lions
+ * @class Footer
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Controller.Footer = function() {
+
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.Controller.Navigation
+     */
+    var me = this;
+
+    /**
+     * This function is executed right after the initialized
+     *
+     * function is called
+     * @author Thodoris Tsiridis
+     */
+    this.postInitialize = function(){
+
+        me.getView().addEventListener('menuClicked', onMenuItemClicked);
+        this.loadTweets();
+
+    };
+
+    /**
+     * Shows the view
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        this.getView().show();
+    };
+    /**
+     * Hides the view
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.getView().hide();
+    };
+
+    /**
+     * Loads the latest tweets
+     */
+    this.loadTweets = function() {
+        this.getModel().getTweets(onTweetsLoaded, this);
+    };
+
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onTweetsLoaded = function(result) {
+        this.getView().showTweets();
+    };
+
+    /**
+     * Triggered when the view dispatches a menuClicked event
+     *
+     * @private
+     * @param {Object} event The event object
+     * @author Thodoris Tsiridis
+     */
+    var onMenuItemClicked = function(event){
+
+        // Push the current url
+        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
+
+    };
+
+};
+
+seventytwolions.Controller.Footer.prototype = new seventytwolions.Controller.Base();
+
+/**
  * Categories Model
  *
  * @module 72lions
@@ -2312,11 +2419,12 @@ seventytwolions.Model.Categories = function(){
      * @type jqXHR
      * @default undefined
      */
-    var req = undefined;
+    var req;
 
     /**
      * The object that holds the data
      *
+     * @private
      * @type String
      */
     var data = {};
@@ -2333,7 +2441,9 @@ seventytwolions.Model.Categories = function(){
      * @author Thodoris Tsiridis
      */
     this.get = function(start, total, callback, ctx) {
-        var dataString;
+        var dataString, me;
+
+        me = this;
 
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
@@ -2349,9 +2459,9 @@ seventytwolions.Model.Categories = function(){
                     dataType: 'json',
                     data: dataString,
                     success: function(res){
-                        data.posts = res.Results;
+                        me.set('posts', res.Results);
                         if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                            callback.apply(ctx, [data.posts]);
+                            callback.apply(ctx, [me.get('posts')]);
                             req = undefined;
                         }
                     }
@@ -2422,7 +2532,7 @@ seventytwolions.Model.Posts = function(){
      * @type jqXHR
      * @default undefined
      */
-    var req = undefined;
+    var req;
 
     /**
      * The ajax request for the details call as returned from jQuery.ajax()
@@ -2431,7 +2541,7 @@ seventytwolions.Model.Posts = function(){
      * @type jqXHR
      * @default undefined
      */
-    var reqDetails = undefined;
+    var reqDetails;
 
     /**
      * The object that holds the data
@@ -2452,8 +2562,9 @@ seventytwolions.Model.Posts = function(){
      * @author Thodoris Tsiridis
      */
     this.getPosts = function(categoryid, start, total, callback, ctx) {
+        var dataString, me;
 
-        var dataString;
+        me = this;
 
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
@@ -2469,17 +2580,17 @@ seventytwolions.Model.Posts = function(){
         }
 
         req = $.ajax({
-                url: POSTS_URL,
-                dataType: 'json',
-                data: dataString,
-                success: function(res){
-                    data.posts = res.Results;
-                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [data.posts]);
-                        req = undefined;
-                    }
+            url: POSTS_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('posts', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('posts')]);
+                    req = undefined;
                 }
-            });
+            }
+        });
     };
 
     /**
@@ -2492,6 +2603,9 @@ seventytwolions.Model.Posts = function(){
      * @author Thodoris Tsiridis
      */
     this.getDetails = function(slug, callback, ctx) {
+        var me;
+
+        me = this;
 
         if(reqDetails !== undefined){
             reqDetails.abort();
@@ -2502,9 +2616,9 @@ seventytwolions.Model.Posts = function(){
                 dataType: 'json',
                 data: 'id=' + slug,
                 success: function(res){
-                    data.post = res.Results;
+                    me.set('post', res.Results);
                     if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [data.post]);
+                        callback.apply(ctx, [me.get('post')]);
                         req = undefined;
                     }
                 }
@@ -2514,6 +2628,93 @@ seventytwolions.Model.Posts = function(){
 };
 
 seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
+
+/**
+ * Footer Model
+ *
+ * @module 72lions
+ * @class Footer
+ * @namespace seventytwolions.Model
+ * @extends seventytwolions.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.Model.Footer = function(){
+
+    /**
+     * The api url for the categories
+     *
+     * @private
+     * @final
+     * @type String
+     * @default '/api/getTweets.php'
+     */
+    var TWITTER_URL = '/api/getTweets.php';
+
+    /**
+     * The total number of tweets to get
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 2
+     */
+    var TOTAL_TWEETS = 2;
+
+    /**
+     * The ajax request as returned from jQuery.ajax()
+     *
+     * @private
+     * @type jqXHR
+     * @default undefined
+     */
+    var req;
+
+    /**
+     * The object that holds the data
+     *
+     * @private
+     * @type String
+     */
+    var data = {};
+
+    /**
+     * Returns an array of tweets
+     *
+     * @private
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @return Array An array with objects
+     * @author Thodoris Tsiridis
+     */
+    this.getTweets = function(callback, ctx) {
+        var dataString, tme;
+        me = this;
+
+        dataString = 't=' + TOTAL_TWEETS;
+
+        if(req !== undefined){
+            req.abort();
+        }
+
+        req = $.ajax({
+            url: TWITTER_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('tweets', res.results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('tweets')]);
+                    req = undefined;
+                }
+            }
+        });
+
+    };
+
+};
+
+seventytwolions.Model.Footer.prototype = new seventytwolions.Model.Base();
 
 /**
  * Main View
@@ -2583,7 +2784,7 @@ seventytwolions.View.Navigation = function() {
      * @type Array
      * @default undefined
      */
-    var $links = undefined;
+    var $links;
 
     /**
      * A reference to this class
@@ -3442,8 +3643,8 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-
         var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail, thumbnailFile;
+
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
@@ -3862,6 +4063,202 @@ seventytwolions.View.PostDetails = function() {
 };
 
 seventytwolions.View.PostDetails.prototype = new seventytwolions.View.Base();
+
+/**
+ * Footer View
+ *
+ * @module 72lions
+ * @class Footer
+ * @namespace seventytwolions.View
+ * @extends seventytwolions.View.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+seventytwolions.View.Footer = function() {
+
+    /**
+     * The links DOM Elements
+     *
+     * @type Array
+     * @default undefined
+     */
+    var $links;
+
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type seventytwolions.View.Navigation
+     */
+    var me = this;
+
+    /**
+     * The DOM Element
+     *
+     * @type Object
+     */
+	this.domElement = $('footer');
+
+    /**
+     * The clicked DOM Element
+     *
+     * @type Object
+     * @default undefined
+     */
+    this.clickedItem = undefined;
+
+    /**
+     * The HTML template for the thumbnail item
+     *
+     * @private
+     * @type String
+     * @default '<div class="photo"><a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a><a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a></div><div class="description"><hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup><time>${publishdate}</time><aside>Categories: ${categories}</aside><p>${description}</p><a href="${link}" title="${title}" class="readmore">Read more</a></div>'
+     */
+    var tmpl = '<p>${text}</p>';
+
+    /**
+     * The Dom Element for the tweets container
+     *
+     * private
+     * @type Object
+     */
+    var $tweetsContainerDomElement;
+
+    /**
+     * Initializes the view
+     * @author Thodoris Tsiridis
+     */
+    this.initialize =  function(){
+        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        $links = this.domElement.find('.menu a');
+        $tweetsContainerDomElement = this.domElement.find('.latest-tweets article');
+    };
+
+    /**
+     * Draws the specific view
+     * @author Thodoris Tsiridis
+     */
+	this.draw = function() {
+		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+	};
+
+   /**
+     * Executed after the drawing of the view
+     * @author Thodoris Tsiridis
+     */
+    this.postDraw =  function(){
+        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        addEventListeners();
+    };
+
+    /**
+     * Shows the view
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.show = function(){
+        var that = this;
+
+        this.domElement.addClass('active');
+
+        setTimeout(function(){
+            that.domElement.css('opacity', 1);
+        }, 10);
+
+    };
+
+    /**
+     * Hides the view
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.hide = function(){
+        this.domElement.removeClass('active').css('opacity', 0);
+    };
+    /**
+     * Renders the latest tweets in the footer
+     */
+    this.showTweets = function() {
+        var tweets, body, markup, len, i;
+
+        markup = '';
+        tweets = this.getModel().get('tweets');
+        len = tweets.length;
+        for (i = 0; i < len; i++) {
+
+            body = tmpl;
+            body = body.replace(/\${text}/g, twitterify(tweets[i].text));
+            markup += body;
+
+        }
+
+        $tweetsContainerDomElement.append(markup);
+
+    };
+
+    /**
+     * Gets a string and convert hashes, links and users into anchors
+     *
+     * @private
+     * @param {String} text The tweet to convert
+     * @return {String} The converted HTML
+     */
+    var twitterify = function (tweet) {
+
+        //Links
+        tweet = tweet.replace(/http([s]?):\/\/([^\ \)$]*)/g,"<a rel='nofollow' target='_blank' href='http$1://$2'>http$1://$2</a>");
+        //Users
+        tweet = tweet.replace(/(^|\s)@(\w+)/g, "$1@<a href='http://www.twitter.com/$2' target='_blank'>$2</a>");
+        //Mentions
+        tweet = tweet.replace(/(^|\s)#(\w+)/g, "$1#<a href='http://twitter.com/search/%23$2'target='_blank'>$2</a>");
+
+        return tweet;
+
+    };
+
+    /**
+     * Registers all the event listeners
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
+    var addEventListeners = function(){
+        $links.bind('click', onLinkClick);
+    };
+
+    /**
+     * Triggered when we click a link
+     *
+     * @private
+     * @param {Object} e The event
+     * @author Thodoris Tsiridis
+     */
+    var onLinkClick = function(e){
+        var $item, delay;
+
+        e.preventDefault();
+
+        // Cache the item
+        $item = me.clickedItem = $(this);
+
+        delay = 200;
+
+        // Scroll to top
+        $('body,html').stop().animate({scrollTop:0}, delay, 'easeOutQuint');
+
+        setTimeout(function(){
+            // Dispatch the event
+            /*console.log('dispatch event')*/;
+            me.dispatchEvent({type: 'menuClicked', path: me.clickedItem.attr('href'), title: me.clickedItem.attr('title')});
+        }, delay + 100);
+
+        // Clear memory
+        $item = null;
+    };
+
+};
+
+seventytwolions.View.Footer.prototype = new seventytwolions.View.Base();
 
 seventytwolions.ControllerManager.initializeController({
     type:'Main',

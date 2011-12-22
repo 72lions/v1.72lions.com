@@ -25,7 +25,7 @@ seventytwolions.Controller.Blog = function() {
      * @type seventytwolions.Model.Categories
      * @default undefined
      */
-    var categoriesModel = undefined;
+    var categoriesModel;
 
     /**
      * An array with all the portfolio items
