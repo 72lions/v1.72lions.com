@@ -27,38 +27,40 @@ The reason for doing this is because I don't want to waste my time in order to s
    These are just examples of how to install memcached on the most popular OS, so it might be the case that won't work on everybody. You can search on Google on how to setup memcached if you need more help.
 7. PHP http://php.net
 8. Apache with mod_rewrite enabled http://www.apache.org/
-9. MySQL http://www.mysql.com/
-10.Wordpress 3.2+ http://wordpress.org/
-11.Ant http://ant.apache.org/ (for building the entire website)
+9. MySQL http://www.mysql.com/  
+10. Wordpress 3.2+ http://wordpress.org/  
+11. Ant http://ant.apache.org/ (for building the entire website)  
+12. Python for compiling the YUI Docs. For instructions on how to compile the documentation read the /build/yuidoc/README file.  
 
 ### Config
 **MySQL connection**  
 Go to src/api/classes/api.php and modified the following variables  
 
 // The mysql db username    
-protected static $DB_USERNAME = '';  
+**protected static $DB_USERNAME = '';**    
 // The mysql db password  
-protected static $DB_PASSWORD = '';  
+**protected static $DB_PASSWORD = '';**  
 // The mysql db host  
-protected static $DB_HOST = '';  
+**protected static $DB_HOST = '';**  
 // The mysql db name  
-protected static $DB_NAME = '';  
+**protected static $DB_NAME = '';**  
 
 **Memcached connection**  
 Go to src/api/classes/mc.php and modified the following variables  
 
 // The memcached server host   
-protected static $HOST = 'localhost';  
+**protected static $HOST = 'localhost';**  
 // The memcached server port   
-protected static $PORT = 11211;  
+**protected static $PORT = 11211;**  
 // The memcached keys prefix. e.x. 72lions.com   
-protected static $prefix = '';  
+**protected static $prefix = '';**  
 // The memcached server group e.x. main-website   
-protected static $group = '';  
+**protected static $group = '';**  
 
 **Apache**  
 Make sure that you set the src folder as the root on Apache.  
 If you don't want the app to be on the root then you have to modify the Router basePath (read the documentation) and the path for the CSS/JS and image files.  
+You also need to enable the mod_rewrite module.  
 
 ### That's it! You are all set!
 
