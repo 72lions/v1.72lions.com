@@ -261,7 +261,7 @@
 		<script>window.jQuery || document.write('<script src="/assets/js/libs/jquery-1.6.4.min.js"><\/script>')</script>
  		-->
 
- 		<script type="text/javascript" src="/assets/js/libs/jquery-1.6.4.min.js"></script>
+ 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript" src="/assets/js/libs/jquery.easing.1.3.js"></script>
 
  		<!--source scripts-->
