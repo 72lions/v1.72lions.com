@@ -285,6 +285,7 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 a:hover {
   -webkit-transition: color 0.2s;
@@ -571,6 +572,7 @@ a.website-link:visited span {
 a.website-link:link span, a.website-link:visited span {
   background-image: none;
 }
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 html {
   height: 100%;
@@ -633,6 +635,7 @@ body {
   border-top: 1px solid white;
   min-height: 200px;
 }
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 header.navigation {
   display: block;
@@ -733,6 +736,7 @@ header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
+
 section.portfolio .centered {
   position: relative;
 }
@@ -854,6 +858,7 @@ section.portfolio .centered.animated article {
   -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
   transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
 }
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.about {
   font-family: Georgia;
@@ -878,6 +883,7 @@ section.about p {
   padding: 0px;
   margin: 6px 0px 6px 0px;
 }
+
 section.blog .centered {
   position: relative;
 }
@@ -991,6 +997,7 @@ section.blog .centered.animated article {
   -o-transition: left 0s ease-in-out, top 0s ease-in-out;
   transition: left 0s ease-in-out, top 0s ease-in-out;
 }
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.post-details {
   padding: 0px;
@@ -1192,6 +1199,7 @@ section.post-details a:link, section.post-details a:visited {
 section.post-details a:link:hover, section.post-details a:visited:hover {
   border-bottom: 1px dotted #F02311;
 }
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 footer aside {
   padding: 20px;
@@ -1237,3 +1245,4 @@ footer aside.latest-tweets p {
 footer aside.footer-logo {
   float: right;
 }
+

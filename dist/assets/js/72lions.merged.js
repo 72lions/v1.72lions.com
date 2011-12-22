@@ -488,6 +488,7 @@ var Router = (function(global){
     return this;
 
 })(window);
+
 /**
  * Event target is used as a mixin so that the classes can support dispatch events and add events commands
  *
@@ -548,6 +549,7 @@ var EventTarget = function () {
     };
 
 };
+
 var seventytwolions = {};
 seventytwolions.Controller = seventytwolions.Controller || {};
 seventytwolions.View = seventytwolions.View || {};
@@ -600,6 +602,7 @@ seventytwolions.Model.Locale = (function(global){
     return this;
 
 })(window);
+
 /**
  * The controller manager is responsible for instantiating controllers
  *
@@ -638,6 +641,7 @@ seventytwolions.ControllerManager = (function(global) {
     return api;
 
 })(window);
+
 /**
  * Lookup up utility that loads or creates controllers, views and models
  *
@@ -816,6 +820,7 @@ seventytwolions.Lookup = (function(global) {
     return api;
 
 })(window);
+
 /**
  * Console is used for outputing console.log messages
  *
@@ -855,6 +860,7 @@ seventytwolions.Console = (function(global){
     return api;
 
 })(window);
+
 /**
  * Base View
  *
@@ -966,6 +972,7 @@ seventytwolions.View.Base = function() {
     };
 
 };
+
 /**
  * Base Model
  *
@@ -1044,6 +1051,7 @@ seventytwolions.Model.Base = function(){
     };
 
 };
+
 
 /**
  * Base Controller
@@ -1125,6 +1133,7 @@ seventytwolions.Controller.Base = function() {
     };
 
 };
+
 /**
  * Main Controller
  *
@@ -1228,6 +1237,7 @@ seventytwolions.Controller.Main = function() {
 };
 
 seventytwolions.Controller.Main.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Navigation Controller
  *
@@ -1270,6 +1280,7 @@ seventytwolions.Controller.Navigation = function() {
 };
 
 seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Sections Manager Controller
  *
@@ -1406,6 +1417,7 @@ seventytwolions.Controller.SectionsManager = function() {
 };
 
 seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Portfolio Controller
  *
@@ -1515,6 +1527,7 @@ seventytwolions.Controller.Portfolio = function() {
 };
 
 seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Experiments Controller
  *
@@ -1557,6 +1570,7 @@ seventytwolions.Controller.Experiments = function() {
 };
 
 seventytwolions.Controller.Experiments.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Blog Controller
  *
@@ -1673,6 +1687,7 @@ seventytwolions.Controller.Blog = function() {
 };
 
 seventytwolions.Controller.Blog.prototype = new seventytwolions.Controller.Base();
+
 /**
  * About Controller
  *
@@ -1715,6 +1730,7 @@ seventytwolions.Controller.About = function() {
 };
 
 seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Contact Controller
  *
@@ -1756,6 +1772,7 @@ seventytwolions.Controller.Contact = function() {
 };
 
 seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
+
 /**
  * ThumbnailItem Controller
  *
@@ -1781,6 +1798,7 @@ seventytwolions.Controller.ThumbnailItem = function() {
 };
 
 seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();
+
 /**
  * PostDetails Controller
  *
@@ -1857,6 +1875,7 @@ seventytwolions.Controller.PostDetails = function() {
 };
 
 seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
+
 /**
  * Categories Model
  *
@@ -1917,6 +1936,7 @@ seventytwolions.Model.Categories = function(){
 };
 
 seventytwolions.Model.Categories.prototype = new seventytwolions.Model.Base();
+
 /**
  * Posts Model
  *
@@ -2012,6 +2032,7 @@ seventytwolions.Model.Posts = function(){
 };
 
 seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
+
 /**
  * Main View
  *
@@ -2053,6 +2074,7 @@ seventytwolions.View.Main = function() {
 };
 
 seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
+
 /**
  * Navigation View
  *
@@ -2154,6 +2176,7 @@ seventytwolions.View.Navigation = function() {
 };
 
 seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
+
 /**
  * Sections Manager View
  *
@@ -2208,6 +2231,7 @@ seventytwolions.View.SectionsManager = function() {
 };
 
 seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
+
 /**
  * Portfolio View
  *
@@ -2283,6 +2307,7 @@ seventytwolions.View.Portfolio = function() {
 };
 
 seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
+
 /**
  * Experiments View
  *
@@ -2345,6 +2370,7 @@ seventytwolions.View.Experiments = function() {
 };
 
 seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();
+
 /**
  * Blog View
  *
@@ -2530,6 +2556,7 @@ seventytwolions.View.Blog = function() {
 };
 
 seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
+
 /**
  * About View
  *
@@ -2589,6 +2616,7 @@ seventytwolions.View.About = function() {
 };
 
 seventytwolions.View.About.prototype = new seventytwolions.View.Base();
+
 /**
  * Contact View
  *
@@ -2651,6 +2679,7 @@ seventytwolions.View.Contact = function() {
 };
 
 seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
+
 /**
  * ThumbnailItem View
  *
@@ -2878,6 +2907,7 @@ seventytwolions.View.ThumbnailItem = function() {
 };
 
 seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();
+
 /**
  * PostDetails View
  *
@@ -3049,8 +3079,10 @@ seventytwolions.View.PostDetails = function() {
 };
 
 seventytwolions.View.PostDetails.prototype = new seventytwolions.View.Base();
+
 seventytwolions.ControllerManager.initializeController({
     type:'Main',
     id:'main',
     model: seventytwolions.Lookup.getModel({})
 });
+

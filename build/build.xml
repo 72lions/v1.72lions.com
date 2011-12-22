@@ -14,6 +14,8 @@ Basic usage:
 -->
 <project name="JS and CSS compressor for 72lions" basedir="." default="main">
 
+	<property name="yuidoc.exec" value="${basedir}/yuidoc/bin/yuidoc.py"/>
+
 	<property name="compressor.dir" value="lib/yuicompressor-2.4.4.jar"/>
 	<property name="antcontrib.dir" value="lib/ant-contrib.jar"/>
 
@@ -24,6 +26,8 @@ Basic usage:
 
 	<property name="src.dir" value="${basedir}/../src"/>
 	<property name="dist.dir" value="${basedir}/../dist"/>
+
+	<property name="docs.dir" value="${basedir}/../docs"/>
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
@@ -173,8 +177,34 @@ Basic usage:
 		</replaceregexp>
     </target>
 
+
+	<target name="jsdocs">
+		<delete dir="${docs.dir}" />
+		<exec executable="python">
+			<arg value="${yuidoc.exec}" />
+			<arg value="${src.dir}/assets/js/" />
+			<arg value="-p" />
+			<arg value="${docs.dir}" />
+			<arg value="-o" />
+			<arg value="${docs.dir}" />
+			<arg value="-t" />
+			<arg value="${basedir}/yuidoc/dana-template" />
+			<arg value="-s" />
+			<arg value="-v" />
+			<arg value="1.0.0" />
+			<arg value="-m" />
+			<arg value="72lions" />
+			<arg value="-C" />
+			<arg value="72lions" />
+		</exec>
+	</target>
+
 	<!-- run all tasks -->
 	<target name="main" depends="clean, compress-global-js, compress-global-css, copy-selected-files, update-source-with-new-compiled-files">
+    </target>
+
+	<!-- run all tasks -->
+	<target name="docs" depends="jsdocs">
     </target>
 
 </project>
