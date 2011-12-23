@@ -58,14 +58,12 @@ seventytwolions.Model.Categories = function(){
     var data = {};
 
     /**
-     * Returns an array of categories
+     * Gets an array of categories by doing an Ajax call
      *
-     * @private
      * @param {Number} start The start offset
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.get = function(start, total, callback, ctx) {
@@ -83,17 +81,17 @@ seventytwolions.Model.Categories = function(){
         }
 
         req = $.ajax({
-                    url: CATEGORIES_URL,
-                    dataType: 'json',
-                    data: dataString,
-                    success: function(res){
-                        me.set('posts', res.Results);
-                        if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                            callback.apply(ctx, [me.get('posts')]);
-                            req = undefined;
-                        }
-                    }
-                });
+            url: CATEGORIES_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('posts', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('posts')]);
+                    req = undefined;
+                }
+            }
+        });
 
     };
 

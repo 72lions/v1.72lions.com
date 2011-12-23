@@ -2339,10 +2339,11 @@ seventytwolions.Controller.Footer = function() {
      */
     this.loadTweets = function() {
         this.getModel().getTweets(onTweetsLoaded, this);
+        this.getModel().getFlickr(onFlickrLoaded, this);
     };
 
     /**
-     * Callback function for when we get all the data from the ajax call
+     * Callback function for when we get all the data from the Twitter ajax call
      *
      * @private
      * @param  {Object} result The result object
@@ -2350,6 +2351,17 @@ seventytwolions.Controller.Footer = function() {
      */
     var onTweetsLoaded = function(result) {
         this.getView().showTweets();
+    };
+
+    /**
+     * Callback function for when we get all the data from the Flickr ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onFlickrLoaded = function(result) {
+
     };
 
     /**
@@ -2430,14 +2442,12 @@ seventytwolions.Model.Categories = function(){
     var data = {};
 
     /**
-     * Returns an array of categories
+     * Gets an array of categories by doing an Ajax call
      *
-     * @private
      * @param {Number} start The start offset
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.get = function(start, total, callback, ctx) {
@@ -2455,17 +2465,17 @@ seventytwolions.Model.Categories = function(){
         }
 
         req = $.ajax({
-                    url: CATEGORIES_URL,
-                    dataType: 'json',
-                    data: dataString,
-                    success: function(res){
-                        me.set('posts', res.Results);
-                        if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                            callback.apply(ctx, [me.get('posts')]);
-                            req = undefined;
-                        }
-                    }
-                });
+            url: CATEGORIES_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('posts', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('posts')]);
+                    req = undefined;
+                }
+            }
+        });
 
     };
 
@@ -2551,14 +2561,13 @@ seventytwolions.Model.Posts = function(){
     var data = {};
 
     /**
-     * Returns an array of posts
+     * Gets an array of posts by doing an Ajax Call
      *
      * @param {Number} categoryId The category of the posts that we want to load
      * @param {Number} start The start offset
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getPosts = function(categoryid, start, total, callback, ctx) {
@@ -2594,12 +2603,11 @@ seventytwolions.Model.Posts = function(){
     };
 
     /**
-     * Returns an array of posts
+     *  Gets the details of an article
      *
      * @param {String} slug The slug of the page
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getDetails = function(slug, callback, ctx) {
@@ -2612,17 +2620,17 @@ seventytwolions.Model.Posts = function(){
         }
 
         reqDetails = $.ajax({
-                url: POST_DETAILS_URL,
-                dataType: 'json',
-                data: 'id=' + slug,
-                success: function(res){
-                    me.set('post', res.Results);
-                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [me.get('post')]);
-                        req = undefined;
-                    }
+            url: POST_DETAILS_URL,
+            dataType: 'json',
+            data: 'id=' + slug,
+            success: function(res){
+                me.set('post', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('post')]);
+                    req = undefined;
                 }
-            });
+            }
+        });
     };
 
 };
@@ -2642,7 +2650,7 @@ seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
 seventytwolions.Model.Footer = function(){
 
     /**
-     * The api url for the categories
+     * The api url for the tweets
      *
      * @private
      * @final
@@ -2662,6 +2670,16 @@ seventytwolions.Model.Footer = function(){
     var TOTAL_TWEETS = 2;
 
     /**
+     * The api url for the flickr photos
+     *
+     * @private
+     * @final
+     * @type String
+     * @default '/api/getFlickr.php'
+     */
+    var FLICKR_URL = '/api/getFlickr.php';
+
+    /**
      * The ajax request as returned from jQuery.ajax()
      *
      * @private
@@ -2669,6 +2687,15 @@ seventytwolions.Model.Footer = function(){
      * @default undefined
      */
     var req;
+
+    /**
+     * The ajax request as returned from jQuery.ajax() for the Flickr call
+     *
+     * @private
+     * @type jqXHR
+     * @default undefined
+     */
+    var reqFlickr;
 
     /**
      * The object that holds the data
@@ -2679,16 +2706,14 @@ seventytwolions.Model.Footer = function(){
     var data = {};
 
     /**
-     * Returns an array of tweets
+     *  Gets an array of tweets by doing an Ajax Call
      *
-     * @private
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getTweets = function(callback, ctx) {
-        var dataString, tme;
+        var dataString, me;
         me = this;
 
         dataString = 't=' + TOTAL_TWEETS;
@@ -2707,6 +2732,39 @@ seventytwolions.Model.Footer = function(){
                     callback.apply(ctx, [me.get('tweets')]);
                     req = undefined;
                 }
+            }
+        });
+
+    };
+
+    /**
+     *  Gets an array of Flickr images by doing an Ajax Call
+     *
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @author Thodoris Tsiridis
+     */
+    this.getFlickr = function(callback, ctx) {
+        var dataString, me;
+        me = this;
+
+        if(reqFlickr !== undefined){
+            reqFlickr.abort();
+        }
+
+        reqFlickr = $.ajax({
+            url: FLICKR_URL,
+            dataType: 'json',
+            success: function(res){
+                me.set('flickr', res.items);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('flickr')]);
+                    reqFlickr = undefined;
+                }
+            },
+
+            error: function() {
+
             }
         });
 
@@ -3345,7 +3403,8 @@ seventytwolions.View.Blog = function() {
                 top: target_y + COLUMN_MARGIN + "px"
             });
 
-            itemBottom = parseInt($(this).offset().top,0) + $(this).innerHeight();
+            itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
+
             if(maxHeight < itemBottom){
                 maxHeight = itemBottom;
             }

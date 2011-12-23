@@ -213,7 +213,8 @@ seventytwolions.View.Blog = function() {
                 top: target_y + COLUMN_MARGIN + "px"
             });
 
-            itemBottom = parseInt($(this).offset().top,0) + $(this).innerHeight();
+            itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
+
             if(maxHeight < itemBottom){
                 maxHeight = itemBottom;
             }

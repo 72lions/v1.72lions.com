@@ -76,14 +76,13 @@ seventytwolions.Model.Posts = function(){
     var data = {};
 
     /**
-     * Returns an array of posts
+     * Gets an array of posts by doing an Ajax Call
      *
      * @param {Number} categoryId The category of the posts that we want to load
      * @param {Number} start The start offset
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getPosts = function(categoryid, start, total, callback, ctx) {
@@ -119,12 +118,11 @@ seventytwolions.Model.Posts = function(){
     };
 
     /**
-     * Returns an array of posts
+     *  Gets the details of an article
      *
      * @param {String} slug The slug of the page
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getDetails = function(slug, callback, ctx) {
@@ -137,17 +135,17 @@ seventytwolions.Model.Posts = function(){
         }
 
         reqDetails = $.ajax({
-                url: POST_DETAILS_URL,
-                dataType: 'json',
-                data: 'id=' + slug,
-                success: function(res){
-                    me.set('post', res.Results);
-                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [me.get('post')]);
-                        req = undefined;
-                    }
+            url: POST_DETAILS_URL,
+            dataType: 'json',
+            data: 'id=' + slug,
+            success: function(res){
+                me.set('post', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('post')]);
+                    req = undefined;
                 }
-            });
+            }
+        });
     };
 
 };

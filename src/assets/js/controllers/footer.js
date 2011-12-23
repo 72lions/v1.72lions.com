@@ -53,10 +53,11 @@ seventytwolions.Controller.Footer = function() {
      */
     this.loadTweets = function() {
         this.getModel().getTweets(onTweetsLoaded, this);
+        this.getModel().getFlickr(onFlickrLoaded, this);
     };
 
     /**
-     * Callback function for when we get all the data from the ajax call
+     * Callback function for when we get all the data from the Twitter ajax call
      *
      * @private
      * @param  {Object} result The result object
@@ -64,6 +65,17 @@ seventytwolions.Controller.Footer = function() {
      */
     var onTweetsLoaded = function(result) {
         this.getView().showTweets();
+    };
+
+    /**
+     * Callback function for when we get all the data from the Flickr ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onFlickrLoaded = function(result) {
+
     };
 
     /**
