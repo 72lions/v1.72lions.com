@@ -207,12 +207,14 @@ seventytwolions.View.Blog = function() {
                 _7 = (items[_b] > _7) ? items[_b] : _7;
 
             }
+            if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
 
-            $(this).css({
-                left: target_x + "px",
-                top: target_y + COLUMN_MARGIN + "px"
-            });
+                $(this).css({
+                    left: target_x + "px",
+                    top: target_y + COLUMN_MARGIN + "px"
+                });
 
+            }
             itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
 
             if(maxHeight < itemBottom){
@@ -223,7 +225,13 @@ seventytwolions.View.Blog = function() {
 
         });
 
-        itemsContainer.css('height', maxHeight + 'px');
+        if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
+
+            itemsContainer.css('height', maxHeight + 'px');
+        } else {
+
+            itemsContainer.css('height', 'auto !important');
+        }
 
         var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
     };

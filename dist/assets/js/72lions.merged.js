@@ -3397,12 +3397,14 @@ seventytwolions.View.Blog = function() {
                 _7 = (items[_b] > _7) ? items[_b] : _7;
 
             }
+            if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
 
-            $(this).css({
-                left: target_x + "px",
-                top: target_y + COLUMN_MARGIN + "px"
-            });
+                $(this).css({
+                    left: target_x + "px",
+                    top: target_y + COLUMN_MARGIN + "px"
+                });
 
+            }
             itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
 
             if(maxHeight < itemBottom){
@@ -3413,7 +3415,13 @@ seventytwolions.View.Blog = function() {
 
         });
 
-        itemsContainer.css('height', maxHeight + 'px');
+        if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
+
+            itemsContainer.css('height', maxHeight + 'px');
+        } else {
+
+            itemsContainer.css('height', 'auto !important');
+        }
 
         var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
     };
@@ -4173,7 +4181,7 @@ seventytwolions.View.Footer = function() {
      * @type String
      * @default '<div class="photo"><a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a><a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a></div><div class="description"><hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup><time>${publishdate}</time><aside>Categories: ${categories}</aside><p>${description}</p><a href="${link}" title="${title}" class="readmore">Read more</a></div>'
      */
-    var tmpl = '<p>${text}</p>';
+    var tweetTmpl = '<p>${text}</p>';
 
     /**
      * The Dom Element for the tweets container
@@ -4243,9 +4251,10 @@ seventytwolions.View.Footer = function() {
         markup = '';
         tweets = this.getModel().get('tweets');
         len = tweets.length;
+
         for (i = 0; i < len; i++) {
 
-            body = tmpl;
+            body = tweetTmpl;
             body = body.replace(/\${text}/g, twitterify(tweets[i].text));
             markup += body;
 
