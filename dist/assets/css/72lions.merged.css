@@ -728,8 +728,8 @@ section.portfolio .centered article .photo {
 section.portfolio .centered article .photo .github-ribbon {
   display: none;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 3px;
+  right: -3px;
   z-index: 10;
 }
 section.portfolio .centered article .photo .github-ribbon img {
@@ -828,7 +828,120 @@ section.about p {
 }
 
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-section.blog .centered{position:relative}section.blog .centered article{position:absolute;list-style:none;color:#666;display:block;width:218px;border-bottom:1px dashed #ccc;padding-bottom:20px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;float:left}section.blog .centered article.featured{width:456px}section.blog .centered article a.title:link,section.blog .centered article a.title:visited{margin-top:5px;display:inline-block;color:#666;text-decoration:none;font-size:11px;text-shadow:0 1px #fff;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s}section.blog .centered article a.title:link:hover,section.blog .centered article a.title:visited:hover{color:#F02311}section.blog .centered article .photo{line-height:0;margin-bottom:10px;position:relative}section.blog .centered article .photo .github-ribbon{display:none;position:absolute;top:0;right:0;z-index:10}section.blog .centered article .photo .github-ribbon img{border:0;-webkit-box-shadow:0 0 0 rgba(0,0,0,0);-moz-box-shadow:0 0 0 rgba(0,0,0,0);-o-box-shadow:0 0 0 rgba(0,0,0,0);box-shadow:0 0 0 rgba(0,0,0,0)}section.blog .centered article .photo img{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;border:3px solid #fff;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.2);-moz-box-shadow:1px 1px 2px rgba(0,0,0,.2);-o-box-shadow:1px 1px 2px rgba(0,0,0,.2);box-shadow:1px 1px 2px rgba(0,0,0,.2);-webkit-transition:border-color .3s;-moz-transition:border-color .3s;-o-transition:border-color .3s;transition:border-color .3s}section.blog .centered article .photo img:hover{border-color:#fff}section.blog .centered article .description h1{padding:0 0 5px 0;margin:0;text-shadow:0 1px #fff;font-family:'Oswald';font-size:22px;font-weight:400}section.blog .centered article .description .body{padding:15px}section.blog .centered article .description p,section.blog .centered article .description aside,section.blog .centered article .description time{font-family:Georgia;font-size:13px;line-height:18px;display:block}section.blog .centered article .description p{margin:0 0 10px 0;color:#555}section.blog .centered article .description aside,section.blog .centered article .description time{color:#F02311;font-style:italic;font-size:12px}section.blog .centered article .description aside{padding-bottom:10px}section.blog .centered article .description time{font-size:12px;color:#666;display:block;font-style:italic}section.blog .centered.animated article{-webkit-transition:left 0s ease-in-out,top 0s ease-in-out;-moz-transition:left 0s ease-in-out,top 0s ease-in-out;-o-transition:left 0s ease-in-out,top 0s ease-in-out;transition:left 0s ease-in-out,top 0s ease-in-out}
+section.blog .centered {
+  position: relative;
+}
+section.blog .centered article {
+  position: absolute;
+  list-style: none;
+  color: #666;
+  display: block;
+  width: 218px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+}
+section.blog .centered article.featured {
+  width: 456px;
+}
+section.blog .centered article a.title:link, section.blog .centered article a.title:visited {
+  margin-top: 5px;
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-size: 11px;
+  text-shadow: 0px 1px #ffffff;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+section.blog .centered article a.title:link:hover, section.blog .centered article a.title:visited:hover {
+  color: #F02311;
+}
+section.blog .centered article .photo {
+  line-height: 0px;
+  margin-bottom: 10px;
+  position: relative;
+}
+section.blog .centered article .photo .github-ribbon {
+  display: none;
+  position: absolute;
+  top: 3px;
+  right: -3px;
+  z-index: 10;
+}
+section.blog .centered article .photo .github-ribbon img {
+  border: none;
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+section.blog .centered article .photo img {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: border-color 0.3s;
+  -moz-transition: border-color 0.3s;
+  -o-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+}
+section.blog .centered article .photo img:hover {
+  border-color: #fff;
+}
+section.blog .centered article .description h1 {
+  padding: 0px 0px 5px 0px;
+  margin: 0px;
+  text-shadow: 0px 1px #ffffff;
+  font-family: 'Oswald';
+  font-size: 22px;
+  font-weight: normal;
+}
+section.blog .centered article .description .body {
+  padding: 15px;
+}
+section.blog .centered article .description p, section.blog .centered article .description aside, section.blog .centered article .description time {
+  font-family: Georgia;
+  font-size: 13px;
+  line-height: 18px;
+  display: block;
+}
+section.blog .centered article .description p {
+  margin: 0px 0px 10px 0px;
+  color: #555;
+}
+section.blog .centered article .description aside, section.blog .centered article .description time {
+  color: #F02311;
+  font-style: italic;
+  font-size: 12px;
+}
+section.blog .centered article .description aside {
+  padding-bottom: 10px;
+}
+section.blog .centered article .description time {
+  font-size: 12px;
+  color: #666;
+  display: block;
+  font-style: italic;
+}
+section.blog .centered.animated article {
+  -webkit-transition: left 0s ease-in-out, top 0s ease-in-out;
+  -moz-transition: left 0s ease-in-out, top 0s ease-in-out;
+  -o-transition: left 0s ease-in-out, top 0s ease-in-out;
+  transition: left 0s ease-in-out, top 0s ease-in-out;
+}
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 section.post-details {
   padding: 0px;
