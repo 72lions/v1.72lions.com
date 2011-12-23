@@ -623,7 +623,7 @@ body {
 #wrapper #sections-wrapper section.active {
   display: block;
 }
-#wrapper footer {
+footer {
   display: block;
   -webkit-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
@@ -632,6 +632,9 @@ body {
   margin-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   background-color: rgba(0, 0, 0, 0.02);
+}
+footer.active {
+  display: block;
 }
 
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
@@ -1165,6 +1168,23 @@ section.post-details .content .text pre {
   -o-tab-size: 4;
   -moz-tab-size: 4;
   -webkit-tab-size: 4;
+  font-size: 11px;
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
+  -moz-box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
+  -o-box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
+  box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
+  overflow-x: auto;
+  color: #333;
 }
 section.post-details .content .comments {
   margin-top: 20px;
