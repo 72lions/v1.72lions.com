@@ -167,16 +167,17 @@ seventytwolions.View.ThumbnailItem = function() {
             hasThumbnail = true;
 
             if(this.isFeatured){
-                imgWidth = thumbnail.Data.sizes.medium.width;
-                imgHeight = thumbnail.Data.sizes.medium.height;
+                imgWidth = parseInt(thumbnail.Data.sizes.medium.width, 0) + 6;
+                imgHeight = parseInt(thumbnail.Data.sizes.medium.height, 0) + 6;
                 thumbnailFile += thumbnail.Data.sizes.medium.file;
             } else {
-                imgWidth = thumbnail.Data.sizes.thumbnail.width;
-                imgHeight = thumbnail.Data.sizes.thumbnail.height;
+                imgWidth = parseInt(thumbnail.Data.sizes.thumbnail.width, 0) + 6;
+                imgHeight = parseInt(thumbnail.Data.sizes.thumbnail.height, 0) + 6;
                 thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
             }
 
             body = body.replace(/\${image}/g, IMAGES_PATH + thumbnailFile);
+            // Plus 6 for the border
             body = body.replace(/\${imagewidth}/g, imgWidth);
             body = body.replace(/\${imageheight}/g, imgHeight);
 
