@@ -4166,6 +4166,7 @@ seventytwolions.View.PostDetails = function() {
         if(window.isDisqusLoaded) {
 
             // Show the comments Dom Element
+            /*console.log(commentsDomElement)*/;
             commentsDomElement.css('display', 'block');
 
             // Load the corrent comment thread
