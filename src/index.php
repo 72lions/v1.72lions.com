@@ -205,6 +205,19 @@
 									    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 									    var disqus_shortname = '72lions'; // required: replace example with your forum shortname
 									    //var disqus_developer = 1;
+									    var isDisqusLoaded = false;
+
+									    /**
+									     * A function that keeps all the callbacks for the disqus plugin
+									     * @author Thodoris Tsiridis
+									     */
+										function disqus_config() {
+											// On ready we are changing the isDisqusLoaded variable to true
+											// so that we can check it from anywhere in the code
+										    this.callbacks.onReady = [function() {
+										        isDisqusLoaded = true;
+										    }];
+										}
 
 									    /* * * DON'T EDIT BELOW THIS LINE * * */
 									    (function() {

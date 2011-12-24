@@ -166,14 +166,16 @@ seventytwolions.View.ThumbnailItem = function() {
 
             hasThumbnail = true;
 
+            thumbnailFile += thumbnail.Data.sizes.medium.file;
+
             if(this.isFeatured){
                 imgWidth = parseInt(thumbnail.Data.sizes.medium.width, 0) + 6;
                 imgHeight = parseInt(thumbnail.Data.sizes.medium.height, 0) + 6;
-                thumbnailFile += thumbnail.Data.sizes.medium.file;
+
             } else {
                 imgWidth = parseInt(thumbnail.Data.sizes.thumbnail.width, 0) + 6;
                 imgHeight = parseInt(thumbnail.Data.sizes.thumbnail.height, 0) + 6;
-                thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
+                //thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
             }
 
             body = body.replace(/\${image}/g, IMAGES_PATH + thumbnailFile);

@@ -45,6 +45,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The content DOM Element
      *
+     * @private
      * @type Object
      */
     var contentDomElement = this.domElement.find('.content');
@@ -52,6 +53,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The aside DOM Element
      *
+     * @private
      * @type Object
      */
     var asideDomElement = this.domElement.find('aside');
@@ -59,6 +61,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The title DOM Element
      *
+     * @private
      * @type Object
      */
     var titleDomElement = contentDomElement.find('h1.title');
@@ -66,6 +69,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The categories DOM Element
      *
+     * @private
      * @type Object
      */
     var categoriesDomElement = contentDomElement.find('.categories');
@@ -73,6 +77,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The text DOM Element
      *
+     * @private
      * @type Object
      */
     var textDomElement = contentDomElement.find('.text');
@@ -80,6 +85,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The time DOM Element
      *
+     * @private
      * @type Object
      */
     var timeDomElement = contentDomElement.find('time');
@@ -87,6 +93,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The github ribbon DOM Element
      *
+     * @private
      * @type Object
      */
     var githublinkDomElement = contentDomElement.find('.github-link');
@@ -94,6 +101,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The download link DOM Element
      *
+     * @private
      * @type Object
      */
     var downloadlinkDomElement = contentDomElement.find('.download-link');
@@ -101,6 +109,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The demo link DOM Element
      *
+     * @private
      * @type Object
      */
     var demolinkDomElement = contentDomElement.find('.demo-link');
@@ -108,6 +117,7 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The comments DOM Element
      *
+     * @private
      * @type Object
      */
     var commentsDomElement = this.domElement.find('.comments');
@@ -115,10 +125,27 @@ seventytwolions.View.PostDetails = function() {
     /**
      * The back button DOM Element
      *
+     * @private
      * @type Object
      */
     var backDomElement = this.domElement.find('.back');
 
+    /**
+     * Holds the total number of tries to load the disquss plugin
+     *
+     * @private
+     * @final
+     * @type {Number}
+     */
+    var TOTAL_DISQUS_TRIES = 10;
+
+    /**
+     * Holds the current number of tries to load the disquss plugin
+     *
+     * @private
+     * @type {Number}
+     */
+    var disqusCurrentLoadTries = 0;
     /**
      * Initializes the view
      *
@@ -153,8 +180,8 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-
         var asideHTML, categoriesStr, pDate, slug, url;
+
         asideHTML = categoriesStr = '';
 
         details = this.getModel().get('PostDetails'+this.currentId);
@@ -214,16 +241,12 @@ seventytwolions.View.PostDetails = function() {
         month = month.length === 1 ? "0" + month : month;
         url = '/' + pDate.getFullYear() + '/' + month + '/' + slug;
 
+
+        disqusCurrentLoadTries = TOTAL_DISQUS_TRIES;
+
         if(details.Meta.dsq_thread_id) {
             console.log(details.Meta.dsq_thread_id, url);
-            commentsDomElement.css('display', 'block');
-            DISQUS.reset({
-              reload: true,
-              config: function () {
-                this.page.identifier = details.Meta.dsq_thread_id;
-                this.page.url = "http://72lions.com" + url;
-              }
-            });
+            tryToLoadDisqus(details.Meta.dsq_thread_id, url);
         } else {
             commentsDomElement.css('display', 'none');
         }
@@ -263,6 +286,41 @@ seventytwolions.View.PostDetails = function() {
     var onBackClick = function(event){
         event.preventDefault();
         Router.goBack(1);
+    };
+
+    /**
+     * Tries to load the Disqus plugin. If it is not loaded then it tries again after one second. It will do that for 10 times
+     *
+     * @private
+     * @param  {String} threadId The disqus thread id
+     * @param  {String} url The url of the article
+     * @author Thodoris Tsiridis
+     */
+    var tryToLoadDisqus = function(threadId, url){
+        // If the disqus plugin is loaded
+        if(window.isDisqusLoaded) {
+
+            // Show the comments Dom Element
+            commentsDomElement.css('display', 'block');
+
+            // Load the corrent comment thread
+            DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.identifier = threadId;
+                this.page.url = "http://72lions.com" + url;
+              }
+            });
+
+        } else {
+            // Try again only if we haven't tried 10 times before
+            if(disqusCurrentLoadTries >= 0){
+                setTimeout(function(){tryToLoadDisqus(threadId, url);}, 1000);
+            }
+
+            disqusCurrentLoadTries--;
+        }
+
     };
 
 };
