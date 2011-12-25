@@ -16,12 +16,15 @@ html, body {
 body {
     min-height:100%;
     background-image:url('/assets/images/stripe_e7eb00fc0caa9bf17359f52ecb7f3416.png');
+    .box-flex();
+    .box-orient(vertical);
 }
 
 #wrapper {
 
     min-width:505px;
     box-sizing: border-box;
+    .box-flex(1);
 
     #sections-wrapper {
 
@@ -66,7 +69,6 @@ footer {
 
     display:block;
     .box-shadow(inset 0px 0px 4px rgba(0,0,0,0.2));
-    margin-top:30px;
     border-top:1px solid rgba(255, 255,255, 0.4);
     background-color:rgba(0, 0, 0, 0.02);
 

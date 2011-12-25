@@ -245,30 +245,30 @@
 				</section>
 
 			</div>
-			<footer class="clearfix">
-				<aside class="menu">
-					<nav>
-						<a href="/category/blog" class="nav-blog" title="Blog">Blog</a>
-						<!--<a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a>-->
-						<a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
-						<a href="/about" class="nav-about" title="About">About</a>
-					</nav>
-				</aside>
-
-				<aside class="footer-logo clearfix">
-					<a href="http://www.w3.org/html/logo/">
-						<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
-					</a>
-				</aside>
-
-				<aside class="latest-tweets">
-					<article>
-						<hgroup><h1>Latest Tweets</h1></hgroup>
-					</article>
-				</aside>
-
-			</footer>
 		</div>
+		<footer class="clearfix">
+			<aside class="menu">
+				<nav>
+					<a href="/category/blog" class="nav-blog" title="Blog">Blog</a>
+					<!--<a href="category/experiments" class="nav-experiments" title="Experiments">Experiments</a>-->
+					<a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
+					<a href="/about" class="nav-about" title="About">About</a>
+				</nav>
+			</aside>
+
+			<aside class="footer-logo clearfix">
+				<a href="http://www.w3.org/html/logo/">
+					<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
+				</a>
+			</aside>
+
+			<aside class="latest-tweets">
+				<article>
+					<hgroup><h1>Latest Tweets</h1></hgroup>
+				</article>
+			</aside>
+
+		</footer>
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<!--
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
