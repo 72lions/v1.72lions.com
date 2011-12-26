@@ -1,4 +1,12 @@
 <?php
+/**
+ * Responsible for parsing and storing the category data
+ *
+ * @module 72lionsPHP
+ * @class Category
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 class Category {
 
     /**

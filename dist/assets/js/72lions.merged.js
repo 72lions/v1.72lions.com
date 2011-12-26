@@ -1545,7 +1545,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Portfolio
      * @default undefined
      */
-    var portfolio;
+    var portfolio = undefined;
 
     /**
      * The Experiments Controller
@@ -1554,7 +1554,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Experiments
      * @default undefined
      */
-    var experiments;
+    var experiments = undefined;
 
     /**
      * The Blog Controller
@@ -1563,7 +1563,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Blog
      * @default undefined
      */
-    var blog;
+    var blog = undefined;
 
     /**
      * The initial state of the website
@@ -1572,7 +1572,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.Contact
      * @default undefined
      */
-    var contact;
+    var contact = undefined;
 
     /**
      * The Post Details Controller
@@ -1581,7 +1581,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type seventytwolions.Controller.PostDetails
      * @default undefined
      */
-    var postDetails;
+    var postDetails = undefined;
 
     /**
      * The array that will hold all the sections
@@ -1590,7 +1590,7 @@ seventytwolions.Controller.SectionsManager = function() {
      * @type Array
      * @default undefined
      */
-    var sections;
+    var sections = undefined;
 
     /**
      * The number of total sections
@@ -1940,7 +1940,7 @@ seventytwolions.Controller.Blog = function() {
      * @type seventytwolions.Model.Categories
      * @default undefined
      */
-    var categoriesModel;
+    var categoriesModel = undefined;
 
     /**
      * An array with all the portfolio items
@@ -2072,7 +2072,7 @@ seventytwolions.Controller.About = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Contact
+     * @type seventytwolions.Controller.About
      */
     var me = this;
 
@@ -2206,7 +2206,7 @@ seventytwolions.Controller.PostDetails = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.ThumbnailItem
+     * @type seventytwolions.Controller.PostDetails
      */
     var me = this;
 
@@ -2300,7 +2300,7 @@ seventytwolions.Controller.Footer = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Navigation
+     * @type seventytwolions.Controller.Footer
      */
     var me = this;
 
@@ -2842,7 +2842,7 @@ seventytwolions.View.Navigation = function() {
      * @type Array
      * @default undefined
      */
-    var $links;
+    var $links = undefined;
 
     /**
      * A reference to this class
@@ -4210,13 +4210,13 @@ seventytwolions.View.Footer = function() {
      * @type Array
      * @default undefined
      */
-    var $links;
+    var $links = undefined;
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Navigation
+     * @type seventytwolions.View.Footer
      */
     var me = this;
 

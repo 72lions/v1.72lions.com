@@ -32,6 +32,6 @@ seventytwolions.Console = (function(global){
     };
 
     // Return the api
-    return api;
+    return this;
 
 })(window);

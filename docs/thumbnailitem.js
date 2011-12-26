@@ -117,8 +117,8 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-
         var random, month, model, meta, body, pdate, url, slug, categories, categoriesStr, thumbnail, imgWidth, imgHeight, hasThumbnail, thumbnailFile;
+
         categoriesStr= '';
         hasThumbnail = false;
         model = this.getModel();
@@ -166,17 +166,20 @@ seventytwolions.View.ThumbnailItem = function() {
 
             hasThumbnail = true;
 
+            thumbnailFile += thumbnail.Data.sizes.medium.file;
+
             if(this.isFeatured){
-                imgWidth = thumbnail.Data.sizes.medium.width;
-                imgHeight = thumbnail.Data.sizes.medium.height;
-                thumbnailFile += thumbnail.Data.sizes.medium.file;
+                imgWidth = parseInt(thumbnail.Data.sizes.medium.width, 0) + 6;
+                imgHeight = parseInt(thumbnail.Data.sizes.medium.height, 0) + 6;
+
             } else {
-                imgWidth = thumbnail.Data.sizes.thumbnail.width;
-                imgHeight = thumbnail.Data.sizes.thumbnail.height;
-                thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
+                imgWidth = parseInt(thumbnail.Data.sizes.thumbnail.width, 0) + 6;
+                imgHeight = parseInt(thumbnail.Data.sizes.thumbnail.height, 0) + 6;
+                //thumbnailFile += thumbnail.Data.sizes.thumbnail.file;
             }
 
             body = body.replace(/\${image}/g, IMAGES_PATH + thumbnailFile);
+            // Plus 6 for the border
             body = body.replace(/\${imagewidth}/g, imgWidth);
             body = body.replace(/\${imageheight}/g, imgHeight);
 

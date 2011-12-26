@@ -207,13 +207,16 @@
                 <span class="nx">_7</span> <span class="o">=</span> <span class="p">(</span><span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">_7</span><span class="p">)</span> <span class="o">?</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">]</span> <span class="o">:</span> <span class="nx">_7</span><span class="p">;</span>
 
             <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">mq</span><span class="p">(</span><span class="s1">&#39;only screen and (max-device-width: 480px)&#39;</span><span class="p">))</span> <span class="p">{</span>
 
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span>
-                <span class="nx">left</span><span class="o">:</span> <span class="nx">target_x</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">,</span>
-                <span class="nx">top</span><span class="o">:</span> <span class="nx">target_y</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span>
-            <span class="p">});</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span>
+                    <span class="nx">left</span><span class="o">:</span> <span class="nx">target_x</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">,</span>
+                    <span class="nx">top</span><span class="o">:</span> <span class="nx">target_y</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span>
+                <span class="p">});</span>
 
-            <span class="nx">itemBottom</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">offset</span><span class="p">().</span><span class="nx">top</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">innerHeight</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="nx">itemBottom</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">target_y</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">innerHeight</span><span class="p">();</span>
+
             <span class="k">if</span><span class="p">(</span><span class="nx">maxHeight</span> <span class="o">&lt;</span> <span class="nx">itemBottom</span><span class="p">){</span>
                 <span class="nx">maxHeight</span> <span class="o">=</span> <span class="nx">itemBottom</span><span class="p">;</span>
             <span class="p">}</span>
@@ -222,7 +225,13 @@
 
         <span class="p">});</span>
 
-        <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">maxHeight</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">mq</span><span class="p">(</span><span class="s1">&#39;only screen and (max-device-width: 480px)&#39;</span><span class="p">))</span> <span class="p">{</span>
+
+            <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">maxHeight</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;auto !important&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
 
         <span class="kd">var</span> <span class="nx">_f</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">((</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">innerWidth</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="nx">COLUMN_WIDTH</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nx">_8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">};</span>

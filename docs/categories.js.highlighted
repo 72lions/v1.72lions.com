@@ -47,28 +47,29 @@
 <span class="cm">     * @type jqXHR</span>
 <span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">req</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * The object that holds the data</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type String</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Returns an array of categories</span>
+<span class="cm">     * Gets an array of categories by doing an Ajax call</span>
 <span class="cm">     *</span>
-<span class="cm">     * @private</span>
 <span class="cm">     * @param {Number} start The start offset</span>
 <span class="cm">     * @param {Number} total The total number of items that we want to get</span>
 <span class="cm">     * @param {Function} callback The callback function that will be executed</span>
 <span class="cm">     * @param {Function} ctx The context</span>
-<span class="cm">     * @return Array An array with objects</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">total</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">dataString</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">dataString</span><span class="p">,</span> <span class="nx">me</span><span class="p">;</span>
+
+        <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
         <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">||</span> <span class="nx">DEFAULT_START</span><span class="p">;</span>
         <span class="nx">total</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">||</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span><span class="p">;</span>
@@ -80,17 +81,17 @@
         <span class="p">}</span>
 
         <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-                    <span class="nx">url</span><span class="o">:</span> <span class="nx">CATEGORIES_URL</span><span class="p">,</span>
-                    <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
-                    <span class="nx">data</span><span class="o">:</span> <span class="nx">dataString</span><span class="p">,</span>
-                    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
-                        <span class="nx">data</span><span class="p">.</span><span class="nx">posts</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Results</span><span class="p">;</span>
-                        <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;null&#39;</span><span class="p">){</span>
-                            <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">[</span><span class="nx">data</span><span class="p">.</span><span class="nx">posts</span><span class="p">]);</span>
-                            <span class="nx">req</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">});</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="nx">CATEGORIES_URL</span><span class="p">,</span>
+            <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">dataString</span><span class="p">,</span>
+            <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
+                <span class="nx">me</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Results</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;null&#39;</span><span class="p">){</span>
+                    <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">[</span><span class="nx">me</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">)]);</span>
+                    <span class="nx">req</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
 
     <span class="p">};</span>
 

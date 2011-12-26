@@ -1,4 +1,12 @@
 <?php
+/**
+ * The memcached class is responsible for connecting, getting/setting values and disconnecting from memcached
+ *
+ * @module 72lionsPHP
+ * @class MC
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 class MC {
 
     /**

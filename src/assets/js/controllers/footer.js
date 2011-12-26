@@ -14,7 +14,7 @@ seventytwolions.Controller.Footer = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Navigation
+     * @type seventytwolions.Controller.Footer
      */
     var me = this;
 

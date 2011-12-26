@@ -13,7 +13,7 @@ seventytwolions.Controller.PostDetails = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.ThumbnailItem
+     * @type seventytwolions.Controller.PostDetails
      */
     var me = this;
 

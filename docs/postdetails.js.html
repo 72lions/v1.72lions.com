@@ -122,6 +122,9 @@
                     <a href="seventytwolions.Controller.Experiments.html">seventytwolions.Controller.Experiments</a>
                   </li>
                   <li >
+                    <a href="seventytwolions.Controller.Footer.html">seventytwolions.Controller.Footer</a>
+                  </li>
+                  <li >
                     <a href="seventytwolions.Controller.Main.html">seventytwolions.Controller.Main</a>
                   </li>
                   <li >
@@ -149,34 +152,7 @@
                     <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
                   </li>
                   <li >
-                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
-                  </li>
-                  <li >
                     <a href="seventytwolions.Router.html">seventytwolions.Router</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
-                  </li>
-                  <li >
-                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
                   </li>
                   <li >
                     <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
@@ -215,9 +191,6 @@
                     <a href="bootstrap.js.html">bootstrap.js</a>
                   </li>
                   <li >
-                    <a href="categories.js.html">categories.js</a>
-                  </li>
-                  <li >
                     <a href="console.js.html">console.js</a>
                   </li>
                   <li >
@@ -233,22 +206,16 @@
                     <a href="experiments.js.html">experiments.js</a>
                   </li>
                   <li >
+                    <a href="footer.js.html">footer.js</a>
+                  </li>
+                  <li >
                     <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
-                  </li>
-                  <li >
-                    <a href="jquery.easing.1.3.js.html">jquery.easing.1.3.js</a>
-                  </li>
-                  <li >
-                    <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
                     <a href="lookup.js.html">lookup.js</a>
                   </li>
                   <li >
                     <a href="main.js.html">main.js</a>
-                  </li>
-                  <li >
-                    <a href="modernizr-2.0.6.min.js.html">modernizr-2.0.6.min.js</a>
                   </li>
                   <li >
                     <a href="namespaces.js.html">namespaces.js</a>
@@ -261,9 +228,6 @@
                   </li>
                   <li  class="selected" >
                     <a href="postdetails.js.html">postdetails.js</a>
-                  </li>
-                  <li >
-                    <a href="posts.js.html">posts.js</a>
                   </li>
                   <li >
                     <a href="router.js.html">router.js</a>
@@ -343,6 +307,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The content DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">contentDomElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.content&#39;</span><span class="p">);</span>
@@ -350,6 +315,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The aside DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">asideDomElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;aside&#39;</span><span class="p">);</span>
@@ -357,6 +323,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The title DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">titleDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;h1.title&#39;</span><span class="p">);</span>
@@ -364,6 +331,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The categories DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">categoriesDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.categories&#39;</span><span class="p">);</span>
@@ -371,6 +339,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The text DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">textDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.text&#39;</span><span class="p">);</span>
@@ -378,6 +347,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The time DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">timeDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">);</span>
@@ -385,6 +355,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The github ribbon DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">githublinkDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.github-link&#39;</span><span class="p">);</span>
@@ -392,6 +363,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The download link DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">downloadlinkDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.download-link&#39;</span><span class="p">);</span>
@@ -399,6 +371,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The demo link DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">demolinkDomElement</span> <span class="o">=</span> <span class="nx">contentDomElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.demo-link&#39;</span><span class="p">);</span>
@@ -406,6 +379,7 @@
     <span class="cm">/**</span>
 <span class="cm">     * The comments DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">commentsDomElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.comments&#39;</span><span class="p">);</span>
@@ -413,10 +387,27 @@
     <span class="cm">/**</span>
 <span class="cm">     * The back button DOM Element</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">backDomElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.back&#39;</span><span class="p">);</span>
 
+    <span class="cm">/**</span>
+<span class="cm">     * Holds the total number of tries to load the disquss plugin</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @final</span>
+<span class="cm">     * @type {Number}</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">TOTAL_DISQUS_TRIES</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Holds the current number of tries to load the disquss plugin</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type {Number}</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">disqusCurrentLoadTries</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="cm">/**</span>
 <span class="cm">     * Initializes the view</span>
 <span class="cm">     *</span>
@@ -451,8 +442,8 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">render</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
         <span class="kd">var</span> <span class="nx">asideHTML</span><span class="p">,</span> <span class="nx">categoriesStr</span><span class="p">,</span> <span class="nx">pDate</span><span class="p">,</span> <span class="nx">slug</span><span class="p">,</span> <span class="nx">url</span><span class="p">;</span>
+
         <span class="nx">asideHTML</span> <span class="o">=</span> <span class="nx">categoriesStr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 
         <span class="nx">details</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;PostDetails&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">currentId</span><span class="p">);</span>
@@ -512,16 +503,12 @@
         <span class="nx">month</span> <span class="o">=</span> <span class="nx">month</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span> <span class="o">?</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="nx">month</span> <span class="o">:</span> <span class="nx">month</span><span class="p">;</span>
         <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">pDate</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">month</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">slug</span><span class="p">;</span>
 
+
+        <span class="nx">disqusCurrentLoadTries</span> <span class="o">=</span> <span class="nx">TOTAL_DISQUS_TRIES</span><span class="p">;</span>
+
         <span class="k">if</span><span class="p">(</span><span class="nx">details</span><span class="p">.</span><span class="nx">Meta</span><span class="p">.</span><span class="nx">dsq_thread_id</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">details</span><span class="p">.</span><span class="nx">Meta</span><span class="p">.</span><span class="nx">dsq_thread_id</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
-            <span class="nx">commentsDomElement</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">);</span>
-            <span class="nx">DISQUS</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
-              <span class="nx">reload</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-              <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">identifier</span> <span class="o">=</span> <span class="nx">details</span><span class="p">.</span><span class="nx">Meta</span><span class="p">.</span><span class="nx">dsq_thread_id</span><span class="p">;</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s2">&quot;http://72lions.com&quot;</span> <span class="o">+</span> <span class="nx">url</span><span class="p">;</span>
-              <span class="p">}</span>
-            <span class="p">});</span>
+            <span class="nx">tryToLoadDisqus</span><span class="p">(</span><span class="nx">details</span><span class="p">.</span><span class="nx">Meta</span><span class="p">.</span><span class="nx">dsq_thread_id</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="nx">commentsDomElement</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">);</span>
         <span class="p">}</span>
@@ -561,6 +548,41 @@
     <span class="kd">var</span> <span class="nx">onBackClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
         <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
         <span class="nx">Router</span><span class="p">.</span><span class="nx">goBack</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Tries to load the Disqus plugin. If it is not loaded then it tries again after one second. It will do that for 10 times</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param  {String} threadId The disqus thread id</span>
+<span class="cm">     * @param  {String} url The url of the article</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">tryToLoadDisqus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">threadId</span><span class="p">,</span> <span class="nx">url</span><span class="p">){</span>
+        <span class="c1">// If the disqus plugin is loaded</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">isDisqusLoaded</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="c1">// Show the comments Dom Element</span>
+            <span class="nx">commentsDomElement</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">);</span>
+
+            <span class="c1">// Load the corrent comment thread</span>
+            <span class="nx">DISQUS</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
+              <span class="nx">reload</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+              <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">identifier</span> <span class="o">=</span> <span class="nx">threadId</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s2">&quot;http://72lions.com&quot;</span> <span class="o">+</span> <span class="nx">url</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">});</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Try again only if we haven&#39;t tried 10 times before</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">disqusCurrentLoadTries</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">tryToLoadDisqus</span><span class="p">(</span><span class="nx">threadId</span><span class="p">,</span> <span class="nx">url</span><span class="p">);},</span> <span class="mi">1000</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nx">disqusCurrentLoadTries</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+
     <span class="p">};</span>
 
 <span class="p">};</span>

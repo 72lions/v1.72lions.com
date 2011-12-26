@@ -14,7 +14,7 @@ seventytwolions.Controller.About = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Contact
+     * @type seventytwolions.Controller.About
      */
     var me = this;
 

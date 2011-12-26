@@ -57,7 +57,7 @@ seventytwolions.Model.Posts = function(){
      * @type jqXHR
      * @default undefined
      */
-    var req = undefined;
+    var req;
 
     /**
      * The ajax request for the details call as returned from jQuery.ajax()
@@ -66,7 +66,7 @@ seventytwolions.Model.Posts = function(){
      * @type jqXHR
      * @default undefined
      */
-    var reqDetails = undefined;
+    var reqDetails;
 
     /**
      * The object that holds the data
@@ -76,19 +76,19 @@ seventytwolions.Model.Posts = function(){
     var data = {};
 
     /**
-     * Returns an array of posts
+     * Gets an array of posts by doing an Ajax Call
      *
      * @param {Number} categoryId The category of the posts that we want to load
      * @param {Number} start The start offset
      * @param {Number} total The total number of items that we want to get
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getPosts = function(categoryid, start, total, callback, ctx) {
+        var dataString, me;
 
-        var dataString;
+        me = this;
 
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
@@ -104,46 +104,48 @@ seventytwolions.Model.Posts = function(){
         }
 
         req = $.ajax({
-                url: POSTS_URL,
-                dataType: 'json',
-                data: dataString,
-                success: function(res){
-                    data.posts = res.Results;
-                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [data.posts]);
-                        req = undefined;
-                    }
+            url: POSTS_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('posts', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('posts')]);
+                    req = undefined;
                 }
-            });
+            }
+        });
     };
 
     /**
-     * Returns an array of posts
+     *  Gets the details of an article
      *
      * @param {String} slug The slug of the page
      * @param {Function} callback The callback function that will be executed
      * @param {Function} ctx The context
-     * @return Array An array with objects
      * @author Thodoris Tsiridis
      */
     this.getDetails = function(slug, callback, ctx) {
+        var me;
+
+        me = this;
 
         if(reqDetails !== undefined){
             reqDetails.abort();
         }
 
         reqDetails = $.ajax({
-                url: POST_DETAILS_URL,
-                dataType: 'json',
-                data: 'id=' + slug,
-                success: function(res){
-                    data.post = res.Results;
-                    if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
-                        callback.apply(ctx, [data.post]);
-                        req = undefined;
-                    }
+            url: POST_DETAILS_URL,
+            dataType: 'json',
+            data: 'id=' + slug,
+            success: function(res){
+                me.set('post', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('post')]);
+                    req = undefined;
                 }
-            });
+            }
+        });
     };
 
 };

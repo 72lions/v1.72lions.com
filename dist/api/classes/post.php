@@ -1,4 +1,12 @@
 <?php
+/**
+ * The post class is responsible for parsing and saving the data of an article
+ *
+ * @module 72lionsPHP
+ * @class Post
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 class Post {
 
     /**

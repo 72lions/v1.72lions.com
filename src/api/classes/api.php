@@ -1,4 +1,12 @@
 <?php
+/**
+ * Responsible for retrieving all the necessary data from the wp database
+ *
+ * @module 72lionsPHP
+ * @class API
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
 class API {
 
     /**
