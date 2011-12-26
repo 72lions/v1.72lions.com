@@ -144,6 +144,16 @@ footer .latest-tweets  {
     width: 85% !important;
 }
 
+footer .flickr-photos  {
+    padding-left:20px !important;
+    margin-top:0px;
+}
+
+footer .copy  {
+    padding-left:20px !important;
+    margin-top:0px;
+}
+
 footer .footer-logo:after {
     clear:both;
     height:0px;

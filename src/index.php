@@ -268,6 +268,17 @@
 				</article>
 			</aside>
 
+			<aside class="flickr-photos">
+				<hgroup><h1>My photos at Flickr</h1></hgroup>
+				<nav>
+
+				</nav>
+			</aside>
+
+			<aside class="copy">
+				72lions.com is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+			</aside>
+
 		</footer>
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<!--

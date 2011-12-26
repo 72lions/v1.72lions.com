@@ -96,8 +96,82 @@ footer {
             }
         }
 
-        &.contact-details {
-            float:left;
+        &.copy {
+            font-size:11px;
+            padding-left:220px;
+            font-family:@fontGeorgia;
+            text-shadow:0px 1px 1px rgba(255,255,255,0.8);
+            font-style:italic;
+            color:#666;
+
+            a:link,
+            a:visited {
+
+                color:#F02311;
+                text-decoration:none;
+                border-bottom:1px dotted rgba(0,0,0,0);
+                .transition(border-bottom 0.2s);
+
+
+                &:hover {
+                    border-bottom:1px dotted #F02311;
+                }
+            }
+
+        }
+
+        &.flickr-photos {
+
+            padding-top:0px;
+            clear:both;
+            display:block;
+            padding-left:220px;
+            color:#ccc;
+            max-width:256px;
+            font-size:15px;
+            font-family:@fontMain;
+
+            hgroup {
+
+                h1 {
+                    padding:0px 40px 20px 0px;
+                    display:inline-block;
+                    margin:0px;
+                    font-weight:normal;
+                    color:#666;
+                    font-size:20px;
+                    line-height:27px;
+                    text-shadow:0px 1px 1px rgba(255, 255, 255, 1);
+                }
+            }
+
+            nav {
+
+                a:link,
+                a:visited {
+                    text-align:center;
+                    width:50px;
+                    height:50px;
+                    overflow:hidden;
+                    display:inline-block;
+                    margin-right:10px;
+                    margin-bottom:10px;
+                    opacity:0.9;
+                    .transition(opacity 0.2s);
+                    .border-radius(2px);
+                    border:2px solid white;
+                    .box-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+
+                    img {
+
+                        height:50px;
+                    }
+
+                    &:hover {
+                        opacity:1;
+                    }
+                }
+            }
         }
 
         &.footer-logo {

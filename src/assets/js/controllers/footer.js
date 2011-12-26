@@ -28,6 +28,7 @@ seventytwolions.Controller.Footer = function() {
 
         me.getView().addEventListener('menuClicked', onMenuItemClicked);
         this.loadTweets();
+        this.loadFlickrPhotos();
 
     };
 
@@ -53,6 +54,13 @@ seventytwolions.Controller.Footer = function() {
      */
     this.loadTweets = function() {
         this.getModel().getTweets(onTweetsLoaded, this);
+
+    };
+
+    /**
+     * Loads the Flickr photos
+     */
+    this.loadFlickrPhotos = function() {
         this.getModel().getFlickr(onFlickrLoaded, this);
     };
 
@@ -75,7 +83,7 @@ seventytwolions.Controller.Footer = function() {
      * @author Thodoris Tsiridis
      */
     var onFlickrLoaded = function(result) {
-
+        this.getView().showFlickrPhotos();
     };
 
     /**

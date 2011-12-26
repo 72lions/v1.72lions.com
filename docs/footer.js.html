@@ -273,6 +273,23 @@
 <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Footer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
+<span class="cm">     * The total number of flickr photos to show</span>
+<span class="cm">     *</span>
+<span class="cm">     * final</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 4</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">TOTAL_FLICKR_PHOTOS</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The total flickr photos per row</span>
+<span class="cm">     *</span>
+<span class="cm">     * final</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 2</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">FLICKR_PHOTOS_PER_ROW</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="cm">/**</span>
 <span class="cm">     * The links DOM Elements</span>
 <span class="cm">     *</span>
 <span class="cm">     * @type Array</span>
@@ -308,17 +325,37 @@
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
 <span class="cm">     * @type String</span>
-<span class="cm">     * @default &#39;&lt;div class=&quot;photo&quot;&gt;&lt;a href=&quot;${github}&quot; target=&quot;_blank&quot; class=&quot;github-ribbon&quot;&gt;&lt;img src=&quot;/assets/images/github-ribbon.png&quot; border=&quot;0&quot; alt=&quot;Fork me on github&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;${link}&quot; title=&quot;${title}&quot;&gt;&lt;img class=&quot;thumbnail-image&quot; src=&quot;${image}&quot; alt=&quot;${title}&quot; width=&quot;${imagewidth}&quot; height=&quot;${imageheight}&quot;  /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;description&quot;&gt;&lt;hgroup&gt;&lt;a href=&quot;${link}&quot; title=&quot;${title}&quot; class=&quot;title&quot;&gt;&lt;h1&gt;${title}&lt;/h1&gt;&lt;/a&gt;&lt;/hgroup&gt;&lt;time&gt;${publishdate}&lt;/time&gt;&lt;aside&gt;Categories: ${categories}&lt;/aside&gt;&lt;p&gt;${description}&lt;/p&gt;&lt;a href=&quot;${link}&quot; title=&quot;${title}&quot; class=&quot;readmore&quot;&gt;Read more&lt;/a&gt;&lt;/div&gt;&#39;</span>
+<span class="cm">     * @default &#39;&lt;p&gt;${text}&lt;/p&gt;&#39;</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">tweetTmpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;${text}&lt;/p&gt;&#39;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The HTML template for the flickr thumbnail</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &#39;&lt;a href=&quot;${link}&quot; title=&quot;${title}&quot; taget=&quot;_blank&quot;&gt;&lt;img src=&quot;${src}&quot; alt=&quot;${title}&quot; /&gt;&lt;/a&gt;&#39;</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">flickrTmpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&quot;${link}&quot; title=&quot;${title}&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;${src}&quot; alt=&quot;${title}&quot; /&gt;&lt;/a&gt;&#39;</span><span class="p">;</span>
+
 
     <span class="cm">/**</span>
 <span class="cm">     * The Dom Element for the tweets container</span>
 <span class="cm">     *</span>
 <span class="cm">     * private</span>
 <span class="cm">     * @type Object</span>
+<span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">$tweetsContainerDomElement</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">$tweetsContainerDomElement</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The Dom Element for the flickr photos container</span>
+<span class="cm">     *</span>
+<span class="cm">     * private</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @default undefined</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">$flickrContainerDomElement</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * Initializes the view</span>
@@ -328,6 +365,7 @@
         <span class="c1">//seventytwolions.Console.log(&#39;Initializing view with name &#39; + this.name);</span>
         <span class="nx">$links</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.menu a&#39;</span><span class="p">);</span>
         <span class="nx">$tweetsContainerDomElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.latest-tweets article&#39;</span><span class="p">);</span>
+        <span class="nx">$flickrContainerDomElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.flickr-photos nav&#39;</span><span class="p">);</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -371,6 +409,7 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
     <span class="p">};</span>
+
     <span class="cm">/**</span>
 <span class="cm">     * Renders the latest tweets in the footer</span>
 <span class="cm">     */</span>
@@ -390,6 +429,37 @@
         <span class="p">}</span>
 
         <span class="nx">$tweetsContainerDomElement</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Renders the Flickr photos</span>
+<span class="cm">     *</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">showFlickrPhotos</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">photos</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">markup</span><span class="p">;</span>
+
+        <span class="c1">// Get the data from the model</span>
+        <span class="nx">photos</span> <span class="o">=</span> <span class="nx">tweets</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;flickr&#39;</span><span class="p">);</span>
+        <span class="nx">markup</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">photos</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">TOTAL_FLICKR_PHOTOS</span><span class="p">){</span>
+            <span class="nx">TOTAL_FLICKR_PHOTOS</span> <span class="o">=</span> <span class="nx">photos</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Loop through the photos objects</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">TOTAL_FLICKR_PHOTOS</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">body</span> <span class="o">=</span> <span class="nx">flickrTmpl</span><span class="p">;</span>
+            <span class="nx">body</span> <span class="o">=</span> <span class="nx">body</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\${link}/g</span><span class="p">,</span> <span class="nx">photos</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">link</span><span class="p">);</span>
+            <span class="nx">body</span> <span class="o">=</span> <span class="nx">body</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\${title}/g</span><span class="p">,</span> <span class="nx">photos</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="p">);</span>
+            <span class="nx">body</span> <span class="o">=</span> <span class="nx">body</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\${src}/g</span><span class="p">,</span> <span class="nx">photos</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">media</span><span class="p">.</span><span class="nx">m</span><span class="p">);</span>
+            <span class="nx">markup</span> <span class="o">+=</span> <span class="nx">body</span><span class="p">;</span>
+
+        <span class="p">}</span>
+
+        <span class="nx">$flickrContainerDomElement</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>
 
     <span class="p">};</span>
 

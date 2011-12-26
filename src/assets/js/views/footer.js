@@ -11,6 +11,23 @@
 seventytwolions.View.Footer = function() {
 
     /**
+     * The total number of flickr photos to show
+     *
+     * final
+     * @type Number
+     * @default 4
+     */
+    var TOTAL_FLICKR_PHOTOS = 8;
+
+    /**
+     * The total flickr photos per row
+     *
+     * final
+     * @type Number
+     * @default 2
+     */
+    var FLICKR_PHOTOS_PER_ROW = 2;
+    /**
      * The links DOM Elements
      *
      * @type Array
@@ -46,17 +63,37 @@ seventytwolions.View.Footer = function() {
      *
      * @private
      * @type String
-     * @default '<div class="photo"><a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a><a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a></div><div class="description"><hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup><time>${publishdate}</time><aside>Categories: ${categories}</aside><p>${description}</p><a href="${link}" title="${title}" class="readmore">Read more</a></div>'
+     * @default '<p>${text}</p>'
      */
     var tweetTmpl = '<p>${text}</p>';
+
+    /**
+     * The HTML template for the flickr thumbnail
+     *
+     * @private
+     * @type String
+     * @default '<a href="${link}" title="${title}" taget="_blank"><img src="${src}" alt="${title}" /></a>'
+     */
+    var flickrTmpl = '<a href="${link}" title="${title}" target="_blank"><img src="${src}" alt="${title}" /></a>';
+
 
     /**
      * The Dom Element for the tweets container
      *
      * private
      * @type Object
+     * @default undefined
      */
-    var $tweetsContainerDomElement;
+    var $tweetsContainerDomElement = undefined;
+
+    /**
+     * The Dom Element for the flickr photos container
+     *
+     * private
+     * @type Object
+     * @default undefined
+     */
+    var $flickrContainerDomElement = undefined;
 
     /**
      * Initializes the view
@@ -66,6 +103,7 @@ seventytwolions.View.Footer = function() {
         //seventytwolions.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('.menu a');
         $tweetsContainerDomElement = this.domElement.find('.latest-tweets article');
+        $flickrContainerDomElement = this.domElement.find('.flickr-photos nav');
     };
 
     /**
@@ -109,6 +147,7 @@ seventytwolions.View.Footer = function() {
     this.hide = function(){
         this.domElement.removeClass('active').css('opacity', 0);
     };
+
     /**
      * Renders the latest tweets in the footer
      */
@@ -128,6 +167,37 @@ seventytwolions.View.Footer = function() {
         }
 
         $tweetsContainerDomElement.append(markup);
+
+    };
+
+    /**
+     * Renders the Flickr photos
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.showFlickrPhotos = function() {
+        var photos, i, body, markup;
+
+        // Get the data from the model
+        photos = tweets = this.getModel().get('flickr');
+        markup = '';
+
+        if(photos.length < TOTAL_FLICKR_PHOTOS){
+            TOTAL_FLICKR_PHOTOS = photos.length;
+        }
+
+        // Loop through the photos objects
+        for (i = 0; i < TOTAL_FLICKR_PHOTOS; i++) {
+
+            body = flickrTmpl;
+            body = body.replace(/\${link}/g, photos[i].link);
+            body = body.replace(/\${title}/g, photos[i].title);
+            body = body.replace(/\${src}/g, photos[i].media.m);
+            markup += body;
+
+        }
+
+        $flickrContainerDomElement.append(markup);
 
     };
 
