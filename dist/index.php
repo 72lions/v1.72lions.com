@@ -112,6 +112,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 		<link rel="author" href="humans.txt" />
+		<link rel="alternate" type="application/rss+xml" title="72lions.com - The playground of Thodoris Tsirids" href="http://72lions.com/feed/" />
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<!-- For iPhone 4 with high-resolution Retina display: -->

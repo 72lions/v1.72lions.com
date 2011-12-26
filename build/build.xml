@@ -154,6 +154,9 @@ Basic usage:
 		<copy todir="${dist.dir}/api">
 			<fileset dir="${src.dir}/api" includes="**/*" />
 		</copy>
+		<copy todir="${dist.dir}/feed">
+			<fileset dir="${src.dir}/feed" includes="**/*" />
+		</copy>
 		<copy todir="${dist.js.dir}/libs">
 			<fileset dir="${src.js.dir}/libs" includes="**/*" />
 		</copy>
