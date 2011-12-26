@@ -195,7 +195,7 @@
 							<h1 class="title"></h1>
 							<time></time>
 							<div class="categories"></div>
-							<a href="#" class="github-link" target="_blank"><span>Fork it on Github</span></a>
+							<a href="#" class="github-link" target="_blank"><span>Fork it</span></a>
 							<a href="#" class="download-link" target="_blank"><span>Download</span></a>
 							<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
 							<div class="text"></div>
