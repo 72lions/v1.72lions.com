@@ -38,10 +38,10 @@
             for ($i=0; $i < $totalPosts ; $i++) {
 
                 // Used to create the link
-                $dateSegments = explode('-', date('m-d', strtotime($posts[$i]->pubDate)));
-                $month = $dateSegments[0];
-                $date = $dateSegments[1];
-                $link = 'http://72lions.com/'. $month .'/'. $date . '/' . $posts[$i]->slug;
+                $dateSegments = explode('-', date('Y-m', strtotime($posts[$i]->pubDate)));
+                $month = $dateSegments[1];
+                $year = $dateSegments[0];
+                $link = 'http://72lions.com/'. $year .'/'. $month . '/' . $posts[$i]->slug;
 
                 $rss .= '<item>
                           <title>'. $posts[$i]->title .'</title>
