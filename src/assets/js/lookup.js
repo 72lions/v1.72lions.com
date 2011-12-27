@@ -7,7 +7,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Lookup = (function(global) {
+seventytwolions.Lookup = function(global) {
 
     /**
      * An object holding all the different models
@@ -188,4 +188,4 @@ seventytwolions.Lookup = (function(global) {
 
     return this;
 
-})(window);
+}(window);

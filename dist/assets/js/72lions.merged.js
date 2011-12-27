@@ -6,7 +6,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-var Router = (function(global){
+var Router = function(global){
 
     /**
      * It is set to true the first time we get a popstate
@@ -75,17 +75,19 @@ var Router = (function(global){
      * The base path
      *
      * @type String
+     * @private
      * @default ''
      */
-    this.basePath = '';
+    var basePath = '';
 
     /**
      * After how many milliseconds the app will listen for a hash change
      *
      * @type Number
+     * @private
      * @default 500
      */
-    this.hashListenInterval = 500;
+    var hashListenInterval = 500;
 
     /**
      * Pushes a new state on the history api
@@ -100,8 +102,11 @@ var Router = (function(global){
 
         if(isHistoryAPISupported){
 
-            history.pushState(state, title, this.basePath + url);
+            history.pushState(state, title, basePath + url);
 
+        } else {
+
+            location.href = basePath + '#' + url;
         }
 
         //Get the state
@@ -133,7 +138,7 @@ var Router = (function(global){
 
         if(isHistoryAPISupported){
 
-            history.replaceState(state, title, this.basePath + url);
+            history.replaceState(state, title, basePath + url);
 
         }
 
@@ -197,9 +202,7 @@ var Router = (function(global){
         //Save a valid value for the priority
         priority = priority || 0;
 
-        //Adding the basepath also in the path
-        path = this.basepath + path;
-
+        /*console.log('registering path', path)*/;
         // Check if it already registered by going through all registered callbacks
         // for this event
         var alreadyRegistered = false;
@@ -263,6 +266,14 @@ var Router = (function(global){
      */
     this.getState = function(){
         return getAPIState();
+    };
+
+    /**
+     * Sets the basepath
+     * @param {String} path The path to be used as the basepath
+     */
+    this.setBasePath = function (path) {
+        basePath = path;
     };
 
     /**
@@ -336,8 +347,7 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     var notifyRegisteredPathChangeMembers = function(path){
-
-        var members = registeredPathMembers[this.basepath + path];
+        var members = registeredPathMembers[(path)];
 
         if(members !== undefined){
 
@@ -371,12 +381,12 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     var checkHashChange = function(){
-
         var hash = getState().hash;
 
         if (currentHash !== hash) {
             currentHash = hash;
             onPopstate(null);
+            return;
         }
 
     };
@@ -468,7 +478,7 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     var supportsHashChange = function(){
-        return !!(window.onhashchange);
+        return "onhashchange" in window;
     };
 
     /**
@@ -502,15 +512,13 @@ var Router = (function(global){
             isHistoryAPISupported = false;
 
             if(supportsHashChange()){
-
                 window.onhashchange = onPopstate;
 
             } else {
-
                 // Listen for changes at specific intervals
                 hashChangeIntervalId = setInterval(function(){
                     checkHashChange();
-                }, this.hashListenInterval);
+                }, hashListenInterval);
 
             }
         }
@@ -520,7 +528,7 @@ var Router = (function(global){
 
     return this;
 
-})(window);
+}(window);
 
 /**
  * Event target is used as a mixin so that the classes can support dispatch events and add events commands
@@ -676,7 +684,7 @@ seventytwolions.Model.Locale = (function(global){
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.ControllerManager = (function(global) {
+seventytwolions.ControllerManager = function(global) {
 
     /**
      * Initializes a controller with a specific name
@@ -691,7 +699,7 @@ seventytwolions.ControllerManager = (function(global) {
 
     return this;
 
-})(window);
+}(window);
 
 /**
  * Lookup up utility that loads or creates controllers, views and models
@@ -702,7 +710,7 @@ seventytwolions.ControllerManager = (function(global) {
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Lookup = (function(global) {
+seventytwolions.Lookup = function(global) {
 
     /**
      * An object holding all the different models
@@ -883,7 +891,7 @@ seventytwolions.Lookup = (function(global) {
 
     return this;
 
-})(window);
+}(window);
 
 /**
  * Console is used for outputing console.log messages
@@ -894,7 +902,7 @@ seventytwolions.Lookup = (function(global) {
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Console = (function(global){
+seventytwolions.Console = function(global){
 
     /**
      * Set to true and debug will be enabled
@@ -921,7 +929,7 @@ seventytwolions.Console = (function(global){
     // Return the api
     return this;
 
-})(window);
+}(window);
 
 /**
  * Base View

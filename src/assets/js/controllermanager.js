@@ -7,7 +7,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.ControllerManager = (function(global) {
+seventytwolions.ControllerManager = function(global) {
 
     /**
      * Initializes a controller with a specific name
@@ -22,4 +22,4 @@ seventytwolions.ControllerManager = (function(global) {
 
     return this;
 
-})(window);
+}(window);

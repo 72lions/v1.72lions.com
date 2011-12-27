@@ -7,7 +7,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Console = (function(global){
+seventytwolions.Console = function(global){
 
     /**
      * Set to true and debug will be enabled
@@ -34,4 +34,4 @@ seventytwolions.Console = (function(global){
     // Return the api
     return this;
 
-})(window);
+}(window);

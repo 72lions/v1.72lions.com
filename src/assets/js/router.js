@@ -6,7 +6,7 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-var Router = (function(global){
+var Router = function(global){
 
     /**
      * It is set to true the first time we get a popstate
@@ -75,17 +75,19 @@ var Router = (function(global){
      * The base path
      *
      * @type String
+     * @private
      * @default ''
      */
-    this.basePath = '';
+    var basePath = '';
 
     /**
      * After how many milliseconds the app will listen for a hash change
      *
      * @type Number
+     * @private
      * @default 500
      */
-    this.hashListenInterval = 500;
+    var hashListenInterval = 500;
 
     /**
      * Pushes a new state on the history api
@@ -100,8 +102,11 @@ var Router = (function(global){
 
         if(isHistoryAPISupported){
 
-            history.pushState(state, title, this.basePath + url);
+            history.pushState(state, title, basePath + url);
 
+        } else {
+
+            location.href = basePath + '#' + url;
         }
 
         //Get the state
@@ -133,7 +138,7 @@ var Router = (function(global){
 
         if(isHistoryAPISupported){
 
-            history.replaceState(state, title, this.basePath + url);
+            history.replaceState(state, title, basePath + url);
 
         }
 
@@ -197,9 +202,7 @@ var Router = (function(global){
         //Save a valid value for the priority
         priority = priority || 0;
 
-        //Adding the basepath also in the path
-        path = this.basepath + path;
-
+        console.log('registering path', path);
         // Check if it already registered by going through all registered callbacks
         // for this event
         var alreadyRegistered = false;
@@ -263,6 +266,14 @@ var Router = (function(global){
      */
     this.getState = function(){
         return getAPIState();
+    };
+
+    /**
+     * Sets the basepath
+     * @param {String} path The path to be used as the basepath
+     */
+    this.setBasePath = function (path) {
+        basePath = path;
     };
 
     /**
@@ -336,8 +347,7 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     var notifyRegisteredPathChangeMembers = function(path){
-
-        var members = registeredPathMembers[this.basepath + path];
+        var members = registeredPathMembers[(path)];
 
         if(members !== undefined){
 
@@ -371,12 +381,12 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     var checkHashChange = function(){
-
         var hash = getState().hash;
 
         if (currentHash !== hash) {
             currentHash = hash;
             onPopstate(null);
+            return;
         }
 
     };
@@ -468,7 +478,7 @@ var Router = (function(global){
      * @author Thodoris Tsiridis
      */
     var supportsHashChange = function(){
-        return !!(window.onhashchange);
+        return "onhashchange" in window;
     };
 
     /**
@@ -502,15 +512,13 @@ var Router = (function(global){
             isHistoryAPISupported = false;
 
             if(supportsHashChange()){
-
                 window.onhashchange = onPopstate;
 
             } else {
-
                 // Listen for changes at specific intervals
                 hashChangeIntervalId = setInterval(function(){
                     checkHashChange();
-                }, this.hashListenInterval);
+                }, hashListenInterval);
 
             }
         }
@@ -520,4 +528,4 @@ var Router = (function(global){
 
     return this;
 
-})(window);
+}(window);
