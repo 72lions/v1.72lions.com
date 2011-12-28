@@ -13,7 +13,7 @@
     API: 72lions
     
     
-      &rarr; namespaces.js (file)
+      &rarr; locale_en.js (file)
     
   </title>
 
@@ -78,7 +78,7 @@
           &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
           
           
-            &rarr; file namespaces.js
+            &rarr; file locale_en.js
           
       </div>
     </div> <!--! end of #sub-hd -->
@@ -152,7 +152,40 @@
                     <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
                   </li>
                   <li >
+                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Footer.html">seventytwolions.Model.Footer</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
+                  </li>
+                  <li >
                     <a href="seventytwolions.Router.html">seventytwolions.Router</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Footer.html">seventytwolions.View.Footer</a>
                   </li>
                   <li >
                     <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
@@ -188,7 +221,7 @@
                     <a href="blog.js.html">blog.js</a>
                   </li>
                   <li >
-                    <a href="bootstrap.js.html">bootstrap.js</a>
+                    <a href="categories.js.html">categories.js</a>
                   </li>
                   <li >
                     <a href="console.js.html">console.js</a>
@@ -208,17 +241,14 @@
                   <li >
                     <a href="footer.js.html">footer.js</a>
                   </li>
-                  <li >
-                    <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
+                  <li  class="selected" >
+                    <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
                     <a href="lookup.js.html">lookup.js</a>
                   </li>
                   <li >
                     <a href="main.js.html">main.js</a>
-                  </li>
-                  <li  class="selected" >
-                    <a href="namespaces.js.html">namespaces.js</a>
                   </li>
                   <li >
                     <a href="navigation.js.html">navigation.js</a>
@@ -228,6 +258,9 @@
                   </li>
                   <li >
                     <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
                   </li>
                   <li >
                     <a href="router.js.html">router.js</a>
@@ -257,13 +290,80 @@
         <!--! source code view -->
         <div id="srcout">
           <h2>
-            file <strong>namespaces.js</strong>
+            file <strong>locale_en.js</strong>
           </h2>
 
-          <div class="highlight"><pre><span class="kd">var</span> <span class="nx">seventytwolions</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span> <span class="o">||</span> <span class="p">{};</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span> <span class="o">||</span> <span class="p">{};</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span> <span class="o">||</span> <span class="p">{};</span>
+          <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Locale Model</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class Locale</span>
+<span class="cm"> * @namespace seventytwolions.Model</span>
+<span class="cm"> * @extends seventytwolions.Model.Base</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Locale</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * An array of all the months</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @default [&#39;January&#39;, &#39;February&#39;, &#39;March&#39;, &#39;April&#39;, &#39;May&#39;, &#39;June&#39;, &#39;July&#39;, &#39;August&#39;, &#39;September&#39;, &#39;October&#39;, &#39;November&#39;, &#39;December&#39;]</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">];</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * An array of all the week days</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @default [&#39;Sunday&#39;, &#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;, &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39;]</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">days</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sunday&#39;</span><span class="p">,</span> <span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="s1">&#39;Saturday&#39;</span><span class="p">];</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The page title</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &quot;72Lions - The playground of developer Thodoris Tsiridis&quot;</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">pageTitle</span> <span class="o">=</span> <span class="s2">&quot;72Lions - The playground of developer Thodoris Tsiridis&quot;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the name of the month</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param  {Number} monthIndex The month index</span>
+<span class="cm">     * @return {String}</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getMonthName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">monthIndex</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">months</span><span class="p">[</span><span class="nx">monthIndex</span><span class="p">];</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the name of a day of the week</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param  {Number} dayIndex The day of the week index</span>
+<span class="cm">     * @return {String}</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getDayName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dayIndex</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">days</span><span class="p">[</span><span class="nx">dayIndex</span><span class="p">];</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the title of the page</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return {String}</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getPageTitle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">pageTitle</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
 </pre></div>
 
         </div>

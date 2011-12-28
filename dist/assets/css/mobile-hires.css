@@ -50,6 +50,13 @@ header.navigation nav ul li a:visited {
     padding:0px 20px 20px 20px !important;
 }
 
+#sections-wrapper section {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
 section.portfolio .centered article .description h1,
 section.blog .centered article .description h1 {
     font-size:28px;

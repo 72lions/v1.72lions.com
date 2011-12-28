@@ -152,7 +152,40 @@
                     <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
                   </li>
                   <li >
+                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Footer.html">seventytwolions.Model.Footer</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
+                  </li>
+                  <li >
                     <a href="seventytwolions.Router.html">seventytwolions.Router</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Footer.html">seventytwolions.View.Footer</a>
                   </li>
                   <li >
                     <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
@@ -188,7 +221,7 @@
                     <a href="blog.js.html">blog.js</a>
                   </li>
                   <li >
-                    <a href="bootstrap.js.html">bootstrap.js</a>
+                    <a href="categories.js.html">categories.js</a>
                   </li>
                   <li >
                     <a href="console.js.html">console.js</a>
@@ -209,16 +242,13 @@
                     <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
+                    <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
                     <a href="lookup.js.html">lookup.js</a>
                   </li>
                   <li  class="selected" >
                     <a href="main.js.html">main.js</a>
-                  </li>
-                  <li >
-                    <a href="namespaces.js.html">namespaces.js</a>
                   </li>
                   <li >
                     <a href="navigation.js.html">navigation.js</a>
@@ -228,6 +258,9 @@
                   </li>
                   <li >
                     <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
                   </li>
                   <li >
                     <a href="router.js.html">router.js</a>
@@ -261,54 +294,169 @@
           </h2>
 
           <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Main View</span>
+<span class="cm"> * Main Controller</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Main</span>
-<span class="cm"> * @namespace seventytwolions.View</span>
-<span class="cm"> * @extends seventytwolions.View.Base</span>
+<span class="cm"> * @namespace seventytwolions.Controller</span>
+<span class="cm"> * @extends seventytwolions.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Main</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * The DOM Element</span>
+<span class="cm">     * A reference to the navigation controller</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type seventytwolions.Controller.NaviMaingation</span>
+<span class="cm">     * @default null</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">navigationController</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * A reference to the sections manager controller</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type seventytwolions.Controller.SectionsManager</span>
+<span class="cm">     * @default null</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">sectionsManager</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * A reference to the footer controller</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type seventytwolions.Controller.Footer</span>
+<span class="cm">     * @default null</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">footerController</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The initial state of the website</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="nx">Router</span><span class="p">.</span><span class="nx">getState</span><span class="p">();</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Initializes the view</span>
+<span class="cm">     * Its true if there is a state object in the windows history. Chrome triggers a popstate on load so that is true</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Boolean</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">popped</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;state&#39;</span> <span class="k">in</span> <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">);</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The page url upon loading</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">initialURL</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * This function is executed right after the initialized function is called</span>
 <span class="cm">     *</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Initializing view with name &#39; + this.name);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="nx">navigationController</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Navigation&#39;</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;navigation&#39;</span><span class="p">,</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
+        <span class="p">});</span>
+
+
+        <span class="nx">sectionsManager</span>  <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;SectionsManager&#39;</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;sectionsmanager&#39;</span><span class="p">,</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
+        <span class="p">});</span>
+
+        <span class="nx">footerController</span>  <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+               <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
+               <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;footter&#39;</span>
+            <span class="p">})</span>
+        <span class="p">});</span>
+
+        <span class="nx">onPopPushEvent</span><span class="p">(</span><span class="nx">initialState</span><span class="p">);</span>
+
+        <span class="nx">Router</span><span class="p">.</span><span class="nx">registerForEvent</span><span class="p">(</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="nx">onPopPushEvent</span><span class="p">);</span>
+        <span class="nx">Router</span><span class="p">.</span><span class="nx">registerForEvent</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">,</span> <span class="nx">onPopPushEvent</span><span class="p">);</span>
+
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Draws the specific view</span>
+<span class="cm">     * Triggered when we have a pop or push event</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Object} state The state object</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Drawing view with name &#39; + this.name);</span>
+    <span class="kd">var</span> <span class="nx">onPopPushEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">initialPop</span><span class="p">,</span> <span class="nx">sectionName</span><span class="p">;</span>
+
+        <span class="c1">// Catch page reload pop event that happens in some browsers</span>
+        <span class="c1">// and disregard it</span>
+        <span class="nx">initialPop</span> <span class="o">=</span> <span class="o">!</span><span class="nx">popped</span> <span class="o">&amp;&amp;</span> <span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">==</span> <span class="nx">initialURL</span><span class="p">;</span>
+        <span class="nx">popped</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="c1">//alert(initialPop + &quot;, &quot; + popped);</span>
+        <span class="c1">//if ( initialPop ) return;</span>
+
+        <span class="c1">// Clean memory</span>
+        <span class="nx">initialPop</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nx">initialState</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="nx">sectionName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+        <span class="c1">// If the pathSegments are undefined then that</span>
+        <span class="c1">// means that Home menu item is selected</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
+
+            <span class="nx">navigationController</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">selectNavigationItem</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
+
+            <span class="c1">// Change the section</span>
+            <span class="nx">changeSection</span><span class="p">();</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">.</span><span class="nx">length</span><span class="p">){</span>
+
+                <span class="c1">// Select a specific menu item</span>
+                <span class="nx">navigationController</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">selectNavigationItem</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">[</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+
+                <span class="c1">// Change the section</span>
+                <span class="nx">changeSection</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
+
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+
+        <span class="c1">// Clean memory</span>
+        <span class="nx">sectionName</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">};</span>
 
-   <span class="cm">/**</span>
-<span class="cm">     * Executed after the drawing of the view</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Responsible for telling the sectionsManager to change section</span>
 <span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Object} state The path of the section that we want to show</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">postDraw</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Post draw view with name &#39; + this.name);</span>
+    <span class="kd">var</span> <span class="nx">changeSection</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">){</span>
+        <span class="nx">footerController</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">sectionsManager</span><span class="p">.</span><span class="nx">showSectionWithName</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
+        <span class="nx">footerController</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">};</span>
-
 <span class="p">};</span>
 
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Main</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>
 
         </div>

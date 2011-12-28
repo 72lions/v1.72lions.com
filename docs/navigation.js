@@ -1,126 +1,49 @@
 /**
- * Navigation View
+ * Navigation Controller
  *
  * @module 72lions
  * @class Navigation
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Navigation = function() {
-
-    /**
-     * The links DOM Elements
-     *
-     * @type Array
-     * @default undefined
-     */
-    var $links = undefined;
+seventytwolions.Controller.Navigation = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Navigation
+     * @type seventytwolions.Controller.Navigation
      */
     var me = this;
 
     /**
-     * The DOM Element
+     * This function is executed right after the initialized
      *
-     * @type Object
-     */
-	this.domElement = $('.navigation');
-
-    /**
-     * The clicked DOM Element
-     *
-     * @type Object
-     * @default undefined
-     */
-    this.clickedItem = undefined;
-
-    /**
-     * Initializes the view
+     * function is called
      * @author Thodoris Tsiridis
      */
-    this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
-        $links = this.domElement.find('a');
+    this.postInitialize = function(){
+
+        me.getView().addEventListener('menuClicked', onMenuItemClicked);
+
     };
 
     /**
-     * Draws the specific view
-     * @author Thodoris Tsiridis
-     */
-	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
-	};
-
-   /**
-     * Executed after the drawing of the view
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
-        addEventListeners();
-    };
-
-    /**
-     * Hightlits a menu item
-     * @param {String} section The name of the section that we want to highlight
-     * @author Thodoris Tsiridis
-     */
-    this.selectNavigationItem = function(section) {
-        section = section === '' ? 'home' : section;
-        this.domElement.find('.nav-' + section).parent().addClass('active').siblings().removeClass('active');
-    };
-
-    /**
-     * Registers all the event listeners
+     * Triggered when the view dispatches a menuClicked event
      *
      * @private
+     * @param {Object} event The event object
      * @author Thodoris Tsiridis
      */
-    var addEventListeners = function(){
-        $links.bind('click', onLinkClick);
-    };
+    var onMenuItemClicked = function(event){
 
-    /**
-     * Triggered when we click a link
-     *
-     * @private
-     * @param {Object} e The event
-     * @author Thodoris Tsiridis
-     */
-    var onLinkClick = function(e){
-        var $item;
+        // Push the current url
+        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
 
-        e.preventDefault();
-
-        // Cache the item
-        $item = me.clickedItem = $(this);
-
-        // Check if the item that was clicked was the logo
-        // and if it was use a delay so that we first scroll up
-        if($item.hasClass('logo')){
-            delay = 200;
-            // Scroll to top
-            $('body,html').stop().animate({scrollTop:0}, delay, 'easeOutQuint');
-        } else {
-            delay = 0;
-        }
-
-        setTimeout(function(){
-            // Dispatch the event
-            me.dispatchEvent({type: 'menuClicked', path: me.clickedItem.attr('href'), title: me.clickedItem.attr('title')});
-        }, delay + 100);
-
-        // Clear memory
-        $item = null;
     };
 
 };
 
-seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
+seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();

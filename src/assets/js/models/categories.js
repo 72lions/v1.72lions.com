@@ -11,39 +11,10 @@
 seventytwolions.Model.Categories = function(){
 
     /**
-     * The api url for the categories
+     * The response object that came from the ajax call
      *
      * @private
-     * @final
-     * @type String
-     * @default '/api/getCategories.php'
-     */
-    var CATEGORIES_URL = '/api/getCategories.php';
-
-    /**
-     * The start offset for the categories
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 0
-     */
-    var DEFAULT_START = 0;
-
-    /**
-     * The total number of items to retrieve from the api
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 10
-     */
-    var DEFAULT_NUMBER_OF_ITEMS = 10;
-
-    /**
-     * The ajax request as returned from jQuery.ajax()
-     *
-     * @private
+     * @property response
      * @type jqXHR
      * @default undefined
      */
@@ -53,9 +24,36 @@ seventytwolions.Model.Categories = function(){
      * The object that holds the data
      *
      * @private
-     * @type String
+     * @type Object
      */
     var data = {};
+
+    /**
+     * The api url for the categories
+     *
+     * @private
+     * @type String
+     * @default '/api/getCategories.php'
+     */
+    var CATEGORIES_URL = '/api/getCategories.php';
+
+    /**
+     * The start offset for the categories
+     *
+     * @private
+     * @type Number
+     * @default 0
+     */
+    var DEFAULT_START = 0;
+
+    /**
+     * The total number of items to retrieve from the api
+     *
+     * @private
+     * @type Number
+     * @default 10
+     */
+    var DEFAULT_NUMBER_OF_ITEMS = 10;
 
     /**
      * Gets an array of categories by doing an Ajax call

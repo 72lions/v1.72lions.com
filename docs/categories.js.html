@@ -13,7 +13,7 @@
     API: 72lions
     
     
-      &rarr; bootstrap.js (file)
+      &rarr; categories.js (file)
     
   </title>
 
@@ -78,7 +78,7 @@
           &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
           
           
-            &rarr; file bootstrap.js
+            &rarr; file categories.js
           
       </div>
     </div> <!--! end of #sub-hd -->
@@ -152,7 +152,40 @@
                     <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
                   </li>
                   <li >
+                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Footer.html">seventytwolions.Model.Footer</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
+                  </li>
+                  <li >
                     <a href="seventytwolions.Router.html">seventytwolions.Router</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Footer.html">seventytwolions.View.Footer</a>
                   </li>
                   <li >
                     <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
@@ -188,7 +221,7 @@
                     <a href="blog.js.html">blog.js</a>
                   </li>
                   <li  class="selected" >
-                    <a href="bootstrap.js.html">bootstrap.js</a>
+                    <a href="categories.js.html">categories.js</a>
                   </li>
                   <li >
                     <a href="console.js.html">console.js</a>
@@ -209,16 +242,13 @@
                     <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
+                    <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
                     <a href="lookup.js.html">lookup.js</a>
                   </li>
                   <li >
                     <a href="main.js.html">main.js</a>
-                  </li>
-                  <li >
-                    <a href="namespaces.js.html">namespaces.js</a>
                   </li>
                   <li >
                     <a href="navigation.js.html">navigation.js</a>
@@ -228,6 +258,9 @@
                   </li>
                   <li >
                     <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
                   </li>
                   <li >
                     <a href="router.js.html">router.js</a>
@@ -257,14 +290,107 @@
         <!--! source code view -->
         <div id="srcout">
           <h2>
-            file <strong>bootstrap.js</strong>
+            file <strong>categories.js</strong>
           </h2>
 
-          <div class="highlight"><pre><span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
-    <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Main&#39;</span><span class="p">,</span>
-    <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;main&#39;</span><span class="p">,</span>
-    <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
-<span class="p">});</span>
+          <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Categories Model</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module 72lions</span>
+<span class="cm"> * @class Categories</span>
+<span class="cm"> * @namespace seventytwolions.Model</span>
+<span class="cm"> * @extends seventytwolions.Model.Base</span>
+<span class="cm"> * @author Thodoris Tsiridis</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> */</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Categories</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The response object that came from the ajax call</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @property response</span>
+<span class="cm">     * @type jqXHR</span>
+<span class="cm">     * @default undefined</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">req</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The object that holds the data</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The api url for the categories</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &#39;/api/getCategories.php&#39;</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">CATEGORIES_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/getCategories.php&#39;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The start offset for the categories</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 0</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">DEFAULT_START</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The total number of items to retrieve from the api</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 10</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Gets an array of categories by doing an Ajax call</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {Number} start The start offset</span>
+<span class="cm">     * @param {Number} total The total number of items that we want to get</span>
+<span class="cm">     * @param {Function} callback The callback function that will be executed</span>
+<span class="cm">     * @param {Function} ctx The context</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">total</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">dataString</span><span class="p">,</span> <span class="nx">me</span><span class="p">;</span>
+
+        <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">||</span> <span class="nx">DEFAULT_START</span><span class="p">;</span>
+        <span class="nx">total</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">||</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span><span class="p">;</span>
+
+        <span class="nx">dataString</span> <span class="o">=</span> <span class="s1">&#39;s=&#39;</span> <span class="o">+</span> <span class="nx">start</span> <span class="o">+</span> <span class="s1">&#39;&amp;t=&#39;</span> <span class="o">+</span> <span class="nx">total</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">req</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+            <span class="nx">req</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="nx">CATEGORIES_URL</span><span class="p">,</span>
+            <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">dataString</span><span class="p">,</span>
+            <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
+                <span class="nx">me</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Results</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;null&#39;</span><span class="p">){</span>
+                    <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">[</span><span class="nx">me</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">)]);</span>
+                    <span class="nx">req</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span>
+
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Categories</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>
 
         </div>

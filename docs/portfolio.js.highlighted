@@ -1,63 +1,51 @@
 <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Portfolio View</span>
+<span class="cm"> * Portfolio Controller</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Portfolio</span>
-<span class="cm"> * @namespace seventytwolions.View</span>
-<span class="cm"> * @extends seventytwolions.View.Base</span>
+<span class="cm"> * @namespace seventytwolions.Controller</span>
+<span class="cm"> * @extends seventytwolions.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Portfolio</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The DOM Element</span>
-<span class="cm">     *</span>
-<span class="cm">     * @type Object</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.portfolio&#39;</span><span class="p">);</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Portfolio</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * A reference to this class</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.View.Portfolio</span>
+<span class="cm">     * @type seventytwolions.Controller.Portfolio</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * The items container DOM Element</span>
+<span class="cm">     * The categories Model</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type Object</span>
+<span class="cm">     * @type seventytwolions.Model.Categories</span>
+<span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">itemsContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.centered&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Initializes the view</span>
+<span class="cm">     * An array with all the portfolio items</span>
 <span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @default []</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Initializing view with name &#39; + this.name);</span>
-    <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">portfolioItems</span> <span class="o">=</span> <span class="p">[];</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Draws the specific view</span>
+<span class="cm">     * This function is executed right after the initialized function is called</span>
 <span class="cm">     *</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="c1">//seventytwolions.Console.log(&#39;Drawing view with name &#39; + this.name);</span>
-	<span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 
-   <span class="cm">/**</span>
-<span class="cm">     * Executed after the drawing of the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">postDraw</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Post draw view with name &#39; + this.name);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">loadPosts</span><span class="p">();</span>
+        <span class="c1">//this.loadCategories();</span>
+
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -66,35 +54,85 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">that</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
-
-        <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;Portfolio - &#39;</span> <span class="o">+</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Locale</span><span class="p">.</span><span class="nx">getPageTitle</span><span class="p">();</span>
-
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">};</span>
+
     <span class="cm">/**</span>
 <span class="cm">     * Hides the view</span>
 <span class="cm">     *</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">hide</span><span class="p">();</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Adds a portfolio item to the view</span>
+<span class="cm">     * Forces the model to load the posts</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {Object} item The dom element that we want to append to the portfolio page</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">addPortfolioItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
-        <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loadPosts</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">getPosts</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="nx">onPostsLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Callback function that is triggered when the model posts are loaded</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param  {Object} result The result that came back from the model</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onPostsLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Portfolio&#39;</span><span class="p">))</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">){</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Portfolio&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">portfolioItems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+                    <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+                        <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span><span class="p">,</span>
+                        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Id</span><span class="p">,</span>
+                        <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                            <span class="nx">data</span><span class="o">:</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+                        <span class="p">})</span>
+                    <span class="p">})</span>
+                <span class="p">);</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">addPortfolioItem</span><span class="p">(</span><span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">domElement</span><span class="p">);</span>
+                <span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">render</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Forces the model to load the categories</span>
+<span class="cm">     *</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loadCategories</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">categoriesModel</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
+            <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Categories&#39;</span><span class="p">,</span>
+                <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;categoriesPortfolio&#39;</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+
+        <span class="nx">categoriesModel</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">onCategoriesLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Callback function that is triggered when the model categories are loaded</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param  {Object} result The result that came back from the model</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onCategoriesLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+
     <span class="p">};</span>
 
 <span class="p">};</span>
 
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Portfolio</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Portfolio</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>

@@ -46,13 +46,13 @@ Basic usage:
 		<concat destfile="${dist.merged.file.js}" fixlastline="yes" append="no">
 			<filelist>
 
-				<file name="${src.js.dir}/router.js"/>
-				<file name="${src.js.dir}/eventtarget.js"/>
+				<file name="${src.js.dir}/helpers/router.js"/>
+				<file name="${src.js.dir}/helpers/eventtarget.js"/>
 				<file name="${src.js.dir}/namespaces.js"/>
 				<file name="${src.js.dir}/models/locale_en.js"/>
-				<file name="${src.js.dir}/controllermanager.js"/>
-				<file name="${src.js.dir}/lookup.js"/>
-				<file name="${src.js.dir}/console.js"/>
+				<file name="${src.js.dir}/helpers/controllermanager.js"/>
+				<file name="${src.js.dir}/helpers/lookup.js"/>
+				<file name="${src.js.dir}/helpers/console.js"/>
 
 				<file name="${src.js.dir}/views/base.js"/>
 				<file name="${src.js.dir}/models/base.js"/>
@@ -188,7 +188,10 @@ Basic usage:
 		<delete dir="${docs.dir}" />
 		<exec executable="python">
 			<arg value="${yuidoc.exec}" />
-			<arg value="${src.dir}/assets/js/" />
+			<arg value="${src.dir}/assets/js/helpers" />
+			<arg value="${src.dir}/assets/js/views" />
+			<arg value="${src.dir}/assets/js/controllers" />
+			<arg value="${src.dir}/assets/js/models" />
 			<arg value="-p" />
 			<arg value="${docs.dir}" />
 			<arg value="-o" />

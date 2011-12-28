@@ -11,39 +11,10 @@
 <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Categories</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * The api url for the categories</span>
+<span class="cm">     * The response object that came from the ajax call</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @final</span>
-<span class="cm">     * @type String</span>
-<span class="cm">     * @default &#39;/api/getCategories.php&#39;</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">CATEGORIES_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/getCategories.php&#39;</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The start offset for the categories</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @final</span>
-<span class="cm">     * @type Number</span>
-<span class="cm">     * @default 0</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">DEFAULT_START</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The total number of items to retrieve from the api</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @final</span>
-<span class="cm">     * @type Number</span>
-<span class="cm">     * @default 10</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The ajax request as returned from jQuery.ajax()</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
+<span class="cm">     * @property response</span>
 <span class="cm">     * @type jqXHR</span>
 <span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
@@ -53,9 +24,36 @@
 <span class="cm">     * The object that holds the data</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type String</span>
+<span class="cm">     * @type Object</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The api url for the categories</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &#39;/api/getCategories.php&#39;</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">CATEGORIES_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/getCategories.php&#39;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The start offset for the categories</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 0</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">DEFAULT_START</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The total number of items to retrieve from the api</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 10</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * Gets an array of categories by doing an Ajax call</span>

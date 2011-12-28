@@ -1,63 +1,51 @@
 /**
- * Portfolio View
+ * Portfolio Controller
  *
  * @module 72lions
  * @class Portfolio
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Portfolio = function() {
-
-    /**
-     * The DOM Element
-     *
-     * @type Object
-     */
-    this.domElement = $('.portfolio');
+seventytwolions.Controller.Portfolio = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Portfolio
+     * @type seventytwolions.Controller.Portfolio
      */
     var me = this;
 
     /**
-     * The items container DOM Element
+     * The categories Model
      *
      * @private
-     * @type Object
+     * @type seventytwolions.Model.Categories
+     * @default undefined
      */
-    var itemsContainer = this.domElement.find('.centered');
+    var categoriesModel = undefined;
 
     /**
-     * Initializes the view
+     * An array with all the portfolio items
      *
-     * @author Thodoris Tsiridis
+     * @private
+     * @type Array
+     * @default []
      */
-    this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
-    };
+    var portfolioItems = [];
 
     /**
-     * Draws the specific view
+     * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
-	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
-	};
+    this.postInitialize = function(){
 
-   /**
-     * Executed after the drawing of the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        this.loadPosts();
+        //this.loadCategories();
+
     };
 
     /**
@@ -66,34 +54,84 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        var that = this;
-        this.domElement.addClass('active');
-        setTimeout(function(){
-            that.domElement.css('opacity', 1);
-        }, 10);
-
-        document.title = 'Portfolio - ' + seventytwolions.Model.Locale.getPageTitle();
-
+        this.getView().show();
     };
+
     /**
      * Hides the view
      *
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
-        this.domElement.removeClass('active').css('opacity', 0);
+        this.getView().hide();
     };
 
     /**
-     * Adds a portfolio item to the view
+     * Forces the model to load the posts
      *
-     * @param {Object} item The dom element that we want to append to the portfolio page
      * @author Thodoris Tsiridis
      */
-    this.addPortfolioItem = function(item){
-        itemsContainer.append(item);
+    this.loadPosts = function() {
+        this.getModel().getPosts(7, 0, 80, onPostsLoaded, this);
+    };
+
+    /**
+     * Callback function that is triggered when the model posts are loaded
+     *
+     * @param  {Object} result The result that came back from the model
+     * @author Thodoris Tsiridis
+     */
+    var onPostsLoaded = function(result) {
+        var i;
+        if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
+
+            this.getModel().set('Portfolio', result);
+
+            for (i = 0; i < result.length; i++) {
+                portfolioItems.push(
+                    seventytwolions.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: seventytwolions.Lookup.getModel({
+                            data:result[i]
+                        })
+                    })
+                );
+
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+                portfolioItems[i].getView().render();
+            }
+        }
+
+    };
+
+    /**
+     * Forces the model to load the categories
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.loadCategories = function() {
+
+        if(categoriesModel === undefined){
+            categoriesModel = seventytwolions.Lookup.getModel({
+                type:'Categories',
+                id:'categoriesPortfolio'
+            });
+        }
+
+        categoriesModel.get(0, 5, onCategoriesLoaded, this);
+    };
+
+    /**
+     * Callback function that is triggered when the model categories are loaded
+     *
+     * @param  {Object} result The result that came back from the model
+     * @author Thodoris Tsiridis
+     */
+    var onCategoriesLoaded = function(result) {
+
     };
 
 };
 
-seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
+seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.Base();

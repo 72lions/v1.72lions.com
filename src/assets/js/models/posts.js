@@ -54,6 +54,7 @@ seventytwolions.Model.Posts = function(){
      * The ajax request as returned from jQuery.ajax()
      *
      * @private
+     * @property req
      * @type jqXHR
      * @default undefined
      */
@@ -63,6 +64,7 @@ seventytwolions.Model.Posts = function(){
      * The ajax request for the details call as returned from jQuery.ajax()
      *
      * @private
+     * @property reqDetails
      * @type jqXHR
      * @default undefined
      */

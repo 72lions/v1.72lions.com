@@ -1,55 +1,31 @@
 /**
- * About View
+ * About Controller
  *
  * @module 72lions
  * @class About
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.About = function() {
+seventytwolions.Controller.About = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.About
+     * @type seventytwolions.Controller.About
      */
     var me = this;
 
-    /**
-     * The DOM Element
-     *
-     * @type Object
-     */
-	this.domElement = $('.about');
 
     /**
-     * Initializes the view
+     * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
-    this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
-    };
+    this.postInitialize = function(){
 
-    /**
-     * Draws the specific view
-     *
-     * @author Thodoris Tsiridis
-     */
-	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
-	};
-
-   /**
-     * Executed after the drawing of the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -57,8 +33,8 @@ seventytwolions.View.About = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.show = function(){
-        this.domElement.slideDown();
+    this.show = function() {
+        this.getView().show();
     };
 
     /**
@@ -66,10 +42,10 @@ seventytwolions.View.About = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.hide = function(){
-        this.domElement.slideUp();
+    this.hide = function() {
+        this.getView().hide();
     };
 
 };
 
-seventytwolions.View.About.prototype = new seventytwolions.View.Base();
+seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base();

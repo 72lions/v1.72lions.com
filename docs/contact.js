@@ -1,73 +1,50 @@
 /**
- * Contact View
+ * Contact Controller
  *
  * @module 72lions
  * @class Contact
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Contact = function() {
+seventytwolions.Controller.Contact = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Contact
+     * @type seventytwolions.Controller.Contact
      */
     var me = this;
 
     /**
-     * The DOM Element
+     * This function is executed right after the initialized function is called
      *
-     * @type Object
-     */
-	this.domElement = $('.contact');
-
-    /**
-     * Initializes the view
      * @author Thodoris Tsiridis
      */
-    this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
-    };
+    this.postInitialize = function(){
 
-    /**
-     * Draws the specific view
-     * @author Thodoris Tsiridis
-     */
-	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
-	};
-
-   /**
-     * Executed after the drawing of the view
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
      * Shows the view
+     *
      * @author Thodoris Tsiridis
      */
-    this.show = function(){
-        var that = this;
-        this.domElement.addClass('active');
-        setTimeout(function(){
-            that.domElement.css('opacity', 1);
-        }, 10);
+    this.show = function() {
+        this.getView().show();
     };
+
     /**
      * Hides the view
+     *
      * @author Thodoris Tsiridis
      */
-    this.hide = function(){
-        this.domElement.removeClass('active').css('opacity', 0);
+    this.hide = function() {
+        this.getView().hide();
     };
 
 };
 
-seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
+seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();

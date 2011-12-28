@@ -1,15 +1,21 @@
 <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Base View</span>
+<span class="cm"> * Base Model</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Base</span>
-<span class="cm"> * @namespace seventytwolions.View</span>
+<span class="cm"> * @namespace seventytwolions.Model</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Base</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 
-    <span class="nx">EventTarget</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span> <span class="k">this</span> <span class="p">);</span>
+    <span class="cm">/**</span>
+<span class="cm">     * The object that holds the data</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * The view name</span>
@@ -28,41 +34,29 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * A reference to this view&#39;s model</span>
+<span class="cm">     * Sets the model data</span>
 <span class="cm">     *</span>
-<span class="cm">     * @type seventytwolions.View.Base</span>
-<span class="cm">     * @default undefined</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The DOM Element</span>
-<span class="cm">     *</span>
-<span class="cm">     * @type Object</span>
-<span class="cm">     * @default null</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Function for when showing the view</span>
-<span class="cm">     *</span>
+<span class="cm">     * @param {Object} modelData The model data</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">modelData</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">modelData</span><span class="p">;</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Function for when hiding the view</span>
+<span class="cm">     * Gets the model data</span>
 <span class="cm">     *</span>
+<span class="cm">     * @return {Object} The data</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Sets the name of the view</span>
+<span class="cm">     * Sets the name of the model</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {String} name The name fo the view</span>
+<span class="cm">     * @param {String} name The name/type of the model</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">setName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
@@ -70,80 +64,35 @@
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Sets the name of the view</span>
+<span class="cm">     * Sets the id of the model</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {String} name The name fo the view</span>
+<span class="cm">     * @param {String} id The id of the model</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setId</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Sets the model for the view</span>
+<span class="cm">     * Saves a value to a specific key of the model</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {seventytwolions.Model.Base} model The model</span>
+<span class="cm">     * @param {String} key The key of the data object to be set</span>
+<span class="cm">     * @param {Object || String || Number || Array} value The value to save on the specific key</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setModel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">set</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Gets the model for the view</span>
+<span class="cm">     * Returns a value to a specific key of the model</span>
 <span class="cm">     *</span>
-<span class="cm">     * @return {seventytwolions.Model.Base} The model</span>
+<span class="cm">     * @param {String} key The key of the data object to be set</span>
+<span class="cm">     * @return {Object || String || Number || Array} The value of the specific data key</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">;</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Returns the main dom element of the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @return {Object} A DOM element</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getDOMElement</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">;</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Is triggered before initialization of the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">preInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">setName</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">setId</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Initializes the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Draws the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Executed after the drawing of the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">postDraw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-
+    <span class="k">this</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
     <span class="p">};</span>
 
 <span class="p">};</span>

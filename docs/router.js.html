@@ -152,7 +152,40 @@
                     <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
                   </li>
                   <li >
+                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Footer.html">seventytwolions.Model.Footer</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
+                  </li>
+                  <li >
                     <a href="seventytwolions.Router.html">seventytwolions.Router</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Footer.html">seventytwolions.View.Footer</a>
                   </li>
                   <li >
                     <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
@@ -188,7 +221,7 @@
                     <a href="blog.js.html">blog.js</a>
                   </li>
                   <li >
-                    <a href="bootstrap.js.html">bootstrap.js</a>
+                    <a href="categories.js.html">categories.js</a>
                   </li>
                   <li >
                     <a href="console.js.html">console.js</a>
@@ -209,16 +242,13 @@
                     <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
+                    <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
                     <a href="lookup.js.html">lookup.js</a>
                   </li>
                   <li >
                     <a href="main.js.html">main.js</a>
-                  </li>
-                  <li >
-                    <a href="namespaces.js.html">namespaces.js</a>
                   </li>
                   <li >
                     <a href="navigation.js.html">navigation.js</a>
@@ -228,6 +258,9 @@
                   </li>
                   <li >
                     <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
                   </li>
                   <li  class="selected" >
                     <a href="router.js.html">router.js</a>
@@ -268,7 +301,7 @@
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">Router</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
+<span class="kd">var</span> <span class="nx">Router</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * It is set to true the first time we get a popstate</span>
@@ -337,17 +370,19 @@
 <span class="cm">     * The base path</span>
 <span class="cm">     *</span>
 <span class="cm">     * @type String</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @default &#39;&#39;</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">basePath</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">basePath</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * After how many milliseconds the app will listen for a hash change</span>
 <span class="cm">     *</span>
 <span class="cm">     * @type Number</span>
+<span class="cm">     * @private</span>
 <span class="cm">     * @default 500</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">hashListenInterval</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">hashListenInterval</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * Pushes a new state on the history api</span>
@@ -362,8 +397,11 @@
 
         <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
 
-            <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">basePath</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
+            <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">basePath</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
 
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">basePath</span> <span class="o">+</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">url</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="c1">//Get the state</span>
@@ -395,7 +433,7 @@
 
         <span class="k">if</span><span class="p">(</span><span class="nx">isHistoryAPISupported</span><span class="p">){</span>
 
-            <span class="nx">history</span><span class="p">.</span><span class="nx">replaceState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">basePath</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
+            <span class="nx">history</span><span class="p">.</span><span class="nx">replaceState</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">basePath</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
 
         <span class="p">}</span>
 
@@ -459,9 +497,7 @@
         <span class="c1">//Save a valid value for the priority</span>
         <span class="nx">priority</span> <span class="o">=</span> <span class="nx">priority</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
 
-        <span class="c1">//Adding the basepath also in the path</span>
-        <span class="nx">path</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">basepath</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
-
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;registering path&#39;</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
         <span class="c1">// Check if it already registered by going through all registered callbacks</span>
         <span class="c1">// for this event</span>
         <span class="kd">var</span> <span class="nx">alreadyRegistered</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -525,6 +561,14 @@
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">getState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="k">return</span> <span class="nx">getAPIState</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the basepath</span>
+<span class="cm">     * @param {String} path The path to be used as the basepath</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setBasePath</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">basePath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">;</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -598,8 +642,7 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">notifyRegisteredPathChangeMembers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">){</span>
-
-        <span class="kd">var</span> <span class="nx">members</span> <span class="o">=</span> <span class="nx">registeredPathMembers</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">basepath</span> <span class="o">+</span> <span class="nx">path</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">members</span> <span class="o">=</span> <span class="nx">registeredPathMembers</span><span class="p">[(</span><span class="nx">path</span><span class="p">)];</span>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">members</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
 
@@ -633,12 +676,12 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">checkHashChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-
         <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">getState</span><span class="p">().</span><span class="nx">hash</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">currentHash</span> <span class="o">!==</span> <span class="nx">hash</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">currentHash</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">;</span>
             <span class="nx">onPopstate</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
         <span class="p">}</span>
 
     <span class="p">};</span>
@@ -730,7 +773,7 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">supportsHashChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="k">return</span> <span class="o">!!</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">onhashchange</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">&quot;onhashchange&quot;</span> <span class="k">in</span> <span class="nb">window</span><span class="p">;</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -764,15 +807,13 @@
             <span class="nx">isHistoryAPISupported</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
             <span class="k">if</span><span class="p">(</span><span class="nx">supportsHashChange</span><span class="p">()){</span>
-
                 <span class="nb">window</span><span class="p">.</span><span class="nx">onhashchange</span> <span class="o">=</span> <span class="nx">onPopstate</span><span class="p">;</span>
 
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
                 <span class="c1">// Listen for changes at specific intervals</span>
                 <span class="nx">hashChangeIntervalId</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
                     <span class="nx">checkHashChange</span><span class="p">();</span>
-                <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">hashListenInterval</span><span class="p">);</span>
+                <span class="p">},</span> <span class="nx">hashListenInterval</span><span class="p">);</span>
 
             <span class="p">}</span>
         <span class="p">}</span>
@@ -782,7 +823,7 @@
 
     <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
 
-<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
+<span class="p">}(</span><span class="nb">window</span><span class="p">);</span>
 </pre></div>
 
         </div>

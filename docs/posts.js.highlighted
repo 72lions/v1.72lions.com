@@ -54,6 +54,7 @@
 <span class="cm">     * The ajax request as returned from jQuery.ajax()</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
+<span class="cm">     * @property req</span>
 <span class="cm">     * @type jqXHR</span>
 <span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
@@ -63,6 +64,7 @@
 <span class="cm">     * The ajax request for the details call as returned from jQuery.ajax()</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
+<span class="cm">     * @property reqDetails</span>
 <span class="cm">     * @type jqXHR</span>
 <span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>

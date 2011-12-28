@@ -1,15 +1,21 @@
 /**
- * Base View
+ * Base Model
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.View
+ * @namespace seventytwolions.Model
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Base = function() {
+seventytwolions.Model.Base = function(){
 
-    EventTarget.call( this );
+    /**
+     * The object that holds the data
+     *
+     * @private
+     * @type String
+     */
+    var data = {};
 
     /**
      * The view name
@@ -28,41 +34,29 @@ seventytwolions.View.Base = function() {
     this.id = '';
 
     /**
-     * A reference to this view's model
+     * Sets the model data
      *
-     * @type seventytwolions.View.Base
-     * @default undefined
-     */
-    this.model = undefined;
-
-    /**
-     * The DOM Element
-     *
-     * @type Object
-     * @default null
-     */
-    this.domElement = null;
-
-    /**
-     * Function for when showing the view
-     *
+     * @param {Object} modelData The model data
      * @author Thodoris Tsiridis
      */
-    this.show = function() {
+    this.setData = function(modelData) {
+        this.data = modelData;
     };
 
     /**
-     * Function for when hiding the view
+     * Gets the model data
      *
+     * @return {Object} The data
      * @author Thodoris Tsiridis
      */
-    this.hide = function() {
+    this.getData = function() {
+        return this.data;
     };
 
     /**
-     * Sets the name of the view
+     * Sets the name of the model
      *
-     * @param {String} name The name fo the view
+     * @param {String} name The name/type of the model
      * @author Thodoris Tsiridis
      */
     this.setName = function(name) {
@@ -70,80 +64,36 @@ seventytwolions.View.Base = function() {
     };
 
     /**
-     * Sets the name of the view
+     * Sets the id of the model
      *
-     * @param {String} name The name fo the view
+     * @param {String} id The id of the model
      * @author Thodoris Tsiridis
      */
-    this.setId = function(id) {
+    this.setId = function (id) {
         this.id = id;
     };
 
     /**
-     * Sets the model for the view
+     * Saves a value to a specific key of the model
      *
-     * @param {seventytwolions.Model.Base} model The model
+     * @param {String} key The key of the data object to be set
+     * @param {Object || String || Number || Array} value The value to save on the specific key
      * @author Thodoris Tsiridis
      */
-    this.setModel = function(model) {
-        this.model = model;
+    this.set = function(key, value) {
+        this.data[key] = value;
     };
 
     /**
-     * Gets the model for the view
+     * Returns a value to a specific key of the model
      *
-     * @return {seventytwolions.Model.Base} The model
+     * @param {String} key The key of the data object to be set
+     * @return {Object || String || Number || Array} The value of the specific data key
      * @author Thodoris Tsiridis
      */
-    this.getModel = function() {
-        return this.model;
-    };
-
-    /**
-     * Returns the main dom element of the view
-     *
-     * @return {Object} A DOM element
-     * @author Thodoris Tsiridis
-     */
-    this.getDOMElement = function() {
-        return this.domElement;
-    };
-
-    /**
-     * Is triggered before initialization of the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.preInitialize = function(name, id) {
-        this.setName(name);
-        this.setId(id);
-    };
-
-    /**
-     * Initializes the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.initialize = function(){
-
-    };
-
-    /**
-     * Draws the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.draw = function(){
-
-    };
-
-    /**
-     * Executed after the drawing of the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw = function(){
-
+    this.get = function(key) {
+        return this.data[key];
     };
 
 };
+

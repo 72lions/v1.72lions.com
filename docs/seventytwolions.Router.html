@@ -151,8 +151,41 @@
                   <li >
                     <a href="seventytwolions.Lookup.html">seventytwolions.Lookup</a>
                   </li>
+                  <li >
+                    <a href="seventytwolions.Model.Base.html">seventytwolions.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Categories.html">seventytwolions.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Footer.html">seventytwolions.Model.Footer</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Locale.html">seventytwolions.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.Model.Posts.html">seventytwolions.Model.Posts</a>
+                  </li>
                   <li  class="selected" >
                     <a href="seventytwolions.Router.html">seventytwolions.Router</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.About.html">seventytwolions.View.About</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Base.html">seventytwolions.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Blog.html">seventytwolions.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Contact.html">seventytwolions.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Experiments.html">seventytwolions.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="seventytwolions.View.Footer.html">seventytwolions.View.Footer</a>
                   </li>
                   <li >
                     <a href="seventytwolions.View.Main.html">seventytwolions.View.Main</a>
@@ -188,7 +221,7 @@
                     <a href="blog.js.html">blog.js</a>
                   </li>
                   <li >
-                    <a href="bootstrap.js.html">bootstrap.js</a>
+                    <a href="categories.js.html">categories.js</a>
                   </li>
                   <li >
                     <a href="console.js.html">console.js</a>
@@ -209,16 +242,13 @@
                     <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="jquery-1.6.4.min.js.html">jquery-1.6.4.min.js</a>
+                    <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
                     <a href="lookup.js.html">lookup.js</a>
                   </li>
                   <li >
                     <a href="main.js.html">main.js</a>
-                  </li>
-                  <li >
-                    <a href="namespaces.js.html">namespaces.js</a>
                   </li>
                   <li >
                     <a href="navigation.js.html">navigation.js</a>
@@ -228,6 +258,9 @@
                   </li>
                   <li >
                     <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
                   </li>
                   <li >
                     <a href="router.js.html">router.js</a>
@@ -244,8 +277,9 @@
             <div id="propertyList" class="module">
               <h4>Properties</h4>
               <ul>
-                  <li class=" ">
+                  <li class="private ">
                     <a href="#property_basePath">basePath</a>
+                      <span class="access-private">[priv]</span>
                   </li>
                   <li class="private ">
                     <a href="#property_currentHash">currentHash</a>
@@ -259,8 +293,9 @@
                     <a href="#property_hashChangeIntervalId">hashChangeIntervalId</a>
                       <span class="access-private">[priv]</span>
                   </li>
-                  <li class=" ">
+                  <li class="private ">
                     <a href="#property_hashListenInterval">hashListenInterval</a>
+                      <span class="access-private">[priv]</span>
                   </li>
                   <li class="private ">
                     <a href="#property_isHistoryAPISupported">isHistoryAPISupported</a>
@@ -332,6 +367,9 @@
                   </li>
                   <li class=" ">
                     <a href="#method_replace">replace</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_setBasePath">setBasePath</a>
                   </li>
                   <li class="private ">
                     <a href="#method_sortByPriority">sortByPriority</a>
@@ -408,7 +446,7 @@
                 </thead>
                 <tbody>
                 
-                    <tr class=" " resource="#property_basePath">
+                    <tr class="private " resource="#property_basePath">
                   
                       <td class="names">
                         <code>
@@ -421,6 +459,8 @@
                           String
                         </code>
 
+                        
+                          <span class="access-private">private</span>
                         
                         
                         
@@ -546,7 +586,7 @@
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#property_hashListenInterval">
+                    <tr class="private " resource="#property_hashListenInterval">
                   
                       <td class="names">
                         <code>
@@ -559,6 +599,8 @@
                           Number
                         </code>
 
+                        
+                          <span class="access-private">private</span>
                         
                         
                         
@@ -1352,6 +1394,47 @@
                                   &lt;String&gt;
                                 </code>
                                  The url that we need to push
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_setBasePath">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_setBasePath">setBasePath</a>(
+                          path
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Sets the basepath
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  path
+                                  &lt;String&gt;
+                                </code>
+                                 The path to be used as the basepath
                               </li>
                           <ul>
 

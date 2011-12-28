@@ -1,103 +1,50 @@
 <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Blog View</span>
+<span class="cm"> * Blog Controller</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Blog</span>
-<span class="cm"> * @namespace seventytwolions.View</span>
-<span class="cm"> * @extends seventytwolions.View.Base</span>
+<span class="cm"> * @namespace seventytwolions.Controller</span>
+<span class="cm"> * @extends seventytwolions.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Blog</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The DOM Element</span>
-<span class="cm">     *</span>
-<span class="cm">     * @type Object</span>
-<span class="cm">     */</span>
-   <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.blog&#39;</span><span class="p">);</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * A reference to this class</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.View.Blog</span>
+<span class="cm">     * @type seventytwolions.Controller.Blog</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * The items container DOM Element</span>
+<span class="cm">     * The categories Model</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type Object</span>
+<span class="cm">     * @type seventytwolions.Model.Categories</span>
+<span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">itemsContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.centered&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Its true the first time we load the website</span>
+<span class="cm">     * An array with all the portfolio items</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type Boolean</span>
-<span class="cm">     * @default true</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @default []</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">isFirstTime</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">portfolioItems</span> <span class="o">=</span> <span class="p">[];</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * The minimum columns that we can have</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @final</span>
-<span class="cm">     * @type Number</span>
-<span class="cm">     * @default 1</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">COLUMN_MIN</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The column width</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @final</span>
-<span class="cm">     * @type Number</span>
-<span class="cm">     * @default 218</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">COLUMN_WIDTH</span> <span class="o">=</span> <span class="mi">218</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The column margin</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @final</span>
-<span class="cm">     * @type Number</span>
-<span class="cm">     * @default 20</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">COLUMN_MARGIN</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Initializes the view</span>
+<span class="cm">     * This function is executed right after the initialized function is called</span>
 <span class="cm">     *</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Initializing view with name &#39; + this.name);</span>
-    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">loadBlogPosts</span><span class="p">();</span>
+        <span class="c1">//this.loadCategories();</span>
 
-    <span class="cm">/**</span>
-<span class="cm">     * Draws the specific view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Drawing view with name &#39; + this.name);</span>
-    <span class="p">};</span>
-
-   <span class="cm">/**</span>
-<span class="cm">     * Executed after the drawing of the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">postDraw</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(){</span>
-        <span class="c1">//seventytwolions.Console.log(&#39;Post draw view with name &#39; + this.name);</span>
-        <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">onWindowResize</span><span class="p">);</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -106,18 +53,7 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-        <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;Blog - &#39;</span> <span class="o">+</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Locale</span><span class="p">.</span><span class="nx">getPageTitle</span><span class="p">();</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
-
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">that</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
-
-        <span class="nx">isFirstTime</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">positionItems</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">};</span>
     <span class="cm">/**</span>
 <span class="cm">     * Hides the view</span>
@@ -125,129 +61,83 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">hide</span><span class="p">();</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Adds a portfolio item to the view</span>
-<span class="cm">     *</span>
-<span class="cm">     * @param {Object} item The dom element that we want to append to the portfolio page</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">addPortfolioItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
-        <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Positions the grid items based on the page width</span>
+<span class="cm">     * Loads the data from the model</span>
 <span class="cm">     *</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">positionItems</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-        <span class="kd">var</span> <span class="nx">domItems</span> <span class="o">=</span> <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">domItemsFeatured</span> <span class="o">=</span> <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;article.featured&#39;</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">windowHeight</span> <span class="o">=</span> <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">height</span><span class="p">();</span>
-        <span class="kd">var</span> <span class="nx">windowWidth</span> <span class="o">=</span> <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">width</span><span class="p">();</span>
-        <span class="kd">var</span> <span class="nx">gridTop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">gridLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">// this.domElement.offset().left;</span>
-        <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
-        <span class="kd">var</span> <span class="nx">_7</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">_8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">minColumns</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">COLUMN_MIN</span><span class="p">,</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">windowWidth</span> <span class="o">/</span> <span class="p">(</span><span class="nx">COLUMN_WIDTH</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">),</span> <span class="mi">0</span><span class="p">));</span>
-        <span class="kd">var</span> <span class="nx">maxHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="nx">isFirstTime</span><span class="p">){</span>
-            <span class="nx">isFirstTime</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;animated&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">minColumns</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">items</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="nx">domItems</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">_a</span><span class="p">,</span> <span class="nx">_b</span><span class="p">,</span> <span class="nx">_c</span><span class="p">,</span> <span class="nx">_d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="kd">var</span> <span class="nx">target_x</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-            <span class="kd">var</span> <span class="nx">target_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="nx">_c</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">outerWidth</span><span class="p">()</span> <span class="o">/</span> <span class="nx">COLUMN_WIDTH</span><span class="p">));</span>
-            <span class="nx">_b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nx">_c</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-
-                <span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">minColumns</span> <span class="o">-</span> <span class="p">(</span><span class="nx">_c</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">_b</span> <span class="o">=</span> <span class="p">(</span><span class="nx">items</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">])</span> <span class="o">?</span> <span class="nx">x</span> <span class="o">:</span> <span class="nx">_b</span><span class="p">;</span>
-                <span class="p">}</span>
-
-                <span class="nx">_a</span> <span class="o">=</span> <span class="nx">_b</span><span class="p">;</span>
-
-                <span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">_c</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">_d</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">_d</span><span class="p">,</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_a</span> <span class="o">+</span> <span class="nx">x</span><span class="p">]);</span>
-                <span class="p">}</span>
-
-                <span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">_c</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">items</span><span class="p">[</span><span class="nx">_a</span> <span class="o">+</span> <span class="nx">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">outerHeight</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span> <span class="o">+</span> <span class="nx">_d</span><span class="p">;</span>
-                <span class="p">}</span>
-
-                <span class="nx">target_x</span> <span class="o">=</span> <span class="nx">_a</span> <span class="o">*</span> <span class="p">(</span><span class="nx">COLUMN_WIDTH</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">)</span> <span class="o">+</span> <span class="nx">gridLeft</span><span class="p">;</span>
-                <span class="nx">target_y</span> <span class="o">=</span> <span class="nx">_d</span> <span class="o">+</span> <span class="nx">gridTop</span><span class="p">;</span>
-
-                <span class="nx">_7</span> <span class="o">=</span> <span class="p">(</span><span class="nx">_d</span> <span class="o">&gt;</span> <span class="nx">_7</span><span class="p">)</span> <span class="o">?</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_a</span> <span class="o">+</span> <span class="nx">_c</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="nx">_7</span><span class="p">;</span>
-
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-                <span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">minColumns</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">_b</span> <span class="o">=</span> <span class="p">(</span><span class="nx">items</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">])</span> <span class="o">?</span> <span class="nx">x</span> <span class="o">:</span> <span class="nx">_b</span><span class="p">;</span>
-                <span class="p">}</span>
-
-                <span class="nx">target_x</span> <span class="o">=</span> <span class="nx">_b</span> <span class="o">*</span> <span class="p">(</span><span class="nx">COLUMN_WIDTH</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">)</span> <span class="o">+</span> <span class="nx">gridLeft</span><span class="p">;</span>
-                <span class="nx">target_y</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">]</span> <span class="o">+</span> <span class="nx">gridTop</span><span class="p">;</span>
-                <span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">outerHeight</span><span class="p">()</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">;</span>
-                <span class="nx">_7</span> <span class="o">=</span> <span class="p">(</span><span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">_7</span><span class="p">)</span> <span class="o">?</span> <span class="nx">items</span><span class="p">[</span><span class="nx">_b</span><span class="p">]</span> <span class="o">:</span> <span class="nx">_7</span><span class="p">;</span>
-
-            <span class="p">}</span>
-            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">mq</span><span class="p">(</span><span class="s1">&#39;only screen and (max-device-width: 480px)&#39;</span><span class="p">))</span> <span class="p">{</span>
-
-                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span>
-                    <span class="nx">left</span><span class="o">:</span> <span class="nx">target_x</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">,</span>
-                    <span class="nx">top</span><span class="o">:</span> <span class="nx">target_y</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span>
-                <span class="p">});</span>
-
-            <span class="p">}</span>
-            <span class="nx">itemBottom</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">target_y</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">innerHeight</span><span class="p">();</span>
-
-            <span class="k">if</span><span class="p">(</span><span class="nx">maxHeight</span> <span class="o">&lt;</span> <span class="nx">itemBottom</span><span class="p">){</span>
-                <span class="nx">maxHeight</span> <span class="o">=</span> <span class="nx">itemBottom</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="nx">_8</span> <span class="o">=</span> <span class="p">(</span><span class="nx">_8</span> <span class="o">&lt;</span> <span class="nx">_b</span><span class="p">)</span> <span class="o">?</span> <span class="nx">_b</span> <span class="o">:</span> <span class="nx">_8</span><span class="p">;</span>
-
-        <span class="p">});</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">mq</span><span class="p">(</span><span class="s1">&#39;only screen and (max-device-width: 480px)&#39;</span><span class="p">))</span> <span class="p">{</span>
-
-            <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">maxHeight</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-            <span class="nx">itemsContainer</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;auto !important&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="kd">var</span> <span class="nx">_f</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">((</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">innerWidth</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="nx">COLUMN_WIDTH</span> <span class="o">+</span> <span class="nx">COLUMN_MARGIN</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nx">_8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loadBlogPosts</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">getPosts</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="nx">onBlogPostsLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Triggered when the window is resized</span>
+<span class="cm">     * Callback function for when we get all the data from the ajax call</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param  {Object} result The result object</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onBlogPostsLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Blog&#39;</span><span class="p">))</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">){</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="nx">portfolioItems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+                    <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+                        <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span><span class="p">,</span>
+                        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Id</span><span class="p">,</span>
+                        <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                            <span class="nx">data</span><span class="o">:</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+                        <span class="p">})</span>
+                     <span class="p">})</span>
+                <span class="p">);</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">addPortfolioItem</span><span class="p">(</span><span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">domElement</span><span class="p">);</span>
+                <span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">render</span><span class="p">();</span>
+                <span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">showDescription</span><span class="p">();</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">positionItems</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Loads the categories from the api</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">onWindowResize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">me</span><span class="p">.</span><span class="nx">positionItems</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loadCategories</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">categoriesModel</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
+            <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Categories&#39;</span><span class="p">,</span>
+                <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;categoriesBlog&#39;</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+
+        <span class="nx">categoriesModel</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">onCategoriesLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
     <span class="p">};</span>
 
+    <span class="cm">/**</span>
+<span class="cm">     * Callback function for when we get all the data from the ajax call</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param  {Object} result The result object</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onCategoriesLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
 
+    <span class="p">};</span>
 <span class="p">};</span>
 
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Blog</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>

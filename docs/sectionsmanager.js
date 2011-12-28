@@ -1,57 +1,212 @@
 /**
- * Sections Manager View
+ * Sections Manager Controller
  *
  * @module 72lions
  * @class SectionsManager
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.SectionsManager = function() {
+seventytwolions.Controller.SectionsManager = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.SectionsManager
+     * @type seventytwolions.Controller.SectionsManager
      */
     var me = this;
 
     /**
-     * The HTML Element
+     * The initial state of the website
      *
+     * @private
      * @type Object
      */
-	this.domElement = $('#sections-wrapper');
+    var initialState = Router.getState();
 
     /**
-     * Initializes the view
+     * The Portfolio Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Portfolio
+     * @default undefined
+     */
+    var portfolio = undefined;
+
+    /**
+     * The Experiments Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Experiments
+     * @default undefined
+     */
+    var experiments = undefined;
+
+    /**
+     * The Blog Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.Blog
+     * @default undefined
+     */
+    var blog = undefined;
+
+    /**
+     * The initial state of the website
+     *
+     * @private
+     * @type seventytwolions.Controller.Contact
+     * @default undefined
+     */
+    var contact = undefined;
+
+    /**
+     * The Post Details Controller
+     *
+     * @private
+     * @type seventytwolions.Controller.PostDetails
+     * @default undefined
+     */
+    var postDetails = undefined;
+
+    /**
+     * The array that will hold all the sections
+     *
+     * @private
+     * @type Array
+     * @default undefined
+     */
+    var sections = undefined;
+
+    /**
+     * The number of total sections
+     *
+     * @private
+     * @type Number
+     * @default 4
+     */
+    var totalSections = 4;
+
+    /**
+     * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
-    this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+    this.postInitialize = function(){
+
+        portfolio = seventytwolions.ControllerManager.initializeController({
+                type:'Portfolio',
+                id:'portfolio',
+                model: seventytwolions.Lookup.getModel({
+                    type:'Posts',
+                    id:'portfolioModel'
+                })
+        });
+
+        experiments = seventytwolions.ControllerManager.initializeController({
+            type:'Experiments',
+            id:'experiments',
+            model: seventytwolions.Lookup.getModel({
+                id:'experimentsModel'
+            })
+        });
+
+        blog = seventytwolions.ControllerManager.initializeController({
+            type:'Blog',
+            id:'blog',
+            model: seventytwolions.Lookup.getModel({
+                type:'Posts',
+                id:'blogModel'
+            })
+        });
+
+        sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
+
+        postDetails = seventytwolions.ControllerManager.initializeController({
+            type:'PostDetails',
+            id:'postDetails',
+            model: seventytwolions.Lookup.getModel({
+                type:'Posts',
+                id:'postDetailsModel'
+            })
+        });
+
     };
 
     /**
-     * Draws the specific view
+     * Shows a a section with a specific name
      *
+     * @param {Object} state The state of the url
      * @author Thodoris Tsiridis
      */
-	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
-	};
+    this.showSectionWithName = function(state){
+        var len, i, section;
 
-   /**
-     * Executed after the drawing of the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        len = sections.length;
+
+        if(state && state.pathSegments[0] == 'category'){
+            // Trackk ajax calls with google analytics
+            _gaq.push(['_trackPageview', '/' + state.path]);
+
+            section = state.pathSegments[1];
+
+            for (i = 0; i < len; i++) {
+
+                if(sections[i].name === section){
+
+                    sections[i].object.show();
+
+                } else {
+
+                    sections[i].object.hide();
+
+                }
+
+            }
+
+            postDetails.hide();
+
+        } else {
+
+            if (state) {
+
+                // Trackk ajax calls with google analytics
+                _gaq.push(['_trackPageview', '/' + state.path]);
+
+                // if we don't have a path segment with category at its first position
+                for (i = 0; i < len; i++) {
+                    sections[i].object.hide();
+                }
+
+                section = state.pathSegments[state.pathSegments.length - 1];
+                postDetails.load(section);
+
+            } else {
+
+                // Trackk ajax calls with google analytics
+                _gaq.push(['_trackPageview', '/']);
+
+                postDetails.hide();
+                for (i = 0; i < len; i++) {
+
+                    if(sections[i].name !== 'blog'){
+                        sections[i].object.hide();
+                    }
+
+                }
+
+                blog.show();
+
+            }
+
+
+
+        }
+
     };
 
 };
 
-seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
+seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Controller.Base();

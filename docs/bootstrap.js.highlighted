@@ -1,6 +1,0 @@
-<div class="highlight"><pre><span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
-    <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Main&#39;</span><span class="p">,</span>
-    <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;main&#39;</span><span class="p">,</span>
-    <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
-<span class="p">});</span>
-</pre></div>

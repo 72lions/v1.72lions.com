@@ -291,14 +291,14 @@
 		<script type="text/javascript" src="/assets/js/libs/jquery.easing.1.3.js"></script>
 
  		<!--source scripts-->
-		<script type="text/javascript" src="/assets/js/router.js"></script>
-		<script type="text/javascript" src="/assets/js/eventtarget.js"></script>
+		<script type="text/javascript" src="/assets/js/helpers/router.js"></script>
+		<script type="text/javascript" src="/assets/js/helpers/eventtarget.js"></script>
 
 		<script type="text/javascript" src="/assets/js/namespaces.js"></script>
 		<script type="text/javascript" src="/assets/js/models/locale_en.js"></script>
-		<script type="text/javascript" src="/assets/js/controllermanager.js"></script>
-		<script type="text/javascript" src="/assets/js/lookup.js"></script>
-		<script type="text/javascript" src="/assets/js/console.js"></script>
+		<script type="text/javascript" src="/assets/js/helpers/controllermanager.js"></script>
+		<script type="text/javascript" src="/assets/js/helpers/lookup.js"></script>
+		<script type="text/javascript" src="/assets/js/helpers/console.js"></script>
 
 		<script type="text/javascript" src="/assets/js/controllers/base.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/main.js"></script>

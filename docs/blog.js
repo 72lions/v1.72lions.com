@@ -1,103 +1,50 @@
 /**
- * Blog View
+ * Blog Controller
  *
  * @module 72lions
  * @class Blog
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace seventytwolions.Controller
+ * @extends seventytwolions.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Blog = function() {
-
-    /**
-     * The DOM Element
-     *
-     * @type Object
-     */
-   this.domElement = $('.blog');
+seventytwolions.Controller.Blog = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Blog
+     * @type seventytwolions.Controller.Blog
      */
     var me = this;
 
     /**
-     * The items container DOM Element
+     * The categories Model
      *
      * @private
-     * @type Object
+     * @type seventytwolions.Model.Categories
+     * @default undefined
      */
-    var itemsContainer = this.domElement.find('.centered');
+    var categoriesModel = undefined;
 
     /**
-     * Its true the first time we load the website
+     * An array with all the portfolio items
      *
      * @private
-     * @type Boolean
-     * @default true
+     * @type Array
+     * @default []
      */
-    var isFirstTime = true;
+    var portfolioItems = [];
 
     /**
-     * The minimum columns that we can have
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 1
-     */
-    var COLUMN_MIN = 2;
-
-    /**
-     * The column width
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 218
-     */
-    var COLUMN_WIDTH = 218;
-
-    /**
-     * The column margin
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 20
-     */
-    var COLUMN_MARGIN = 20;
-
-    /**
-     * Initializes the view
+     * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
-    this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
-    };
+    this.postInitialize = function(){
+        this.loadBlogPosts();
+        //this.loadCategories();
 
-    /**
-     * Draws the specific view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.draw = function() {
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
-    };
-
-   /**
-     * Executed after the drawing of the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
-        $(window).bind("resize", onWindowResize);
     };
 
     /**
@@ -106,18 +53,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        var that = this;
-
-        document.title = 'Blog - ' + seventytwolions.Model.Locale.getPageTitle();
-
-        this.domElement.addClass('active');
-
-        setTimeout(function(){
-            that.domElement.css('opacity', 1);
-        }, 10);
-
-        isFirstTime = true;
-        this.positionItems();
+        this.getView().show();
     };
     /**
      * Hides the view
@@ -125,128 +61,82 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
-        this.domElement.removeClass('active').css('opacity', 0);
+        this.getView().hide();
     };
 
     /**
-     * Adds a portfolio item to the view
-     *
-     * @param {Object} item The dom element that we want to append to the portfolio page
-     * @author Thodoris Tsiridis
-     */
-    this.addPortfolioItem = function(item){
-        itemsContainer.append(item);
-    };
-
-    /**
-     * Positions the grid items based on the page width
+     * Loads the data from the model
      *
      * @author Thodoris Tsiridis
      */
-    this.positionItems = function() {
-
-        var domItems = itemsContainer.find('article');
-        var domItemsFeatured = itemsContainer.find('article.featured');
-        var windowHeight = itemsContainer.height();
-        var windowWidth = itemsContainer.width();
-        var gridTop = 0;
-        var gridLeft = 0;// this.domElement.offset().left;
-        var items = [];
-        var _7 = 0;
-        var _8 = 0;
-        var minColumns = Math.max(COLUMN_MIN, parseInt(windowWidth / (COLUMN_WIDTH + COLUMN_MARGIN), 0));
-        var maxHeight = 0;
-
-        if(isFirstTime){
-            isFirstTime = false;
-        } else {
-            itemsContainer.addClass('animated');
-        }
-
-        for (x = 0; x < minColumns; x++) {
-            items[x] = 0;
-        }
-
-        domItems.each(function (i, e) {
-            var x, _a, _b, _c, _d = 0;
-            var target_x =0;
-            var target_y = 0;
-            _c = (Math.floor($(e).outerWidth() / COLUMN_WIDTH));
-            _b = 0;
-
-            if (_c > 1) {
-
-                for (x = 0; x < minColumns - (_c - 1); x++) {
-                    _b = (items[x] < items[_b]) ? x : _b;
-                }
-
-                _a = _b;
-
-                for (x = 0; x < _c; x++) {
-                    _d = Math.max(_d, items[_a + x]);
-                }
-
-                for (x = 0; x < _c; x++) {
-                    items[_a + x] = parseInt($(e).outerHeight(), 0) + COLUMN_MARGIN + _d;
-                }
-
-                target_x = _a * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
-                target_y = _d + gridTop;
-
-                _7 = (_d > _7) ? items[_a + _c - 1] : _7;
-
-            } else {
-
-                for (x = 0; x < minColumns; x++) {
-                    _b = (items[x] < items[_b]) ? x : _b;
-                }
-
-                target_x = _b * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
-                target_y = items[_b] + gridTop;
-                items[_b] += $(e).outerHeight() + COLUMN_MARGIN;
-                _7 = (items[_b] > _7) ? items[_b] : _7;
-
-            }
-            if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
-
-                $(this).css({
-                    left: target_x + "px",
-                    top: target_y + COLUMN_MARGIN + "px"
-                });
-
-            }
-            itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
-
-            if(maxHeight < itemBottom){
-                maxHeight = itemBottom;
-            }
-
-            _8 = (_8 < _b) ? _b : _8;
-
-        });
-
-        if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
-
-            itemsContainer.css('height', maxHeight + 'px');
-        } else {
-
-            itemsContainer.css('height', 'auto !important');
-        }
-
-        var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
+    this.loadBlogPosts = function() {
+        this.getModel().getPosts(3, 0, 80, onBlogPostsLoaded, this);
     };
 
     /**
-     * Triggered when the window is resized
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onBlogPostsLoaded = function(result) {
+        var i;
+
+        if(typeof(this.getModel().get('Blog')) === 'undefined'){
+
+            this.getModel().set('Blog', result);
+
+            for (i = 0; i < result.length; i++) {
+
+                portfolioItems.push(
+                    seventytwolions.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: seventytwolions.Lookup.getModel({
+                            data:result[i]
+                        })
+                     })
+                );
+
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+                portfolioItems[i].getView().render();
+                portfolioItems[i].getView().showDescription();
+            }
+
+        }
+
+        this.getView().positionItems();
+    };
+
+    /**
+     * Loads the categories from the api
      *
      * @private
      * @author Thodoris Tsiridis
      */
-    var onWindowResize = function() {
-        me.positionItems();
+    this.loadCategories = function() {
+
+        if(categoriesModel === undefined){
+            categoriesModel = seventytwolions.Lookup.getModel({
+                type:'Categories',
+                id:'categoriesBlog'
+            });
+        }
+
+        categoriesModel.get(0, 5, onCategoriesLoaded, this);
     };
 
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onCategoriesLoaded = function(result) {
 
+    };
 };
 
-seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
+seventytwolions.Controller.Blog.prototype = new seventytwolions.Controller.Base();

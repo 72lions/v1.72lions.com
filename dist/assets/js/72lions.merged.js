@@ -2411,39 +2411,10 @@ seventytwolions.Controller.Footer.prototype = new seventytwolions.Controller.Bas
 seventytwolions.Model.Categories = function(){
 
     /**
-     * The api url for the categories
+     * The response object that came from the ajax call
      *
      * @private
-     * @final
-     * @type String
-     * @default '/api/getCategories.php'
-     */
-    var CATEGORIES_URL = '/api/getCategories.php';
-
-    /**
-     * The start offset for the categories
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 0
-     */
-    var DEFAULT_START = 0;
-
-    /**
-     * The total number of items to retrieve from the api
-     *
-     * @private
-     * @final
-     * @type Number
-     * @default 10
-     */
-    var DEFAULT_NUMBER_OF_ITEMS = 10;
-
-    /**
-     * The ajax request as returned from jQuery.ajax()
-     *
-     * @private
+     * @property response
      * @type jqXHR
      * @default undefined
      */
@@ -2453,9 +2424,36 @@ seventytwolions.Model.Categories = function(){
      * The object that holds the data
      *
      * @private
-     * @type String
+     * @type Object
      */
     var data = {};
+
+    /**
+     * The api url for the categories
+     *
+     * @private
+     * @type String
+     * @default '/api/getCategories.php'
+     */
+    var CATEGORIES_URL = '/api/getCategories.php';
+
+    /**
+     * The start offset for the categories
+     *
+     * @private
+     * @type Number
+     * @default 0
+     */
+    var DEFAULT_START = 0;
+
+    /**
+     * The total number of items to retrieve from the api
+     *
+     * @private
+     * @type Number
+     * @default 10
+     */
+    var DEFAULT_NUMBER_OF_ITEMS = 10;
 
     /**
      * Gets an array of categories by doing an Ajax call
@@ -2555,6 +2553,7 @@ seventytwolions.Model.Posts = function(){
      * The ajax request as returned from jQuery.ajax()
      *
      * @private
+     * @property req
      * @type jqXHR
      * @default undefined
      */
@@ -2564,6 +2563,7 @@ seventytwolions.Model.Posts = function(){
      * The ajax request for the details call as returned from jQuery.ajax()
      *
      * @private
+     * @property reqDetails
      * @type jqXHR
      * @default undefined
      */
@@ -2699,6 +2699,7 @@ seventytwolions.Model.Footer = function(){
      * The ajax request as returned from jQuery.ajax()
      *
      * @private
+     * @property req
      * @type jqXHR
      * @default undefined
      */
@@ -2708,6 +2709,7 @@ seventytwolions.Model.Footer = function(){
      * The ajax request as returned from jQuery.ajax() for the Flickr call
      *
      * @private
+     * @property reqFlickr
      * @type jqXHR
      * @default undefined
      */
@@ -3656,7 +3658,7 @@ seventytwolions.View.ThumbnailItem = function() {
      *
      * @private
      * @type String
-     * @default '<div class="photo"><a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a><a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a></div><div class="description"><hgroup><a href="${link}" title="${title}" class="title"><h1>${title}</h1></a></hgroup><time>${publishdate}</time><aside>Categories: ${categories}</aside><p>${description}</p><a href="${link}" title="${title}" class="readmore">Read more</a></div>'
+     * @default ''
      */
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+

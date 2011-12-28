@@ -44,6 +44,7 @@ seventytwolions.Model.Footer = function(){
      * The ajax request as returned from jQuery.ajax()
      *
      * @private
+     * @property req
      * @type jqXHR
      * @default undefined
      */
@@ -53,6 +54,7 @@ seventytwolions.Model.Footer = function(){
      * The ajax request as returned from jQuery.ajax() for the Flickr call
      *
      * @private
+     * @property reqFlickr
      * @type jqXHR
      * @default undefined
      */
