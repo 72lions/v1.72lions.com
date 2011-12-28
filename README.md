@@ -37,32 +37,32 @@ The reason for doing this is because I don't want to waste my time in order to s
 2. Python for compiling the YUI Docs. For instructions on how to compile the documentation read the /build/yuidoc/README file.
 
 ### Config
-**MySQL connection**
+**MySQL connection**  
 Go to src/api/classes/api.php and modified the following variables
 
-// The mysql db username
-**protected static $DB_USERNAME = '';**
-// The mysql db password
-**protected static $DB_PASSWORD = '';**
-// The mysql db host
-**protected static $DB_HOST = '';**
-// The mysql db name
-**protected static $DB_NAME = '';**
+// The mysql db username  
+**protected static $DB_USERNAME = '';**  
+// The mysql db password  
+**protected static $DB_PASSWORD = '';**  
+// The mysql db host  
+**protected static $DB_HOST = '';**  
+// The mysql db name  
+**protected static $DB_NAME = '';**  
 
-**Memcached connection**
-Go to src/api/classes/mc.php and modified the following variables
-
-// The memcached server host
-**protected static $HOST = 'localhost';**
-// The memcached server port
-**protected static $PORT = 11211;**
-// The memcached keys prefix. e.x. 72lions.com
-**protected static $prefix = '';**
-// The memcached server group e.x. main-website
+**Memcached connection**  
+Go to src/api/classes/mc.php and modified the following variables  
+  
+// The memcached server host  
+**protected static $HOST = 'localhost';**  
+// The memcached server port  
+**protected static $PORT = 11211;**  
+// The memcached keys prefix. e.x. 72lions.com  
+**protected static $prefix = '';**  
+// The memcached server group e.x. main-website  
 **protected static $group = '';**
 
 **Apache**
-Make sure that you set the src folder as the root on Apache.
+Make sure that you set the src folder as the root on Apache.  
 If you don't want the app to be on the root then you have to modify the Router basePath (read the documentation) and the path for the CSS/JS and image files.
 You also need to enable the mod_rewrite module.
 
