@@ -535,7 +535,7 @@ var Router = function(global){
  *
  * @module 72lions
  * @class EventTarget
- * @author Thodoris Tsiridis
+ * @author Mr.Doob
  * @version 1.0
  */
 var EventTarget = function () {
@@ -552,7 +552,7 @@ var EventTarget = function () {
      *
      * @param {String} type The event type
      * @param {Function} listener The callback function
-     * @author Thodoris Tsiridis
+     * @author Mr.Doob
      */
     this.addEventListener = function ( type, listener ) {
 
@@ -570,7 +570,7 @@ var EventTarget = function () {
      * Dispatches an event
      *
      * @param {String} type The event type
-     * @author Thodoris Tsiridis
+     * @author Mr.Doob
      */
     this.dispatchEvent = function ( event ) {
 
@@ -585,7 +585,7 @@ var EventTarget = function () {
      *
      * @param {String} type The event type
      * @param {Function} listener The callback function
-     * @author Thodoris Tsiridis
+     * @author Mr.Doob
      */
     this.removeEventListener = function ( type, listener ) {
 
