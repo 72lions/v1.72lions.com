@@ -256,12 +256,13 @@
 					<a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
 					<a href="/about" class="nav-about" title="About">About</a>
 				</nav>
+				<a href="http://www.w3.org/html/logo/" class="html5logo">
+					<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
+				</a>
 			</aside>
 
 			<aside class="footer-logo clearfix">
-				<a href="http://www.w3.org/html/logo/">
-					<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
-				</a>
+
 			</aside>
 
 			<aside class="latest-tweets">

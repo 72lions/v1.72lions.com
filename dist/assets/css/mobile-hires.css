@@ -141,6 +141,19 @@ section.post-details aside {
 footer .menu {
     padding-left:20px !important;
     float:none;
+    position:relative;
+    width:85%;
+}
+
+footer .menu .html5logo {
+    position:absolute;
+    top:0px;
+    right:10px;
+}
+
+footer .menu .html5logo img {
+    width:45px !important;
+    height:45px !important;
 }
 
 footer .latest-tweets  {
