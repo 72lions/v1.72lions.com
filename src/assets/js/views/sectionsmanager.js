@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class SectionsManager
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.SectionsManager = function() {
+STL.View.SectionsManager = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.SectionsManager
+     * @type STL.View.SectionsManager
      */
     var me = this;
 
@@ -31,7 +31,7 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -40,7 +40,7 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -49,9 +49,9 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
 };
 
-seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
+STL.View.SectionsManager.prototype = new STL.View.Base();

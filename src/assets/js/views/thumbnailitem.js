@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class ThumbnailItem
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.ThumbnailItem = function() {
+STL.View.ThumbnailItem = function() {
 
     /**
      * If the thumbnail item is of type featured then this value is set to true
@@ -29,7 +29,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.ThumbnailItem
+     * @type STL.View.ThumbnailItem
      */
     var me = this;
 
@@ -72,7 +72,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name + ', ' + this.id);
+        //STL.Console.log('Initializing view with name ' + this.name + ', ' + this.id);
     };
 
     /**
@@ -90,7 +90,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -131,7 +131,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(model.get('PublishDate').replace(/-/g ,'/'));
-        body = body.replace(/\${publishdate}/g, seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+        body = body.replace(/\${publishdate}/g, STL.Model.Locale.getDayName(pDate.getDay()) + ', ' +  STL.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
 
         slug = model.get('Slug');
 
@@ -184,7 +184,7 @@ seventytwolions.View.ThumbnailItem = function() {
             body = body.replace(/\${imageheight}/g, imgHeight);
 
         }
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
         if(meta && meta.github !== undefined){
             body = body.replace(/\${github}/g, meta.github);
         }
@@ -268,4 +268,4 @@ seventytwolions.View.ThumbnailItem = function() {
 
 };
 
-seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();
+STL.View.ThumbnailItem.prototype = new STL.View.Base();

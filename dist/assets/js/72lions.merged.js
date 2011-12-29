@@ -599,21 +599,22 @@ var EventTarget = function () {
 
 };
 
-var seventytwolions = {};
-seventytwolions.Controller = seventytwolions.Controller || {};
-seventytwolions.View = seventytwolions.View || {};
-seventytwolions.Model = seventytwolions.Model || {};
+var STL = {};
+STL.Controller = STL.Controller || {};
+STL.View = STL.View || {};
+STL.Model = STL.Model || {};
+
 /**
  * Locale Model
  *
  * @module 72lions
  * @class Locale
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Locale = (function(global){
+STL.Model.Locale = function(global){
 
     /**
      * An array of all the months
@@ -673,18 +674,18 @@ seventytwolions.Model.Locale = (function(global){
 
     return this;
 
-})(window);
+}(window);
 
 /**
  * The controller manager is responsible for instantiating controllers
  *
  * @module 72lions
  * @class ControllerManager
- * @namespace seventytwolions
+ * @namespace STL
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.ControllerManager = function(global) {
+STL.ControllerManager = function(global) {
 
     /**
      * Initializes a controller with a specific type, id, view and model
@@ -692,13 +693,22 @@ seventytwolions.ControllerManager = function(global) {
      * @param {Object} attributes The attributes that will be used to initialize the class
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
-     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
-     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
-     * @return {seventytwolions.Controller.Base}
+     * @param {STL.Model.Base} attributes.model The model to be used by this controller
+     * @param {STL.View.Base} attributes.view The view to be used by this controller
+     * @return {STL.Controller.Base}
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(object) {
-        return seventytwolions.Lookup.getController(object);
+    this.initializeController = function(attributes) {
+        var ctl;
+
+        ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
+
+        ctl.setView(attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id}));
+        ctl.setModel(attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id}));
+
+        ctl.postInitialize();
+
+        return ctl;
     };
 
     return this;
@@ -710,11 +720,11 @@ seventytwolions.ControllerManager = function(global) {
  *
  * @module 72lions
  * @class Lookup
- * @namespace seventytwolions
+ * @namespace STL
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Lookup = function(global) {
+STL.Lookup = function(global) {
 
     /**
      * An object holding all the different models
@@ -746,10 +756,8 @@ seventytwolions.Lookup = function(global) {
      * @param {Object} attributes The attributes that will be used to initialize the class
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
-     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
-     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @returns A controller
-     * @type seventytwolions.Controller.Base
+     * @type STL.Controller.Base
      * @author Thodoris Tsiridis
      */
     this.getController = function(attributes) {
@@ -776,17 +784,16 @@ seventytwolions.Lookup = function(global) {
 
         if(exists === -1){
 
-            exists = null;
             // Check if the class that we want to load exists
-            if(seventytwolions.Controller[className] !== undefined){
-                controllerObj = {id: id, classType: new seventytwolions.Controller[className]()};
+            if(STL.Controller[className] !== undefined){
+                controllerObj = {id: id, classType: new STL.Controller[className]()};
             } else {
                 // Create a generic controller
-                controllerObj = {id: id, classType: new seventytwolions.Controller.Base()};
+                controllerObj = {id: id, classType: new STL.Controller.Base()};
             }
 
             _controllers[className].push(controllerObj);
-            controllerObj.classType.initialize(attributes);
+            controllerObj.classType.initialize({type: attributes.type, id: attributes.id});
             return controllerObj.classType;
 
         } else {
@@ -803,7 +810,7 @@ seventytwolions.Lookup = function(global) {
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
      * @returns A view
-     * @type seventytwolions.View.Base
+     * @type STL.View.Base
      * @author Thodoris Tsiridis
      */
     this.getView = function(attributes) {
@@ -830,10 +837,10 @@ seventytwolions.Lookup = function(global) {
             exists = null;
 
             // Check if the class that we want to load exists
-            if(seventytwolions.View[className] !== undefined){
-                viewObj = {id: id, classType: new seventytwolions.View[className]()};
+            if(STL.View[className] !== undefined){
+                viewObj = {id: id, classType: new STL.View[className]()};
             } else {
-                viewObj = {id: id, classType: new seventytwolions.View.Base()};
+                viewObj = {id: id, classType: new STL.View.Base()};
             }
 
             _views[className].push(viewObj);
@@ -853,7 +860,7 @@ seventytwolions.Lookup = function(global) {
      * @param {String} attributes.id The unique id for this class
      * @param {Object} attributes.data The data of the model
      * @returns A model
-     * @type seventytwolions.Model.Base
+     * @type STL.Model.Base
      * @author Thodoris Tsiridis
      */
     this.getModel = function(attributes) {
@@ -881,10 +888,10 @@ seventytwolions.Lookup = function(global) {
             exists = null;
 
             // Check if the class that we want to load exists
-            if(seventytwolions.Model[name] !== undefined){
-                modelObj = {id: id, classType: new seventytwolions.Model[name]()};
+            if(STL.Model[name] !== undefined){
+                modelObj = {id: id, classType: new STL.Model[name]()};
             } else {
-                modelObj = {id: id, classType: new seventytwolions.Model.Base()};
+                modelObj = {id: id, classType: new STL.Model.Base()};
             }
 
             _models[name].push(modelObj);
@@ -909,11 +916,11 @@ seventytwolions.Lookup = function(global) {
  *
  * @module 72lions
  * @class Console
- * @namespace seventytwolions
+ * @namespace STL
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Console = function(global){
+STL.Console = function(global){
 
     /**
      * Set to true and debug will be enabled
@@ -947,11 +954,11 @@ seventytwolions.Console = function(global){
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.View
+ * @namespace STL.View
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Base = function() {
+STL.View.Base = function() {
 
     EventTarget.call( this );
 
@@ -974,7 +981,7 @@ seventytwolions.View.Base = function() {
     /**
      * A reference to this view's model
      *
-     * @type seventytwolions.View.Base
+     * @type STL.View.Base
      * @default undefined
      */
     this.model = undefined;
@@ -1026,7 +1033,7 @@ seventytwolions.View.Base = function() {
     /**
      * Sets the model for the view
      *
-     * @param {seventytwolions.Model.Base} model The model
+     * @param {STL.Model.Base} model The model
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
@@ -1036,7 +1043,7 @@ seventytwolions.View.Base = function() {
     /**
      * Gets the model for the view
      *
-     * @return {seventytwolions.Model.Base} The model
+     * @return {STL.Model.Base} The model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -1100,11 +1107,11 @@ seventytwolions.View.Base = function() {
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.Model
+ * @namespace STL.Model
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Base = function(){
+STL.Model.Base = function(){
 
     /**
      * The object that holds the data
@@ -1200,11 +1207,11 @@ seventytwolions.Model.Base = function(){
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.Controller
+ * @namespace STL.Controller
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Base = function() {
+STL.Controller.Base = function() {
 
     EventTarget.call( this );
 
@@ -1212,19 +1219,21 @@ seventytwolions.Controller.Base = function() {
      * A reference to this controller's view
      *
      * @private
-     * @type seventytwolions.View.Base
+     * @type STL.View.Base
+     * @property _view
      * @default undefined
      */
-    var _view = undefined;
+    var _view;
 
     /**
      * A reference to this controller's model
      *
      * @private
-     * @type seventytwolions.Controller.Base
+     * @type STL.Controller.Base
+     * @property _model
      * @default undefined
      */
-    var _model = undefined;
+    var _model;
 
     /**
      * The controller id
@@ -1245,7 +1254,7 @@ seventytwolions.Controller.Base = function() {
     /**
      * A reference to this controller's model
      *
-     * @type seventytwolions.Controller.Base
+     * @type STL.Controller.Base
      * @default undefined
      */
     this.model = undefined;
@@ -1256,27 +1265,12 @@ seventytwolions.Controller.Base = function() {
      * @param {Object} attributes The attributes that will be used to initialize the class
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
-     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
-     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
 
         this.id = attributes.id || id;
         this.name = attributes.type || '';
-
-        // Get a reference to the view
-        _view = attributes.view || seventytwolions.Lookup.getView({type:this.name, id: this.id});
-
-        // get a reference to the model
-        _model = this.model = attributes.model || seventytwolions.Lookup.getModel({type:this.name, id: this.id});
-
-        // ask it to set the model, initialize, draw and postDraw
-        _view.setModel(_model);
-        _view.initialize();
-        _view.draw();
-        _view.postDraw();
-        this.postInitialize();
 
     };
 
@@ -1290,9 +1284,24 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
+     * Sets the view of the controller
+     *
+     * @param {seventytowlions.View.Base} view The new view
+     * @author Thodoris Tsiridis
+     */
+    this.setView = function(view) {
+        _view = view;
+        // ask it to set the model, initialize, draw and postDraw
+        _view.setModel(_model);
+        _view.initialize();
+        _view.draw();
+        _view.postDraw();
+    };
+
+    /**
      * Returns the view of the specific view
      *
-     * @return {seventytwolions.View.Base} The Base view
+     * @return {STL.View.Base} The Base view
      * @author Thodoris Tsiridis
      */
     this.getView = function() {
@@ -1302,7 +1311,7 @@ seventytwolions.Controller.Base = function() {
     /**
      * Returns the model of the specific model
      *
-     * @return {seventytwolions.Model.Base} The Base model
+     * @return {STL.Model.Base} The Base model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -1316,7 +1325,7 @@ seventytwolions.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
-      _model = model;
+      this.model = _model = model;
       _view.setModel(model);
     };
 
@@ -1327,18 +1336,18 @@ seventytwolions.Controller.Base = function() {
  *
  * @module 72lions
  * @class Main
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Main = function() {
+STL.Controller.Main = function() {
 
     /**
      * A reference to the navigation controller
      *
      * @private
-     * @type seventytwolions.Controller.NaviMaingation
+     * @type STL.Controller.NaviMaingation
      * @default null
      */
     var navigationController = null;
@@ -1347,7 +1356,7 @@ seventytwolions.Controller.Main = function() {
      * A reference to the sections manager controller
      *
      * @private
-     * @type seventytwolions.Controller.SectionsManager
+     * @type STL.Controller.SectionsManager
      * @default null
      */
     var sectionsManager = null;
@@ -1356,7 +1365,7 @@ seventytwolions.Controller.Main = function() {
      * A reference to the footer controller
      *
      * @private
-     * @type seventytwolions.Controller.Footer
+     * @type STL.Controller.Footer
      * @default null
      */
     var footerController = null;
@@ -1392,23 +1401,23 @@ seventytwolions.Controller.Main = function() {
      */
     this.postInitialize = function() {
 
-        navigationController = seventytwolions.ControllerManager.initializeController({
+        navigationController = STL.ControllerManager.initializeController({
             type:'Navigation',
             id:'navigation',
-            model: seventytwolions.Lookup.getModel({})
+            model: STL.Lookup.getModel({})
         });
 
 
-        sectionsManager  = seventytwolions.ControllerManager.initializeController({
+        sectionsManager  = STL.ControllerManager.initializeController({
             type:'SectionsManager',
             id:'sectionsmanager',
-            model: seventytwolions.Lookup.getModel({})
+            model: STL.Lookup.getModel({})
         });
 
-        footerController  = seventytwolions.ControllerManager.initializeController({
+        footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
             id:'Footer',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                type: 'Footer',
                id: 'footter'
             })
@@ -1485,25 +1494,25 @@ seventytwolions.Controller.Main = function() {
     };
 };
 
-seventytwolions.Controller.Main.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Main.prototype = new STL.Controller.Base();
 
 /**
  * Navigation Controller
  *
  * @module 72lions
  * @class Navigation
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Navigation = function() {
+STL.Controller.Navigation = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Navigation
+     * @type STL.Controller.Navigation
      */
     var me = this;
 
@@ -1529,31 +1538,31 @@ seventytwolions.Controller.Navigation = function() {
     var onMenuItemClicked = function(event){
 
         // Push the current url
-        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
+        Router.push(null, event.title + ' - ' + STL.Model.Locale.getPageTitle(), event.path);
 
     };
 
 };
 
-seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Navigation.prototype = new STL.Controller.Base();
 
 /**
  * Sections Manager Controller
  *
  * @module 72lions
  * @class SectionsManager
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.SectionsManager = function() {
+STL.Controller.SectionsManager = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.SectionsManager
+     * @type STL.Controller.SectionsManager
      */
     var me = this;
 
@@ -1569,55 +1578,61 @@ seventytwolions.Controller.SectionsManager = function() {
      * The Portfolio Controller
      *
      * @private
-     * @type seventytwolions.Controller.Portfolio
+     * @type STL.Controller.Portfolio
+     * @property portfolio
      * @default undefined
      */
-    var portfolio = undefined;
+    var portfolio;
 
     /**
      * The Experiments Controller
      *
      * @private
-     * @type seventytwolions.Controller.Experiments
+     * @type STL.Controller.Experiments
+     * @property experiments
      * @default undefined
      */
-    var experiments = undefined;
+    var experiments;
 
     /**
      * The Blog Controller
      *
      * @private
-     * @type seventytwolions.Controller.Blog
+     * @type STL.Controller.Blog
+     * @property blog
      * @default undefined
      */
-    var blog = undefined;
+    var blog;
 
     /**
      * The initial state of the website
      *
      * @private
-     * @type seventytwolions.Controller.Contact
+     * @type STL.Controller.Contact
+     * @property contact
      * @default undefined
      */
-    var contact = undefined;
+    var contact;
 
     /**
      * The Post Details Controller
      *
      * @private
-     * @type seventytwolions.Controller.PostDetails
+     * @type STL.Controller.PostDetails
+     * @property postDetails
      * @default undefined
      */
-    var postDetails = undefined;
+    var postDetails;
 
     /**
      * The array that will hold all the sections
      *
      * @private
      * @type Array
+     * @property sections
      * @default undefined
      */
-    var sections = undefined;
+    var sections;
 
     /**
      * The number of total sections
@@ -1635,27 +1650,27 @@ seventytwolions.Controller.SectionsManager = function() {
      */
     this.postInitialize = function(){
 
-        portfolio = seventytwolions.ControllerManager.initializeController({
+        portfolio = STL.ControllerManager.initializeController({
                 type:'Portfolio',
                 id:'portfolio',
-                model: seventytwolions.Lookup.getModel({
+                model: STL.Lookup.getModel({
                     type:'Posts',
                     id:'portfolioModel'
                 })
         });
 
-        experiments = seventytwolions.ControllerManager.initializeController({
+        experiments = STL.ControllerManager.initializeController({
             type:'Experiments',
             id:'experiments',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                 id:'experimentsModel'
             })
         });
 
-        blog = seventytwolions.ControllerManager.initializeController({
+        blog = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'blog',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'blogModel'
             })
@@ -1663,10 +1678,10 @@ seventytwolions.Controller.SectionsManager = function() {
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
-        postDetails = seventytwolions.ControllerManager.initializeController({
+        postDetails = STL.ControllerManager.initializeController({
             type:'PostDetails',
             id:'postDetails',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'postDetailsModel'
             })
@@ -1748,25 +1763,25 @@ seventytwolions.Controller.SectionsManager = function() {
 
 };
 
-seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Controller.Base();
+STL.Controller.SectionsManager.prototype = new STL.Controller.Base();
 
 /**
  * Portfolio Controller
  *
  * @module 72lions
  * @class Portfolio
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Portfolio = function() {
+STL.Controller.Portfolio = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Portfolio
+     * @type STL.Controller.Portfolio
      */
     var me = this;
 
@@ -1774,10 +1789,11 @@ seventytwolions.Controller.Portfolio = function() {
      * The categories Model
      *
      * @private
-     * @type seventytwolions.Model.Categories
+     * @type STL.Model.Categories
+     * @property categoriesModel
      * @default undefined
      */
-    var categoriesModel = undefined;
+    var categoriesModel;
 
     /**
      * An array with all the portfolio items
@@ -1841,10 +1857,10 @@ seventytwolions.Controller.Portfolio = function() {
 
             for (i = 0; i < result.length; i++) {
                 portfolioItems.push(
-                    seventytwolions.ControllerManager.initializeController({
+                    STL.ControllerManager.initializeController({
                         type:'ThumbnailItem',
                         id:'ThumbnailItem' + result[i].Id,
-                        model: seventytwolions.Lookup.getModel({
+                        model: STL.Lookup.getModel({
                             data:result[i]
                         })
                     })
@@ -1865,7 +1881,7 @@ seventytwolions.Controller.Portfolio = function() {
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
-            categoriesModel = seventytwolions.Lookup.getModel({
+            categoriesModel = STL.Lookup.getModel({
                 type:'Categories',
                 id:'categoriesPortfolio'
             });
@@ -1886,25 +1902,25 @@ seventytwolions.Controller.Portfolio = function() {
 
 };
 
-seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Portfolio.prototype = new STL.Controller.Base();
 
 /**
  * Experiments Controller
  *
  * @module 72lions
  * @class Experiments
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Experiments = function() {
+STL.Controller.Experiments = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Experiments
+     * @type STL.Controller.Experiments
      */
     var me = this;
 
@@ -1938,25 +1954,25 @@ seventytwolions.Controller.Experiments = function() {
 
 };
 
-seventytwolions.Controller.Experiments.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Experiments.prototype = new STL.Controller.Base();
 
 /**
  * Blog Controller
  *
  * @module 72lions
  * @class Blog
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Blog = function() {
+STL.Controller.Blog = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Blog
+     * @type STL.Controller.Blog
      */
     var me = this;
 
@@ -1964,10 +1980,11 @@ seventytwolions.Controller.Blog = function() {
      * The categories Model
      *
      * @private
-     * @type seventytwolions.Model.Categories
+     * @type STL.Model.Categories
+     * @property categoriesModel
      * @default undefined
      */
-    var categoriesModel = undefined;
+    var categoriesModel;
 
     /**
      * An array with all the portfolio items
@@ -2032,10 +2049,10 @@ seventytwolions.Controller.Blog = function() {
             for (i = 0; i < result.length; i++) {
 
                 portfolioItems.push(
-                    seventytwolions.ControllerManager.initializeController({
+                    STL.ControllerManager.initializeController({
                         type:'ThumbnailItem',
                         id:'ThumbnailItem' + result[i].Id,
-                        model: seventytwolions.Lookup.getModel({
+                        model: STL.Lookup.getModel({
                             data:result[i]
                         })
                      })
@@ -2060,7 +2077,7 @@ seventytwolions.Controller.Blog = function() {
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
-            categoriesModel = seventytwolions.Lookup.getModel({
+            categoriesModel = STL.Lookup.getModel({
                 type:'Categories',
                 id:'categoriesBlog'
             });
@@ -2081,25 +2098,25 @@ seventytwolions.Controller.Blog = function() {
     };
 };
 
-seventytwolions.Controller.Blog.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Blog.prototype = new STL.Controller.Base();
 
 /**
  * About Controller
  *
  * @module 72lions
  * @class About
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.About = function() {
+STL.Controller.About = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.About
+     * @type STL.Controller.About
      */
     var me = this;
 
@@ -2133,25 +2150,25 @@ seventytwolions.Controller.About = function() {
 
 };
 
-seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base();
+STL.Controller.About.prototype = new STL.Controller.Base();
 
 /**
  * Contact Controller
  *
  * @module 72lions
  * @class Contact
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Contact = function() {
+STL.Controller.Contact = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Contact
+     * @type STL.Controller.Contact
      */
     var me = this;
 
@@ -2184,25 +2201,25 @@ seventytwolions.Controller.Contact = function() {
 
 };
 
-seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Contact.prototype = new STL.Controller.Base();
 
 /**
  * ThumbnailItem Controller
  *
  * @module 72lions
  * @class ThumbnailItem
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.ThumbnailItem = function() {
+STL.Controller.ThumbnailItem = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.ThumbnailItem
+     * @type STL.Controller.ThumbnailItem
      */
     var me = this;
 
@@ -2216,24 +2233,24 @@ seventytwolions.Controller.ThumbnailItem = function() {
 
 };
 
-seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();
+STL.Controller.ThumbnailItem.prototype = new STL.Controller.Base();
 
 /**
  * PostDetails Controller
  *
  * @module 72lions
  * @class PostDetails
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.PostDetails = function() {
+STL.Controller.PostDetails = function() {
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.PostDetails
+     * @type STL.Controller.PostDetails
      */
     var me = this;
 
@@ -2309,25 +2326,25 @@ seventytwolions.Controller.PostDetails = function() {
 
 };
 
-seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
+STL.Controller.PostDetails.prototype = new STL.Controller.Base();
 
 /**
  * Footer Controller
  *
  * @module 72lions
  * @class Footer
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Footer = function() {
+STL.Controller.Footer = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Footer
+     * @type STL.Controller.Footer
      */
     var me = this;
 
@@ -2409,25 +2426,25 @@ seventytwolions.Controller.Footer = function() {
     var onMenuItemClicked = function(event){
 
         // Push the current url
-        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
+        Router.push(null, event.title + ' - ' + STL.Model.Locale.getPageTitle(), event.path);
 
     };
 
 };
 
-seventytwolions.Controller.Footer.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Footer.prototype = new STL.Controller.Base();
 
 /**
  * Categories Model
  *
  * @module 72lions
  * @class Categories
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Categories = function(){
+STL.Model.Categories = function(){
 
     /**
      * The response object that came from the ajax call
@@ -2514,19 +2531,19 @@ seventytwolions.Model.Categories = function(){
 
 };
 
-seventytwolions.Model.Categories.prototype = new seventytwolions.Model.Base();
+STL.Model.Categories.prototype = new STL.Model.Base();
 
 /**
  * Posts Model
  *
  * @module 72lions
  * @class Posts
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Posts = function(){
+STL.Model.Posts = function(){
 
     /**
      * The api url for the posts
@@ -2670,19 +2687,19 @@ seventytwolions.Model.Posts = function(){
 
 };
 
-seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
+STL.Model.Posts.prototype = new STL.Model.Base();
 
 /**
  * Footer Model
  *
  * @module 72lions
  * @class Footer
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Footer = function(){
+STL.Model.Footer = function(){
 
     /**
      * The api url for the tweets
@@ -2809,19 +2826,19 @@ seventytwolions.Model.Footer = function(){
 
 };
 
-seventytwolions.Model.Footer.prototype = new seventytwolions.Model.Base();
+STL.Model.Footer.prototype = new STL.Model.Base();
 
 /**
  * Main View
  *
  * @module 72lions
  * @class Main
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Main = function() {
+STL.View.Main = function() {
 
     /**
      * The DOM Element
@@ -2836,7 +2853,7 @@ seventytwolions.View.Main = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -2845,7 +2862,7 @@ seventytwolions.View.Main = function() {
      * @author Thodoris Tsiridis
      */
     this.draw = function() {
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
     };
 
    /**
@@ -2854,38 +2871,39 @@ seventytwolions.View.Main = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
 };
 
-seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
+STL.View.Main.prototype = new STL.View.Base();
 
 /**
  * Navigation View
  *
  * @module 72lions
  * @class Navigation
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Navigation = function() {
+STL.View.Navigation = function() {
 
     /**
      * The links DOM Elements
      *
      * @type Array
+     * @property $links
      * @default undefined
      */
-    var $links = undefined;
+    var $links;
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Navigation
+     * @type STL.View.Navigation
      */
     var me = this;
 
@@ -2909,7 +2927,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('a');
     };
 
@@ -2918,7 +2936,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -2926,7 +2944,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
         addEventListeners();
     };
 
@@ -2986,25 +3004,25 @@ seventytwolions.View.Navigation = function() {
 
 };
 
-seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
+STL.View.Navigation.prototype = new STL.View.Base();
 
 /**
  * Sections Manager View
  *
  * @module 72lions
  * @class SectionsManager
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.SectionsManager = function() {
+STL.View.SectionsManager = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.SectionsManager
+     * @type STL.View.SectionsManager
      */
     var me = this;
 
@@ -3021,7 +3039,7 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -3030,7 +3048,7 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -3039,24 +3057,24 @@ seventytwolions.View.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
 };
 
-seventytwolions.View.SectionsManager.prototype = new seventytwolions.View.Base();
+STL.View.SectionsManager.prototype = new STL.View.Base();
 
 /**
  * Portfolio View
  *
  * @module 72lions
  * @class Portfolio
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Portfolio = function() {
+STL.View.Portfolio = function() {
 
     /**
      * The DOM Element
@@ -3069,7 +3087,7 @@ seventytwolions.View.Portfolio = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Portfolio
+     * @type STL.View.Portfolio
      */
     var me = this;
 
@@ -3087,7 +3105,7 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -3096,7 +3114,7 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -3105,7 +3123,7 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -3120,7 +3138,7 @@ seventytwolions.View.Portfolio = function() {
             that.domElement.css('opacity', 1);
         }, 10);
 
-        document.title = 'Portfolio - ' + seventytwolions.Model.Locale.getPageTitle();
+        document.title = 'Portfolio - ' + STL.Model.Locale.getPageTitle();
 
     };
     /**
@@ -3144,25 +3162,25 @@ seventytwolions.View.Portfolio = function() {
 
 };
 
-seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
+STL.View.Portfolio.prototype = new STL.View.Base();
 
 /**
  * Experiments View
  *
  * @module 72lions
  * @class Experiments
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Experiments = function() {
+STL.View.Experiments = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Experiments
+     * @type STL.View.Experiments
      */
     var me = this;
 
@@ -3179,7 +3197,7 @@ seventytwolions.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -3188,7 +3206,7 @@ seventytwolions.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -3197,7 +3215,7 @@ seventytwolions.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -3223,19 +3241,19 @@ seventytwolions.View.Experiments = function() {
 
 };
 
-seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();
+STL.View.Experiments.prototype = new STL.View.Base();
 
 /**
  * Blog View
  *
  * @module 72lions
  * @class Blog
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Blog = function() {
+STL.View.Blog = function() {
 
     /**
      * The DOM Element
@@ -3248,7 +3266,7 @@ seventytwolions.View.Blog = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Blog
+     * @type STL.View.Blog
      */
     var me = this;
 
@@ -3305,7 +3323,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -3314,7 +3332,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.draw = function() {
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
     };
 
    /**
@@ -3323,7 +3341,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
         $(window).bind("resize", onWindowResize);
     };
 
@@ -3335,7 +3353,7 @@ seventytwolions.View.Blog = function() {
     this.show = function(){
         var that = this;
 
-        document.title = 'Blog - ' + seventytwolions.Model.Locale.getPageTitle();
+        document.title = 'Blog - ' + STL.Model.Locale.getPageTitle();
 
         this.domElement.addClass('active');
 
@@ -3476,25 +3494,25 @@ seventytwolions.View.Blog = function() {
 
 };
 
-seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
+STL.View.Blog.prototype = new STL.View.Base();
 
 /**
  * About View
  *
  * @module 72lions
  * @class About
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.About = function() {
+STL.View.About = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.About
+     * @type STL.View.About
      */
     var me = this;
 
@@ -3511,7 +3529,7 @@ seventytwolions.View.About = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -3520,7 +3538,7 @@ seventytwolions.View.About = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -3529,7 +3547,7 @@ seventytwolions.View.About = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -3552,25 +3570,25 @@ seventytwolions.View.About = function() {
 
 };
 
-seventytwolions.View.About.prototype = new seventytwolions.View.Base();
+STL.View.About.prototype = new STL.View.Base();
 
 /**
  * Contact View
  *
  * @module 72lions
  * @class Contact
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Contact = function() {
+STL.View.Contact = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Contact
+     * @type STL.View.Contact
      */
     var me = this;
 
@@ -3586,7 +3604,7 @@ seventytwolions.View.Contact = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -3594,7 +3612,7 @@ seventytwolions.View.Contact = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -3602,7 +3620,7 @@ seventytwolions.View.Contact = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -3626,19 +3644,19 @@ seventytwolions.View.Contact = function() {
 
 };
 
-seventytwolions.View.Contact.prototype = new seventytwolions.View.Base();
+STL.View.Contact.prototype = new STL.View.Base();
 
 /**
  * ThumbnailItem View
  *
  * @module 72lions
  * @class ThumbnailItem
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.ThumbnailItem = function() {
+STL.View.ThumbnailItem = function() {
 
     /**
      * If the thumbnail item is of type featured then this value is set to true
@@ -3659,7 +3677,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.ThumbnailItem
+     * @type STL.View.ThumbnailItem
      */
     var me = this;
 
@@ -3702,7 +3720,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name + ', ' + this.id);
+        //STL.Console.log('Initializing view with name ' + this.name + ', ' + this.id);
     };
 
     /**
@@ -3720,7 +3738,7 @@ seventytwolions.View.ThumbnailItem = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -3761,7 +3779,7 @@ seventytwolions.View.ThumbnailItem = function() {
 
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(model.get('PublishDate').replace(/-/g ,'/'));
-        body = body.replace(/\${publishdate}/g, seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+        body = body.replace(/\${publishdate}/g, STL.Model.Locale.getDayName(pDate.getDay()) + ', ' +  STL.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
 
         slug = model.get('Slug');
 
@@ -3814,7 +3832,7 @@ seventytwolions.View.ThumbnailItem = function() {
             body = body.replace(/\${imageheight}/g, imgHeight);
 
         }
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
         if(meta && meta.github !== undefined){
             body = body.replace(/\${github}/g, meta.github);
         }
@@ -3898,19 +3916,19 @@ seventytwolions.View.ThumbnailItem = function() {
 
 };
 
-seventytwolions.View.ThumbnailItem.prototype = new seventytwolions.View.Base();
+STL.View.ThumbnailItem.prototype = new STL.View.Base();
 
 /**
  * PostDetails View
  *
  * @module 72lions
  * @class PostDetails
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.PostDetails = function() {
+STL.View.PostDetails = function() {
 
     /**
      * The DOM Element
@@ -3931,7 +3949,7 @@ seventytwolions.View.PostDetails = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.PostDetails
+     * @type STL.View.PostDetails
      */
     var me = this;
 
@@ -4054,7 +4072,7 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -4063,7 +4081,7 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -4073,7 +4091,7 @@ seventytwolions.View.PostDetails = function() {
      */
     this.postDraw =  function(){
         backDomElement.bind('click', onBackClick);
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
    /**
@@ -4110,7 +4128,7 @@ seventytwolions.View.PostDetails = function() {
             categoriesDomElement.fadeOut(0);
         }
 
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
         if(typeof(details.Meta.github) !== 'undefined'){
             githublinkDomElement.attr('href', details.Meta.github);
             githublinkDomElement.addClass('visible');
@@ -4134,7 +4152,7 @@ seventytwolions.View.PostDetails = function() {
 
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(details.PublishDate.replace(/-/g ,'/'));
-        timeDomElement.html(seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+        timeDomElement.html(STL.Model.Locale.getDayName(pDate.getDay()) + ', ' +  STL.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
         titleDomElement.html(details.Title);
         asideDomElement.html(asideHTML);
 
@@ -4153,7 +4171,7 @@ seventytwolions.View.PostDetails = function() {
             commentsDomElement.css('display', 'none');
         }
 
-        document.title = details.Title + ' - ' + seventytwolions.Model.Locale.getPageTitle();
+        document.title = details.Title + ' - ' + STL.Model.Locale.getPageTitle();
     };
 
     /**
@@ -4227,19 +4245,19 @@ seventytwolions.View.PostDetails = function() {
 
 };
 
-seventytwolions.View.PostDetails.prototype = new seventytwolions.View.Base();
+STL.View.PostDetails.prototype = new STL.View.Base();
 
 /**
  * Footer View
  *
  * @module 72lions
  * @class Footer
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Footer = function() {
+STL.View.Footer = function() {
 
     /**
      * The total number of flickr photos to show
@@ -4262,15 +4280,16 @@ seventytwolions.View.Footer = function() {
      * The links DOM Elements
      *
      * @type Array
+     * @property $links
      * @default undefined
      */
-    var $links = undefined;
+    var $links;
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Footer
+     * @type STL.View.Footer
      */
     var me = this;
 
@@ -4331,7 +4350,7 @@ seventytwolions.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('.menu a');
         $tweetsContainerDomElement = this.domElement.find('.latest-tweets article');
         $flickrContainerDomElement = this.domElement.find('.flickr-photos nav');
@@ -4342,7 +4361,7 @@ seventytwolions.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -4350,7 +4369,7 @@ seventytwolions.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
         addEventListeners();
     };
 
@@ -4494,11 +4513,11 @@ seventytwolions.View.Footer = function() {
 
 };
 
-seventytwolions.View.Footer.prototype = new seventytwolions.View.Base();
+STL.View.Footer.prototype = new STL.View.Base();
 
-seventytwolions.ControllerManager.initializeController({
+STL.ControllerManager.initializeController({
     type:'Main',
     id:'main',
-    model: seventytwolions.Lookup.getModel({})
+    model: STL.Lookup.getModel({})
 });
 

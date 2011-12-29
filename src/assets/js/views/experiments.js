@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class Experiments
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Experiments = function() {
+STL.View.Experiments = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Experiments
+     * @type STL.View.Experiments
      */
     var me = this;
 
@@ -31,7 +31,7 @@ seventytwolions.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -40,7 +40,7 @@ seventytwolions.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -49,7 +49,7 @@ seventytwolions.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -75,4 +75,4 @@ seventytwolions.View.Experiments = function() {
 
 };
 
-seventytwolions.View.Experiments.prototype = new seventytwolions.View.Base();
+STL.View.Experiments.prototype = new STL.View.Base();

@@ -3,17 +3,17 @@
  *
  * @module 72lions
  * @class PostDetails
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.PostDetails = function() {
+STL.Controller.PostDetails = function() {
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.PostDetails
+     * @type STL.Controller.PostDetails
      */
     var me = this;
 
@@ -89,4 +89,4 @@ seventytwolions.Controller.PostDetails = function() {
 
 };
 
-seventytwolions.Controller.PostDetails.prototype = new seventytwolions.Controller.Base();
+STL.Controller.PostDetails.prototype = new STL.Controller.Base();

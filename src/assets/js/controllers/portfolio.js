@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class Portfolio
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Portfolio = function() {
+STL.Controller.Portfolio = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Portfolio
+     * @type STL.Controller.Portfolio
      */
     var me = this;
 
@@ -22,10 +22,11 @@ seventytwolions.Controller.Portfolio = function() {
      * The categories Model
      *
      * @private
-     * @type seventytwolions.Model.Categories
+     * @type STL.Model.Categories
+     * @property categoriesModel
      * @default undefined
      */
-    var categoriesModel = undefined;
+    var categoriesModel;
 
     /**
      * An array with all the portfolio items
@@ -89,10 +90,10 @@ seventytwolions.Controller.Portfolio = function() {
 
             for (i = 0; i < result.length; i++) {
                 portfolioItems.push(
-                    seventytwolions.ControllerManager.initializeController({
+                    STL.ControllerManager.initializeController({
                         type:'ThumbnailItem',
                         id:'ThumbnailItem' + result[i].Id,
-                        model: seventytwolions.Lookup.getModel({
+                        model: STL.Lookup.getModel({
                             data:result[i]
                         })
                     })
@@ -113,7 +114,7 @@ seventytwolions.Controller.Portfolio = function() {
     this.loadCategories = function() {
 
         if(categoriesModel === undefined){
-            categoriesModel = seventytwolions.Lookup.getModel({
+            categoriesModel = STL.Lookup.getModel({
                 type:'Categories',
                 id:'categoriesPortfolio'
             });
@@ -134,4 +135,4 @@ seventytwolions.Controller.Portfolio = function() {
 
 };
 
-seventytwolions.Controller.Portfolio.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Portfolio.prototype = new STL.Controller.Base();

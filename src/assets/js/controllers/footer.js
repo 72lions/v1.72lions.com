@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class Footer
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Footer = function() {
+STL.Controller.Footer = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Footer
+     * @type STL.Controller.Footer
      */
     var me = this;
 
@@ -96,10 +96,10 @@ seventytwolions.Controller.Footer = function() {
     var onMenuItemClicked = function(event){
 
         // Push the current url
-        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
+        Router.push(null, event.title + ' - ' + STL.Model.Locale.getPageTitle(), event.path);
 
     };
 
 };
 
-seventytwolions.Controller.Footer.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Footer.prototype = new STL.Controller.Base();

@@ -3,11 +3,11 @@
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.View
+ * @namespace STL.View
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Base = function() {
+STL.View.Base = function() {
 
     EventTarget.call( this );
 
@@ -30,7 +30,7 @@ seventytwolions.View.Base = function() {
     /**
      * A reference to this view's model
      *
-     * @type seventytwolions.View.Base
+     * @type STL.View.Base
      * @default undefined
      */
     this.model = undefined;
@@ -82,7 +82,7 @@ seventytwolions.View.Base = function() {
     /**
      * Sets the model for the view
      *
-     * @param {seventytwolions.Model.Base} model The model
+     * @param {STL.Model.Base} model The model
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
@@ -92,7 +92,7 @@ seventytwolions.View.Base = function() {
     /**
      * Gets the model for the view
      *
-     * @return {seventytwolions.Model.Base} The model
+     * @return {STL.Model.Base} The model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {

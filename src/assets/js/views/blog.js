@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Blog
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Blog = function() {
+STL.View.Blog = function() {
 
     /**
      * The DOM Element
@@ -21,7 +21,7 @@ seventytwolions.View.Blog = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Blog
+     * @type STL.View.Blog
      */
     var me = this;
 
@@ -78,7 +78,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -87,7 +87,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.draw = function() {
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
     };
 
    /**
@@ -96,7 +96,7 @@ seventytwolions.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
         $(window).bind("resize", onWindowResize);
     };
 
@@ -108,7 +108,7 @@ seventytwolions.View.Blog = function() {
     this.show = function(){
         var that = this;
 
-        document.title = 'Blog - ' + seventytwolions.Model.Locale.getPageTitle();
+        document.title = 'Blog - ' + STL.Model.Locale.getPageTitle();
 
         this.domElement.addClass('active');
 
@@ -249,4 +249,4 @@ seventytwolions.View.Blog = function() {
 
 };
 
-seventytwolions.View.Blog.prototype = new seventytwolions.View.Base();
+STL.View.Blog.prototype = new STL.View.Base();

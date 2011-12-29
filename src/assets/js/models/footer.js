@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Footer
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Footer = function(){
+STL.Model.Footer = function(){
 
     /**
      * The api url for the tweets
@@ -135,4 +135,4 @@ seventytwolions.Model.Footer = function(){
 
 };
 
-seventytwolions.Model.Footer.prototype = new seventytwolions.Model.Base();
+STL.Model.Footer.prototype = new STL.Model.Base();

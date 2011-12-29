@@ -3,26 +3,27 @@
  *
  * @module 72lions
  * @class Navigation
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Navigation = function() {
+STL.View.Navigation = function() {
 
     /**
      * The links DOM Elements
      *
      * @type Array
+     * @property $links
      * @default undefined
      */
-    var $links = undefined;
+    var $links;
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Navigation
+     * @type STL.View.Navigation
      */
     var me = this;
 
@@ -46,7 +47,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('a');
     };
 
@@ -55,7 +56,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -63,7 +64,7 @@ seventytwolions.View.Navigation = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
         addEventListeners();
     };
 
@@ -123,4 +124,4 @@ seventytwolions.View.Navigation = function() {
 
 };
 
-seventytwolions.View.Navigation.prototype = new seventytwolions.View.Base();
+STL.View.Navigation.prototype = new STL.View.Base();

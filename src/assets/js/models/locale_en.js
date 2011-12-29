@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Locale
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Locale = (function(global){
+STL.Model.Locale = function(global){
 
     /**
      * An array of all the months
@@ -68,4 +68,4 @@ seventytwolions.Model.Locale = (function(global){
 
     return this;
 
-})(window);
+}(window);

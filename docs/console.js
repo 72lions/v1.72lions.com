@@ -3,11 +3,11 @@
  *
  * @module 72lions
  * @class Console
- * @namespace seventytwolions
+ * @namespace STL
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Console = function(global){
+STL.Console = function(global){
 
     /**
      * Set to true and debug will be enabled

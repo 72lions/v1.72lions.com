@@ -3,11 +3,11 @@
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Console</span>
-<span class="cm"> * @namespace seventytwolions</span>
+<span class="cm"> * @namespace STL</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Console</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Console</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * Set to true and debug will be enabled</span>

@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class About
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.About = function() {
+STL.Controller.About = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.About
+     * @type STL.Controller.About
      */
     var me = this;
 
@@ -48,4 +48,4 @@ seventytwolions.Controller.About = function() {
 
 };
 
-seventytwolions.Controller.About.prototype = new seventytwolions.Controller.Base();
+STL.Controller.About.prototype = new STL.Controller.Base();

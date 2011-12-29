@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Posts
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Posts = function(){
+STL.Model.Posts = function(){
 
     /**
      * The api url for the posts
@@ -152,4 +152,4 @@ seventytwolions.Model.Posts = function(){
 
 };
 
-seventytwolions.Model.Posts.prototype = new seventytwolions.Model.Base();
+STL.Model.Posts.prototype = new STL.Model.Base();

@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Categories
- * @namespace seventytwolions.Model
- * @extends seventytwolions.Model.Base
+ * @namespace STL.Model
+ * @extends STL.Model.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Categories = function(){
+STL.Model.Categories = function(){
 
     /**
      * The response object that came from the ajax call
@@ -95,4 +95,4 @@ seventytwolions.Model.Categories = function(){
 
 };
 
-seventytwolions.Model.Categories.prototype = new seventytwolions.Model.Base();
+STL.Model.Categories.prototype = new STL.Model.Base();

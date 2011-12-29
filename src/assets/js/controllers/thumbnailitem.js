@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class ThumbnailItem
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.ThumbnailItem = function() {
+STL.Controller.ThumbnailItem = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.ThumbnailItem
+     * @type STL.Controller.ThumbnailItem
      */
     var me = this;
 
@@ -28,4 +28,4 @@ seventytwolions.Controller.ThumbnailItem = function() {
 
 };
 
-seventytwolions.Controller.ThumbnailItem.prototype = new seventytwolions.Controller.Base();
+STL.Controller.ThumbnailItem.prototype = new STL.Controller.Base();

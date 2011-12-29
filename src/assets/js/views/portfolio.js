@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Portfolio
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Portfolio = function() {
+STL.View.Portfolio = function() {
 
     /**
      * The DOM Element
@@ -21,7 +21,7 @@ seventytwolions.View.Portfolio = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Portfolio
+     * @type STL.View.Portfolio
      */
     var me = this;
 
@@ -39,7 +39,7 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -48,7 +48,7 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -57,7 +57,7 @@ seventytwolions.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
     /**
@@ -72,7 +72,7 @@ seventytwolions.View.Portfolio = function() {
             that.domElement.css('opacity', 1);
         }, 10);
 
-        document.title = 'Portfolio - ' + seventytwolions.Model.Locale.getPageTitle();
+        document.title = 'Portfolio - ' + STL.Model.Locale.getPageTitle();
 
     };
     /**
@@ -96,4 +96,4 @@ seventytwolions.View.Portfolio = function() {
 
 };
 
-seventytwolions.View.Portfolio.prototype = new seventytwolions.View.Base();
+STL.View.Portfolio.prototype = new STL.View.Base();

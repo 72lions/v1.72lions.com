@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class PostDetails
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.PostDetails = function() {
+STL.View.PostDetails = function() {
 
     /**
      * The DOM Element
@@ -29,7 +29,7 @@ seventytwolions.View.PostDetails = function() {
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.PostDetails
+     * @type STL.View.PostDetails
      */
     var me = this;
 
@@ -152,7 +152,7 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -161,7 +161,7 @@ seventytwolions.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -171,7 +171,7 @@ seventytwolions.View.PostDetails = function() {
      */
     this.postDraw =  function(){
         backDomElement.bind('click', onBackClick);
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
    /**
@@ -208,7 +208,7 @@ seventytwolions.View.PostDetails = function() {
             categoriesDomElement.fadeOut(0);
         }
 
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
         if(typeof(details.Meta.github) !== 'undefined'){
             githublinkDomElement.attr('href', details.Meta.github);
             githublinkDomElement.addClass('visible');
@@ -232,7 +232,7 @@ seventytwolions.View.PostDetails = function() {
 
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(details.PublishDate.replace(/-/g ,'/'));
-        timeDomElement.html(seventytwolions.Model.Locale.getDayName(pDate.getDay()) + ', ' +  seventytwolions.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
+        timeDomElement.html(STL.Model.Locale.getDayName(pDate.getDay()) + ', ' +  STL.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
         titleDomElement.html(details.Title);
         asideDomElement.html(asideHTML);
 
@@ -251,7 +251,7 @@ seventytwolions.View.PostDetails = function() {
             commentsDomElement.css('display', 'none');
         }
 
-        document.title = details.Title + ' - ' + seventytwolions.Model.Locale.getPageTitle();
+        document.title = details.Title + ' - ' + STL.Model.Locale.getPageTitle();
     };
 
     /**
@@ -325,4 +325,4 @@ seventytwolions.View.PostDetails = function() {
 
 };
 
-seventytwolions.View.PostDetails.prototype = new seventytwolions.View.Base();
+STL.View.PostDetails.prototype = new STL.View.Base();

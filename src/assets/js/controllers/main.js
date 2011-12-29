@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class Main
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Main = function() {
+STL.Controller.Main = function() {
 
     /**
      * A reference to the navigation controller
      *
      * @private
-     * @type seventytwolions.Controller.NaviMaingation
+     * @type STL.Controller.NaviMaingation
      * @default null
      */
     var navigationController = null;
@@ -23,7 +23,7 @@ seventytwolions.Controller.Main = function() {
      * A reference to the sections manager controller
      *
      * @private
-     * @type seventytwolions.Controller.SectionsManager
+     * @type STL.Controller.SectionsManager
      * @default null
      */
     var sectionsManager = null;
@@ -32,7 +32,7 @@ seventytwolions.Controller.Main = function() {
      * A reference to the footer controller
      *
      * @private
-     * @type seventytwolions.Controller.Footer
+     * @type STL.Controller.Footer
      * @default null
      */
     var footerController = null;
@@ -68,23 +68,23 @@ seventytwolions.Controller.Main = function() {
      */
     this.postInitialize = function() {
 
-        navigationController = seventytwolions.ControllerManager.initializeController({
+        navigationController = STL.ControllerManager.initializeController({
             type:'Navigation',
             id:'navigation',
-            model: seventytwolions.Lookup.getModel({})
+            model: STL.Lookup.getModel({})
         });
 
 
-        sectionsManager  = seventytwolions.ControllerManager.initializeController({
+        sectionsManager  = STL.ControllerManager.initializeController({
             type:'SectionsManager',
             id:'sectionsmanager',
-            model: seventytwolions.Lookup.getModel({})
+            model: STL.Lookup.getModel({})
         });
 
-        footerController  = seventytwolions.ControllerManager.initializeController({
+        footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
             id:'Footer',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                type: 'Footer',
                id: 'footter'
             })
@@ -161,4 +161,4 @@ seventytwolions.Controller.Main = function() {
     };
 };
 
-seventytwolions.Controller.Main.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Main.prototype = new STL.Controller.Base();

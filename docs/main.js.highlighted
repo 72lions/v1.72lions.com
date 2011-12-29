@@ -3,18 +3,18 @@
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Main</span>
-<span class="cm"> * @namespace seventytwolions.Controller</span>
-<span class="cm"> * @extends seventytwolions.Controller.Base</span>
+<span class="cm"> * @namespace STL.Controller</span>
+<span class="cm"> * @extends STL.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * A reference to the navigation controller</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.Controller.NaviMaingation</span>
+<span class="cm">     * @type STL.Controller.NaviMaingation</span>
 <span class="cm">     * @default null</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">navigationController</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -23,7 +23,7 @@
 <span class="cm">     * A reference to the sections manager controller</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.Controller.SectionsManager</span>
+<span class="cm">     * @type STL.Controller.SectionsManager</span>
 <span class="cm">     * @default null</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">sectionsManager</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -32,7 +32,7 @@
 <span class="cm">     * A reference to the footer controller</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.Controller.Footer</span>
+<span class="cm">     * @type STL.Controller.Footer</span>
 <span class="cm">     * @default null</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">footerController</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -68,23 +68,23 @@
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
-        <span class="nx">navigationController</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+        <span class="nx">navigationController</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Navigation&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;navigation&#39;</span><span class="p">,</span>
-            <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
         <span class="p">});</span>
 
 
-        <span class="nx">sectionsManager</span>  <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+        <span class="nx">sectionsManager</span>  <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;SectionsManager&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;sectionsmanager&#39;</span><span class="p">,</span>
-            <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
         <span class="p">});</span>
 
-        <span class="nx">footerController</span>  <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+        <span class="nx">footerController</span>  <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
-            <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
                <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;footter&#39;</span>
             <span class="p">})</span>
@@ -161,5 +161,5 @@
     <span class="p">};</span>
 <span class="p">};</span>
 
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>

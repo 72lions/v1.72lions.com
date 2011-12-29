@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Main
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Main = function() {
+STL.View.Main = function() {
 
     /**
      * The DOM Element
@@ -23,7 +23,7 @@ seventytwolions.View.Main = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
     };
 
     /**
@@ -32,7 +32,7 @@ seventytwolions.View.Main = function() {
      * @author Thodoris Tsiridis
      */
     this.draw = function() {
-        //seventytwolions.Console.log('Drawing view with name ' + this.name);
+        //STL.Console.log('Drawing view with name ' + this.name);
     };
 
    /**
@@ -41,9 +41,9 @@ seventytwolions.View.Main = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
     };
 
 };
 
-seventytwolions.View.Main.prototype = new seventytwolions.View.Base();
+STL.View.Main.prototype = new STL.View.Base();

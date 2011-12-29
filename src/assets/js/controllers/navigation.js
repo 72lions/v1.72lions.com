@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class Navigation
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Navigation = function() {
+STL.Controller.Navigation = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Navigation
+     * @type STL.Controller.Navigation
      */
     var me = this;
 
@@ -40,10 +40,10 @@ seventytwolions.Controller.Navigation = function() {
     var onMenuItemClicked = function(event){
 
         // Push the current url
-        Router.push(null, event.title + ' - ' + seventytwolions.Model.Locale.getPageTitle(), event.path);
+        Router.push(null, event.title + ' - ' + STL.Model.Locale.getPageTitle(), event.path);
 
     };
 
 };
 
-seventytwolions.Controller.Navigation.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Navigation.prototype = new STL.Controller.Base();

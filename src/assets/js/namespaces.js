@@ -1,4 +1,4 @@
-var seventytwolions = {};
-seventytwolions.Controller = seventytwolions.Controller || {};
-seventytwolions.View = seventytwolions.View || {};
-seventytwolions.Model = seventytwolions.Model || {};
+var STL = {};
+STL.Controller = STL.Controller || {};
+STL.View = STL.View || {};
+STL.Model = STL.Model || {};

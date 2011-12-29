@@ -3,11 +3,11 @@
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Lookup</span>
-<span class="cm"> * @namespace seventytwolions</span>
+<span class="cm"> * @namespace STL</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * An object holding all the different models</span>
@@ -39,10 +39,8 @@
 <span class="cm">     * @param {Object} attributes The attributes that will be used to initialize the class</span>
 <span class="cm">     * @param {String} attributes.type The class type</span>
 <span class="cm">     * @param {String} attributes.id The unique id for this class</span>
-<span class="cm">     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller</span>
-<span class="cm">     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller</span>
 <span class="cm">     * @returns A controller</span>
-<span class="cm">     * @type seventytwolions.Controller.Base</span>
+<span class="cm">     * @type STL.Controller.Base</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">getController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="p">{</span>
@@ -69,17 +67,16 @@
 
         <span class="k">if</span><span class="p">(</span><span class="nx">exists</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
 
-            <span class="nx">exists</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="c1">// Check if the class that we want to load exists</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">[</span><span class="nx">className</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
-                <span class="nx">controllerObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">[</span><span class="nx">className</span><span class="p">]()};</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">[</span><span class="nx">className</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+                <span class="nx">controllerObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">[</span><span class="nx">className</span><span class="p">]()};</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="c1">// Create a generic controller</span>
-                <span class="nx">controllerObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">()};</span>
+                <span class="nx">controllerObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">()};</span>
             <span class="p">}</span>
 
             <span class="nx">_controllers</span><span class="p">[</span><span class="nx">className</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">controllerObj</span><span class="p">);</span>
-            <span class="nx">controllerObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">attributes</span><span class="p">);</span>
+            <span class="nx">controllerObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
             <span class="k">return</span> <span class="nx">controllerObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">;</span>
 
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -96,7 +93,7 @@
 <span class="cm">     * @param {String} attributes.type The class type</span>
 <span class="cm">     * @param {String} attributes.id The unique id for this class</span>
 <span class="cm">     * @returns A view</span>
-<span class="cm">     * @type seventytwolions.View.Base</span>
+<span class="cm">     * @type STL.View.Base</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">getView</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="p">{</span>
@@ -123,10 +120,10 @@
             <span class="nx">exists</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
             <span class="c1">// Check if the class that we want to load exists</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">[</span><span class="nx">className</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
-                <span class="nx">viewObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">[</span><span class="nx">className</span><span class="p">]()};</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">STL</span><span class="p">.</span><span class="nx">View</span><span class="p">[</span><span class="nx">className</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+                <span class="nx">viewObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">View</span><span class="p">[</span><span class="nx">className</span><span class="p">]()};</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">viewObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">()};</span>
+                <span class="nx">viewObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">Base</span><span class="p">()};</span>
             <span class="p">}</span>
 
             <span class="nx">_views</span><span class="p">[</span><span class="nx">className</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">viewObj</span><span class="p">);</span>
@@ -146,7 +143,7 @@
 <span class="cm">     * @param {String} attributes.id The unique id for this class</span>
 <span class="cm">     * @param {Object} attributes.data The data of the model</span>
 <span class="cm">     * @returns A model</span>
-<span class="cm">     * @type seventytwolions.Model.Base</span>
+<span class="cm">     * @type STL.Model.Base</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="p">{</span>
@@ -174,10 +171,10 @@
             <span class="nx">exists</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
             <span class="c1">// Check if the class that we want to load exists</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
-                <span class="nx">modelObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">[</span><span class="nx">name</span><span class="p">]()};</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">STL</span><span class="p">.</span><span class="nx">Model</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+                <span class="nx">modelObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Model</span><span class="p">[</span><span class="nx">name</span><span class="p">]()};</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">modelObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Base</span><span class="p">()};</span>
+                <span class="nx">modelObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">classType</span><span class="o">:</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Base</span><span class="p">()};</span>
             <span class="p">}</span>
 
             <span class="nx">_models</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">modelObj</span><span class="p">);</span>

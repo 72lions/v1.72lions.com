@@ -3,11 +3,11 @@
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.Controller
+ * @namespace STL.Controller
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Base = function() {
+STL.Controller.Base = function() {
 
     EventTarget.call( this );
 
@@ -15,19 +15,21 @@ seventytwolions.Controller.Base = function() {
      * A reference to this controller's view
      *
      * @private
-     * @type seventytwolions.View.Base
+     * @type STL.View.Base
+     * @property _view
      * @default undefined
      */
-    var _view = undefined;
+    var _view;
 
     /**
      * A reference to this controller's model
      *
      * @private
-     * @type seventytwolions.Controller.Base
+     * @type STL.Controller.Base
+     * @property _model
      * @default undefined
      */
-    var _model = undefined;
+    var _model;
 
     /**
      * The controller id
@@ -48,7 +50,7 @@ seventytwolions.Controller.Base = function() {
     /**
      * A reference to this controller's model
      *
-     * @type seventytwolions.Controller.Base
+     * @type STL.Controller.Base
      * @default undefined
      */
     this.model = undefined;
@@ -59,27 +61,12 @@ seventytwolions.Controller.Base = function() {
      * @param {Object} attributes The attributes that will be used to initialize the class
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
-     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
-     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
 
         this.id = attributes.id || id;
         this.name = attributes.type || '';
-
-        // Get a reference to the view
-        _view = attributes.view || seventytwolions.Lookup.getView({type:this.name, id: this.id});
-
-        // get a reference to the model
-        _model = this.model = attributes.model || seventytwolions.Lookup.getModel({type:this.name, id: this.id});
-
-        // ask it to set the model, initialize, draw and postDraw
-        _view.setModel(_model);
-        _view.initialize();
-        _view.draw();
-        _view.postDraw();
-        this.postInitialize();
 
     };
 
@@ -93,9 +80,24 @@ seventytwolions.Controller.Base = function() {
     };
 
     /**
+     * Sets the view of the controller
+     *
+     * @param {seventytowlions.View.Base} view The new view
+     * @author Thodoris Tsiridis
+     */
+    this.setView = function(view) {
+        _view = view;
+        // ask it to set the model, initialize, draw and postDraw
+        _view.setModel(_model);
+        _view.initialize();
+        _view.draw();
+        _view.postDraw();
+    };
+
+    /**
      * Returns the view of the specific view
      *
-     * @return {seventytwolions.View.Base} The Base view
+     * @return {STL.View.Base} The Base view
      * @author Thodoris Tsiridis
      */
     this.getView = function() {
@@ -105,7 +107,7 @@ seventytwolions.Controller.Base = function() {
     /**
      * Returns the model of the specific model
      *
-     * @return {seventytwolions.Model.Base} The Base model
+     * @return {STL.Model.Base} The Base model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
@@ -119,7 +121,7 @@ seventytwolions.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
-      _model = model;
+      this.model = _model = model;
       _view.setModel(model);
     };
 

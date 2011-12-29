@@ -3,11 +3,11 @@
  *
  * @module 72lions
  * @class Base
- * @namespace seventytwolions.Model
+ * @namespace STL.Model
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Model.Base = function(){
+STL.Model.Base = function(){
 
     /**
      * The object that holds the data

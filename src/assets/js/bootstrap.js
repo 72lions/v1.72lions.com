@@ -1,5 +1,5 @@
-seventytwolions.ControllerManager.initializeController({
+STL.ControllerManager.initializeController({
     type:'Main',
     id:'main',
-    model: seventytwolions.Lookup.getModel({})
+    model: STL.Lookup.getModel({})
 });

@@ -3,11 +3,11 @@
  *
  * @module 72lions
  * @class Lookup
- * @namespace seventytwolions
+ * @namespace STL
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Lookup = function(global) {
+STL.Lookup = function(global) {
 
     /**
      * An object holding all the different models
@@ -39,10 +39,8 @@ seventytwolions.Lookup = function(global) {
      * @param {Object} attributes The attributes that will be used to initialize the class
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
-     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
-     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @returns A controller
-     * @type seventytwolions.Controller.Base
+     * @type STL.Controller.Base
      * @author Thodoris Tsiridis
      */
     this.getController = function(attributes) {
@@ -69,17 +67,16 @@ seventytwolions.Lookup = function(global) {
 
         if(exists === -1){
 
-            exists = null;
             // Check if the class that we want to load exists
-            if(seventytwolions.Controller[className] !== undefined){
-                controllerObj = {id: id, classType: new seventytwolions.Controller[className]()};
+            if(STL.Controller[className] !== undefined){
+                controllerObj = {id: id, classType: new STL.Controller[className]()};
             } else {
                 // Create a generic controller
-                controllerObj = {id: id, classType: new seventytwolions.Controller.Base()};
+                controllerObj = {id: id, classType: new STL.Controller.Base()};
             }
 
             _controllers[className].push(controllerObj);
-            controllerObj.classType.initialize(attributes);
+            controllerObj.classType.initialize({type: attributes.type, id: attributes.id});
             return controllerObj.classType;
 
         } else {
@@ -96,7 +93,7 @@ seventytwolions.Lookup = function(global) {
      * @param {String} attributes.type The class type
      * @param {String} attributes.id The unique id for this class
      * @returns A view
-     * @type seventytwolions.View.Base
+     * @type STL.View.Base
      * @author Thodoris Tsiridis
      */
     this.getView = function(attributes) {
@@ -123,10 +120,10 @@ seventytwolions.Lookup = function(global) {
             exists = null;
 
             // Check if the class that we want to load exists
-            if(seventytwolions.View[className] !== undefined){
-                viewObj = {id: id, classType: new seventytwolions.View[className]()};
+            if(STL.View[className] !== undefined){
+                viewObj = {id: id, classType: new STL.View[className]()};
             } else {
-                viewObj = {id: id, classType: new seventytwolions.View.Base()};
+                viewObj = {id: id, classType: new STL.View.Base()};
             }
 
             _views[className].push(viewObj);
@@ -146,7 +143,7 @@ seventytwolions.Lookup = function(global) {
      * @param {String} attributes.id The unique id for this class
      * @param {Object} attributes.data The data of the model
      * @returns A model
-     * @type seventytwolions.Model.Base
+     * @type STL.Model.Base
      * @author Thodoris Tsiridis
      */
     this.getModel = function(attributes) {
@@ -174,10 +171,10 @@ seventytwolions.Lookup = function(global) {
             exists = null;
 
             // Check if the class that we want to load exists
-            if(seventytwolions.Model[name] !== undefined){
-                modelObj = {id: id, classType: new seventytwolions.Model[name]()};
+            if(STL.Model[name] !== undefined){
+                modelObj = {id: id, classType: new STL.Model[name]()};
             } else {
-                modelObj = {id: id, classType: new seventytwolions.Model.Base()};
+                modelObj = {id: id, classType: new STL.Model.Base()};
             }
 
             _models[name].push(modelObj);

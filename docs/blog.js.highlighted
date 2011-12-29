@@ -3,18 +3,18 @@
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
 <span class="cm"> * @class Blog</span>
-<span class="cm"> * @namespace seventytwolions.Controller</span>
-<span class="cm"> * @extends seventytwolions.Controller.Base</span>
+<span class="cm"> * @namespace STL.Controller</span>
+<span class="cm"> * @extends STL.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * A reference to this class</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.Controller.Blog</span>
+<span class="cm">     * @type STL.Controller.Blog</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -22,10 +22,11 @@
 <span class="cm">     * The categories Model</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
-<span class="cm">     * @type seventytwolions.Model.Categories</span>
+<span class="cm">     * @type STL.Model.Categories</span>
+<span class="cm">     * @property categoriesModel</span>
 <span class="cm">     * @default undefined</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">categoriesModel</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * An array with all the portfolio items</span>
@@ -90,10 +91,10 @@
             <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 
                 <span class="nx">portfolioItems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
-                    <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+                    <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
                         <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span><span class="p">,</span>
                         <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Id</span><span class="p">,</span>
-                        <span class="nx">model</span><span class="o">:</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                        <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
                             <span class="nx">data</span><span class="o">:</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
                         <span class="p">})</span>
                      <span class="p">})</span>
@@ -118,7 +119,7 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">loadCategories</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">categoriesModel</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
-            <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+            <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
                 <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Categories&#39;</span><span class="p">,</span>
                 <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;categoriesBlog&#39;</span>
             <span class="p">});</span>
@@ -139,5 +140,5 @@
     <span class="p">};</span>
 <span class="p">};</span>
 
-<span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>

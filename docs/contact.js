@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class Contact
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.Contact = function() {
+STL.Controller.Contact = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.Contact
+     * @type STL.Controller.Contact
      */
     var me = this;
 
@@ -47,4 +47,4 @@ seventytwolions.Controller.Contact = function() {
 
 };
 
-seventytwolions.Controller.Contact.prototype = new seventytwolions.Controller.Base();
+STL.Controller.Contact.prototype = new STL.Controller.Base();

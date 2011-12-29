@@ -3,18 +3,18 @@
  *
  * @module 72lions
  * @class SectionsManager
- * @namespace seventytwolions.Controller
- * @extends seventytwolions.Controller.Base
+ * @namespace STL.Controller
+ * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.Controller.SectionsManager = function() {
+STL.Controller.SectionsManager = function() {
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.Controller.SectionsManager
+     * @type STL.Controller.SectionsManager
      */
     var me = this;
 
@@ -30,55 +30,61 @@ seventytwolions.Controller.SectionsManager = function() {
      * The Portfolio Controller
      *
      * @private
-     * @type seventytwolions.Controller.Portfolio
+     * @type STL.Controller.Portfolio
+     * @property portfolio
      * @default undefined
      */
-    var portfolio = undefined;
+    var portfolio;
 
     /**
      * The Experiments Controller
      *
      * @private
-     * @type seventytwolions.Controller.Experiments
+     * @type STL.Controller.Experiments
+     * @property experiments
      * @default undefined
      */
-    var experiments = undefined;
+    var experiments;
 
     /**
      * The Blog Controller
      *
      * @private
-     * @type seventytwolions.Controller.Blog
+     * @type STL.Controller.Blog
+     * @property blog
      * @default undefined
      */
-    var blog = undefined;
+    var blog;
 
     /**
      * The initial state of the website
      *
      * @private
-     * @type seventytwolions.Controller.Contact
+     * @type STL.Controller.Contact
+     * @property contact
      * @default undefined
      */
-    var contact = undefined;
+    var contact;
 
     /**
      * The Post Details Controller
      *
      * @private
-     * @type seventytwolions.Controller.PostDetails
+     * @type STL.Controller.PostDetails
+     * @property postDetails
      * @default undefined
      */
-    var postDetails = undefined;
+    var postDetails;
 
     /**
      * The array that will hold all the sections
      *
      * @private
      * @type Array
+     * @property sections
      * @default undefined
      */
-    var sections = undefined;
+    var sections;
 
     /**
      * The number of total sections
@@ -96,27 +102,27 @@ seventytwolions.Controller.SectionsManager = function() {
      */
     this.postInitialize = function(){
 
-        portfolio = seventytwolions.ControllerManager.initializeController({
+        portfolio = STL.ControllerManager.initializeController({
                 type:'Portfolio',
                 id:'portfolio',
-                model: seventytwolions.Lookup.getModel({
+                model: STL.Lookup.getModel({
                     type:'Posts',
                     id:'portfolioModel'
                 })
         });
 
-        experiments = seventytwolions.ControllerManager.initializeController({
+        experiments = STL.ControllerManager.initializeController({
             type:'Experiments',
             id:'experiments',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                 id:'experimentsModel'
             })
         });
 
-        blog = seventytwolions.ControllerManager.initializeController({
+        blog = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'blog',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'blogModel'
             })
@@ -124,10 +130,10 @@ seventytwolions.Controller.SectionsManager = function() {
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
-        postDetails = seventytwolions.ControllerManager.initializeController({
+        postDetails = STL.ControllerManager.initializeController({
             type:'PostDetails',
             id:'postDetails',
-            model: seventytwolions.Lookup.getModel({
+            model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'postDetailsModel'
             })
@@ -209,4 +215,4 @@ seventytwolions.Controller.SectionsManager = function() {
 
 };
 
-seventytwolions.Controller.SectionsManager.prototype = new seventytwolions.Controller.Base();
+STL.Controller.SectionsManager.prototype = new STL.Controller.Base();

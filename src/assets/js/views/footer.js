@@ -3,12 +3,12 @@
  *
  * @module 72lions
  * @class Footer
- * @namespace seventytwolions.View
- * @extends seventytwolions.View.Base
+ * @namespace STL.View
+ * @extends STL.View.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-seventytwolions.View.Footer = function() {
+STL.View.Footer = function() {
 
     /**
      * The total number of flickr photos to show
@@ -31,15 +31,16 @@ seventytwolions.View.Footer = function() {
      * The links DOM Elements
      *
      * @type Array
+     * @property $links
      * @default undefined
      */
-    var $links = undefined;
+    var $links;
 
     /**
      * A reference to this class
      *
      * @private
-     * @type seventytwolions.View.Footer
+     * @type STL.View.Footer
      */
     var me = this;
 
@@ -100,7 +101,7 @@ seventytwolions.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize =  function(){
-        //seventytwolions.Console.log('Initializing view with name ' + this.name);
+        //STL.Console.log('Initializing view with name ' + this.name);
         $links = this.domElement.find('.menu a');
         $tweetsContainerDomElement = this.domElement.find('.latest-tweets article');
         $flickrContainerDomElement = this.domElement.find('.flickr-photos nav');
@@ -111,7 +112,7 @@ seventytwolions.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
 	this.draw = function() {
-		//seventytwolions.Console.log('Drawing view with name ' + this.name);
+		//STL.Console.log('Drawing view with name ' + this.name);
 	};
 
    /**
@@ -119,7 +120,7 @@ seventytwolions.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.postDraw =  function(){
-        //seventytwolions.Console.log('Post draw view with name ' + this.name);
+        //STL.Console.log('Post draw view with name ' + this.name);
         addEventListeners();
     };
 
@@ -263,4 +264,4 @@ seventytwolions.View.Footer = function() {
 
 };
 
-seventytwolions.View.Footer.prototype = new seventytwolions.View.Base();
+STL.View.Footer.prototype = new STL.View.Base();
