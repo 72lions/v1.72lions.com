@@ -54,7 +54,7 @@
 
 		for ($i=0; $i < $totalPosts; $i++) {
 			$post = $posts[$i];
-			$link = date('Y/m', strtotime($post->pubDate)).'/'.$post->slug;
+			$link = '/' . date('Y/m', strtotime($post->pubDate)).'/'.$post->slug;
 
 			$postCategories = $post->categories;
 			$totalCategories = count($postCategories);
