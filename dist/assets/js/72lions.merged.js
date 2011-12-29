@@ -687,9 +687,13 @@ seventytwolions.Model.Locale = (function(global){
 seventytwolions.ControllerManager = function(global) {
 
     /**
-     * Initializes a controller with a specific name
+     * Initializes a controller with a specific type, id, view and model
      *
-     * @param {Object} object The parameters
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
+     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @return {seventytwolions.Controller.Base}
      * @author Thodoris Tsiridis
      */
@@ -739,10 +743,11 @@ seventytwolions.Lookup = function(global) {
     /**
      * Returns a controller with a specific name
      *
-     * @param {String} className The name of the controllers
-     * @param {String} id The unique id for this controller
-     * @param {String} viewClassName The name of a different view
-     * @param {Object} model The model that we want to use
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
+     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
@@ -794,14 +799,17 @@ seventytwolions.Lookup = function(global) {
     /**
      * Returns a view with a specific name
      *
-     * @param {String} name The name of the controllers
-     * @param {String} id The unique id for this controller
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
      * @returns A view
      * @type seventytwolions.View.Base
      * @author Thodoris Tsiridis
      */
-    this.getView = function(className, id) {
-        var exists = -1, viewObj;
+    this.getView = function(attributes) {
+        var exists = -1, viewObj, id, className;
+        className = attributes.type || 'Base';
+        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
 
         // Check if there is an array with objects of className type
         // If not then create a new array
@@ -829,7 +837,7 @@ seventytwolions.Lookup = function(global) {
             }
 
             _views[className].push(viewObj);
-            viewObj.classType.preInitialize(className, id);
+            viewObj.classType.preInitialize(attributes);
             return viewObj.classType;
 
         } else {
@@ -840,8 +848,10 @@ seventytwolions.Lookup = function(global) {
     /**
      * Returns a model with a specific name
      *
-     * @param {String} name The name of the controllers
-     * @param {Object} modelData The data of the model
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {Object} attributes.data The data of the model
      * @returns A model
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
@@ -851,6 +861,7 @@ seventytwolions.Lookup = function(global) {
         modelData = attributes.data || {};
         name = attributes.type || 'Base';
         id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
+
         // Check if there is an array with objects of className type
         // If not then create a new array
         if(!_models[name] || !$.isArray(_models[name])) {
@@ -1045,11 +1056,14 @@ seventytwolions.View.Base = function() {
     /**
      * Is triggered before initialization of the view
      *
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
      * @author Thodoris Tsiridis
      */
-    this.preInitialize = function(name, id) {
-        this.setName(name);
-        this.setId(id);
+    this.preInitialize = function(attributes) {
+        this.setName(attributes.type);
+        this.setId(attributes.id);
     };
 
     /**
@@ -1239,7 +1253,11 @@ seventytwolions.Controller.Base = function() {
     /**
      * Initializes the plugin
      *
-     * @param {Object} attributes The attributes to be used while initializing a controller
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
+     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
@@ -1248,9 +1266,10 @@ seventytwolions.Controller.Base = function() {
         this.name = attributes.type || '';
 
         // Get a reference to the view
-        _view = attributes.view || seventytwolions.Lookup.getView(this.name, this.id);
+        _view = attributes.view || seventytwolions.Lookup.getView({type:this.name, id: this.id});
+
         // get a reference to the model
-        _model = this.model = attributes.model;
+        _model = this.model = attributes.model || seventytwolions.Lookup.getModel({type:this.name, id: this.id});
 
         // ask it to set the model, initialize, draw and postDraw
         _view.setModel(_model);

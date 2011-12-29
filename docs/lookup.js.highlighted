@@ -36,10 +36,11 @@
     <span class="cm">/**</span>
 <span class="cm">     * Returns a controller with a specific name</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {String} className The name of the controllers</span>
-<span class="cm">     * @param {String} id The unique id for this controller</span>
-<span class="cm">     * @param {String} viewClassName The name of a different view</span>
-<span class="cm">     * @param {Object} model The model that we want to use</span>
+<span class="cm">     * @param {Object} attributes The attributes that will be used to initialize the class</span>
+<span class="cm">     * @param {String} attributes.type The class type</span>
+<span class="cm">     * @param {String} attributes.id The unique id for this class</span>
+<span class="cm">     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller</span>
+<span class="cm">     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller</span>
 <span class="cm">     * @returns A controller</span>
 <span class="cm">     * @type seventytwolions.Controller.Base</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
@@ -91,14 +92,17 @@
     <span class="cm">/**</span>
 <span class="cm">     * Returns a view with a specific name</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {String} name The name of the controllers</span>
-<span class="cm">     * @param {String} id The unique id for this controller</span>
+<span class="cm">     * @param {Object} attributes The attributes that will be used to initialize the class</span>
+<span class="cm">     * @param {String} attributes.type The class type</span>
+<span class="cm">     * @param {String} attributes.id The unique id for this class</span>
 <span class="cm">     * @returns A view</span>
 <span class="cm">     * @type seventytwolions.View.Base</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getView</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">className</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">exists</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">viewObj</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getView</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">exists</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">viewObj</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">className</span><span class="p">;</span>
+        <span class="nx">className</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="s1">&#39;Base&#39;</span><span class="p">;</span>
+        <span class="nx">id</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span> <span class="o">||</span> <span class="p">(</span><span class="s1">&#39;_id_&#39;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10000</span><span class="p">).</span><span class="nx">toString</span><span class="p">());</span>
 
         <span class="c1">// Check if there is an array with objects of className type</span>
         <span class="c1">// If not then create a new array</span>
@@ -126,7 +130,7 @@
             <span class="p">}</span>
 
             <span class="nx">_views</span><span class="p">[</span><span class="nx">className</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">viewObj</span><span class="p">);</span>
-            <span class="nx">viewObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">.</span><span class="nx">preInitialize</span><span class="p">(</span><span class="nx">className</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
+            <span class="nx">viewObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">.</span><span class="nx">preInitialize</span><span class="p">(</span><span class="nx">attributes</span><span class="p">);</span>
             <span class="k">return</span> <span class="nx">viewObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">;</span>
 
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -137,8 +141,10 @@
     <span class="cm">/**</span>
 <span class="cm">     * Returns a model with a specific name</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {String} name The name of the controllers</span>
-<span class="cm">     * @param {Object} modelData The data of the model</span>
+<span class="cm">     * @param {Object} attributes The attributes that will be used to initialize the class</span>
+<span class="cm">     * @param {String} attributes.type The class type</span>
+<span class="cm">     * @param {String} attributes.id The unique id for this class</span>
+<span class="cm">     * @param {Object} attributes.data The data of the model</span>
 <span class="cm">     * @returns A model</span>
 <span class="cm">     * @type seventytwolions.Model.Base</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
@@ -148,6 +154,7 @@
         <span class="nx">modelData</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">data</span> <span class="o">||</span> <span class="p">{};</span>
         <span class="nx">name</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="s1">&#39;Base&#39;</span><span class="p">;</span>
         <span class="nx">id</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span> <span class="o">||</span> <span class="p">(</span><span class="s1">&#39;_id_&#39;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10000</span><span class="p">).</span><span class="nx">toString</span><span class="p">());</span>
+
         <span class="c1">// Check if there is an array with objects of className type</span>
         <span class="c1">// If not then create a new array</span>
         <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">_models</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">||</span> <span class="o">!</span><span class="nx">$</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">_models</span><span class="p">[</span><span class="nx">name</span><span class="p">]))</span> <span class="p">{</span>

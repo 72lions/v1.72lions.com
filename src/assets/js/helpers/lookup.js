@@ -36,10 +36,11 @@ seventytwolions.Lookup = function(global) {
     /**
      * Returns a controller with a specific name
      *
-     * @param {String} className The name of the controllers
-     * @param {String} id The unique id for this controller
-     * @param {String} viewClassName The name of a different view
-     * @param {Object} model The model that we want to use
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
+     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @returns A controller
      * @type seventytwolions.Controller.Base
      * @author Thodoris Tsiridis
@@ -91,14 +92,17 @@ seventytwolions.Lookup = function(global) {
     /**
      * Returns a view with a specific name
      *
-     * @param {String} name The name of the controllers
-     * @param {String} id The unique id for this controller
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
      * @returns A view
      * @type seventytwolions.View.Base
      * @author Thodoris Tsiridis
      */
-    this.getView = function(className, id) {
-        var exists = -1, viewObj;
+    this.getView = function(attributes) {
+        var exists = -1, viewObj, id, className;
+        className = attributes.type || 'Base';
+        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
 
         // Check if there is an array with objects of className type
         // If not then create a new array
@@ -126,7 +130,7 @@ seventytwolions.Lookup = function(global) {
             }
 
             _views[className].push(viewObj);
-            viewObj.classType.preInitialize(className, id);
+            viewObj.classType.preInitialize(attributes);
             return viewObj.classType;
 
         } else {
@@ -137,8 +141,10 @@ seventytwolions.Lookup = function(global) {
     /**
      * Returns a model with a specific name
      *
-     * @param {String} name The name of the controllers
-     * @param {Object} modelData The data of the model
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {Object} attributes.data The data of the model
      * @returns A model
      * @type seventytwolions.Model.Base
      * @author Thodoris Tsiridis
@@ -148,6 +154,7 @@ seventytwolions.Lookup = function(global) {
         modelData = attributes.data || {};
         name = attributes.type || 'Base';
         id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
+
         // Check if there is an array with objects of className type
         // If not then create a new array
         if(!_models[name] || !$.isArray(_models[name])) {

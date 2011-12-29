@@ -305,9 +305,13 @@
 <span class="nx">seventytwolions</span><span class="p">.</span><span class="nx">ControllerManager</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Initializes a controller with a specific name</span>
+<span class="cm">     * Initializes a controller with a specific type, id, view and model</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param {Object} object The parameters</span>
+<span class="cm">     * @param {Object} attributes The attributes that will be used to initialize the class</span>
+<span class="cm">     * @param {String} attributes.type The class type</span>
+<span class="cm">     * @param {String} attributes.id The unique id for this class</span>
+<span class="cm">     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller</span>
+<span class="cm">     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller</span>
 <span class="cm">     * @return {seventytwolions.Controller.Base}</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>

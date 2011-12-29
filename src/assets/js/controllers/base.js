@@ -56,7 +56,11 @@ seventytwolions.Controller.Base = function() {
     /**
      * Initializes the plugin
      *
-     * @param {Object} attributes The attributes to be used while initializing a controller
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
+     * @param {seventytwolions.Model.Base} attributes.model The model to be used by this controller
+     * @param {seventytwolions.View.Base} attributes.view The view to be used by this controller
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
@@ -65,9 +69,10 @@ seventytwolions.Controller.Base = function() {
         this.name = attributes.type || '';
 
         // Get a reference to the view
-        _view = attributes.view || seventytwolions.Lookup.getView(this.name, this.id);
+        _view = attributes.view || seventytwolions.Lookup.getView({type:this.name, id: this.id});
+
         // get a reference to the model
-        _model = this.model = attributes.model;
+        _model = this.model = attributes.model || seventytwolions.Lookup.getModel({type:this.name, id: this.id});
 
         // ask it to set the model, initialize, draw and postDraw
         _view.setModel(_model);

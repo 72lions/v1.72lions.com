@@ -112,11 +112,14 @@ seventytwolions.View.Base = function() {
     /**
      * Is triggered before initialization of the view
      *
+     * @param {Object} attributes The attributes that will be used to initialize the class
+     * @param {String} attributes.type The class type
+     * @param {String} attributes.id The unique id for this class
      * @author Thodoris Tsiridis
      */
-    this.preInitialize = function(name, id) {
-        this.setName(name);
-        this.setId(id);
+    this.preInitialize = function(attributes) {
+        this.setName(attributes.type);
+        this.setId(attributes.id);
     };
 
     /**
