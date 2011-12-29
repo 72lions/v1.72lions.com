@@ -1,0 +1,697 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: 72lions
+    
+      &rarr; STL.Lookup class
+    
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="72lions">72lions</a> v1.0.0
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="72lions">72lions</a>
+          &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
+          
+            &rarr; class STL.Lookup
+          
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_72lions.html">72lions</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="STL.Console.html">STL.Console</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.About.html">STL.Controller.About</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Base.html">STL.Controller.Base</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Blog.html">STL.Controller.Blog</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Contact.html">STL.Controller.Contact</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Experiments.html">STL.Controller.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Footer.html">STL.Controller.Footer</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Main.html">STL.Controller.Main</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Navigation.html">STL.Controller.Navigation</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Portfolio.html">STL.Controller.Portfolio</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.PostDetails.html">STL.Controller.PostDetails</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.SectionsManager.html">STL.Controller.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.ThumbnailItem.html">STL.Controller.ThumbnailItem</a>
+                  </li>
+                  <li >
+                    <a href="STL.ControllerManager.html">STL.ControllerManager</a>
+                  </li>
+                  <li >
+                    <a href="STL.EventTarget.html">STL.EventTarget</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="STL.Lookup.html">STL.Lookup</a>
+                  </li>
+                  <li >
+                    <a href="STL.Model.Base.html">STL.Model.Base</a>
+                  </li>
+                  <li >
+                    <a href="STL.Model.Categories.html">STL.Model.Categories</a>
+                  </li>
+                  <li >
+                    <a href="STL.Model.Footer.html">STL.Model.Footer</a>
+                  </li>
+                  <li >
+                    <a href="STL.Model.Locale.html">STL.Model.Locale</a>
+                  </li>
+                  <li >
+                    <a href="STL.Model.Posts.html">STL.Model.Posts</a>
+                  </li>
+                  <li >
+                    <a href="STL.Router.html">STL.Router</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.About.html">STL.View.About</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Base.html">STL.View.Base</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Blog.html">STL.View.Blog</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Contact.html">STL.View.Contact</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Experiments.html">STL.View.Experiments</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Footer.html">STL.View.Footer</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Main.html">STL.View.Main</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Navigation.html">STL.View.Navigation</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.Portfolio.html">STL.View.Portfolio</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.PostDetails.html">STL.View.PostDetails</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.SectionsManager.html">STL.View.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="STL.View.ThumbnailItem.html">STL.View.ThumbnailItem</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="about.js.html">about.js</a>
+                  </li>
+                  <li >
+                    <a href="base.js.html">base.js</a>
+                  </li>
+                  <li >
+                    <a href="blog.js.html">blog.js</a>
+                  </li>
+                  <li >
+                    <a href="categories.js.html">categories.js</a>
+                  </li>
+                  <li >
+                    <a href="console.js.html">console.js</a>
+                  </li>
+                  <li >
+                    <a href="contact.js.html">contact.js</a>
+                  </li>
+                  <li >
+                    <a href="controllermanager.js.html">controllermanager.js</a>
+                  </li>
+                  <li >
+                    <a href="eventtarget.js.html">eventtarget.js</a>
+                  </li>
+                  <li >
+                    <a href="experiments.js.html">experiments.js</a>
+                  </li>
+                  <li >
+                    <a href="footer.js.html">footer.js</a>
+                  </li>
+                  <li >
+                    <a href="locale_en.js.html">locale_en.js</a>
+                  </li>
+                  <li >
+                    <a href="lookup.js.html">lookup.js</a>
+                  </li>
+                  <li >
+                    <a href="main.js.html">main.js</a>
+                  </li>
+                  <li >
+                    <a href="navigation.js.html">navigation.js</a>
+                  </li>
+                  <li >
+                    <a href="portfolio.js.html">portfolio.js</a>
+                  </li>
+                  <li >
+                    <a href="postdetails.js.html">postdetails.js</a>
+                  </li>
+                  <li >
+                    <a href="posts.js.html">posts.js</a>
+                  </li>
+                  <li >
+                    <a href="router.js.html">router.js</a>
+                  </li>
+                  <li >
+                    <a href="sectionsmanager.js.html">sectionsmanager.js</a>
+                  </li>
+                  <li >
+                    <a href="thumbnailitem.js.html">thumbnailitem.js</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="propertyList" class="module">
+              <h4>Properties</h4>
+              <ul>
+                  <li class="private ">
+                    <a href="#property__controllers">_controllers</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property__models">_models</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property__views">_views</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="methodsList" class="module">
+              <h4>Methods</h4>
+              <ul>
+                  <li class=" ">
+                    <a href="#method_getController">getController</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_getModel">getModel</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_getView">getView</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+      
+        <h2>
+          
+
+          
+
+          
+
+          class <strong>STL.Lookup</strong>
+          
+        </h2>
+
+        <!-- class tree goes here -->
+
+
+
+        <div class="summary description">
+          Lookup up utility that loads or creates controllers, views and models
+        </div>
+        
+
+
+
+        <div class="clear"></div>
+
+
+
+
+          <div class="section properties" resource="#properties">
+              <h3>Properties</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      Properties
+                    </th>
+                    <th>
+                      Type
+                    </th>
+                    <th>
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr class="private " resource="#property__controllers">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property__controllers">_controllers</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          An object holding all the different controllers
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property__models">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property__models">_models</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          An object holding all the different models
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property__views">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property__views">_views</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          An object holding all the different views
+
+                        </div>
+                      </td>
+
+                    </tr>
+              
+                </tbody>
+              </table>
+
+          </div>
+
+
+          <div class="section methods" resource="#methods">
+              <h3>Methods</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      Methods
+                    </th>
+                    <th>
+                      Returns
+                    </th>
+                    <th>
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    <tr class=" " resource="#method_getController">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_getController">getController</a>(
+                          attributes
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Returns a controller with a specific name
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  attributes
+                                  &lt;Object&gt;
+                                </code>
+                                 The attributes that will be used to initialize the class
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.type
+                                  &lt;String&gt;
+                                </code>
+                                 The class type
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.id
+                                  &lt;String&gt;
+                                </code>
+                                 The unique id for this class
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_getModel">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_getModel">getModel</a>(
+                          attributes
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Returns a model with a specific name
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  attributes
+                                  &lt;Object&gt;
+                                </code>
+                                 The attributes that will be used to initialize the class
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.type
+                                  &lt;String&gt;
+                                </code>
+                                 The class type
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.id
+                                  &lt;String&gt;
+                                </code>
+                                 The unique id for this class
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.data
+                                  &lt;Object&gt;
+                                </code>
+                                 The data of the model
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_getView">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_getView">getView</a>(
+                          attributes
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Returns a view with a specific name
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  attributes
+                                  &lt;Object&gt;
+                                </code>
+                                 The attributes that will be used to initialize the class
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.type
+                                  &lt;String&gt;
+                                </code>
+                                 The class type
+                              </li>
+                              <li>
+                                <code>
+                                  attributes.id
+                                  &lt;String&gt;
+                                </code>
+                                 The unique id for this class
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
+
+                </tbody>
+              </table>
+
+
+
+          </div>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2011 72lions. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

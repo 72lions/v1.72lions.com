@@ -24,7 +24,7 @@
   margin-bottom: 0.4em;
   display: inline-block;
 }
-  
+
 #content div.section {
   margin-top: 3em;
   padding-top: 2em;
@@ -92,3 +92,6 @@
   color: #d88;
 }
 
+#fileList {
+  display:none;
+}
