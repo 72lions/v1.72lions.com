@@ -179,6 +179,7 @@
 			<nav>
 				<ul class="clearfix">
 					<li><a href="/category/blog" class="nav-blog" title="Blog">Blog</a></li>
+					<li><a href="/category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>
 					<li><a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
 					<li><a href="/about" class="nav-about" title="About">About</a></li>
 				</ul>
@@ -242,6 +243,12 @@
 					</div>
 				</section>
 
+				<section class="experiments">
+					<div class="centered">
+
+					</div>
+				</section>
+
 				<section class="portfolio">
 					<div class="centered">
 					</div>
@@ -253,6 +260,7 @@
 			<aside class="menu">
 				<nav>
 					<a href="/category/blog" class="nav-blog" title="Blog">Blog</a>
+					<a href="/category/experiments" class="nav-experiments" title="Experiments">Experiments</a>
 					<a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
 					<a href="/about" class="nav-about" title="About">About</a>
 				</nav>
@@ -307,8 +315,8 @@
 		<script type="text/javascript" src="/assets/js/controllers/navigation.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/sectionsmanager.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/portfolio.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/experiments.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/blog.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/experiments.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/about.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/contact.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/thumbnailitem.js"></script>
@@ -325,8 +333,8 @@
 		<script type="text/javascript" src="/assets/js/views/navigation.js"></script>
 		<script type="text/javascript" src="/assets/js/views/sectionsmanager.js"></script>
 		<script type="text/javascript" src="/assets/js/views/portfolio.js"></script>
-		<script type="text/javascript" src="/assets/js/views/experiments.js"></script>
 		<script type="text/javascript" src="/assets/js/views/blog.js"></script>
+		<script type="text/javascript" src="/assets/js/views/experiments.js"></script>
 		<script type="text/javascript" src="/assets/js/views/about.js"></script>
 		<script type="text/javascript" src="/assets/js/views/contact.js"></script>
 		<script type="text/javascript" src="/assets/js/views/thumbnailitem.js"></script>

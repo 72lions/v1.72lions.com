@@ -96,6 +96,15 @@ STL.Controller.SectionsManager = function() {
     var totalSections = 4;
 
     /**
+     * The current section name
+     *
+     * @private
+     * @type String
+     * @default '-'
+     */
+    var currentSection = '-';
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
@@ -115,6 +124,7 @@ STL.Controller.SectionsManager = function() {
             type:'Experiments',
             id:'experiments',
             model: STL.Lookup.getModel({
+                type:'Posts',
                 id:'experimentsModel'
             })
         });
@@ -158,6 +168,13 @@ STL.Controller.SectionsManager = function() {
 
             section = state.pathSegments[1];
 
+            //If this is the same section then don't do anything
+            if (currentSection === section) {
+                return;
+            }
+
+            currentSection = section;
+
             for (i = 0; i < len; i++) {
 
                 if(sections[i].name === section){
@@ -181,12 +198,20 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/' + state.path]);
 
+                section = state.pathSegments[state.pathSegments.length - 1];
+
+                //If this is the same section then don't do anything
+                if (currentSection === section) {
+                    return;
+                }
+
+                currentSection = section;
+
                 // if we don't have a path segment with category at its first position
                 for (i = 0; i < len; i++) {
                     sections[i].object.hide();
                 }
 
-                section = state.pathSegments[state.pathSegments.length - 1];
                 postDetails.load(section);
 
             } else {
@@ -194,7 +219,17 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/']);
 
+                section = 'blog';
+
+                //If this is the same section then don't do anything
+                if (currentSection === section) {
+                    return;
+                }
+
+                currentSection = section;
+
                 postDetails.hide();
+
                 for (i = 0; i < len; i++) {
 
                     if(sections[i].name !== 'blog'){

@@ -24,10 +24,8 @@ STL.ControllerManager = function(global) {
         var ctl;
 
         ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
-
         ctl.setView(attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id}));
         ctl.setModel(attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id}));
-
         ctl.postInitialize();
 
         return ctl;

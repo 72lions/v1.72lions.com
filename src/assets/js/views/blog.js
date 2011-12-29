@@ -18,6 +18,12 @@ STL.View.Blog = function() {
    this.domElement = $('.blog');
 
     /**
+     * The section title
+     * @type {String}
+     */
+    this.sectionName = 'Blog';
+
+    /**
      * A reference to this class
      *
      * @private
@@ -106,9 +112,10 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        //STL.Console.log('Show view with name ' + this.name);
         var that = this;
 
-        document.title = 'Blog - ' + STL.Model.Locale.getPageTitle();
+        document.title = this.sectionName + ' - ' + STL.Model.Locale.getPageTitle();
 
         this.domElement.addClass('active');
 
@@ -125,6 +132,7 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
+        //STL.Console.log('Hide view with name ' + this.name);
         this.domElement.removeClass('active').css('opacity', 0);
     };
 

@@ -38,12 +38,30 @@ STL.Controller.Blog = function() {
     var portfolioItems = [];
 
     /**
+     * The id of the blog category
+     *
+     * @private
+     * @type Number
+     * @default 3
+     */
+    var categoryId = 3;
+
+    /**
+     * The name of the data from the model
+     *
+     * @private
+     * @type String
+     * @default 'Blog'
+     */
+    var modelName = 'Blog';
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-        this.loadBlogPosts();
+        this.loadData();
         //this.loadCategories();
 
     };
@@ -70,8 +88,8 @@ STL.Controller.Blog = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.loadBlogPosts = function() {
-        this.getModel().getPosts(3, 0, 80, onBlogPostsLoaded, this);
+    this.loadData = function() {
+        this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
     };
 
     /**
@@ -81,12 +99,12 @@ STL.Controller.Blog = function() {
      * @param  {Object} result The result object
      * @author Thodoris Tsiridis
      */
-    var onBlogPostsLoaded = function(result) {
+    var onDataLoaded = function(result) {
         var i;
 
-        if(typeof(this.getModel().get('Blog')) === 'undefined'){
+        if(typeof(this.getModel().get(modelName)) === 'undefined'){
 
-            this.getModel().set('Blog', result);
+            this.getModel().set(modelName, result);
 
             for (i = 0; i < result.length; i++) {
 
