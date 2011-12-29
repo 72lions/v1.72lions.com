@@ -12,15 +12,19 @@
 
 	if($section == 'blog'|| $section == '') {
 		$id = 3;
+		$description = 'My name is Thodoris Tsiridis and this is my blog. Here you can find all the things that I like to do and talk about';
 		$title = 'Blog - ';
 	} else if($section == 'portfolio') {
 		$id = 7;
+		$description = 'My name is Thodoris Tsiridis and this is my portfolio. Here you can find all my latest work!';
 		$title = 'Portfolio - ';
 	} else if($section == 'about') {
 		$id = 0;
+		$description = 'My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!';
 		$title = 'About - ';
 	} else if($section == 'contact') {
 		$id = 0;
+		$description = 'My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!';
 		$title = 'Contact - ';
 	} else {
 		$id = $section;
@@ -105,7 +109,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 		<title><?php echo $title;?>72Lions - The playground of developer Thodoris Tsiridis</title>
-		<meta name="description" content="My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!" />
+		<meta name="description" content="<?php echo $description;?>" />
 		<meta name="author" content="Thodoris Tsiridis" />
 
 		<!-- Mobile viewport optimized: j.mp/bplateviewport -->
