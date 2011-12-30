@@ -19,7 +19,7 @@ STL.Controller.Base = function() {
      * @property _view
      * @default undefined
      */
-    var _view;
+    this._view = undefined;
 
     /**
      * A reference to this controller's model
@@ -29,7 +29,7 @@ STL.Controller.Base = function() {
      * @property _model
      * @default undefined
      */
-    var _model;
+    this._model = undefined;
 
     /**
      * The controller id
@@ -56,8 +56,6 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
-        var l;
-
         this.id = attributes.id || id;
         this.name = attributes.type || '';
 
@@ -80,13 +78,13 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setView = function(view) {
-        _view = view;
+       this._view = view;
 
         // ask it to set the model, initialize, draw and postDraw
-        _view.setModel(this.getModel());
-        _view.initialize();
-        _view.draw();
-        _view.postDraw();
+        this._view.setModel(this.getModel());
+        this._view.initialize();
+        this._view.draw();
+        this._view.postDraw();
     };
 
     /**
@@ -96,7 +94,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.getView = function() {
-        return _view;
+        return this._view;
     };
 
     /**
@@ -106,7 +104,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
-        return _model;
+        return this._model;
     };
 
     /**
@@ -116,8 +114,8 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
-      _model = model;
-      _view.setModel(model);
+      this._model = model;
+      this._view.setModel(model);
     };
 
 };

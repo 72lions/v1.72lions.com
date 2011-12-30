@@ -362,9 +362,15 @@
     <span class="cm">/**</span>
 <span class="cm">     * This function is executed right after the initialized function is called</span>
 <span class="cm">     *</span>
+<span class="cm">     * @param {Object} options The options to use when initialing the controller</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+            <span class="nx">modelName</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">modelName</span> <span class="o">||</span> <span class="nx">modelName</span><span class="p">;</span>
+            <span class="nx">categoryId</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">categoryId</span> <span class="o">||</span> <span class="nx">categoryId</span><span class="p">;</span>
+        <span class="p">}</span>
 
     <span class="p">};</span>
 

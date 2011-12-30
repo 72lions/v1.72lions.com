@@ -121,23 +121,24 @@ STL.Controller.SectionsManager = function() {
         });
 
         experiments = STL.ControllerManager.initializeController({
-            type:'Experiments',
+            type:'Blog',
             id:'experiments',
             view: STL.Lookup.getView({type:'Experiments', id: 'experiments'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'experimentsModel'
             })
-        });
+        }, {categoryId:4, modelName:'Experiments'});
 
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'blog',
+            view: STL.Lookup.getView({type:'Blog', id: 'blog'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'blogModel'
             })
-        });
+        }, {categoryId:3, modelName:'Blog'});
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 

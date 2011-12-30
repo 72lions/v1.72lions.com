@@ -67,9 +67,15 @@ STL.Controller.Blog = function() {
     /**
      * This function is executed right after the initialized function is called
      *
+     * @param {Object} options The options to use when initialing the controller
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(options){
+
+        if(options){
+            modelName = options.modelName || modelName;
+            categoryId = options.categoryId || categoryId;
+        }
 
     };
 

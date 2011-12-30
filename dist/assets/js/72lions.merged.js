@@ -1222,7 +1222,7 @@ STL.Controller.Base = function() {
      * @property _view
      * @default undefined
      */
-    var _view;
+    this._view = undefined;
 
     /**
      * A reference to this controller's model
@@ -1232,7 +1232,7 @@ STL.Controller.Base = function() {
      * @property _model
      * @default undefined
      */
-    var _model;
+    this._model = undefined;
 
     /**
      * The controller id
@@ -1259,8 +1259,6 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
-        var l;
-
         this.id = attributes.id || id;
         this.name = attributes.type || '';
 
@@ -1283,13 +1281,13 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setView = function(view) {
-        _view = view;
+       this._view = view;
 
         // ask it to set the model, initialize, draw and postDraw
-        _view.setModel(this.getModel());
-        _view.initialize();
-        _view.draw();
-        _view.postDraw();
+        this._view.setModel(this.getModel());
+        this._view.initialize();
+        this._view.draw();
+        this._view.postDraw();
     };
 
     /**
@@ -1299,7 +1297,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.getView = function() {
-        return _view;
+        return this._view;
     };
 
     /**
@@ -1309,7 +1307,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
-        return _model;
+        return this._model;
     };
 
     /**
@@ -1319,8 +1317,8 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
-      _model = model;
-      _view.setModel(model);
+      this._model = model;
+      this._view.setModel(model);
     };
 
 };
@@ -1663,23 +1661,24 @@ STL.Controller.SectionsManager = function() {
         });
 
         experiments = STL.ControllerManager.initializeController({
-            type:'Experiments',
+            type:'Blog',
             id:'experiments',
             view: STL.Lookup.getView({type:'Experiments', id: 'experiments'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'experimentsModel'
             })
-        });
+        }, {categoryId:4, modelName:'Experiments'});
 
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'blog',
+            view: STL.Lookup.getView({type:'Blog', id: 'blog'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'blogModel'
             })
-        });
+        }, {categoryId:3, modelName:'Blog'});
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
@@ -2193,9 +2192,15 @@ STL.Controller.Blog = function() {
     /**
      * This function is executed right after the initialized function is called
      *
+     * @param {Object} options The options to use when initialing the controller
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(options){
+
+        if(options){
+            modelName = options.modelName || modelName;
+            categoryId = options.categoryId || categoryId;
+        }
 
     };
 
