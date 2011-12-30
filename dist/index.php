@@ -169,6 +169,7 @@
 			<nav>
 				<ul class="clearfix">
 					<li><a href="/category/blog" class="nav-blog" title="Blog">Blog</a></li>
+					<li><a href="/category/experiments" class="nav-experiments" title="Experiments">Experiments</a></li>
 					<li><a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a></li>
 					<li><a href="/about" class="nav-about" title="About">About</a></li>
 				</ul>
@@ -197,7 +198,7 @@
 									<script type="text/javascript">
 									    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 									    var disqus_shortname = '72lions'; // required: replace example with your forum shortname
-									    //var disqus_developer = 1;
+									    var disqus_developer = 1;
 									    var isDisqusLoaded = false;
 
 									    /**
@@ -232,6 +233,12 @@
 					</div>
 				</section>
 
+				<section class="experiments">
+					<div class="centered">
+
+					</div>
+				</section>
+
 				<section class="portfolio">
 					<div class="centered">
 					</div>
@@ -243,6 +250,7 @@
 			<aside class="menu">
 				<nav>
 					<a href="/category/blog" class="nav-blog" title="Blog">Blog</a>
+					<a href="/category/experiments" class="nav-experiments" title="Experiments">Experiments</a>
 					<a href="/category/portfolio" class="nav-portfolio" title="Portfolio">Portfolio</a>
 					<a href="/about" class="nav-about" title="About">About</a>
 				</nav>

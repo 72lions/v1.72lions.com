@@ -79,6 +79,15 @@ STL.View.Blog = function() {
     var COLUMN_MARGIN = 20;
 
     /**
+     * The markup that will be rendered on the page
+     *
+     * @private
+     * @type String
+     * @default ''
+     */
+    var markup = '';
+
+    /**
      * Initializes the view
      *
      * @author Thodoris Tsiridis
@@ -143,7 +152,16 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        itemsContainer.append(item);
+        markup += $('<div>').append(item.clone()).remove().html();
+    };
+
+
+    /**
+     * Renders the html markup on the page
+     * @author Thodoris Tsiridis
+     */
+    this.render = function() {
+        itemsContainer.html(markup);
     };
 
     /**

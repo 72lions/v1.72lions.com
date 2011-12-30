@@ -76,7 +76,6 @@
             <span class="p">}</span>
 
             <span class="nx">_controllers</span><span class="p">[</span><span class="nx">className</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">controllerObj</span><span class="p">);</span>
-            <span class="nx">controllerObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
             <span class="k">return</span> <span class="nx">controllerObj</span><span class="p">.</span><span class="nx">classType</span><span class="p">;</span>
 
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>

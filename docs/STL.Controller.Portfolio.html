@@ -282,6 +282,10 @@
                       <span class="access-private">[priv]</span>
                   </li>
                   <li class="private ">
+                    <a href="#property_dataLoaded">dataLoaded</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
                     <a href="#property_me">me</a>
                       <span class="access-private">[priv]</span>
                   </li>
@@ -302,13 +306,13 @@
                     <a href="#method_loadCategories">loadCategories</a>
                   </li>
                   <li class=" ">
-                    <a href="#method_loadPosts">loadPosts</a>
+                    <a href="#method_loadData">loadData</a>
                   </li>
                   <li class=" ">
                     <a href="#method_onCategoriesLoaded">onCategoriesLoaded</a>
                   </li>
                   <li class=" ">
-                    <a href="#method_onPostsLoaded">onPostsLoaded</a>
+                    <a href="#method_onDataLoaded">onDataLoaded</a>
                   </li>
                   <li class=" ">
                     <a href="#method_postInitialize">postInitialize</a>
@@ -408,6 +412,41 @@
                             <p>
                               <strong>Default value:</strong>
                               <code>undefined</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_dataLoaded">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_dataLoaded">dataLoaded</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Boolean
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Is set to true when the data for this page are loaded
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
                             </p>
                         </div>
                       </td>
@@ -558,24 +597,6 @@
                         </tr>
 
 
-                        <tr class="" resource="STL.Controller.Base.html#property_model">
-
-                          <td class="names">
-                            <code>
-                              <a href="STL.Controller.Base.html#property_model" title="model">model</a>
-                            </code>
-                          </td>
-
-                          <td class="description">
-                            <div>
-                              <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                            </div>
-                          </td>
-
-                        </tr>
-
-
                         <tr class="" resource="STL.Controller.Base.html#property_name">
 
                           <td class="names">
@@ -680,11 +701,11 @@
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#method_loadPosts">
+                    <tr class=" " resource="#method_loadData">
 
                       <td class="names">
                         <code>
-                          <a name="method_loadPosts">loadPosts</a>(
+                          <a name="method_loadData">loadData</a>(
                           
                           )
                         </code>
@@ -752,11 +773,11 @@
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#method_onPostsLoaded">
+                    <tr class=" " resource="#method_onDataLoaded">
 
                       <td class="names">
                         <code>
-                          <a name="method_onPostsLoaded">onPostsLoaded</a>(
+                          <a name="method_onDataLoaded">onDataLoaded</a>(
                           result
                           )
                         </code>

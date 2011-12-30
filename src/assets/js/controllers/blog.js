@@ -56,13 +56,20 @@ STL.Controller.Blog = function() {
     var modelName = 'Blog';
 
     /**
+     * Is set to true when the data for this page are loaded
+     *
+     * @private
+     * @type Boolean
+     * @default false
+     */
+    var dataLoaded = false;
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
-    this.postInitialize = function(){
-        this.loadData();
-        //this.loadCategories();
+    this.postInitialize = function(options){
 
     };
 
@@ -72,6 +79,9 @@ STL.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        if(!dataLoaded) {
+            this.loadData();
+        }
         this.getView().show();
     };
     /**
@@ -118,12 +128,16 @@ STL.Controller.Blog = function() {
                      })
                 );
 
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+
                 portfolioItems[i].getView().render();
                 portfolioItems[i].getView().showDescription();
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
             }
 
+            this.getView().render();
         }
+
+        dataLoaded = true;
 
         this.getView().positionItems();
     };

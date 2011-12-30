@@ -58,12 +58,14 @@ header.navigation nav ul li a:visited {
 }
 
 section.portfolio .centered article .description h1,
-section.blog .centered article .description h1 {
+section.blog .centered article .description h1,
+section.experiments .centered article .description h1 {
     font-size:28px;
 }
 
 section.portfolio .centered article,
-section.blog .centered article {
+section.blog .centered article,
+section.experiments .centered article {
     position:static !important;
     width:100% !important;
     margin-bottom:10px;
@@ -76,7 +78,8 @@ section.blog .centered article {
 }
 
 section.portfolio article.featured,
-section.blog article.featured {
+section.blog article.featured,
+section.experiments article.featured {
     width:100%;
 }
 
@@ -94,7 +97,8 @@ section.portfolio .centered article .photo {
 }
 
 section.portfolio .centered article img.thumbnail-image,
-section.blog .centered article img.thumbnail-image {
+section.blog .centered article img.thumbnail-image,
+section.experiments .centered article img.thumbnail-image {
     width: 100%;
     min-width:280px;
     height:auto !important;
@@ -105,7 +109,8 @@ section.blog .centered article img.thumbnail-image {
 }
 
 section.portfolio .centered article .photo .github-ribbon,
-section.blog .centered article .photo .github-ribbon {
+section.blog .centered article .photo .github-ribbon,
+section.experiments .centered article .photo .github-ribbon {
     width:85px !important;
     height:85px !important;
     -webkit-box-shadow: 0px 0px 0px rgba(0,0,0,0);

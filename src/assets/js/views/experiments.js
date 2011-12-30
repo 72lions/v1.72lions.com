@@ -81,6 +81,15 @@ STL.View.Experiments = function() {
     var COLUMN_MARGIN = 20;
 
     /**
+     * The markup that will be rendered on the page
+     *
+     * @private
+     * @type String
+     * @default ''
+     */
+    var markup = '';
+
+    /**
      * Initializes the view
      *
      * @author Thodoris Tsiridis
@@ -128,7 +137,6 @@ STL.View.Experiments = function() {
         isFirstTime = true;
         this.positionItems();
 
-        console.log('show');
     };
     /**
      * Hides the view
@@ -147,7 +155,15 @@ STL.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        itemsContainer.append(item);
+        markup += $('<div>').append(item.clone()).remove().html();
+    };
+
+    /**
+     * Renders the html markup on the page
+     * @author Thodoris Tsiridis
+     */
+    this.render = function() {
+        itemsContainer.html(markup);
     };
 
     /**
@@ -246,7 +262,6 @@ STL.View.Experiments = function() {
         }
 
         var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
-        console.log('position items')
     };
 
     /**

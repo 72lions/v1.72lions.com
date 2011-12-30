@@ -277,11 +277,39 @@
             <div id="propertyList" class="module">
               <h4>Properties</h4>
               <ul>
+                  <li class="private ">
+                    <a href="#property_COLUMN_MARGIN">COLUMN_MARGIN</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_COLUMN_MIN">COLUMN_MIN</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_COLUMN_WIDTH">COLUMN_WIDTH</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
                   <li class=" ">
                     <a href="#property_domElement">domElement</a>
                   </li>
                   <li class="private ">
+                    <a href="#property_isFirstTime">isFirstTime</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_itemsContainer">itemsContainer</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_markup">markup</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
                     <a href="#property_me">me</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_sectionName">sectionName</a>
                       <span class="access-private">[priv]</span>
                   </li>
               </ul>
@@ -291,6 +319,9 @@
               <h4>Methods</h4>
               <ul>
                   <li class=" ">
+                    <a href="#method_addPortfolioItem">addPortfolioItem</a>
+                  </li>
+                  <li class=" ">
                     <a href="#method_draw">draw</a>
                   </li>
                   <li class=" ">
@@ -299,8 +330,18 @@
                   <li class=" ">
                     <a href="#method_initialize">initialize</a>
                   </li>
+                  <li class="private ">
+                    <a href="#method_onWindowResize">onWindowResize</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_positionItems">positionItems</a>
+                  </li>
                   <li class=" ">
                     <a href="#method_postDraw">postDraw</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_render">render</a>
                   </li>
                   <li class=" ">
                     <a href="#method_show">show</a>
@@ -367,6 +408,117 @@
                 </thead>
                 <tbody>
                 
+                    <tr class="private " resource="#property_COLUMN_MARGIN">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_COLUMN_MARGIN">COLUMN_MARGIN</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Number
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                          <span class="final">final</span>
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The column margin
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>20</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_COLUMN_MIN">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_COLUMN_MIN">COLUMN_MIN</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Number
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                          <span class="final">final</span>
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The minimum columns that we can have
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>1</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_COLUMN_WIDTH">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_COLUMN_WIDTH">COLUMN_WIDTH</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Number
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                          <span class="final">final</span>
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The column width
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>218</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#property_domElement">
                   
                       <td class="names">
@@ -392,6 +544,107 @@
 
                           The DOM Element
 
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_isFirstTime">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_isFirstTime">isFirstTime</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Boolean
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Its true the first time we load the website
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_itemsContainer">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_itemsContainer">itemsContainer</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The items container DOM Element
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_markup">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_markup">markup</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          String
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The markup that will be rendered on the page
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>''</code>.
+                            </p>
                         </div>
                       </td>
 
@@ -422,6 +675,37 @@
                         <div>
 
                           A reference to this class
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_sectionName">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_sectionName">sectionName</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          {String}
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The section title
 
                         </div>
                       </td>
@@ -548,6 +832,47 @@
                 </thead>
                 <tbody>
 
+                    <tr class=" " resource="#method_addPortfolioItem">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_addPortfolioItem">addPortfolioItem</a>(
+                          item
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Adds a portfolio item to the view
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  item
+                                  &lt;Object&gt;
+                                </code>
+                                 The dom element that we want to append to the portfolio page
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#method_draw">
 
                       <td class="names">
@@ -641,6 +966,70 @@
                       </td>
 
                     </tr>
+                    <tr class="private " resource="#method_onWindowResize">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_onWindowResize">onWindowResize</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Triggered when the window is resized
+
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_positionItems">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_positionItems">positionItems</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Positions the grid items based on the page width
+
+
+
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#method_postDraw">
 
                       <td class="names">
@@ -666,6 +1055,37 @@
 
 
                         Executed after the drawing of the view
+
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_render">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_render">render</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Renders the html markup on the page
 
 
 

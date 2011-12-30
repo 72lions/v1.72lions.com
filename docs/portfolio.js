@@ -38,14 +38,20 @@ STL.Controller.Portfolio = function() {
     var portfolioItems = [];
 
     /**
+     * Is set to true when the data for this page are loaded
+     *
+     * @private
+     * @type Boolean
+     * @default false
+     */
+    var dataLoaded = false;
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-
-        this.loadPosts();
-        //this.loadCategories();
 
     };
 
@@ -55,6 +61,9 @@ STL.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        if(!dataLoaded) {
+            this.loadData();
+        }
         this.getView().show();
     };
 
@@ -72,8 +81,8 @@ STL.Controller.Portfolio = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.loadPosts = function() {
-        this.getModel().getPosts(7, 0, 80, onPostsLoaded, this);
+    this.loadData = function() {
+        this.getModel().getPosts(7, 0, 80, onDataLoaded, this);
     };
 
     /**
@@ -82,7 +91,7 @@ STL.Controller.Portfolio = function() {
      * @param  {Object} result The result that came back from the model
      * @author Thodoris Tsiridis
      */
-    var onPostsLoaded = function(result) {
+    var onDataLoaded = function(result) {
         var i;
         if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
 
@@ -99,10 +108,14 @@ STL.Controller.Portfolio = function() {
                     })
                 );
 
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
                 portfolioItems[i].getView().render();
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
             }
+
+            this.getView().render();
         }
+
+        dataLoaded = true;
 
     };
 

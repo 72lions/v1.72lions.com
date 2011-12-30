@@ -48,14 +48,6 @@ STL.Controller.Base = function() {
     this.name = '';
 
     /**
-     * A reference to this controller's model
-     *
-     * @type STL.Controller.Base
-     * @default undefined
-     */
-    this.model = undefined;
-
-    /**
      * Initializes the plugin
      *
      * @param {Object} attributes The attributes that will be used to initialize the class
@@ -64,6 +56,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
+        var l;
 
         this.id = attributes.id || id;
         this.name = attributes.type || '';
@@ -73,9 +66,10 @@ STL.Controller.Base = function() {
     /**
      * This function is executed right after the initialized function is called
      *
+     * @param {Object} options The options that will be used to initialize the controller
      * @author Thodoris Tsiridis
      */
-    this.postInitialize = function() {
+    this.postInitialize = function(options) {
 
     };
 
@@ -122,7 +116,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
-      this.model = _model = model;
+      _model = model;
       _view.setModel(model);
     };
 

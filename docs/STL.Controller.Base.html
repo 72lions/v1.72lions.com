@@ -289,9 +289,6 @@
                     <a href="#property_id">id</a>
                   </li>
                   <li class=" ">
-                    <a href="#property_model">model</a>
-                  </li>
-                  <li class=" ">
                     <a href="#property_name">name</a>
                   </li>
               </ul>
@@ -524,39 +521,6 @@
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#property_model">
-                  
-                      <td class="names">
-                        <code>
-                          <a name="property_model">model</a>
-                        </code>
-                      </td>
-
-                      <td class="type">
-                        <code>
-                          STL.Controller.Base
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                        <div>
-
-                          A reference to this controller's model
-
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>undefined</code>.
-                            </p>
-                        </div>
-                      </td>
-
-                    </tr>
                     <tr class=" " resource="#property_name">
                   
                       <td class="names">
@@ -755,7 +719,7 @@
                       <td class="names">
                         <code>
                           <a name="method_postInitialize">postInitialize</a>(
-                          
+                          options
                           )
                         </code>
                       </td>
@@ -776,6 +740,16 @@
 
                         This function is executed right after the initialized function is called
 
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  options
+                                  &lt;Object&gt;
+                                </code>
+                                 The options that will be used to initialize the controller
+                              </li>
+                          <ul>
 
 
                       </td>

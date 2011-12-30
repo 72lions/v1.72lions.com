@@ -17,18 +17,18 @@
 <span class="cm">     * @param {String} attributes.id The unique id for this class</span>
 <span class="cm">     * @param {STL.Model.Base} attributes.model The model to be used by this controller</span>
 <span class="cm">     * @param {STL.View.Base} attributes.view The view to be used by this controller</span>
+<span class="cm">     * @param {Object} options The options to use when initialing the controller</span>
 <span class="cm">     * @return {STL.Controller.Base}</span>
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">initializeController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initializeController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">ctl</span><span class="p">;</span>
 
         <span class="nx">ctl</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getController</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
-
+        <span class="nx">ctl</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
         <span class="nx">ctl</span><span class="p">.</span><span class="nx">setView</span><span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">view</span> <span class="o">||</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">}));</span>
         <span class="nx">ctl</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">model</span> <span class="o">||</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">}));</span>
-
-        <span class="nx">ctl</span><span class="p">.</span><span class="nx">postInitialize</span><span class="p">();</span>
+        <span class="nx">ctl</span><span class="p">.</span><span class="nx">postInitialize</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
 
         <span class="k">return</span> <span class="nx">ctl</span><span class="p">;</span>
     <span class="p">};</span>

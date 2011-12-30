@@ -695,18 +695,18 @@ STL.ControllerManager = function(global) {
      * @param {String} attributes.id The unique id for this class
      * @param {STL.Model.Base} attributes.model The model to be used by this controller
      * @param {STL.View.Base} attributes.view The view to be used by this controller
+     * @param {Object} options The options to use when initialing the controller
      * @return {STL.Controller.Base}
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(attributes) {
+    this.initializeController = function(attributes, options) {
         var ctl;
 
         ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
-
+        ctl.initialize({type:attributes.type, id:attributes.id});
         ctl.setView(attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id}));
         ctl.setModel(attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id}));
-
-        ctl.postInitialize();
+        ctl.postInitialize(options);
 
         return ctl;
     };
@@ -793,7 +793,6 @@ STL.Lookup = function(global) {
             }
 
             _controllers[className].push(controllerObj);
-            controllerObj.classType.initialize({type: attributes.type, id: attributes.id});
             return controllerObj.classType;
 
         } else {
@@ -1252,14 +1251,6 @@ STL.Controller.Base = function() {
     this.name = '';
 
     /**
-     * A reference to this controller's model
-     *
-     * @type STL.Controller.Base
-     * @default undefined
-     */
-    this.model = undefined;
-
-    /**
      * Initializes the plugin
      *
      * @param {Object} attributes The attributes that will be used to initialize the class
@@ -1268,6 +1259,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.initialize = function(attributes) {
+        var l;
 
         this.id = attributes.id || id;
         this.name = attributes.type || '';
@@ -1277,9 +1269,10 @@ STL.Controller.Base = function() {
     /**
      * This function is executed right after the initialized function is called
      *
+     * @param {Object} options The options that will be used to initialize the controller
      * @author Thodoris Tsiridis
      */
-    this.postInitialize = function() {
+    this.postInitialize = function(options) {
 
     };
 
@@ -1291,8 +1284,9 @@ STL.Controller.Base = function() {
      */
     this.setView = function(view) {
         _view = view;
+
         // ask it to set the model, initialize, draw and postDraw
-        _view.setModel(_model);
+        _view.setModel(this.getModel());
         _view.initialize();
         _view.draw();
         _view.postDraw();
@@ -1325,7 +1319,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setModel = function(model) {
-      this.model = _model = model;
+      _model = model;
       _view.setModel(model);
     };
 
@@ -1644,6 +1638,15 @@ STL.Controller.SectionsManager = function() {
     var totalSections = 4;
 
     /**
+     * The current section name
+     *
+     * @private
+     * @type String
+     * @default '-'
+     */
+    var currentSection = '-';
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
@@ -1662,7 +1665,9 @@ STL.Controller.SectionsManager = function() {
         experiments = STL.ControllerManager.initializeController({
             type:'Experiments',
             id:'experiments',
+            view: STL.Lookup.getView({type:'Experiments', id: 'experiments'}),
             model: STL.Lookup.getModel({
+                type:'Posts',
                 id:'experimentsModel'
             })
         });
@@ -1706,6 +1711,13 @@ STL.Controller.SectionsManager = function() {
 
             section = state.pathSegments[1];
 
+            //If this is the same section then don't do anything
+            if (currentSection === section) {
+                return;
+            }
+
+            currentSection = section;
+
             for (i = 0; i < len; i++) {
 
                 if(sections[i].name === section){
@@ -1729,12 +1741,20 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/' + state.path]);
 
+                section = state.pathSegments[state.pathSegments.length - 1];
+
+                //If this is the same section then don't do anything
+                if (currentSection === section) {
+                    return;
+                }
+
+                currentSection = section;
+
                 // if we don't have a path segment with category at its first position
                 for (i = 0; i < len; i++) {
                     sections[i].object.hide();
                 }
 
-                section = state.pathSegments[state.pathSegments.length - 1];
                 postDetails.load(section);
 
             } else {
@@ -1742,7 +1762,17 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/']);
 
+                section = 'blog';
+
+                //If this is the same section then don't do anything
+                if (currentSection === section) {
+                    return;
+                }
+
+                currentSection = section;
+
                 postDetails.hide();
+
                 for (i = 0; i < len; i++) {
 
                     if(sections[i].name !== 'blog'){
@@ -1805,14 +1835,20 @@ STL.Controller.Portfolio = function() {
     var portfolioItems = [];
 
     /**
+     * Is set to true when the data for this page are loaded
+     *
+     * @private
+     * @type Boolean
+     * @default false
+     */
+    var dataLoaded = false;
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
     this.postInitialize = function(){
-
-        this.loadPosts();
-        //this.loadCategories();
 
     };
 
@@ -1822,6 +1858,9 @@ STL.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        if(!dataLoaded) {
+            this.loadData();
+        }
         this.getView().show();
     };
 
@@ -1839,8 +1878,8 @@ STL.Controller.Portfolio = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.loadPosts = function() {
-        this.getModel().getPosts(7, 0, 80, onPostsLoaded, this);
+    this.loadData = function() {
+        this.getModel().getPosts(7, 0, 80, onDataLoaded, this);
     };
 
     /**
@@ -1849,7 +1888,7 @@ STL.Controller.Portfolio = function() {
      * @param  {Object} result The result that came back from the model
      * @author Thodoris Tsiridis
      */
-    var onPostsLoaded = function(result) {
+    var onDataLoaded = function(result) {
         var i;
         if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
 
@@ -1866,10 +1905,14 @@ STL.Controller.Portfolio = function() {
                     })
                 );
 
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
                 portfolioItems[i].getView().render();
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
             }
+
+            this.getView().render();
         }
+
+        dataLoaded = true;
 
     };
 
@@ -1905,7 +1948,7 @@ STL.Controller.Portfolio = function() {
 STL.Controller.Portfolio.prototype = new STL.Controller.Base();
 
 /**
- * Experiments Controller
+ * Blog Controller
  *
  * @module 72lions
  * @class Experiments
@@ -1924,6 +1967,51 @@ STL.Controller.Experiments = function() {
      */
     var me = this;
 
+    /**
+     * The categories Model
+     *
+     * @private
+     * @type STL.Model.Categories
+     * @property categoriesModel
+     * @default undefined
+     */
+    var categoriesModel;
+
+    /**
+     * An array with all the portfolio items
+     *
+     * @private
+     * @type Array
+     * @default []
+     */
+    var portfolioItems = [];
+
+    /**
+     * The id of the Experiments category
+     *
+     * @private
+     * @type Number
+     * @default 4
+     */
+    var categoryId = 4;
+
+    /**
+     * The name of the data from the model
+     *
+     * @private
+     * @type String
+     * @default 'Experiments'
+     */
+    var modelName = 'Experiments';
+
+    /**
+     * Is set to true when the data for this page are loaded
+     *
+     * @private
+     * @type Boolean
+     * @default false
+     */
+    var dataLoaded = false;
 
     /**
      * This function is executed right after the initialized function is called
@@ -1939,19 +2027,99 @@ STL.Controller.Experiments = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.show = function() {
+    this.show = function(){
+        if(!dataLoaded) {
+            this.loadData();
+        }
+
         this.getView().show();
     };
-
     /**
      * Hides the view
      *
      * @author Thodoris Tsiridis
      */
-    this.hide = function() {
+    this.hide = function(){
         this.getView().hide();
     };
 
+    /**
+     * Loads the data from the model
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.loadData = function() {
+        this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
+    };
+
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onDataLoaded = function(result) {
+        var i;
+
+        if(typeof(this.getModel().get(modelName)) === 'undefined'){
+
+            this.getModel().set(modelName, result);
+
+            for (i = 0; i < result.length; i++) {
+
+                portfolioItems.push(
+                    STL.ControllerManager.initializeController({
+                        type:'ThumbnailItem',
+                        id:'ThumbnailItem' + result[i].Id,
+                        model: STL.Lookup.getModel({
+                            data:result[i]
+                        })
+                     })
+                );
+
+                portfolioItems[i].getView().render();
+                portfolioItems[i].getView().showDescription();
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+            }
+
+            this.getView().render();
+
+        }
+
+        dataLoaded = true;
+
+        this.getView().positionItems();
+    };
+
+    /**
+     * Loads the categories from the api
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
+    this.loadCategories = function() {
+
+        if(categoriesModel === undefined){
+            categoriesModel = STL.Lookup.getModel({
+                type:'Categories',
+                id:'categoriesBlog'
+            });
+        }
+
+        categoriesModel.get(0, 5, onCategoriesLoaded, this);
+    };
+
+    /**
+     * Callback function for when we get all the data from the ajax call
+     *
+     * @private
+     * @param  {Object} result The result object
+     * @author Thodoris Tsiridis
+     */
+    var onCategoriesLoaded = function(result) {
+
+    };
 };
 
 STL.Controller.Experiments.prototype = new STL.Controller.Base();
@@ -1996,13 +2164,38 @@ STL.Controller.Blog = function() {
     var portfolioItems = [];
 
     /**
+     * The id of the blog category
+     *
+     * @private
+     * @type Number
+     * @default 3
+     */
+    var categoryId = 3;
+
+    /**
+     * The name of the data from the model
+     *
+     * @private
+     * @type String
+     * @default 'Blog'
+     */
+    var modelName = 'Blog';
+
+    /**
+     * Is set to true when the data for this page are loaded
+     *
+     * @private
+     * @type Boolean
+     * @default false
+     */
+    var dataLoaded = false;
+
+    /**
      * This function is executed right after the initialized function is called
      *
      * @author Thodoris Tsiridis
      */
-    this.postInitialize = function(){
-        this.loadBlogPosts();
-        //this.loadCategories();
+    this.postInitialize = function(options){
 
     };
 
@@ -2012,6 +2205,9 @@ STL.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        if(!dataLoaded) {
+            this.loadData();
+        }
         this.getView().show();
     };
     /**
@@ -2028,8 +2224,8 @@ STL.Controller.Blog = function() {
      *
      * @author Thodoris Tsiridis
      */
-    this.loadBlogPosts = function() {
-        this.getModel().getPosts(3, 0, 80, onBlogPostsLoaded, this);
+    this.loadData = function() {
+        this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
     };
 
     /**
@@ -2039,12 +2235,12 @@ STL.Controller.Blog = function() {
      * @param  {Object} result The result object
      * @author Thodoris Tsiridis
      */
-    var onBlogPostsLoaded = function(result) {
+    var onDataLoaded = function(result) {
         var i;
 
-        if(typeof(this.getModel().get('Blog')) === 'undefined'){
+        if(typeof(this.getModel().get(modelName)) === 'undefined'){
 
-            this.getModel().set('Blog', result);
+            this.getModel().set(modelName, result);
 
             for (i = 0; i < result.length; i++) {
 
@@ -2058,12 +2254,16 @@ STL.Controller.Blog = function() {
                      })
                 );
 
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
+
                 portfolioItems[i].getView().render();
                 portfolioItems[i].getView().showDescription();
+                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
             }
 
+            this.getView().render();
         }
+
+        dataLoaded = true;
 
         this.getView().positionItems();
     };
@@ -3100,6 +3300,15 @@ STL.View.Portfolio = function() {
     var itemsContainer = this.domElement.find('.centered');
 
     /**
+     * The markup that will be rendered on the page
+     *
+     * @private
+     * @type String
+     * @default ''
+     */
+    var markup = '';
+
+    /**
      * Initializes the view
      *
      * @author Thodoris Tsiridis
@@ -3157,7 +3366,16 @@ STL.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        itemsContainer.append(item);
+        markup += $('<div>').append(item.clone()).remove().html();
+    };
+
+
+    /**
+     * Renders the html markup on the page
+     * @author Thodoris Tsiridis
+     */
+    this.render = function() {
+        itemsContainer.html(markup);
     };
 
 };
@@ -3177,6 +3395,21 @@ STL.View.Portfolio.prototype = new STL.View.Base();
 STL.View.Experiments = function() {
 
     /**
+     * The DOM Element
+     *
+     * @type Object
+     */
+   this.domElement = $('.experiments');
+
+    /**
+     * The section title
+     *
+     * @private
+     * @type {String}
+     */
+    var sectionName = 'Experiments';
+
+    /**
      * A reference to this class
      *
      * @private
@@ -3185,11 +3418,60 @@ STL.View.Experiments = function() {
     var me = this;
 
     /**
-     * The DOM Element
+     * The items container DOM Element
      *
+     * @private
      * @type Object
      */
-	this.domElement = $('.experiments');
+    var itemsContainer = this.domElement.find('.centered');
+
+    /**
+     * Its true the first time we load the website
+     *
+     * @private
+     * @type Boolean
+     * @default true
+     */
+    var isFirstTime = true;
+
+    /**
+     * The minimum columns that we can have
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 1
+     */
+    var COLUMN_MIN = 2;
+
+    /**
+     * The column width
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 218
+     */
+    var COLUMN_WIDTH = 218;
+
+    /**
+     * The column margin
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 20
+     */
+    var COLUMN_MARGIN = 20;
+
+    /**
+     * The markup that will be rendered on the page
+     *
+     * @private
+     * @type String
+     * @default ''
+     */
+    var markup = '';
 
     /**
      * Initializes the view
@@ -3205,9 +3487,9 @@ STL.View.Experiments = function() {
      *
      * @author Thodoris Tsiridis
      */
-	this.draw = function() {
-		//STL.Console.log('Drawing view with name ' + this.name);
-	};
+    this.draw = function() {
+        //STL.Console.log('Drawing view with name ' + this.name);
+    };
 
    /**
      * Executed after the drawing of the view
@@ -3216,6 +3498,7 @@ STL.View.Experiments = function() {
      */
     this.postDraw =  function(){
         //STL.Console.log('Post draw view with name ' + this.name);
+        $(window).bind("resize", onWindowResize);
     };
 
     /**
@@ -3224,11 +3507,20 @@ STL.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        //STL.Console.log('Show view with name ' + this.name);
         var that = this;
+
+        document.title = sectionName + ' - ' + STL.Model.Locale.getPageTitle();
+
         this.domElement.addClass('active');
+
         setTimeout(function(){
             that.domElement.css('opacity', 1);
         }, 10);
+
+        isFirstTime = true;
+        this.positionItems();
+
     };
     /**
      * Hides the view
@@ -3236,8 +3528,136 @@ STL.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
+        //STL.Console.log('Hide view with name ' + this.name);
         this.domElement.removeClass('active').css('opacity', 0);
     };
+
+    /**
+     * Adds a portfolio item to the view
+     *
+     * @param {Object} item The dom element that we want to append to the portfolio page
+     * @author Thodoris Tsiridis
+     */
+    this.addPortfolioItem = function(item){
+        markup += $('<div>').append(item.clone()).remove().html();
+    };
+
+    /**
+     * Renders the html markup on the page
+     * @author Thodoris Tsiridis
+     */
+    this.render = function() {
+        itemsContainer.html(markup);
+    };
+
+    /**
+     * Positions the grid items based on the page width
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.positionItems = function() {
+
+        var domItems = itemsContainer.find('article');
+        var domItemsFeatured = itemsContainer.find('article.featured');
+        var windowHeight = itemsContainer.height();
+        var windowWidth = itemsContainer.width();
+        var gridTop = 0;
+        var gridLeft = 0;// this.domElement.offset().left;
+        var items = [];
+        var _7 = 0;
+        var _8 = 0;
+        var minColumns = Math.max(COLUMN_MIN, parseInt(windowWidth / (COLUMN_WIDTH + COLUMN_MARGIN), 0));
+        var maxHeight = 0;
+
+        if(isFirstTime){
+            isFirstTime = false;
+        } else {
+            itemsContainer.addClass('animated');
+        }
+
+        for (x = 0; x < minColumns; x++) {
+            items[x] = 0;
+        }
+
+        domItems.each(function (i, e) {
+            var x, _a, _b, _c, _d = 0;
+            var target_x =0;
+            var target_y = 0;
+            _c = (Math.floor($(e).outerWidth() / COLUMN_WIDTH));
+            _b = 0;
+
+            if (_c > 1) {
+
+                for (x = 0; x < minColumns - (_c - 1); x++) {
+                    _b = (items[x] < items[_b]) ? x : _b;
+                }
+
+                _a = _b;
+
+                for (x = 0; x < _c; x++) {
+                    _d = Math.max(_d, items[_a + x]);
+                }
+
+                for (x = 0; x < _c; x++) {
+                    items[_a + x] = parseInt($(e).outerHeight(), 0) + COLUMN_MARGIN + _d;
+                }
+
+                target_x = _a * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
+                target_y = _d + gridTop;
+
+                _7 = (_d > _7) ? items[_a + _c - 1] : _7;
+
+            } else {
+
+                for (x = 0; x < minColumns; x++) {
+                    _b = (items[x] < items[_b]) ? x : _b;
+                }
+
+                target_x = _b * (COLUMN_WIDTH + COLUMN_MARGIN) + gridLeft;
+                target_y = items[_b] + gridTop;
+                items[_b] += $(e).outerHeight() + COLUMN_MARGIN;
+                _7 = (items[_b] > _7) ? items[_b] : _7;
+
+            }
+            if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
+
+                $(this).css({
+                    left: target_x + "px",
+                    top: target_y + COLUMN_MARGIN + "px"
+                });
+
+            }
+            itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
+
+            if(maxHeight < itemBottom){
+                maxHeight = itemBottom;
+            }
+
+            _8 = (_8 < _b) ? _b : _8;
+
+        });
+
+        if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
+
+            itemsContainer.css('height', maxHeight + 'px');
+        } else {
+
+            itemsContainer.css('height', 'auto !important');
+        }
+
+        var _f = parseInt(($('body').innerWidth() - (COLUMN_WIDTH + COLUMN_MARGIN) * (_8 + 1)) / 2, 0) - 0;
+    };
+
+    /**
+     * Triggered when the window is resized
+     *
+     * @private
+     * @author Thodoris Tsiridis
+     */
+    var onWindowResize = function() {
+        me.positionItems();
+    };
+
 
 };
 
@@ -3261,6 +3681,12 @@ STL.View.Blog = function() {
      * @type Object
      */
    this.domElement = $('.blog');
+
+    /**
+     * The section title
+     * @type {String}
+     */
+    this.sectionName = 'Blog';
 
     /**
      * A reference to this class
@@ -3318,6 +3744,15 @@ STL.View.Blog = function() {
     var COLUMN_MARGIN = 20;
 
     /**
+     * The markup that will be rendered on the page
+     *
+     * @private
+     * @type String
+     * @default ''
+     */
+    var markup = '';
+
+    /**
      * Initializes the view
      *
      * @author Thodoris Tsiridis
@@ -3351,9 +3786,10 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
+        //STL.Console.log('Show view with name ' + this.name);
         var that = this;
 
-        document.title = 'Blog - ' + STL.Model.Locale.getPageTitle();
+        document.title = this.sectionName + ' - ' + STL.Model.Locale.getPageTitle();
 
         this.domElement.addClass('active');
 
@@ -3370,6 +3806,7 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
+        //STL.Console.log('Hide view with name ' + this.name);
         this.domElement.removeClass('active').css('opacity', 0);
     };
 
@@ -3380,7 +3817,16 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        itemsContainer.append(item);
+        markup += $('<div>').append(item.clone()).remove().html();
+    };
+
+
+    /**
+     * Renders the html markup on the page
+     * @author Thodoris Tsiridis
+     */
+    this.render = function() {
+        itemsContainer.html(markup);
     };
 
     /**

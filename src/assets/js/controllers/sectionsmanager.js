@@ -123,6 +123,7 @@ STL.Controller.SectionsManager = function() {
         experiments = STL.ControllerManager.initializeController({
             type:'Experiments',
             id:'experiments',
+            view: STL.Lookup.getView({type:'Experiments', id: 'experiments'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'experimentsModel'
