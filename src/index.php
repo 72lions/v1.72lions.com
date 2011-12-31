@@ -14,6 +14,10 @@
 		$id = 3;
 		$description = 'My name is Thodoris Tsiridis and this is my blog. Here you can find all the things that I like to do and talk about';
 		$title = 'Blog - ';
+	} else if($section == 'experiments') {
+		$id = 4;
+		$description = 'My name is Thodoris Tsiridis and these are my experiments. Here you can find all my latest experiments!';
+		$title = 'Experiments - ';
 	} else if($section == 'portfolio') {
 		$id = 7;
 		$description = 'My name is Thodoris Tsiridis and this is my portfolio. Here you can find all my latest work!';

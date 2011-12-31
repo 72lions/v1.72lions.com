@@ -116,6 +116,7 @@ STL.Controller.Portfolio = function() {
         }
 
         dataLoaded = true;
+        this.dispatchEvent({type:'onSectionLoaded'});
 
     };
 

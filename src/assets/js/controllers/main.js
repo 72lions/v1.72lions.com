@@ -81,6 +81,8 @@ STL.Controller.Main = function() {
             model: STL.Lookup.getModel({})
         });
 
+        sectionsManager.addEventListener('onSectionLoaded', onSectionLoaded);
+
         footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
             id:'Footer',
@@ -157,6 +159,10 @@ STL.Controller.Main = function() {
     var changeSection = function(state){
         footerController.hide();
         sectionsManager.showSectionWithName(state);
+    };
+
+    var onSectionLoaded = function(){
+        console.log('showing footer...');
         footerController.show();
     };
 };

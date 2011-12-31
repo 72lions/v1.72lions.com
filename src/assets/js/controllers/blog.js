@@ -144,8 +144,9 @@ STL.Controller.Blog = function() {
         }
 
         dataLoaded = true;
-
         this.getView().positionItems();
+        this.dispatchEvent({type:'onSectionLoaded'});
+
     };
 
     /**

@@ -85,6 +85,7 @@ STL.Controller.PostDetails = function() {
         this.getView().currentId = this.currentId;
         this.getView().render();
         this.show();
+        this.dispatchEvent({type:'onSectionLoaded'});
     };
 
 };

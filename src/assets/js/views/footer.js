@@ -85,7 +85,7 @@ STL.View.Footer = function() {
      * @type Object
      * @default undefined
      */
-    var $tweetsContainerDomElement = undefined;
+    var $tweetsContainerDomElement;
 
     /**
      * The Dom Element for the flickr photos container
@@ -94,7 +94,7 @@ STL.View.Footer = function() {
      * @type Object
      * @default undefined
      */
-    var $flickrContainerDomElement = undefined;
+    var $flickrContainerDomElement;
 
     /**
      * Initializes the view

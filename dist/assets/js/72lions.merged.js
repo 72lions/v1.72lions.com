@@ -573,7 +573,6 @@ var EventTarget = function () {
      * @author Mr.Doob
      */
     this.dispatchEvent = function ( event ) {
-
         for ( var listener in listeners[ event.type ] ) {
             listeners[ event.type ][ listener ]( event );
         }
@@ -1406,6 +1405,8 @@ STL.Controller.Main = function() {
             model: STL.Lookup.getModel({})
         });
 
+        sectionsManager.addEventListener('onSectionLoaded', onSectionLoaded);
+
         footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
             id:'Footer',
@@ -1482,6 +1483,10 @@ STL.Controller.Main = function() {
     var changeSection = function(state){
         footerController.hide();
         sectionsManager.showSectionWithName(state);
+    };
+
+    var onSectionLoaded = function(){
+        /*console.log('showing footer...')*/;
         footerController.show();
     };
 };
@@ -1660,6 +1665,8 @@ STL.Controller.SectionsManager = function() {
                 })
         });
 
+        portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
+
         experiments = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'experiments',
@@ -1669,6 +1676,8 @@ STL.Controller.SectionsManager = function() {
                 id:'experimentsModel'
             })
         }, {categoryId:4, modelName:'Experiments'});
+
+        experiments.addEventListener('onSectionLoaded', onSectionLoaded);
 
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
@@ -1680,6 +1689,8 @@ STL.Controller.SectionsManager = function() {
             })
         }, {categoryId:3, modelName:'Blog'});
 
+        blog.addEventListener('onSectionLoaded', onSectionLoaded);
+
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
         postDetails = STL.ControllerManager.initializeController({
@@ -1690,6 +1701,8 @@ STL.Controller.SectionsManager = function() {
                 id:'postDetailsModel'
             })
         });
+
+        postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
 
     };
 
@@ -1788,6 +1801,10 @@ STL.Controller.SectionsManager = function() {
 
         }
 
+    };
+
+    var onSectionLoaded = function(){
+        me.dispatchEvent({type:'onSectionLoaded'});
     };
 
 };
@@ -1912,6 +1929,7 @@ STL.Controller.Portfolio = function() {
         }
 
         dataLoaded = true;
+        this.dispatchEvent({type:'onSectionLoaded'});
 
     };
 
@@ -2269,8 +2287,9 @@ STL.Controller.Blog = function() {
         }
 
         dataLoaded = true;
-
         this.getView().positionItems();
+        this.dispatchEvent({type:'onSectionLoaded'});
+
     };
 
     /**
@@ -2527,6 +2546,7 @@ STL.Controller.PostDetails = function() {
         this.getView().currentId = this.currentId;
         this.getView().render();
         this.show();
+        this.dispatchEvent({type:'onSectionLoaded'});
     };
 
 };
@@ -4785,7 +4805,7 @@ STL.View.Footer = function() {
      * @type Object
      * @default undefined
      */
-    var $tweetsContainerDomElement = undefined;
+    var $tweetsContainerDomElement;
 
     /**
      * The Dom Element for the flickr photos container
@@ -4794,7 +4814,7 @@ STL.View.Footer = function() {
      * @type Object
      * @default undefined
      */
-    var $flickrContainerDomElement = undefined;
+    var $flickrContainerDomElement;
 
     /**
      * Initializes the view

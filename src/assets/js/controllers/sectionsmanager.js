@@ -120,6 +120,8 @@ STL.Controller.SectionsManager = function() {
                 })
         });
 
+        portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
+
         experiments = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'experiments',
@@ -129,6 +131,8 @@ STL.Controller.SectionsManager = function() {
                 id:'experimentsModel'
             })
         }, {categoryId:4, modelName:'Experiments'});
+
+        experiments.addEventListener('onSectionLoaded', onSectionLoaded);
 
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
@@ -140,6 +144,8 @@ STL.Controller.SectionsManager = function() {
             })
         }, {categoryId:3, modelName:'Blog'});
 
+        blog.addEventListener('onSectionLoaded', onSectionLoaded);
+
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
         postDetails = STL.ControllerManager.initializeController({
@@ -150,6 +156,8 @@ STL.Controller.SectionsManager = function() {
                 id:'postDetailsModel'
             })
         });
+
+        postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
 
     };
 
@@ -248,6 +256,10 @@ STL.Controller.SectionsManager = function() {
 
         }
 
+    };
+
+    var onSectionLoaded = function(){
+        me.dispatchEvent({type:'onSectionLoaded'});
     };
 
 };
