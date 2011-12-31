@@ -82,10 +82,10 @@ STL.View.Blog = function() {
      * The markup that will be rendered on the page
      *
      * @private
-     * @type String
+     * @type Object
      * @default ''
      */
-    var markup = '';
+    var markup = $('<div>');
 
     /**
      * Initializes the view
@@ -152,7 +152,7 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        markup += $('<div>').append(item.clone()).remove().html();
+        markup.append(item);
     };
 
 

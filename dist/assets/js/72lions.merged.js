@@ -3342,10 +3342,10 @@ STL.View.Portfolio = function() {
      * The markup that will be rendered on the page
      *
      * @private
-     * @type String
+     * @type Object
      * @default ''
      */
-    var markup = '';
+    var markup = $('<div>');
 
     /**
      * Initializes the view
@@ -3405,7 +3405,7 @@ STL.View.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        markup += $('<div>').append(item.clone()).remove().html();
+        markup.append(item);
     };
 
 
@@ -3507,10 +3507,10 @@ STL.View.Experiments = function() {
      * The markup that will be rendered on the page
      *
      * @private
-     * @type String
+     * @type Object
      * @default ''
      */
-    var markup = '';
+    var markup = $('<div>');
 
     /**
      * Initializes the view
@@ -3578,7 +3578,7 @@ STL.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        markup += $('<div>').append(item.clone()).remove().html();
+        markup.append(item);
     };
 
     /**
@@ -3786,10 +3786,10 @@ STL.View.Blog = function() {
      * The markup that will be rendered on the page
      *
      * @private
-     * @type String
+     * @type Object
      * @default ''
      */
-    var markup = '';
+    var markup = $('<div>');
 
     /**
      * Initializes the view
@@ -3856,7 +3856,7 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.addPortfolioItem = function(item){
-        markup += $('<div>').append(item.clone()).remove().html();
+        markup.append(item);
     };
 
 
@@ -4396,6 +4396,8 @@ STL.View.ThumbnailItem = function() {
 
         // Move to top
         window.scrollTo(0, 0);
+
+        /*console.log('clicked...')*/;
 
     };
 

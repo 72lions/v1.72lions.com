@@ -264,6 +264,8 @@ STL.View.ThumbnailItem = function() {
         // Move to top
         window.scrollTo(0, 0);
 
+        console.log('clicked...');
+
     };
 
 };
