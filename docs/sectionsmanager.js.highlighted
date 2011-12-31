@@ -120,6 +120,8 @@
                 <span class="p">})</span>
         <span class="p">});</span>
 
+        <span class="nx">portfolio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+
         <span class="nx">experiments</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;experiments&#39;</span><span class="p">,</span>
@@ -130,6 +132,8 @@
             <span class="p">})</span>
         <span class="p">},</span> <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Experiments&#39;</span><span class="p">});</span>
 
+        <span class="nx">experiments</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+
         <span class="nx">blog</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span>
@@ -139,6 +143,8 @@
                 <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;blogModel&#39;</span>
             <span class="p">})</span>
         <span class="p">},</span> <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">});</span>
+
+        <span class="nx">blog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
 
         <span class="nx">sections</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;portfolio&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">portfolio</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;experiments&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">experiments</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">blog</span><span class="p">}];</span>
 
@@ -151,6 +157,8 @@
             <span class="p">})</span>
         <span class="p">});</span>
 
+        <span class="nx">postDetails</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -160,6 +168,7 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">showSectionWithName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">){</span>
+
         <span class="kd">var</span> <span class="nx">len</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">section</span><span class="p">;</span>
 
         <span class="nx">len</span> <span class="o">=</span> <span class="nx">sections</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
@@ -181,6 +190,7 @@
 
                 <span class="k">if</span><span class="p">(</span><span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">section</span><span class="p">){</span>
 
+                    <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">});</span>
                     <span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">object</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
 
                 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -214,7 +224,9 @@
                     <span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">object</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
                 <span class="p">}</span>
 
+                <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">});</span>
                 <span class="nx">postDetails</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">section</span><span class="p">);</span>
+
 
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -240,14 +252,17 @@
 
                 <span class="p">}</span>
 
+                <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">});</span>
                 <span class="nx">blog</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
 
             <span class="p">}</span>
 
-
-
         <span class="p">}</span>
 
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">onSectionLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">me</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
     <span class="p">};</span>
 
 <span class="p">};</span>

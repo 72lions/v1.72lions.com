@@ -87,6 +87,8 @@ STL.Controller.Blog = function() {
     this.show = function(){
         if(!dataLoaded) {
             this.loadData();
+        } else {
+            this.dispatchEvent({type:'onSectionLoaded'});
         }
         this.getView().show();
     };
@@ -144,8 +146,10 @@ STL.Controller.Blog = function() {
         }
 
         dataLoaded = true;
-
+        this.dispatchEvent({type:'onSectionLoaded'});
         this.getView().positionItems();
+
+
     };
 
     /**

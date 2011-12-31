@@ -278,7 +278,13 @@
               <h4>Properties</h4>
               <ul>
                   <li class=" ">
+                    <a href="#property_$flickrContainerDomElement">$flickrContainerDomElement</a>
+                  </li>
+                  <li class=" ">
                     <a href="#property_$links">$links</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_$tweetsContainerDomElement">$tweetsContainerDomElement</a>
                   </li>
                   <li class=" ">
                     <a href="#property_clickedItem">clickedItem</a>
@@ -288,9 +294,6 @@
                   </li>
                   <li class=" ">
                     <a href="#property_FLICKR_PHOTOS_PER_ROW">FLICKR_PHOTOS_PER_ROW</a>
-                  </li>
-                  <li class=" ">
-                    <a href="#property_flickrContainerDomElement">flickrContainerDomElement</a>
                   </li>
                   <li class="private ">
                     <a href="#property_flickrTmpl">flickrTmpl</a>
@@ -302,9 +305,6 @@
                   </li>
                   <li class=" ">
                     <a href="#property_TOTAL_FLICKR_PHOTOS">TOTAL_FLICKR_PHOTOS</a>
-                  </li>
-                  <li class=" ">
-                    <a href="#property_tweetsContainerDomElement">tweetsContainerDomElement</a>
                   </li>
                   <li class="private ">
                     <a href="#property_tweetTmpl">tweetTmpl</a>
@@ -411,6 +411,40 @@
                 </thead>
                 <tbody>
                 
+                    <tr class=" " resource="#property_$flickrContainerDomElement">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_$flickrContainerDomElement">$flickrContainerDomElement</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The Dom Element for the flickr photos container
+private
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>undefined</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#property_$links">
                   
                       <td class="names">
@@ -435,6 +469,40 @@
                         <div>
 
                           The links DOM Elements
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>undefined</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_$tweetsContainerDomElement">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_$tweetsContainerDomElement">$tweetsContainerDomElement</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The Dom Element for the tweets container
+private
 
                             <p>
                               <strong>Default value:</strong>
@@ -540,40 +608,6 @@ final
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#property_flickrContainerDomElement">
-                  
-                      <td class="names">
-                        <code>
-                          <a name="property_flickrContainerDomElement">flickrContainerDomElement</a>
-                        </code>
-                      </td>
-
-                      <td class="type">
-                        <code>
-                          Object
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                        <div>
-
-                          The Dom Element for the flickr photos container
-private
-
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>undefined</code>.
-                            </p>
-                        </div>
-                      </td>
-
-                    </tr>
                     <tr class="private " resource="#property_flickrTmpl">
                   
                       <td class="names">
@@ -603,7 +637,7 @@ private
 
                             <p>
                               <strong>Default value:</strong>
-                              <code>'<a href="${link}" title="${title}" taget="_blank"><img src="${src}" alt="${title}" /></a>'</code>.
+                              <code>''</code>.
                             </p>
                         </div>
                       </td>
@@ -674,40 +708,6 @@ final
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#property_tweetsContainerDomElement">
-                  
-                      <td class="names">
-                        <code>
-                          <a name="property_tweetsContainerDomElement">tweetsContainerDomElement</a>
-                        </code>
-                      </td>
-
-                      <td class="type">
-                        <code>
-                          Object
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                        <div>
-
-                          The Dom Element for the tweets container
-private
-
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>undefined</code>.
-                            </p>
-                        </div>
-                      </td>
-
-                    </tr>
                     <tr class="private " resource="#property_tweetTmpl">
                   
                       <td class="names">
@@ -737,7 +737,7 @@ private
 
                             <p>
                               <strong>Default value:</strong>
-                              <code>'<p>${text}</p>'</code>.
+                              <code>''</code>.
                             </p>
                         </div>
                       </td>

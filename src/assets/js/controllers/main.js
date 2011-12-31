@@ -82,6 +82,7 @@ STL.Controller.Main = function() {
         });
 
         sectionsManager.addEventListener('onSectionLoaded', onSectionLoaded);
+        sectionsManager.addEventListener('onChangeSectionDispatched', onChangeSectionDispatched);
 
         footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
@@ -157,13 +158,15 @@ STL.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var changeSection = function(state){
-        footerController.hide();
         sectionsManager.showSectionWithName(state);
     };
 
     var onSectionLoaded = function(){
-        console.log('showing footer...');
         footerController.show();
+    };
+
+    var onChangeSectionDispatched = function(){
+        footerController.hide();
     };
 };
 

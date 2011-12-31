@@ -376,6 +376,9 @@
             <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({})</span>
         <span class="p">});</span>
 
+        <span class="nx">sectionsManager</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+        <span class="nx">sectionsManager</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">,</span> <span class="nx">onChangeSectionDispatched</span><span class="p">);</span>
+
         <span class="nx">footerController</span>  <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;Footer&#39;</span><span class="p">,</span>
@@ -450,9 +453,15 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">changeSection</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">){</span>
-        <span class="nx">footerController</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
         <span class="nx">sectionsManager</span><span class="p">.</span><span class="nx">showSectionWithName</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">onSectionLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">footerController</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">onChangeSectionDispatched</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">footerController</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
     <span class="p">};</span>
 <span class="p">};</span>
 

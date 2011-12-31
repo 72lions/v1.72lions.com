@@ -63,6 +63,8 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">dataLoaded</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
         <span class="p">}</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">};</span>
@@ -116,6 +118,7 @@
         <span class="p">}</span>
 
         <span class="nx">dataLoaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
 
     <span class="p">};</span>
 

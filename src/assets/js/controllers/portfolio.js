@@ -63,6 +63,8 @@ STL.Controller.Portfolio = function() {
     this.show = function(){
         if(!dataLoaded) {
             this.loadData();
+        } else {
+            this.dispatchEvent({type:'onSectionLoaded'});
         }
         this.getView().show();
     };

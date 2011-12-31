@@ -81,6 +81,9 @@ STL.Controller.Main = function() {
             model: STL.Lookup.getModel({})
         });
 
+        sectionsManager.addEventListener('onSectionLoaded', onSectionLoaded);
+        sectionsManager.addEventListener('onChangeSectionDispatched', onChangeSectionDispatched);
+
         footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
             id:'Footer',
@@ -155,9 +158,15 @@ STL.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var changeSection = function(state){
-        footerController.hide();
         sectionsManager.showSectionWithName(state);
+    };
+
+    var onSectionLoaded = function(){
         footerController.show();
+    };
+
+    var onChangeSectionDispatched = function(){
+        footerController.hide();
     };
 };
 

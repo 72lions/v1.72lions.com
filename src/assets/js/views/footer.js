@@ -64,7 +64,7 @@ STL.View.Footer = function() {
      *
      * @private
      * @type String
-     * @default '<p>${text}</p>'
+     * @default ''
      */
     var tweetTmpl = '<p>${text}</p>';
 
@@ -73,7 +73,7 @@ STL.View.Footer = function() {
      *
      * @private
      * @type String
-     * @default '<a href="${link}" title="${title}" taget="_blank"><img src="${src}" alt="${title}" /></a>'
+     * @default ''
      */
     var flickrTmpl = '<a href="${link}" title="${title}" target="_blank"><img src="${src}" alt="${title}" /></a>';
 
@@ -83,6 +83,7 @@ STL.View.Footer = function() {
      *
      * private
      * @type Object
+     * @property $tweetsContainerDomElement
      * @default undefined
      */
     var $tweetsContainerDomElement;
@@ -92,6 +93,7 @@ STL.View.Footer = function() {
      *
      * private
      * @type Object
+     * @property $flickrContainerDomElement
      * @default undefined
      */
     var $flickrContainerDomElement;
@@ -130,14 +132,7 @@ STL.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        var that = this;
-
         this.domElement.addClass('active');
-
-        setTimeout(function(){
-            that.domElement.css('opacity', 1);
-        }, 10);
-
     };
 
     /**
@@ -146,7 +141,7 @@ STL.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
-        this.domElement.removeClass('active').css('opacity', 0);
+        this.domElement.removeClass('active');
     };
 
     /**

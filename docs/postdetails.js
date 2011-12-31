@@ -25,6 +25,7 @@ STL.Controller.PostDetails = function() {
      */
     this.currentId = null;
 
+
     /**
      * This function is executed right after the initialized function is called
      *
@@ -41,7 +42,9 @@ STL.Controller.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.load = function(sectionSlug) {
+
         if(this.currentId !== sectionSlug){
+
             this.currentId = sectionSlug;
 
             if(typeof(this.getModel().get('PostDetails'+this.currentId)) !== 'undefined'){
@@ -50,8 +53,8 @@ STL.Controller.PostDetails = function() {
                 this.getModel().getDetails(sectionSlug, onPostDetailsLoaded, this);
             }
 
-
         }
+
     };
 
     /**
@@ -84,6 +87,7 @@ STL.Controller.PostDetails = function() {
         this.getModel().set('PostDetails'+this.currentId, result);
         this.getView().currentId = this.currentId;
         this.getView().render();
+        this.dispatchEvent({type:'onSectionLoaded'});
         this.show();
     };
 

@@ -1406,6 +1406,7 @@ STL.Controller.Main = function() {
         });
 
         sectionsManager.addEventListener('onSectionLoaded', onSectionLoaded);
+        sectionsManager.addEventListener('onChangeSectionDispatched', onChangeSectionDispatched);
 
         footerController  = STL.ControllerManager.initializeController({
             type:'Footer',
@@ -1481,13 +1482,15 @@ STL.Controller.Main = function() {
      * @author Thodoris Tsiridis
      */
     var changeSection = function(state){
-        footerController.hide();
         sectionsManager.showSectionWithName(state);
     };
 
     var onSectionLoaded = function(){
-        /*console.log('showing footer...')*/;
         footerController.show();
+    };
+
+    var onChangeSectionDispatched = function(){
+        footerController.hide();
     };
 };
 
@@ -1713,6 +1716,7 @@ STL.Controller.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.showSectionWithName = function(state){
+
         var len, i, section;
 
         len = sections.length;
@@ -1734,6 +1738,7 @@ STL.Controller.SectionsManager = function() {
 
                 if(sections[i].name === section){
 
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
                     sections[i].object.show();
 
                 } else {
@@ -1767,7 +1772,9 @@ STL.Controller.SectionsManager = function() {
                     sections[i].object.hide();
                 }
 
+                this.dispatchEvent({type:'onChangeSectionDispatched'});
                 postDetails.load(section);
+
 
             } else {
 
@@ -1793,11 +1800,10 @@ STL.Controller.SectionsManager = function() {
 
                 }
 
+                this.dispatchEvent({type:'onChangeSectionDispatched'});
                 blog.show();
 
             }
-
-
 
         }
 
@@ -1876,6 +1882,8 @@ STL.Controller.Portfolio = function() {
     this.show = function(){
         if(!dataLoaded) {
             this.loadData();
+        } else {
+            this.dispatchEvent({type:'onSectionLoaded'});
         }
         this.getView().show();
     };
@@ -2230,6 +2238,8 @@ STL.Controller.Blog = function() {
     this.show = function(){
         if(!dataLoaded) {
             this.loadData();
+        } else {
+            this.dispatchEvent({type:'onSectionLoaded'});
         }
         this.getView().show();
     };
@@ -2287,8 +2297,9 @@ STL.Controller.Blog = function() {
         }
 
         dataLoaded = true;
-        this.getView().positionItems();
         this.dispatchEvent({type:'onSectionLoaded'});
+        this.getView().positionItems();
+
 
     };
 
@@ -2486,6 +2497,7 @@ STL.Controller.PostDetails = function() {
      */
     this.currentId = null;
 
+
     /**
      * This function is executed right after the initialized function is called
      *
@@ -2502,7 +2514,9 @@ STL.Controller.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.load = function(sectionSlug) {
+
         if(this.currentId !== sectionSlug){
+
             this.currentId = sectionSlug;
 
             if(typeof(this.getModel().get('PostDetails'+this.currentId)) !== 'undefined'){
@@ -2511,8 +2525,8 @@ STL.Controller.PostDetails = function() {
                 this.getModel().getDetails(sectionSlug, onPostDetailsLoaded, this);
             }
 
-
         }
+
     };
 
     /**
@@ -2545,8 +2559,8 @@ STL.Controller.PostDetails = function() {
         this.getModel().set('PostDetails'+this.currentId, result);
         this.getView().currentId = this.currentId;
         this.getView().render();
-        this.show();
         this.dispatchEvent({type:'onSectionLoaded'});
+        this.show();
     };
 
 };
@@ -4784,7 +4798,7 @@ STL.View.Footer = function() {
      *
      * @private
      * @type String
-     * @default '<p>${text}</p>'
+     * @default ''
      */
     var tweetTmpl = '<p>${text}</p>';
 
@@ -4793,7 +4807,7 @@ STL.View.Footer = function() {
      *
      * @private
      * @type String
-     * @default '<a href="${link}" title="${title}" taget="_blank"><img src="${src}" alt="${title}" /></a>'
+     * @default ''
      */
     var flickrTmpl = '<a href="${link}" title="${title}" target="_blank"><img src="${src}" alt="${title}" /></a>';
 
@@ -4803,6 +4817,7 @@ STL.View.Footer = function() {
      *
      * private
      * @type Object
+     * @property $tweetsContainerDomElement
      * @default undefined
      */
     var $tweetsContainerDomElement;
@@ -4812,6 +4827,7 @@ STL.View.Footer = function() {
      *
      * private
      * @type Object
+     * @property $flickrContainerDomElement
      * @default undefined
      */
     var $flickrContainerDomElement;
@@ -4850,14 +4866,7 @@ STL.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        var that = this;
-
         this.domElement.addClass('active');
-
-        setTimeout(function(){
-            that.domElement.css('opacity', 1);
-        }, 10);
-
     };
 
     /**
@@ -4866,7 +4875,7 @@ STL.View.Footer = function() {
      * @author Thodoris Tsiridis
      */
     this.hide = function(){
-        this.domElement.removeClass('active').css('opacity', 0);
+        this.domElement.removeClass('active');
     };
 
     /**

@@ -120,6 +120,8 @@ STL.Controller.SectionsManager = function() {
                 })
         });
 
+        portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
+
         experiments = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'experiments',
@@ -130,6 +132,8 @@ STL.Controller.SectionsManager = function() {
             })
         }, {categoryId:4, modelName:'Experiments'});
 
+        experiments.addEventListener('onSectionLoaded', onSectionLoaded);
+
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
             id:'blog',
@@ -139,6 +143,8 @@ STL.Controller.SectionsManager = function() {
                 id:'blogModel'
             })
         }, {categoryId:3, modelName:'Blog'});
+
+        blog.addEventListener('onSectionLoaded', onSectionLoaded);
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
@@ -151,6 +157,8 @@ STL.Controller.SectionsManager = function() {
             })
         });
 
+        postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
+
     };
 
     /**
@@ -160,6 +168,7 @@ STL.Controller.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.showSectionWithName = function(state){
+
         var len, i, section;
 
         len = sections.length;
@@ -181,6 +190,7 @@ STL.Controller.SectionsManager = function() {
 
                 if(sections[i].name === section){
 
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
                     sections[i].object.show();
 
                 } else {
@@ -214,7 +224,9 @@ STL.Controller.SectionsManager = function() {
                     sections[i].object.hide();
                 }
 
+                this.dispatchEvent({type:'onChangeSectionDispatched'});
                 postDetails.load(section);
+
 
             } else {
 
@@ -240,14 +252,17 @@ STL.Controller.SectionsManager = function() {
 
                 }
 
+                this.dispatchEvent({type:'onChangeSectionDispatched'});
                 blog.show();
 
             }
 
-
-
         }
 
+    };
+
+    var onSectionLoaded = function(){
+        me.dispatchEvent({type:'onSectionLoaded'});
     };
 
 };

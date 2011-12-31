@@ -168,6 +168,7 @@ STL.Controller.SectionsManager = function() {
      * @author Thodoris Tsiridis
      */
     this.showSectionWithName = function(state){
+
         var len, i, section;
 
         len = sections.length;
@@ -189,6 +190,7 @@ STL.Controller.SectionsManager = function() {
 
                 if(sections[i].name === section){
 
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
                     sections[i].object.show();
 
                 } else {
@@ -222,7 +224,9 @@ STL.Controller.SectionsManager = function() {
                     sections[i].object.hide();
                 }
 
+                this.dispatchEvent({type:'onChangeSectionDispatched'});
                 postDetails.load(section);
+
 
             } else {
 
@@ -248,11 +252,10 @@ STL.Controller.SectionsManager = function() {
 
                 }
 
+                this.dispatchEvent({type:'onChangeSectionDispatched'});
                 blog.show();
 
             }
-
-
 
         }
 

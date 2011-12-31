@@ -41,7 +41,6 @@ var EventTarget = function () {
      * @author Mr.Doob
      */
     this.dispatchEvent = function ( event ) {
-
         for ( var listener in listeners[ event.type ] ) {
             listeners[ event.type ][ listener ]( event );
         }

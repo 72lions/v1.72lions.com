@@ -320,6 +320,7 @@
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
+
     <span class="cm">/**</span>
 <span class="cm">     * This function is executed right after the initialized function is called</span>
 <span class="cm">     *</span>
@@ -336,7 +337,9 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">load</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sectionSlug</span><span class="p">)</span> <span class="p">{</span>
+
         <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">!==</span> <span class="nx">sectionSlug</span><span class="p">){</span>
+
             <span class="k">this</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">=</span> <span class="nx">sectionSlug</span><span class="p">;</span>
 
             <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;PostDetails&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">currentId</span><span class="p">))</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">){</span>
@@ -345,8 +348,8 @@
                 <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">getDetails</span><span class="p">(</span><span class="nx">sectionSlug</span><span class="p">,</span> <span class="nx">onPostDetailsLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
             <span class="p">}</span>
 
-
         <span class="p">}</span>
+
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -379,6 +382,7 @@
         <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;PostDetails&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">currentId</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">currentId</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">currentId</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">render</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">};</span>
 

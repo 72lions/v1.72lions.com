@@ -2,11 +2,15 @@
 
 footer {
 
-    .transition(opacity 0.3s);
-    display:none;
+    .box-shadow(inset 0px 0px 4px rgba(0,0,0,0.2));
+    border-top:1px solid rgba(255, 255,255, 0.4);
+    background-color:rgba(0, 0, 0, 0.02);
+    display:block;
     opacity:0;
 
+
     &.active {
+        .transition(opacity 0.2s);
         opacity:1;
     }
 
