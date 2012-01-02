@@ -50,6 +50,10 @@ header.navigation nav ul li a:visited {
     padding:0px 20px 20px 20px !important;
 }
 
+#sections-wrapper .preloader {
+    width:275px !important;
+}
+
 #sections-wrapper section {
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
