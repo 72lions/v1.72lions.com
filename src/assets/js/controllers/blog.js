@@ -19,16 +19,6 @@ STL.Controller.Blog = function() {
     var me = this;
 
     /**
-     * The categories Model
-     *
-     * @private
-     * @type STL.Model.Categories
-     * @property categoriesModel
-     * @default undefined
-     */
-    var categoriesModel;
-
-    /**
      * An array with all the portfolio items
      *
      * @private
@@ -56,15 +46,6 @@ STL.Controller.Blog = function() {
     var modelName = 'Blog';
 
     /**
-     * Is set to true when the data for this page are loaded
-     *
-     * @private
-     * @type Boolean
-     * @default false
-     */
-    var dataLoaded = false;
-
-    /**
      * This function is executed right after the initialized function is called
      *
      * @param {Object} options The options to use when initialing the controller
@@ -85,12 +66,9 @@ STL.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        if(!dataLoaded) {
-            this.loadData();
-        } else {
-            this.dispatchEvent({type:'onSectionLoaded'});
-        }
-        this.getView().show();
+
+        this.loadData();
+
     };
     /**
      * Hides the view
@@ -107,7 +85,13 @@ STL.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.loadData = function() {
-        this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
+        if(typeof(this.getModel().get(modelName)) === 'undefined'){
+            this.dispatchEvent({type:'onDataStartedLoading'});
+            this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
+        } else {
+             onDataLoaded.call(this, this.getModel().get(modelName));
+        }
+
     };
 
     /**
@@ -145,41 +129,11 @@ STL.Controller.Blog = function() {
             this.getView().render();
         }
 
-        dataLoaded = true;
         this.dispatchEvent({type:'onSectionLoaded'});
-        this.getView().positionItems();
-
-
-    };
-
-    /**
-     * Loads the categories from the api
-     *
-     * @private
-     * @author Thodoris Tsiridis
-     */
-    this.loadCategories = function() {
-
-        if(categoriesModel === undefined){
-            categoriesModel = STL.Lookup.getModel({
-                type:'Categories',
-                id:'categoriesBlog'
-            });
-        }
-
-        categoriesModel.get(0, 5, onCategoriesLoaded, this);
-    };
-
-    /**
-     * Callback function for when we get all the data from the ajax call
-     *
-     * @private
-     * @param  {Object} result The result object
-     * @author Thodoris Tsiridis
-     */
-    var onCategoriesLoaded = function(result) {
+        this.getView().show();
 
     };
+
 };
 
 STL.Controller.Blog.prototype = new STL.Controller.Base();

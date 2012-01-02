@@ -62,7 +62,6 @@ Basic usage:
 				<file name="${src.js.dir}/controllers/navigation.js"/>
 				<file name="${src.js.dir}/controllers/sectionsmanager.js"/>
 				<file name="${src.js.dir}/controllers/portfolio.js"/>
-				<file name="${src.js.dir}/controllers/experiments.js"/>
 				<file name="${src.js.dir}/controllers/blog.js"/>
 				<file name="${src.js.dir}/controllers/about.js"/>
 				<file name="${src.js.dir}/controllers/contact.js"/>
@@ -200,7 +199,7 @@ Basic usage:
 			<arg value="${basedir}/yuidoc/dana-template" />
 			<arg value="-s" />
 			<arg value="-v" />
-			<arg value="1.0.0" />
+			<arg value="1.2.0" />
 			<arg value="-m" />
 			<arg value="72lions" />
 			<arg value="-C" />

@@ -38,7 +38,7 @@
     <header>
       <div id="hd" class="grid_10">
         <h1>
-          <a href="http://developer.yahoo.com/yui/" title="72lions">72lions</a> v1.0.0
+          <a href="http://developer.yahoo.com/yui/" title="72lions">72lions</a> v1.2.0
         </h1>
       </div> <!--! end of #hd -->
     </header>
@@ -117,9 +117,6 @@
                   </li>
                   <li >
                     <a href="STL.Controller.Contact.html">STL.Controller.Contact</a>
-                  </li>
-                  <li >
-                    <a href="STL.Controller.Experiments.html">STL.Controller.Experiments</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Footer.html">STL.Controller.Footer</a>
@@ -278,13 +275,16 @@
               <h4>Properties</h4>
               <ul>
                   <li class=" ">
+                    <a href="#property__controller">_controller</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property__model">_model</a>
+                  </li>
+                  <li class=" ">
                     <a href="#property_domElement">domElement</a>
                   </li>
                   <li class=" ">
                     <a href="#property_id">id</a>
-                  </li>
-                  <li class=" ">
-                    <a href="#property_model">model</a>
                   </li>
                   <li class=" ">
                     <a href="#property_name">name</a>
@@ -297,6 +297,9 @@
               <ul>
                   <li class=" ">
                     <a href="#method_draw">draw</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_getController">getController</a>
                   </li>
                   <li class=" ">
                     <a href="#method_getDOMElement">getDOMElement</a>
@@ -317,10 +320,10 @@
                     <a href="#method_preInitialize">preInitialize</a>
                   </li>
                   <li class=" ">
-                    <a href="#method_setId">setId</a>
+                    <a href="#method_setController">setController</a>
                   </li>
                   <li class=" ">
-                    <a href="#method_setModel">setModel</a>
+                    <a href="#method_setId">setId</a>
                   </li>
                   <li class=" ">
                     <a href="#method_setName">setName</a>
@@ -431,6 +434,72 @@
                 </thead>
                 <tbody>
                 
+                    <tr class=" " resource="#property__controller">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property__controller">_controller</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          STL.Controller.Base
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          A reference to this view's controller
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>undefined</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property__model">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property__model">_model</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          STL.View.Base
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          A reference to this view's model
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>undefined</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#property_domElement">
                   
                       <td class="names">
@@ -492,39 +561,6 @@
                             <p>
                               <strong>Default value:</strong>
                               <code>''</code>.
-                            </p>
-                        </div>
-                      </td>
-
-                    </tr>
-                    <tr class=" " resource="#property_model">
-                  
-                      <td class="names">
-                        <code>
-                          <a name="property_model">model</a>
-                        </code>
-                      </td>
-
-                      <td class="type">
-                        <code>
-                          STL.View.Base
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                        <div>
-
-                          A reference to this view's model
-
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>undefined</code>.
                             </p>
                         </div>
                       </td>
@@ -616,6 +652,46 @@
 
 
 
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_getController">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_getController">getController</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          STL.Controller.Base
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Gets the controller for the view
+
+
+
+                          <p>Returns:</p>
+                          <ul>
+                            <li>
+                                <code>
+                                  &lt;STL.Controller.Base&gt;
+                                </code>
+                              The controller
+                            </li>
+                          </ul>
                       </td>
 
                     </tr>
@@ -847,6 +923,47 @@
                       </td>
 
                     </tr>
+                    <tr class=" " resource="#method_setController">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_setController">setController</a>(
+                          controller
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Sets the controller for the view
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  controller
+                                  &lt;STL.Controller.Base&gt;
+                                </code>
+                                 The controller
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#method_setId">
 
                       <td class="names">
@@ -881,47 +998,6 @@
                                   &lt;String&gt;
                                 </code>
                                  The name fo the view
-                              </li>
-                          <ul>
-
-
-                      </td>
-
-                    </tr>
-                    <tr class=" " resource="#method_setModel">
-
-                      <td class="names">
-                        <code>
-                          <a name="method_setModel">setModel</a>(
-                          model
-                          )
-                        </code>
-                      </td>
-
-                      <td class="returns">
-                        <code>
-                          void
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-
-                        Sets the model for the view
-
-                          <p>Parameters:</p>
-                          <ul>
-                              <li>
-                                <code>
-                                  model
-                                  &lt;STL.Model.Base&gt;
-                                </code>
-                                 The model
                               </li>
                           <ul>
 
@@ -1023,7 +1099,7 @@
     <footer>
       <div id="footer" class="grid_16">
         <p>
-          Copyright &copy; 2011 72lions. All rights reserved.
+          Copyright &copy; 2012 72lions. All rights reserved.
           &middot;
           Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
         </p>

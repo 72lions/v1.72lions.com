@@ -552,9 +552,10 @@ var EventTarget = function () {
      *
      * @param {String} type The event type
      * @param {Function} listener The callback function
+     * @param {Object} ctx The context that will be used for the calling the callback
      * @author Mr.Doob
      */
-    this.addEventListener = function ( type, listener ) {
+    this.addEventListener = function ( type, listener, ctx ) {
 
         if ( listeners[ type ] === undefined ) {
             listeners[ type ] = [];
@@ -699,12 +700,18 @@ STL.ControllerManager = function(global) {
      * @author Thodoris Tsiridis
      */
     this.initializeController = function(attributes, options) {
-        var ctl;
+        var ctl, model, view;
+
+        view = attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id});
+        model = attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id});
 
         ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
         ctl.initialize({type:attributes.type, id:attributes.id});
-        ctl.setView(attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id}));
-        ctl.setModel(attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id}));
+
+        view.setController(ctl);
+
+        ctl.setView(view);
+        ctl.setModel(model);
         ctl.postInitialize(options);
 
         return ctl;
@@ -977,12 +984,20 @@ STL.View.Base = function() {
     this.id = '';
 
     /**
+     * A reference to this view's controller
+     *
+     * @type STL.Controller.Base
+     * @default undefined
+     */
+    this._controller = undefined;
+
+    /**
      * A reference to this view's model
      *
      * @type STL.View.Base
      * @default undefined
      */
-    this.model = undefined;
+    this._model = undefined;
 
     /**
      * The DOM Element
@@ -1029,23 +1044,38 @@ STL.View.Base = function() {
     };
 
     /**
-     * Sets the model for the view
-     *
-     * @param {STL.Model.Base} model The model
-     * @author Thodoris Tsiridis
-     */
-    this.setModel = function(model) {
-        this.model = model;
-    };
-
-    /**
      * Gets the model for the view
      *
      * @return {STL.Model.Base} The model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
-        return this.model;
+
+        if(this._controller){
+            return this._controller.getModel();
+        }
+
+        return undefined;
+    };
+
+    /**
+     * Sets the controller for the view
+     *
+     * @param {STL.Controller.Base} controller The controller
+     * @author Thodoris Tsiridis
+     */
+    this.setController = function(controller) {
+        this._controller = controller;
+    };
+
+    /**
+     * Gets the controller for the view
+     *
+     * @return {STL.Controller.Base} The controller
+     * @author Thodoris Tsiridis
+     */
+    this.getController = function() {
+        return this._controller;
     };
 
     /**
@@ -1280,10 +1310,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setView = function(view) {
-       this._view = view;
-
-        // ask it to set the model, initialize, draw and postDraw
-        this._view.setModel(this.getModel());
+        this._view = view;
         this._view.initialize();
         this._view.draw();
         this._view.postDraw();
@@ -1317,7 +1344,6 @@ STL.Controller.Base = function() {
      */
     this.setModel = function(model) {
       this._model = model;
-      this._view.setModel(model);
     };
 
 };
@@ -1333,6 +1359,14 @@ STL.Controller.Base = function() {
  * @version 1.0
  */
 STL.Controller.Main = function() {
+
+    /**
+     * A reference to this class
+     *
+     * @private
+     * @type STL.Controller.Blog
+     */
+    var me = this;
 
     /**
      * A reference to the navigation controller
@@ -1669,6 +1703,7 @@ STL.Controller.SectionsManager = function() {
         });
 
         portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
+        portfolio.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         experiments = STL.ControllerManager.initializeController({
             type:'Blog',
@@ -1681,6 +1716,7 @@ STL.Controller.SectionsManager = function() {
         }, {categoryId:4, modelName:'Experiments'});
 
         experiments.addEventListener('onSectionLoaded', onSectionLoaded);
+        experiments.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
@@ -1693,6 +1729,7 @@ STL.Controller.SectionsManager = function() {
         }, {categoryId:3, modelName:'Blog'});
 
         blog.addEventListener('onSectionLoaded', onSectionLoaded);
+        blog.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
@@ -1706,6 +1743,7 @@ STL.Controller.SectionsManager = function() {
         });
 
         postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
+        postDetails.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
     };
 
@@ -1809,8 +1847,27 @@ STL.Controller.SectionsManager = function() {
 
     };
 
-    var onSectionLoaded = function(){
+    /**
+     * Triggered when a section dispatches a onSectionLoaded event
+     *
+     * @private
+     * @param {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    var onSectionLoaded = function(event){
         me.dispatchEvent({type:'onSectionLoaded'});
+        me.getView().hidePreloader();
+    };
+
+    /**
+     * Triggered when a section dispatches a onDataStartedLoading event
+     *
+     * @private
+     * @param {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    var onDataStartedLoading = function (event){
+        me.getView().showPreloader();
     };
 
 };
@@ -1838,16 +1895,6 @@ STL.Controller.Portfolio = function() {
     var me = this;
 
     /**
-     * The categories Model
-     *
-     * @private
-     * @type STL.Model.Categories
-     * @property categoriesModel
-     * @default undefined
-     */
-    var categoriesModel;
-
-    /**
      * An array with all the portfolio items
      *
      * @private
@@ -1855,15 +1902,6 @@ STL.Controller.Portfolio = function() {
      * @default []
      */
     var portfolioItems = [];
-
-    /**
-     * Is set to true when the data for this page are loaded
-     *
-     * @private
-     * @type Boolean
-     * @default false
-     */
-    var dataLoaded = false;
 
     /**
      * This function is executed right after the initialized function is called
@@ -1880,12 +1918,7 @@ STL.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        if(!dataLoaded) {
-            this.loadData();
-        } else {
-            this.dispatchEvent({type:'onSectionLoaded'});
-        }
-        this.getView().show();
+        this.loadData();
     };
 
     /**
@@ -1903,7 +1936,12 @@ STL.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.loadData = function() {
-        this.getModel().getPosts(7, 0, 80, onDataLoaded, this);
+        if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
+            this.dispatchEvent({type:'onDataStartedLoading'});
+            this.getModel().getPosts(7, 0, 80, onDataLoaded, this);
+        } else {
+             onDataLoaded.call(this, this.getModel().get('Portfolio'));
+        }
     };
 
     /**
@@ -1936,218 +1974,14 @@ STL.Controller.Portfolio = function() {
             this.getView().render();
         }
 
-        dataLoaded = true;
+        this.getView().show();
         this.dispatchEvent({type:'onSectionLoaded'});
-
-    };
-
-    /**
-     * Forces the model to load the categories
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.loadCategories = function() {
-
-        if(categoriesModel === undefined){
-            categoriesModel = STL.Lookup.getModel({
-                type:'Categories',
-                id:'categoriesPortfolio'
-            });
-        }
-
-        categoriesModel.get(0, 5, onCategoriesLoaded, this);
-    };
-
-    /**
-     * Callback function that is triggered when the model categories are loaded
-     *
-     * @param  {Object} result The result that came back from the model
-     * @author Thodoris Tsiridis
-     */
-    var onCategoriesLoaded = function(result) {
 
     };
 
 };
 
 STL.Controller.Portfolio.prototype = new STL.Controller.Base();
-
-/**
- * Blog Controller
- *
- * @module 72lions
- * @class Experiments
- * @namespace STL.Controller
- * @extends STL.Controller.Base
- * @author Thodoris Tsiridis
- * @version 1.0
- */
-STL.Controller.Experiments = function() {
-
-    /**
-     * A reference to this class
-     *
-     * @private
-     * @type STL.Controller.Experiments
-     */
-    var me = this;
-
-    /**
-     * The categories Model
-     *
-     * @private
-     * @type STL.Model.Categories
-     * @property categoriesModel
-     * @default undefined
-     */
-    var categoriesModel;
-
-    /**
-     * An array with all the portfolio items
-     *
-     * @private
-     * @type Array
-     * @default []
-     */
-    var portfolioItems = [];
-
-    /**
-     * The id of the Experiments category
-     *
-     * @private
-     * @type Number
-     * @default 4
-     */
-    var categoryId = 4;
-
-    /**
-     * The name of the data from the model
-     *
-     * @private
-     * @type String
-     * @default 'Experiments'
-     */
-    var modelName = 'Experiments';
-
-    /**
-     * Is set to true when the data for this page are loaded
-     *
-     * @private
-     * @type Boolean
-     * @default false
-     */
-    var dataLoaded = false;
-
-    /**
-     * This function is executed right after the initialized function is called
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.postInitialize = function(){
-
-    };
-
-    /**
-     * Shows the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.show = function(){
-        if(!dataLoaded) {
-            this.loadData();
-        }
-
-        this.getView().show();
-    };
-    /**
-     * Hides the view
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.hide = function(){
-        this.getView().hide();
-    };
-
-    /**
-     * Loads the data from the model
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.loadData = function() {
-        this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
-    };
-
-    /**
-     * Callback function for when we get all the data from the ajax call
-     *
-     * @private
-     * @param  {Object} result The result object
-     * @author Thodoris Tsiridis
-     */
-    var onDataLoaded = function(result) {
-        var i;
-
-        if(typeof(this.getModel().get(modelName)) === 'undefined'){
-
-            this.getModel().set(modelName, result);
-
-            for (i = 0; i < result.length; i++) {
-
-                portfolioItems.push(
-                    STL.ControllerManager.initializeController({
-                        type:'ThumbnailItem',
-                        id:'ThumbnailItem' + result[i].Id,
-                        model: STL.Lookup.getModel({
-                            data:result[i]
-                        })
-                     })
-                );
-
-                portfolioItems[i].getView().render();
-                portfolioItems[i].getView().showDescription();
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
-            }
-
-            this.getView().render();
-
-        }
-
-        dataLoaded = true;
-
-        this.getView().positionItems();
-    };
-
-    /**
-     * Loads the categories from the api
-     *
-     * @private
-     * @author Thodoris Tsiridis
-     */
-    this.loadCategories = function() {
-
-        if(categoriesModel === undefined){
-            categoriesModel = STL.Lookup.getModel({
-                type:'Categories',
-                id:'categoriesBlog'
-            });
-        }
-
-        categoriesModel.get(0, 5, onCategoriesLoaded, this);
-    };
-
-    /**
-     * Callback function for when we get all the data from the ajax call
-     *
-     * @private
-     * @param  {Object} result The result object
-     * @author Thodoris Tsiridis
-     */
-    var onCategoriesLoaded = function(result) {
-
-    };
-};
-
-STL.Controller.Experiments.prototype = new STL.Controller.Base();
 
 /**
  * Blog Controller
@@ -2168,16 +2002,6 @@ STL.Controller.Blog = function() {
      * @type STL.Controller.Blog
      */
     var me = this;
-
-    /**
-     * The categories Model
-     *
-     * @private
-     * @type STL.Model.Categories
-     * @property categoriesModel
-     * @default undefined
-     */
-    var categoriesModel;
 
     /**
      * An array with all the portfolio items
@@ -2207,15 +2031,6 @@ STL.Controller.Blog = function() {
     var modelName = 'Blog';
 
     /**
-     * Is set to true when the data for this page are loaded
-     *
-     * @private
-     * @type Boolean
-     * @default false
-     */
-    var dataLoaded = false;
-
-    /**
      * This function is executed right after the initialized function is called
      *
      * @param {Object} options The options to use when initialing the controller
@@ -2236,12 +2051,9 @@ STL.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        if(!dataLoaded) {
-            this.loadData();
-        } else {
-            this.dispatchEvent({type:'onSectionLoaded'});
-        }
-        this.getView().show();
+
+        this.loadData();
+
     };
     /**
      * Hides the view
@@ -2258,7 +2070,13 @@ STL.Controller.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.loadData = function() {
-        this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
+        if(typeof(this.getModel().get(modelName)) === 'undefined'){
+            this.dispatchEvent({type:'onDataStartedLoading'});
+            this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
+        } else {
+             onDataLoaded.call(this, this.getModel().get(modelName));
+        }
+
     };
 
     /**
@@ -2296,41 +2114,11 @@ STL.Controller.Blog = function() {
             this.getView().render();
         }
 
-        dataLoaded = true;
         this.dispatchEvent({type:'onSectionLoaded'});
-        this.getView().positionItems();
-
-
-    };
-
-    /**
-     * Loads the categories from the api
-     *
-     * @private
-     * @author Thodoris Tsiridis
-     */
-    this.loadCategories = function() {
-
-        if(categoriesModel === undefined){
-            categoriesModel = STL.Lookup.getModel({
-                type:'Categories',
-                id:'categoriesBlog'
-            });
-        }
-
-        categoriesModel.get(0, 5, onCategoriesLoaded, this);
-    };
-
-    /**
-     * Callback function for when we get all the data from the ajax call
-     *
-     * @private
-     * @param  {Object} result The result object
-     * @author Thodoris Tsiridis
-     */
-    var onCategoriesLoaded = function(result) {
+        this.getView().show();
 
     };
+
 };
 
 STL.Controller.Blog.prototype = new STL.Controller.Base();
@@ -2522,6 +2310,7 @@ STL.Controller.PostDetails = function() {
             if(typeof(this.getModel().get('PostDetails'+this.currentId)) !== 'undefined'){
                 onPostDetailsLoaded.call(this, this.getModel().get('PostDetails'+this.currentId));
             } else {
+                this.dispatchEvent({type:'onDataStartedLoading'});
                 this.getModel().getDetails(sectionSlug, onPostDetailsLoaded, this);
             }
 
@@ -3084,7 +2873,7 @@ STL.View.Main = function() {
      *
      * @type Object
      */
-	this.domElement = null;
+	this.domElement = $('#wrapper');
 
     /**
      * Initializes the view
@@ -3112,7 +2901,6 @@ STL.View.Main = function() {
     this.postDraw =  function(){
         //STL.Console.log('Post draw view with name ' + this.name);
     };
-
 };
 
 STL.View.Main.prototype = new STL.View.Base();
@@ -3273,6 +3061,14 @@ STL.View.SectionsManager = function() {
 	this.domElement = $('#sections-wrapper');
 
     /**
+     * This is the preloader for each section
+     *
+     * @private
+     * @type Object
+     */
+    var preloader = this.domElement.find('.preloader');
+
+    /**
      * Initializes the view
      *
      * @author Thodoris Tsiridis
@@ -3297,6 +3093,27 @@ STL.View.SectionsManager = function() {
      */
     this.postDraw =  function(){
         //STL.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the preloader
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.showPreloader = function(){
+        preloader.addClass('active');
+        setTimeout(function(){
+            preloader.css('opacity', 1);
+        }, 10);
+    };
+
+    /**
+     * Hides the preloader
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.hidePreloader = function (){
+        preloader.removeClass('active').css('opacity', 0);
     };
 
 };
@@ -3586,7 +3403,7 @@ STL.View.Experiments = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-        itemsContainer.html(markup);
+        itemsContainer.append(markup);
     };
 
     /**
@@ -3865,7 +3682,7 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-        itemsContainer.html(markup);
+        itemsContainer.append(markup);
     };
 
     /**
@@ -4397,8 +4214,6 @@ STL.View.ThumbnailItem = function() {
         // Move to top
         window.scrollTo(0, 0);
 
-        /*console.log('clicked...')*/;
-
     };
 
 };
@@ -4522,6 +4337,14 @@ STL.View.PostDetails = function() {
     var demolinkDomElement = contentDomElement.find('.demo-link');
 
     /**
+     * The visit website link DOM Element
+     *
+     * @private
+     * @type Object
+     */
+    var visitWebsiteinkDomElement = contentDomElement.find('.website-link');
+
+    /**
      * The comments DOM Element
      *
      * @private
@@ -4637,6 +4460,13 @@ STL.View.PostDetails = function() {
             demolinkDomElement.removeClass('visible');
         }
 
+        if(typeof(details.Meta.visit_link) !== 'undefined') {
+            visitWebsiteinkDomElement.attr('href', details.Meta.visit_link);
+            visitWebsiteinkDomElement.addClass('visible');
+        } else {
+            visitWebsiteinkDomElement.removeClass('visible');
+        }
+
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(details.PublishDate.replace(/-/g ,'/'));
         timeDomElement.html(STL.Model.Locale.getDayName(pDate.getDay()) + ', ' +  STL.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
@@ -4652,7 +4482,6 @@ STL.View.PostDetails = function() {
         disqusCurrentLoadTries = TOTAL_DISQUS_TRIES;
 
         if(details.Meta.dsq_thread_id) {
-            /*console.log(details.Meta.dsq_thread_id, url)*/;
             tryToLoadDisqus(details.Meta.dsq_thread_id, url);
         } else {
             commentsDomElement.css('display', 'none');

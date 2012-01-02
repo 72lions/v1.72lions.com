@@ -121,6 +121,7 @@ STL.Controller.SectionsManager = function() {
         });
 
         portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
+        portfolio.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         experiments = STL.ControllerManager.initializeController({
             type:'Blog',
@@ -133,6 +134,7 @@ STL.Controller.SectionsManager = function() {
         }, {categoryId:4, modelName:'Experiments'});
 
         experiments.addEventListener('onSectionLoaded', onSectionLoaded);
+        experiments.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         blog = STL.ControllerManager.initializeController({
             type:'Blog',
@@ -145,6 +147,7 @@ STL.Controller.SectionsManager = function() {
         }, {categoryId:3, modelName:'Blog'});
 
         blog.addEventListener('onSectionLoaded', onSectionLoaded);
+        blog.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
@@ -158,6 +161,7 @@ STL.Controller.SectionsManager = function() {
         });
 
         postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
+        postDetails.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
     };
 
@@ -261,8 +265,27 @@ STL.Controller.SectionsManager = function() {
 
     };
 
-    var onSectionLoaded = function(){
+    /**
+     * Triggered when a section dispatches a onSectionLoaded event
+     *
+     * @private
+     * @param {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    var onSectionLoaded = function(event){
         me.dispatchEvent({type:'onSectionLoaded'});
+        me.getView().hidePreloader();
+    };
+
+    /**
+     * Triggered when a section dispatches a onDataStartedLoading event
+     *
+     * @private
+     * @param {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    var onDataStartedLoading = function (event){
+        me.getView().showPreloader();
     };
 
 };

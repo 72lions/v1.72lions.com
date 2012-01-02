@@ -26,6 +26,14 @@ STL.View.SectionsManager = function() {
 	this.domElement = $('#sections-wrapper');
 
     /**
+     * This is the preloader for each section
+     *
+     * @private
+     * @type Object
+     */
+    var preloader = this.domElement.find('.preloader');
+
+    /**
      * Initializes the view
      *
      * @author Thodoris Tsiridis
@@ -50,6 +58,27 @@ STL.View.SectionsManager = function() {
      */
     this.postDraw =  function(){
         //STL.Console.log('Post draw view with name ' + this.name);
+    };
+
+    /**
+     * Shows the preloader
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.showPreloader = function(){
+        preloader.addClass('active');
+        setTimeout(function(){
+            preloader.css('opacity', 1);
+        }, 10);
+    };
+
+    /**
+     * Hides the preloader
+     *
+     * @author Thodoris Tsiridis
+     */
+    this.hidePreloader = function (){
+        preloader.removeClass('active').css('opacity', 0);
     };
 
 };

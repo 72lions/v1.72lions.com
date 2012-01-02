@@ -77,6 +77,12 @@ section.experiments .centered article {
     float:none;
 }
 
+section.portfolio .centered article:last-child,
+section.blog .centered article:last-child,
+section.experiments .centered article:last-child {
+    border-bottom:none;
+}
+
 section.portfolio article.featured,
 section.blog article.featured,
 section.experiments article.featured {

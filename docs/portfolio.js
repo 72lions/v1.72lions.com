@@ -19,16 +19,6 @@ STL.Controller.Portfolio = function() {
     var me = this;
 
     /**
-     * The categories Model
-     *
-     * @private
-     * @type STL.Model.Categories
-     * @property categoriesModel
-     * @default undefined
-     */
-    var categoriesModel;
-
-    /**
      * An array with all the portfolio items
      *
      * @private
@@ -36,15 +26,6 @@ STL.Controller.Portfolio = function() {
      * @default []
      */
     var portfolioItems = [];
-
-    /**
-     * Is set to true when the data for this page are loaded
-     *
-     * @private
-     * @type Boolean
-     * @default false
-     */
-    var dataLoaded = false;
 
     /**
      * This function is executed right after the initialized function is called
@@ -61,12 +42,7 @@ STL.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.show = function(){
-        if(!dataLoaded) {
-            this.loadData();
-        } else {
-            this.dispatchEvent({type:'onSectionLoaded'});
-        }
-        this.getView().show();
+        this.loadData();
     };
 
     /**
@@ -84,7 +60,12 @@ STL.Controller.Portfolio = function() {
      * @author Thodoris Tsiridis
      */
     this.loadData = function() {
-        this.getModel().getPosts(7, 0, 80, onDataLoaded, this);
+        if(typeof(this.getModel().get('Portfolio')) === 'undefined'){
+            this.dispatchEvent({type:'onDataStartedLoading'});
+            this.getModel().getPosts(7, 0, 80, onDataLoaded, this);
+        } else {
+             onDataLoaded.call(this, this.getModel().get('Portfolio'));
+        }
     };
 
     /**
@@ -117,35 +98,8 @@ STL.Controller.Portfolio = function() {
             this.getView().render();
         }
 
-        dataLoaded = true;
+        this.getView().show();
         this.dispatchEvent({type:'onSectionLoaded'});
-
-    };
-
-    /**
-     * Forces the model to load the categories
-     *
-     * @author Thodoris Tsiridis
-     */
-    this.loadCategories = function() {
-
-        if(categoriesModel === undefined){
-            categoriesModel = STL.Lookup.getModel({
-                type:'Categories',
-                id:'categoriesPortfolio'
-            });
-        }
-
-        categoriesModel.get(0, 5, onCategoriesLoaded, this);
-    };
-
-    /**
-     * Callback function that is triggered when the model categories are loaded
-     *
-     * @param  {Object} result The result that came back from the model
-     * @author Thodoris Tsiridis
-     */
-    var onCategoriesLoaded = function(result) {
 
     };
 

@@ -161,7 +161,7 @@ STL.View.Blog = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-        itemsContainer.html(markup);
+        itemsContainer.append(markup);
     };
 
     /**

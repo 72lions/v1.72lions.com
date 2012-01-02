@@ -50,6 +50,7 @@ STL.Controller.PostDetails = function() {
             if(typeof(this.getModel().get('PostDetails'+this.currentId)) !== 'undefined'){
                 onPostDetailsLoaded.call(this, this.getModel().get('PostDetails'+this.currentId));
             } else {
+                this.dispatchEvent({type:'onDataStartedLoading'});
                 this.getModel().getDetails(sectionSlug, onPostDetailsLoaded, this);
             }
 

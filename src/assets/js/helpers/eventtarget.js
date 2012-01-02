@@ -20,9 +20,10 @@ var EventTarget = function () {
      *
      * @param {String} type The event type
      * @param {Function} listener The callback function
+     * @param {Object} ctx The context that will be used for the calling the callback
      * @author Mr.Doob
      */
-    this.addEventListener = function ( type, listener ) {
+    this.addEventListener = function ( type, listener, ctx ) {
 
         if ( listeners[ type ] === undefined ) {
             listeners[ type ] = [];

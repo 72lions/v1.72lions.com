@@ -22,12 +22,18 @@ STL.ControllerManager = function(global) {
      * @author Thodoris Tsiridis
      */
     this.initializeController = function(attributes, options) {
-        var ctl;
+        var ctl, model, view;
+
+        view = attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id});
+        model = attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id});
 
         ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
         ctl.initialize({type:attributes.type, id:attributes.id});
-        ctl.setView(attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id}));
-        ctl.setModel(attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id}));
+
+        view.setController(ctl);
+
+        ctl.setView(view);
+        ctl.setModel(model);
         ctl.postInitialize(options);
 
         return ctl;

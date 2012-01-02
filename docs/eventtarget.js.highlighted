@@ -20,9 +20,10 @@
 <span class="cm">     *</span>
 <span class="cm">     * @param {String} type The event type</span>
 <span class="cm">     * @param {Function} listener The callback function</span>
+<span class="cm">     * @param {Object} ctx The context that will be used for the calling the callback</span>
 <span class="cm">     * @author Mr.Doob</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span><span class="p">,</span> <span class="nx">ctx</span> <span class="p">)</span> <span class="p">{</span>
 
         <span class="k">if</span> <span class="p">(</span> <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="p">)</span> <span class="p">{</span>
             <span class="nx">listeners</span><span class="p">[</span> <span class="nx">type</span> <span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>

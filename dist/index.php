@@ -181,6 +181,7 @@
 		</header>
 		<div id="wrapper">
 			<div id="sections-wrapper">
+				<div class="preloader"> </div>
 				<div class="seo">
 					<?php
 						echo $seoMarkup;
@@ -196,6 +197,7 @@
 							<a href="#" class="github-link" target="_blank"><span>Fork it</span></a>
 							<a href="#" class="download-link" target="_blank"><span>Download</span></a>
 							<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
+							<a href="#" class="website-link" target="_blank"><span>Visit website</span></a>
 							<div class="text"></div>
 							<div class="comments">
 									<div id="disqus_thread"></div>

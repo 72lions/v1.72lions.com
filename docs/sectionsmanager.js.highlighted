@@ -121,6 +121,7 @@
         <span class="p">});</span>
 
         <span class="nx">portfolio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+        <span class="nx">portfolio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
         <span class="nx">experiments</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
@@ -133,6 +134,7 @@
         <span class="p">},</span> <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Experiments&#39;</span><span class="p">});</span>
 
         <span class="nx">experiments</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+        <span class="nx">experiments</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
         <span class="nx">blog</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
@@ -145,6 +147,7 @@
         <span class="p">},</span> <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">});</span>
 
         <span class="nx">blog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+        <span class="nx">blog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
         <span class="nx">sections</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;portfolio&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">portfolio</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;experiments&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">experiments</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">blog</span><span class="p">}];</span>
 
@@ -158,6 +161,7 @@
         <span class="p">});</span>
 
         <span class="nx">postDetails</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+        <span class="nx">postDetails</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
     <span class="p">};</span>
 
@@ -261,8 +265,27 @@
 
     <span class="p">};</span>
 
-    <span class="kd">var</span> <span class="nx">onSectionLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Triggered when a section dispatches a onSectionLoaded event</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Object} event The event</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onSectionLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
         <span class="nx">me</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
+        <span class="nx">me</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">hidePreloader</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Triggered when a section dispatches a onDataStartedLoading event</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Object} event The event</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onDataStartedLoading</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+        <span class="nx">me</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">showPreloader</span><span class="p">();</span>
     <span class="p">};</span>
 
 <span class="p">};</span>

@@ -11,6 +11,14 @@
 STL.Controller.Main = function() {
 
     /**
+     * A reference to this class
+     *
+     * @private
+     * @type STL.Controller.Blog
+     */
+    var me = this;
+
+    /**
      * A reference to the navigation controller
      *
      * @private

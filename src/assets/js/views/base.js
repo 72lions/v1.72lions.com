@@ -28,12 +28,20 @@ STL.View.Base = function() {
     this.id = '';
 
     /**
+     * A reference to this view's controller
+     *
+     * @type STL.Controller.Base
+     * @default undefined
+     */
+    this._controller = undefined;
+
+    /**
      * A reference to this view's model
      *
      * @type STL.View.Base
      * @default undefined
      */
-    this.model = undefined;
+    this._model = undefined;
 
     /**
      * The DOM Element
@@ -80,23 +88,38 @@ STL.View.Base = function() {
     };
 
     /**
-     * Sets the model for the view
-     *
-     * @param {STL.Model.Base} model The model
-     * @author Thodoris Tsiridis
-     */
-    this.setModel = function(model) {
-        this.model = model;
-    };
-
-    /**
      * Gets the model for the view
      *
      * @return {STL.Model.Base} The model
      * @author Thodoris Tsiridis
      */
     this.getModel = function() {
-        return this.model;
+
+        if(this._controller){
+            return this._controller.getModel();
+        }
+
+        return undefined;
+    };
+
+    /**
+     * Sets the controller for the view
+     *
+     * @param {STL.Controller.Base} controller The controller
+     * @author Thodoris Tsiridis
+     */
+    this.setController = function(controller) {
+        this._controller = controller;
+    };
+
+    /**
+     * Gets the controller for the view
+     *
+     * @return {STL.Controller.Base} The controller
+     * @author Thodoris Tsiridis
+     */
+    this.getController = function() {
+        return this._controller;
     };
 
     /**

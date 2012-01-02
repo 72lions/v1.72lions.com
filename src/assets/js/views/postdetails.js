@@ -115,6 +115,14 @@ STL.View.PostDetails = function() {
     var demolinkDomElement = contentDomElement.find('.demo-link');
 
     /**
+     * The visit website link DOM Element
+     *
+     * @private
+     * @type Object
+     */
+    var visitWebsiteinkDomElement = contentDomElement.find('.website-link');
+
+    /**
      * The comments DOM Element
      *
      * @private
@@ -230,6 +238,13 @@ STL.View.PostDetails = function() {
             demolinkDomElement.removeClass('visible');
         }
 
+        if(typeof(details.Meta.visit_link) !== 'undefined') {
+            visitWebsiteinkDomElement.attr('href', details.Meta.visit_link);
+            visitWebsiteinkDomElement.addClass('visible');
+        } else {
+            visitWebsiteinkDomElement.removeClass('visible');
+        }
+
         //Firefox doesn't like dates with / in the constructor
         pDate = new Date(details.PublishDate.replace(/-/g ,'/'));
         timeDomElement.html(STL.Model.Locale.getDayName(pDate.getDay()) + ', ' +  STL.Model.Locale.getMonthName(pDate.getMonth()) + ' ' + pDate.getDate() +  ' ' + pDate.getFullYear());
@@ -245,7 +260,6 @@ STL.View.PostDetails = function() {
         disqusCurrentLoadTries = TOTAL_DISQUS_TRIES;
 
         if(details.Meta.dsq_thread_id) {
-            console.log(details.Meta.dsq_thread_id, url);
             tryToLoadDisqus(details.Meta.dsq_thread_id, url);
         } else {
             commentsDomElement.css('display', 'none');

@@ -15,7 +15,7 @@ STL.View.Main = function() {
      *
      * @type Object
      */
-	this.domElement = null;
+	this.domElement = $('#wrapper');
 
     /**
      * Initializes the view
@@ -43,7 +43,6 @@ STL.View.Main = function() {
     this.postDraw =  function(){
         //STL.Console.log('Post draw view with name ' + this.name);
     };
-
 };
 
 STL.View.Main.prototype = new STL.View.Base();

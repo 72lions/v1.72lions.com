@@ -19,16 +19,6 @@
     <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * The categories Model</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @type STL.Model.Categories</span>
-<span class="cm">     * @property categoriesModel</span>
-<span class="cm">     * @default undefined</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">categoriesModel</span><span class="p">;</span>
-
-    <span class="cm">/**</span>
 <span class="cm">     * An array with all the portfolio items</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
@@ -36,15 +26,6 @@
 <span class="cm">     * @default []</span>
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">portfolioItems</span> <span class="o">=</span> <span class="p">[];</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Is set to true when the data for this page are loaded</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @type Boolean</span>
-<span class="cm">     * @default false</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">dataLoaded</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * This function is executed right after the initialized function is called</span>
@@ -61,12 +42,7 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">dataLoaded</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span><span class="p">();</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
-        <span class="p">}</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">show</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span><span class="p">();</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -84,7 +60,12 @@
 <span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">getPosts</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="nx">onDataLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Portfolio&#39;</span><span class="p">))</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">});</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">getPosts</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="nx">onDataLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+             <span class="nx">onDataLoaded</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Portfolio&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
@@ -117,35 +98,8 @@
             <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">render</span><span class="p">();</span>
         <span class="p">}</span>
 
-        <span class="nx">dataLoaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">show</span><span class="p">();</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
-
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Forces the model to load the categories</span>
-<span class="cm">     *</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">loadCategories</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="nx">categoriesModel</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
-            <span class="nx">categoriesModel</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
-                <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Categories&#39;</span><span class="p">,</span>
-                <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;categoriesPortfolio&#39;</span>
-            <span class="p">});</span>
-        <span class="p">}</span>
-
-        <span class="nx">categoriesModel</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">onCategoriesLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * Callback function that is triggered when the model categories are loaded</span>
-<span class="cm">     *</span>
-<span class="cm">     * @param  {Object} result The result that came back from the model</span>
-<span class="cm">     * @author Thodoris Tsiridis</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">onCategoriesLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="p">};</span>
 

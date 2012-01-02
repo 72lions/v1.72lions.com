@@ -11,6 +11,14 @@
 <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Main</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
+<span class="cm">     * A reference to this class</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type STL.Controller.Blog</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
 <span class="cm">     * A reference to the navigation controller</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>

@@ -63,3 +63,45 @@
     -o-box-flex: @arguments;
     box-flex: @arguments;
 }
+
+.background-size() {
+    -webkit-background-size: @arguments;
+    -moz-background-size: @arguments;
+    -o-background-size: @arguments;
+    background-size: @arguments;
+}
+
+.animation() {
+    -webkit-animation: @arguments;
+    -moz-animation: @arguments;
+    -o-animation: @arguments;
+    animation: @arguments;
+}
+
+// ANIMATIONS
+@-webkit-keyframes preloader-move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
+
+@-moz-keyframes preloader-move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
+
+@-o-keyframes preloader-move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}

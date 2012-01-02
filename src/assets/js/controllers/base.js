@@ -78,10 +78,7 @@ STL.Controller.Base = function() {
      * @author Thodoris Tsiridis
      */
     this.setView = function(view) {
-       this._view = view;
-
-        // ask it to set the model, initialize, draw and postDraw
-        this._view.setModel(this.getModel());
+        this._view = view;
         this._view.initialize();
         this._view.draw();
         this._view.postDraw();
@@ -115,7 +112,6 @@ STL.Controller.Base = function() {
      */
     this.setModel = function(model) {
       this._model = model;
-      this._view.setModel(model);
     };
 
 };

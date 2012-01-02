@@ -38,7 +38,7 @@
     <header>
       <div id="hd" class="grid_10">
         <h1>
-          <a href="http://developer.yahoo.com/yui/" title="72lions">72lions</a> v1.0.0
+          <a href="http://developer.yahoo.com/yui/" title="72lions">72lions</a> v1.2.0
         </h1>
       </div> <!--! end of #hd -->
     </header>
@@ -117,9 +117,6 @@
                   </li>
                   <li >
                     <a href="STL.Controller.Contact.html">STL.Controller.Contact</a>
-                  </li>
-                  <li >
-                    <a href="STL.Controller.Experiments.html">STL.Controller.Experiments</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Footer.html">STL.Controller.Footer</a>
@@ -284,6 +281,10 @@
                     <a href="#property_me">me</a>
                       <span class="access-private">[priv]</span>
                   </li>
+                  <li class="private ">
+                    <a href="#property_preloader">preloader</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
               </ul>
             </div>
 
@@ -294,10 +295,16 @@
                     <a href="#method_draw">draw</a>
                   </li>
                   <li class=" ">
+                    <a href="#method_hidePreloader">hidePreloader</a>
+                  </li>
+                  <li class=" ">
                     <a href="#method_initialize">initialize</a>
                   </li>
                   <li class=" ">
                     <a href="#method_postDraw">postDraw</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_showPreloader">showPreloader</a>
                   </li>
               </ul>
             </div>
@@ -421,6 +428,37 @@
                       </td>
 
                     </tr>
+                    <tr class="private " resource="#property_preloader">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_preloader">preloader</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          This is the preloader for each section
+
+                        </div>
+                      </td>
+
+                    </tr>
               
                 </tbody>
               </table>
@@ -446,6 +484,42 @@
 
                       
 
+                        <tr class="" resource="STL.View.Base.html#property__controller">
+
+                          <td class="names">
+                            <code>
+                              <a href="STL.View.Base.html#property__controller" title="_controller">_controller</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <div>
+                              <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                            </div>
+                          </td>
+
+                        </tr>
+
+
+                        <tr class="" resource="STL.View.Base.html#property__model">
+
+                          <td class="names">
+                            <code>
+                              <a href="STL.View.Base.html#property__model" title="_model">_model</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <div>
+                              <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                            </div>
+                          </td>
+
+                        </tr>
+
+
                         <tr class="" resource="STL.View.Base.html#property_domElement">
 
                           <td class="names">
@@ -469,24 +543,6 @@
                           <td class="names">
                             <code>
                               <a href="STL.View.Base.html#property_id" title="id">id</a>
-                            </code>
-                          </td>
-
-                          <td class="description">
-                            <div>
-                              <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                            </div>
-                          </td>
-
-                        </tr>
-
-
-                        <tr class="" resource="STL.View.Base.html#property_model">
-
-                          <td class="names">
-                            <code>
-                              <a href="STL.View.Base.html#property_model" title="model">model</a>
                             </code>
                           </td>
 
@@ -573,6 +629,37 @@
                       </td>
 
                     </tr>
+                    <tr class=" " resource="#method_hidePreloader">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_hidePreloader">hidePreloader</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Hides the preloader
+
+
+
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#method_initialize">
 
                       <td class="names">
@@ -635,6 +722,37 @@
                       </td>
 
                     </tr>
+                    <tr class=" " resource="#method_showPreloader">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_showPreloader">showPreloader</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Shows the preloader
+
+
+
+                      </td>
+
+                    </tr>
 
                 </tbody>
               </table>
@@ -665,6 +783,21 @@
                           <td class="names">
                             <code>
                               <a class="" href="STL.View.Base.html#method_draw" title="draw">draw</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_getController">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_getController" title="getController">getController</a>
                             </code>
                           </td>
 
@@ -765,11 +898,11 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.View.Base.html#method_setId">
+                        <tr class="" resource="STL.View.Base.html#method_setController">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.View.Base.html#method_setId" title="setId">setId</a>
+                              <a class="" href="STL.View.Base.html#method_setController" title="setController">setController</a>
                             </code>
                           </td>
 
@@ -780,11 +913,11 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.View.Base.html#method_setModel">
+                        <tr class="" resource="STL.View.Base.html#method_setId">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.View.Base.html#method_setModel" title="setModel">setModel</a>
+                              <a class="" href="STL.View.Base.html#method_setId" title="setId">setId</a>
                             </code>
                           </td>
 
@@ -846,7 +979,7 @@
     <footer>
       <div id="footer" class="grid_16">
         <p>
-          Copyright &copy; 2011 72lions. All rights reserved.
+          Copyright &copy; 2012 72lions. All rights reserved.
           &middot;
           Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
         </p>
