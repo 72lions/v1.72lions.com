@@ -12,8 +12,8 @@ class Post {
     /**
      * Constants
      */
-     public static $SORT_DATE_ASC = 'post_date ASC';
-     public static $SORT_DATE_DESC = 'post_date DESC';
+    public static $SORT_DATE_ASC = 'post_date ASC';
+    public static $SORT_DATE_DESC = 'post_date DESC';
 
     /**
      * Public variables
@@ -26,6 +26,7 @@ class Post {
     public $creator = '';
     public $categories = array();
     public $meta = array();
+    public $tags = array();
     public $thumbnail = array('File' => '', 'Data' => null);
     public $slug = '';
     public $id = 0;
@@ -80,6 +81,14 @@ class Post {
      */
     public function addMeta($key, $value){
         $this->meta[$key] = $value;
+    }
+
+    /**
+     * Appends a tag to the tags array
+     * @param {String} $tag The tag
+     */
+    public function addTag($tag) {
+        $this->tags[] = $tag;
     }
 }
 ?>

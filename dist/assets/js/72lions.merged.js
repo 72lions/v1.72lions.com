@@ -4352,6 +4352,24 @@ STL.View.PostDetails = function() {
      */
     var commentsDomElement = this.domElement.find('.comments');
 
+
+    /**
+     * The tags DOM Element
+     *
+     * @private
+     * @type Object
+     */
+    var tagsDomElement = this.domElement.find('.tags');
+
+
+    /**
+     * The tags template
+     *
+     * @private
+     * @type String
+     */
+    var tagsTmpl = '<li>${tag}</li>';
+
     /**
      * The back button DOM Element
      *
@@ -4410,7 +4428,7 @@ STL.View.PostDetails = function() {
      * @author Thodoris Tsiridis
      */
     this.render = function() {
-        var asideHTML, categoriesStr, pDate, slug, url;
+        var asideHTML, categoriesStr, tagsStr, tags, categories, tagTmpl, pDate, slug, url, i;
 
         asideHTML = categoriesStr = '';
 
@@ -4421,7 +4439,7 @@ STL.View.PostDetails = function() {
         // Create categories string
         categories = details.Categories;
 
-        for (var i = 0; i < categories.length; i++) {
+        for (i = 0; i < categories.length; i++) {
 
             categoriesStr += categories[i].Name;
 
@@ -4436,6 +4454,22 @@ STL.View.PostDetails = function() {
             categoriesDomElement.fadeIn(0);
         } else {
             categoriesDomElement.fadeOut(0);
+        }
+
+        // Create the tags string
+        tags = details.Tags;
+        tagsStr = '';
+
+        for (i = 0; i < tags.length; i++) {
+            tagTmpl = tagsTmpl;
+            tagsStr += tagTmpl.replace(/\${tag}/g, tags[i]);
+        }
+
+        if(tagsStr !== '') {
+            tagsDomElement.html(tagsStr);
+            tagsDomElement.css('display','block');
+        } else {
+            tagsDomElement.css('display','none');
         }
 
         //STL.Console.log('Drawing view with name ' + this.name);

@@ -303,6 +303,23 @@ class API {
         }
 
         unset($resultCats);
+
+        // Get the tags
+        $queryTags = "SELECT WT.* FROM wp_terms WT, wp_term_taxonomy WTT, wp_term_relationships WPTR
+        WHERE WT.term_id =  WTT.term_id
+        AND WPTR.term_taxonomy_id = WTT.term_taxonomy_id
+        AND WPTR.object_id = ".$post->id."
+        AND WTT.taxonomy='post_tag'
+        ORDER BY WT.name ASC";
+
+        $resultTags= mysql_query($queryTags) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
+        while($rowTags = mysql_fetch_array($resultTags, MYSQL_ASSOC)){
+
+            $post->addTag($rowTags['name']);
+        }
+
+        unset($resultTags);
+
         unset($resultAt);
 
         return $post;

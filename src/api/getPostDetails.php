@@ -31,6 +31,7 @@
     $data['Id'] = $post->id;
     $data['Thumbnail'] = $post->thumbnail;
     $data['Meta'] = $post->meta;
+    $data['Tags'] = $post->tags;
 
     for ($d=0; $d < count($post->categories); $d++) {
         $category = $post->categories[$d];
