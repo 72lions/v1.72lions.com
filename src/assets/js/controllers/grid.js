@@ -113,7 +113,7 @@ STL.Controller.Grid = function() {
                 portfolioItems.push(
                     STL.ControllerManager.initializeController({
                         type:'ThumbnailItem',
-                        id:'ThumbnailItem' + result[i].Id,
+                        id:modelName + 'ThumbnailItem' + result[i].Id,
                         model: STL.Lookup.getModel({
                             data:result[i]
                         })
