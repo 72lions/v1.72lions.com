@@ -322,7 +322,7 @@
 		<script type="text/javascript" src="/assets/js/controllers/navigation.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/sectionsmanager.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/portfolio.js"></script>
-		<script type="text/javascript" src="/assets/js/controllers/blog.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/grid.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/about.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/contact.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/thumbnailitem.js"></script>
@@ -339,8 +339,7 @@
 		<script type="text/javascript" src="/assets/js/views/navigation.js"></script>
 		<script type="text/javascript" src="/assets/js/views/sectionsmanager.js"></script>
 		<script type="text/javascript" src="/assets/js/views/portfolio.js"></script>
-		<script type="text/javascript" src="/assets/js/views/blog.js"></script>
-		<script type="text/javascript" src="/assets/js/views/experiments.js"></script>
+		<script type="text/javascript" src="/assets/js/views/grid.js"></script>
 		<script type="text/javascript" src="/assets/js/views/about.js"></script>
 		<script type="text/javascript" src="/assets/js/views/contact.js"></script>
 		<script type="text/javascript" src="/assets/js/views/thumbnailitem.js"></script>

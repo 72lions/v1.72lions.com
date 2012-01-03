@@ -79,9 +79,6 @@ STL.Controller.Base = function() {
      */
     this.setView = function(view) {
         this._view = view;
-        this._view.initialize();
-        this._view.draw();
-        this._view.postDraw();
     };
 
     /**

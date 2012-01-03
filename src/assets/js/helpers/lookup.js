@@ -76,6 +76,7 @@ STL.Lookup = function(global) {
             }
 
             _controllers[className].push(controllerObj);
+            controllerObj.classType.initialize({type:attributes.type, id:attributes.id});
             return controllerObj.classType;
 
         } else {

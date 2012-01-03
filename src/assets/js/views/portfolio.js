@@ -18,6 +18,12 @@ STL.View.Portfolio = function() {
     this.domElement = $('.portfolio');
 
     /**
+     * The section title
+     * @type String
+     */
+    this.title = 'Blog';
+
+    /**
      * A reference to this class
      *
      * @private
@@ -81,7 +87,7 @@ STL.View.Portfolio = function() {
             that.domElement.css('opacity', 1);
         }, 10);
 
-        document.title = 'Portfolio - ' + STL.Model.Locale.getPageTitle();
+        document.title = this.title + ' - ' + STL.Model.Locale.getPageTitle();
 
     };
     /**

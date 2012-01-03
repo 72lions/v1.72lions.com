@@ -62,7 +62,7 @@ Basic usage:
 				<file name="${src.js.dir}/controllers/navigation.js"/>
 				<file name="${src.js.dir}/controllers/sectionsmanager.js"/>
 				<file name="${src.js.dir}/controllers/portfolio.js"/>
-				<file name="${src.js.dir}/controllers/blog.js"/>
+				<file name="${src.js.dir}/controllers/grid.js"/>
 				<file name="${src.js.dir}/controllers/about.js"/>
 				<file name="${src.js.dir}/controllers/contact.js"/>
 				<file name="${src.js.dir}/controllers/thumbnailitem.js"/>
@@ -77,8 +77,7 @@ Basic usage:
 				<file name="${src.js.dir}/views/navigation.js"/>
 				<file name="${src.js.dir}/views/sectionsmanager.js"/>
 				<file name="${src.js.dir}/views/portfolio.js"/>
-				<file name="${src.js.dir}/views/experiments.js"/>
-				<file name="${src.js.dir}/views/blog.js"/>
+				<file name="${src.js.dir}/views/grid.js"/>
 				<file name="${src.js.dir}/views/about.js"/>
 				<file name="${src.js.dir}/views/contact.js"/>
 				<file name="${src.js.dir}/views/thumbnailitem.js"/>

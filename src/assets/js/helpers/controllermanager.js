@@ -17,24 +17,29 @@ STL.ControllerManager = function(global) {
      * @param {String} attributes.id The unique id for this class
      * @param {STL.Model.Base} attributes.model The model to be used by this controller
      * @param {STL.View.Base} attributes.view The view to be used by this controller
-     * @param {Object} options The options to use when initialing the controller
+     * @param {Object} controllerOptions The options to use when initializing the controller
+     * @param {Object} viewOptions The options to use when initializing the view
      * @return {STL.Controller.Base}
      * @author Thodoris Tsiridis
      */
-    this.initializeController = function(attributes, options) {
+    this.initializeController = function(attributes, controllerOptions, viewOptions) {
         var ctl, model, view;
 
         view = attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id});
         model = attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id});
 
         ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
-        ctl.initialize({type:attributes.type, id:attributes.id});
 
         view.setController(ctl);
 
         ctl.setView(view);
+
+        view.initialize(viewOptions);
+        view.draw();
+        view.postDraw();
+
         ctl.setModel(model);
-        ctl.postInitialize(options);
+        ctl.postInitialize(controllerOptions);
 
         return ctl;
     };

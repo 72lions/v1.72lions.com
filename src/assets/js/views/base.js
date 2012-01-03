@@ -28,6 +28,13 @@ STL.View.Base = function() {
     this.id = '';
 
     /**
+     * The section title
+     * @type String
+     * @default ''
+     */
+    this.title = '';
+
+    /**
      * A reference to this view's controller
      *
      * @type STL.Controller.Base

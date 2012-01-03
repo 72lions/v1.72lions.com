@@ -111,6 +111,7 @@ STL.Controller.SectionsManager = function() {
      */
     this.postInitialize = function(){
 
+        // Initializing the portfolio controller, view and model
         portfolio = STL.ControllerManager.initializeController({
                 type:'Portfolio',
                 id:'portfolio',
@@ -123,34 +124,41 @@ STL.Controller.SectionsManager = function() {
         portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
         portfolio.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
+        // Initializing the experiments controller, view and model
         experiments = STL.ControllerManager.initializeController({
-            type:'Blog',
+            type:'Grid',
             id:'experiments',
-            view: STL.Lookup.getView({type:'Experiments', id: 'experiments'}),
+            view: STL.Lookup.getView({type:'Grid', id: 'experiments'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'experimentsModel'
             })
-        }, {categoryId:4, modelName:'Experiments'});
+        },
+        {categoryId:4, modelName:'Experiments'},
+        {domElement: $('.experiments'), title:'Experiments'});
 
         experiments.addEventListener('onSectionLoaded', onSectionLoaded);
         experiments.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
+        // Initializing the blog controller, view and model
         blog = STL.ControllerManager.initializeController({
-            type:'Blog',
+            type:'Grid',
             id:'blog',
-            view: STL.Lookup.getView({type:'Blog', id: 'blog'}),
+            view: STL.Lookup.getView({type:'Grid', id: 'blog'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'blogModel'
             })
-        }, {categoryId:3, modelName:'Blog'});
+        },
+        {categoryId:3, modelName:'Blog'},
+        {domElement: $('.blog'), title:'Blog'});
 
         blog.addEventListener('onSectionLoaded', onSectionLoaded);
         blog.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
+        // Initializing the article details controller, view and model
         postDetails = STL.ControllerManager.initializeController({
             type:'PostDetails',
             id:'postDetails',
