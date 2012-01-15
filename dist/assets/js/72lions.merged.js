@@ -529,7 +529,6 @@ var Router = function(global){
     return this;
 
 }(window);
-
 /**
  * Event target is used as a mixin so that the classes can support dispatch events and add events commands
  *
@@ -598,12 +597,10 @@ var EventTarget = function () {
     };
 
 };
-
 var STL = {};
 STL.Controller = STL.Controller || {};
 STL.View = STL.View || {};
 STL.Model = STL.Model || {};
-
 /**
  * Locale Model
  *
@@ -675,7 +672,6 @@ STL.Model.Locale = function(global){
     return this;
 
 }(window);
-
 /**
  * The controller manager is responsible for instantiating controllers
  *
@@ -725,7 +721,6 @@ STL.ControllerManager = function(global) {
     return this;
 
 }(window);
-
 /**
  * Lookup up utility that loads or creates controllers, views and models
  *
@@ -921,7 +916,6 @@ STL.Lookup = function(global) {
     return this;
 
 }(window);
-
 /**
  * Console is used for outputing console.log messages
  *
@@ -959,7 +953,6 @@ STL.Console = function(global){
     return this;
 
 }(window);
-
 /**
  * Base View
  *
@@ -1142,7 +1135,6 @@ STL.View.Base = function() {
     };
 
 };
-
 /**
  * Base Model
  *
@@ -1241,7 +1233,6 @@ STL.Model.Base = function(){
     };
 
 };
-
 
 /**
  * Base Controller
@@ -1357,7 +1348,6 @@ STL.Controller.Base = function() {
     };
 
 };
-
 /**
  * Main Controller
  *
@@ -1539,7 +1529,6 @@ STL.Controller.Main = function() {
 };
 
 STL.Controller.Main.prototype = new STL.Controller.Base();
-
 /**
  * Navigation Controller
  *
@@ -1589,7 +1578,6 @@ STL.Controller.Navigation = function() {
 };
 
 STL.Controller.Navigation.prototype = new STL.Controller.Base();
-
 /**
  * Sections Manager Controller
  *
@@ -1891,7 +1879,6 @@ STL.Controller.SectionsManager = function() {
 };
 
 STL.Controller.SectionsManager.prototype = new STL.Controller.Base();
-
 /**
  * Portfolio Controller
  *
@@ -2000,7 +1987,6 @@ STL.Controller.Portfolio = function() {
 };
 
 STL.Controller.Portfolio.prototype = new STL.Controller.Base();
-
 /**
  * Grid Controller
  *
@@ -2140,7 +2126,6 @@ STL.Controller.Grid = function() {
 };
 
 STL.Controller.Grid.prototype = new STL.Controller.Base();
-
 /**
  * About Controller
  *
@@ -2192,7 +2177,6 @@ STL.Controller.About = function() {
 };
 
 STL.Controller.About.prototype = new STL.Controller.Base();
-
 /**
  * Contact Controller
  *
@@ -2243,7 +2227,6 @@ STL.Controller.Contact = function() {
 };
 
 STL.Controller.Contact.prototype = new STL.Controller.Base();
-
 /**
  * ThumbnailItem Controller
  *
@@ -2275,7 +2258,6 @@ STL.Controller.ThumbnailItem = function() {
 };
 
 STL.Controller.ThumbnailItem.prototype = new STL.Controller.Base();
-
 /**
  * PostDetails Controller
  *
@@ -2373,7 +2355,6 @@ STL.Controller.PostDetails = function() {
 };
 
 STL.Controller.PostDetails.prototype = new STL.Controller.Base();
-
 /**
  * Footer Controller
  *
@@ -2479,7 +2460,6 @@ STL.Controller.Footer = function() {
 };
 
 STL.Controller.Footer.prototype = new STL.Controller.Base();
-
 /**
  * Categories Model
  *
@@ -2578,7 +2558,6 @@ STL.Model.Categories = function(){
 };
 
 STL.Model.Categories.prototype = new STL.Model.Base();
-
 /**
  * Posts Model
  *
@@ -2734,7 +2713,6 @@ STL.Model.Posts = function(){
 };
 
 STL.Model.Posts.prototype = new STL.Model.Base();
-
 /**
  * Footer Model
  *
@@ -2873,7 +2851,6 @@ STL.Model.Footer = function(){
 };
 
 STL.Model.Footer.prototype = new STL.Model.Base();
-
 /**
  * Main View
  *
@@ -2922,7 +2899,6 @@ STL.View.Main = function() {
 };
 
 STL.View.Main.prototype = new STL.View.Base();
-
 /**
  * Navigation View
  *
@@ -3050,7 +3026,6 @@ STL.View.Navigation = function() {
 };
 
 STL.View.Navigation.prototype = new STL.View.Base();
-
 /**
  * Sections Manager View
  *
@@ -3137,7 +3112,6 @@ STL.View.SectionsManager = function() {
 };
 
 STL.View.SectionsManager.prototype = new STL.View.Base();
-
 /**
  * Portfolio View
  *
@@ -3261,7 +3235,6 @@ STL.View.Portfolio = function() {
 };
 
 STL.View.Portfolio.prototype = new STL.View.Base();
-
 /**
  * Grid View
  *
@@ -3547,7 +3520,6 @@ STL.View.Grid = function() {
 };
 
 STL.View.Grid.prototype = new STL.View.Base();
-
 /**
  * About View
  *
@@ -3623,7 +3595,6 @@ STL.View.About = function() {
 };
 
 STL.View.About.prototype = new STL.View.Base();
-
 /**
  * Contact View
  *
@@ -3697,7 +3668,6 @@ STL.View.Contact = function() {
 };
 
 STL.View.Contact.prototype = new STL.View.Base();
-
 /**
  * ThumbnailItem View
  *
@@ -3969,7 +3939,6 @@ STL.View.ThumbnailItem = function() {
 };
 
 STL.View.ThumbnailItem.prototype = new STL.View.Base();
-
 /**
  * PostDetails View
  *
@@ -4346,7 +4315,6 @@ STL.View.PostDetails = function() {
 };
 
 STL.View.PostDetails.prototype = new STL.View.Base();
-
 /**
  * Footer View
  *
@@ -4609,10 +4577,8 @@ STL.View.Footer = function() {
 };
 
 STL.View.Footer.prototype = new STL.View.Base();
-
 STL.ControllerManager.initializeController({
     type:'Main',
     id:'main',
     model: STL.Lookup.getModel({})
 });
-
