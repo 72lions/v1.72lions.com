@@ -146,8 +146,8 @@
 		<!--end source css-->
 
 		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/assets/css/mobile-hires.css" />
-		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 768px)" href="/assets/css/ipad.css" />
+		<link rel="stylesheet" type="text/css" media="all and (max-width: 600px)" href="/assets/css/mobile-hires.css" />
+		<link rel="stylesheet" type="text/css" media="all and (max-width: 768px)" href="/assets/css/ipad.css" />
 
 		<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
 

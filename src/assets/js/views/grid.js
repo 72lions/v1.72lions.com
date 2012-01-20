@@ -242,7 +242,7 @@ STL.View.Grid = function() {
                 _7 = (items[_b] > _7) ? items[_b] : _7;
 
             }
-            if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
+            if(!Modernizr.mq('all and (max-width: 600px)')) {
 
                 $(this).css({
                     left: target_x + "px",
@@ -250,6 +250,7 @@ STL.View.Grid = function() {
                 });
 
             }
+
             itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
 
             if(maxHeight < itemBottom){
@@ -260,8 +261,10 @@ STL.View.Grid = function() {
 
         });
 
-        if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
-            itemsContainer.css('height', maxHeight + 'px');
+        if(!Modernizr.mq('all and (max-width: 600px)')) {
+            if (maxHeight > 0 ){
+                itemsContainer.attr('style', 'height: ' + maxHeight + 'px');
+            }
         } else {
             itemsContainer.css('height', 'auto !important');
         }
