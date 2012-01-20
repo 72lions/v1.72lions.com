@@ -16,9 +16,9 @@ STL.Model.Footer = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getTweets.php'
+     * @default '/api/get.php'
      */
-    var TWITTER_URL = '/api/getTweets.php';
+    var TWITTER_URL = '/api/get.php';
 
     /**
      * The total number of tweets to get
@@ -36,9 +36,9 @@ STL.Model.Footer = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getFlickr.php'
+     * @default '/api/get.php?flickr'
      */
-    var FLICKR_URL = '/api/getFlickr.php';
+    var FLICKR_URL = '/api/get.php?flickr';
 
     /**
      * The ajax request as returned from jQuery.ajax()
@@ -79,7 +79,7 @@ STL.Model.Footer = function(){
         var dataString, me;
         me = this;
 
-        dataString = 't=' + TOTAL_TWEETS;
+        dataString = 'tweets&t=' + TOTAL_TWEETS;
 
         if(req !== undefined){
             req.abort();

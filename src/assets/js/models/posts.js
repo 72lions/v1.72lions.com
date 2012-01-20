@@ -16,9 +16,9 @@ STL.Model.Posts = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getPosts.php'
+     * @default '/api/get.php'
      */
-    var POSTS_URL = '/api/getPosts.php';
+    var POSTS_URL = '/api/get.php';
 
     /**
      * The api url for the posts details
@@ -26,9 +26,9 @@ STL.Model.Posts = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getPostDetails.php'
+     * @default '/api/get.php'
      */
-    var POST_DETAILS_URL = '/api/getPostDetails.php';
+    var POST_DETAILS_URL = '/api/get.php';
 
     /**
      * The start offset for the categories
@@ -95,7 +95,7 @@ STL.Model.Posts = function(){
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
 
-        dataString = 's=' + start + '&t=' + total;
+        dataString = 'posts&s=' + start + '&t=' + total;
 
         if(categoryid !== null){
             dataString += '&cid=' + categoryid;
@@ -139,7 +139,7 @@ STL.Model.Posts = function(){
         reqDetails = $.ajax({
             url: POST_DETAILS_URL,
             dataType: 'json',
-            data: 'id=' + slug,
+            data: 'postdetails&id=' + slug,
             success: function(res){
                 me.set('post', res.Results);
                 if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
