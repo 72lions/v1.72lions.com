@@ -82,7 +82,6 @@ STL.Controller.Main = function() {
             model: STL.Lookup.getModel({})
         });
 
-
         sectionsManager  = STL.ControllerManager.initializeController({
             type:'SectionsManager',
             id:'sectionsmanager',

@@ -47,6 +47,16 @@ STL.Controller.SectionsManager = function() {
     var experiments;
 
     /**
+     * The Tag Controller
+     *
+     * @private
+     * @type STL.Controller.Tag
+     * @property tag
+     * @default undefined
+     */
+    var tag;
+
+    /**
      * The Blog Controller
      *
      * @private
@@ -171,6 +181,22 @@ STL.Controller.SectionsManager = function() {
         postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
         postDetails.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
+        // Initializing the experiments controller, view and model
+        tag = STL.ControllerManager.initializeController({
+            type:'Grid',
+            id:'tag',
+            view: STL.Lookup.getView({type:'Grid', id: 'tag'}),
+            model: STL.Lookup.getModel({
+                type:'Tag',
+                id:'tagsModel'
+            })
+        },
+        {categoryId:4, modelName:'Tag'},
+        {domElement: $('.tag'), title:'Tag'});
+
+        tag.addEventListener('onSectionLoaded', onSectionLoaded);
+        tag.addEventListener('onDataStartedLoading', onDataStartedLoading);
+
     };
 
     /**
@@ -214,6 +240,7 @@ STL.Controller.SectionsManager = function() {
             }
 
             postDetails.hide();
+            tag.hide();
 
         } else {
 
@@ -222,22 +249,48 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/' + state.path]);
 
-                section = state.pathSegments[state.pathSegments.length - 1];
+                if(state.pathSegments[0] === 'tag') {
 
-                //If this is the same section then don't do anything
-                if (currentSection === section) {
-                    return;
+                    section = state.pathSegments[state.pathSegments.length - 2];
+                    tagId = state.pathSegments[state.pathSegments.length - 1];
+
+                    //If this is the same section then don't do anything
+                    if (currentSection === section) {
+                        return;
+                    }
+
+                    currentSection = section;
+
+                    // if we don't have a path segment with category at its first position
+                    for (i = 0; i < len; i++) {
+                        sections[i].object.hide();
+                    }
+
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
+                    postDetails.hide();
+
+                    tag.loadData(tagId);
+
+
+                } else {
+
+                    section = state.pathSegments[state.pathSegments.length - 1];
+
+                    //If this is the same section then don't do anything
+                    if (currentSection === section) {
+                        return;
+                    }
+
+                    currentSection = section;
+
+                    // if we don't have a path segment with category at its first position
+                    for (i = 0; i < len; i++) {
+                        sections[i].object.hide();
+                    }
+
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
+                    postDetails.load(section);
                 }
-
-                currentSection = section;
-
-                // if we don't have a path segment with category at its first position
-                for (i = 0; i < len; i++) {
-                    sections[i].object.hide();
-                }
-
-                this.dispatchEvent({type:'onChangeSectionDispatched'});
-                postDetails.load(section);
 
 
             } else {

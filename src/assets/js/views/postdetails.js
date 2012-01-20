@@ -15,7 +15,7 @@ STL.View.PostDetails = function() {
      *
      * @type Object
      */
-	this.domElement = $('.post-details');
+    this.domElement = $('.post-details');
 
     /**
      * The id of the current article
@@ -146,7 +146,7 @@ STL.View.PostDetails = function() {
      * @private
      * @type String
      */
-    var tagsTmpl = '<li>${tag}</li>';
+    var tagsTmpl = '<li><a href="${taglink}">${tag}</a></li>';
 
     /**
      * The back button DOM Element
@@ -240,7 +240,10 @@ STL.View.PostDetails = function() {
 
         for (i = 0; i < tags.length; i++) {
             tagTmpl = tagsTmpl;
-            tagsStr += tagTmpl.replace(/\${tag}/g, tags[i]);
+            tag = '';
+            tag = tagTmpl.replace(/\${tag}/g, tags[i]);
+            tag = tag.replace(/\${taglink}/g, '/tag/'+tags[i]+'/13');
+            tagsStr += tag;
         }
 
         if(tagsStr !== '') {

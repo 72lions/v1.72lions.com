@@ -8,9 +8,10 @@
 	}
 
 	$id = -1;
+	$tid = null;
 	$title = '';
 
-	if($section == 'blog'|| $section == '') {
+	if($section == 'blog' || $section == '') {
 		$id = 3;
 		$description = 'My name is Thodoris Tsiridis and this is my blog. Here you can find all the things that I like to do and talk about';
 		$title = 'Blog - ';
@@ -30,6 +31,12 @@
 		$id = 0;
 		$description = 'My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!';
 		$title = 'Contact - ';
+	} else if($section == 'tag') {
+		$id = null;
+		$tid = $section;
+		$section = $path[count($path) - 2];
+		$description = 'My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!';
+		$title = 'Tag ' . $section . ' - ';
 	} else {
 		$id = $section;
 	}
@@ -50,9 +57,9 @@
 	$api = new API();
 
 	// If the id is a number then it means that we are in a category
-	if(is_numeric($id) || $id === '') {
+	if(is_numeric($id) || $id === '' || ($id === null && is_numeric($tid))) {
 
-		$posts = $api->getPosts($id, $s, $t, $srt);
+		$posts = $api->getPosts($id, $tid, $s, $t, $srt);
 		$totalPosts = count($posts);
 		$seoMarkup .= '<ul>';
 
@@ -84,7 +91,7 @@
 	} else {
 
 		$post = $api->getPostDetails($id);
-	    $title = $post->title . ' - ';
+	    	$title = $post->title . ' - ';
 		$description = $post->description;
 
 		$postCategories = $post->categories;
@@ -99,8 +106,8 @@
 			}
 		}
 
-	    $seoMarkup .= '<h1>'.$post->title.'</h1>';
-	    $seoMarkup .='<time>'.$post->pubDate.'</time>';
+	    	$seoMarkup .= '<h1>'.$post->title.'</h1>';
+	    	$seoMarkup .='<time>'.$post->pubDate.'</time>';
 		$seoMarkup .= 'Categories: '. $categoriesHTML;
 		$seoMarkup .= '<div class="text">'.$post->content.'</div>';
 	}
@@ -261,6 +268,11 @@
 					</div>
 				</section>
 
+				<section class="tag">
+					<div class="centered">
+					</div>
+				</section>
+
 			</div>
 		</div>
 		<footer class="clearfix">
@@ -333,6 +345,7 @@
 		<script type="text/javascript" src="/assets/js/models/categories.js"></script>
 		<script type="text/javascript" src="/assets/js/models/posts.js"></script>
 		<script type="text/javascript" src="/assets/js/models/footer.js"></script>
+		<script type="text/javascript" src="/assets/js/models/tag.js"></script>
 
 		<script type="text/javascript" src="/assets/js/views/base.js"></script>
 		<script type="text/javascript" src="/assets/js/views/main.js"></script>

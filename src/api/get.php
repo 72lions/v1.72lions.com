@@ -9,17 +9,18 @@
     include('classes/flickrfetcher.php');
     include('classes/tweetsfetcher.php');
 
-    if(isset($_GET['posts'])){
+    if(isset($_GET['posts']) || isset($_GET['tag'])){
 
         // Get all the post/get variables
         if(isset($_REQUEST['cid'])) { $cid = (int)$_REQUEST['cid']; } else { $cid = null; }
+        if(isset($_REQUEST['tid'])) { $tid = (int)$_REQUEST['tid']; } else { $tid = null; }
         if(isset($_REQUEST['s'])) { $s = (int)$_REQUEST['s']; } else { $s = 0; }
         if(isset($_REQUEST['t'])) { $t = (int)$_REQUEST['t']; } else { $t = 10; }
         if(isset($_REQUEST['srt'])) { $srt = $_REQUEST['srt']; } else { $srt = Post::$SORT_DATE_DESC; }
 
         $api = new API();
 
-        $posts = $api->getPosts($cid, $s, $t, $srt);
+        $posts = $api->getPosts($cid, $tid, $s, $t, $srt);
 
         $totalPosts = count($posts);
 

@@ -63,12 +63,14 @@ header.navigation nav ul li a:visited {
 
 section.portfolio .centered article .description h1,
 section.blog .centered article .description h1,
+section.tag .centered article .description h1,
 section.experiments .centered article .description h1 {
     font-size:28px;
 }
 
 section.portfolio .centered article,
 section.blog .centered article,
+section.tag .centered article,
 section.experiments .centered article {
     position:static !important;
     width:100% !important;
@@ -83,12 +85,14 @@ section.experiments .centered article {
 
 section.portfolio .centered article:last-child,
 section.blog .centered article:last-child,
+section.tag .centered article:last-child,
 section.experiments .centered article:last-child {
     border-bottom:none;
 }
 
 section.portfolio article.featured,
 section.blog article.featured,
+section.tag article.featured,
 section.experiments article.featured {
     width:100%;
 }
@@ -108,6 +112,7 @@ section.portfolio .centered article .photo {
 
 section.portfolio .centered article img.thumbnail-image,
 section.blog .centered article img.thumbnail-image,
+section.tag .centered article img.thumbnail-image,
 section.experiments .centered article img.thumbnail-image {
     width: 100%;
     min-width:280px;
@@ -120,6 +125,7 @@ section.experiments .centered article img.thumbnail-image {
 
 section.portfolio .centered article .photo .github-ribbon,
 section.blog .centered article .photo .github-ribbon,
+section.tag .centered article .photo .github-ribbon,
 section.experiments .centered article .photo .github-ribbon {
     width:85px !important;
     height:85px !important;

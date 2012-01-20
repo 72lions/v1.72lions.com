@@ -72,6 +72,7 @@ Basic usage:
 				<file name="${src.js.dir}/models/categories.js"/>
 				<file name="${src.js.dir}/models/posts.js"/>
 				<file name="${src.js.dir}/models/footer.js"/>
+				<file name="${src.js.dir}/models/tag.js"/>
 
 				<file name="${src.js.dir}/views/main.js"/>
 				<file name="${src.js.dir}/views/navigation.js"/>

@@ -107,7 +107,6 @@ section.post-details {
             li {
                 display:inline-block;
                 background-color:rgba(0,0,0,0.2);
-                color:rgba(255,255,255,1);
                 padding:2px 4px 2px 4px;
                 margin-right:2px;
                 margin-left:0px;
@@ -115,6 +114,15 @@ section.post-details {
                 .border-radius(2px);
                 .box-shadow(inset 0px 0px 5px rgba(0,0,0,0.2));
                 border-bottom:1px solid rgba(255,255,255,1);
+
+                a:link,
+                a:visited {
+                    color:rgba(255,255,255,1);
+                    text-decoration:none;
+                    &:hover {
+                        border-bottom:none
+                    }
+                }
             }
         }
 
