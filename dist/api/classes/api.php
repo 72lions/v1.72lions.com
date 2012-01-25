@@ -75,11 +75,25 @@ class API {
      * @return {Array}
      * @author Thodoris Tsiridis
      */
-    public function getPosts($categoryId = null, $start = 0, $total = 10, $sort = 'post_date DESC') {
+    public function getPosts($categoryId = null, $tagId = null, $start = 0, $total = 10, $sort = 'post_date DESC') {
 
         $db = new DB();
         $db->connect(self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_HOST, self::$DB_NAME);
-        if($categoryId !== null){
+
+        if ($tagId !== null) {
+            $query = "SELECT * FROM wp_posts WPP,
+            wp_term_taxonomy WPTT,
+            wp_term_relationships WPTR
+            WHERE WPP.post_status='publish'
+            AND WPP.post_type='post'
+            AND WPTT.term_id=".mysql_real_escape_string($tagId)."
+            AND WPTT.taxonomy='post_tag'
+            AND WPTR.term_taxonomy_id = WPTT.term_taxonomy_id
+            AND WPTR.object_id = WPP.ID
+            ORDER BY ".$sort."
+            LIMIT ".$start.",".$total;
+
+        } else if ($categoryId !== null){
 
             $query = "SELECT * FROM wp_posts WPP,
             wp_term_taxonomy WPTT,
@@ -102,8 +116,6 @@ class API {
             LIMIT ".$start.",".$total;
 
         }
-
-
 
         if(MC::get($query) == null){
 
