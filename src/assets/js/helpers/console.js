@@ -7,31 +7,31 @@
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-STL.Console = function(global){
+STL.Console = ( function(){
 
-    /**
-     * Set to true and debug will be enabled
-     *
-     * @type {Boolean}
-     * @default true
-     */
-    this.debug = true;
+    return {
 
-    /**
-     * Logs out a message
-     *
-     * @param {Object || Array || Number || String || Arguments} arguments The message to pass down to console.log
-     * @author Thodoris Tsiridis
-     */
-    this.log = function() {
+        /**
+         * Set to true and debug will be enabled
+         *
+         * @type {Boolean}
+         * @default true
+         */
+        debug: true,
 
-        if(this.debug){
-            console.log(arguments);
+        /**
+         * Logs out a message
+         *
+         * @param {Object || Array || Number || String || Arguments} arguments The message to pass down to console.log
+         * @author Thodoris Tsiridis
+         */
+        log: function() {
+
+            if(STL.Console.debug){
+                console.log(arguments);
+            }
+
         }
+    }
 
-    };
-
-    // Return the api
-    return this;
-
-}(window);
+})();

@@ -681,46 +681,46 @@ STL.Model.Locale = function(global){
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-STL.ControllerManager = function(global) {
+STL.ControllerManager = ( function() {
 
-    /**
-     * Initializes a controller with a specific type, id, view and model
-     *
-     * @param {Object} attributes The attributes that will be used to initialize the class
-     * @param {String} attributes.type The class type
-     * @param {String} attributes.id The unique id for this class
-     * @param {STL.Model.Base} attributes.model The model to be used by this controller
-     * @param {STL.View.Base} attributes.view The view to be used by this controller
-     * @param {Object} controllerOptions The options to use when initializing the controller
-     * @param {Object} viewOptions The options to use when initializing the view
-     * @return {STL.Controller.Base}
-     * @author Thodoris Tsiridis
-     */
-    this.initializeController = function(attributes, controllerOptions, viewOptions) {
-        var ctl, model, view;
+    return {
+        /**
+         * Initializes a controller with a specific type, id, view and model
+         *
+         * @param {Object} attributes The attributes that will be used to initialize the class
+         * @param {String} attributes.type The class type
+         * @param {String} attributes.id The unique id for this class
+         * @param {STL.Model.Base} attributes.model The model to be used by this controller
+         * @param {STL.View.Base} attributes.view The view to be used by this controller
+         * @param {Object} controllerOptions The options to use when initializing the controller
+         * @param {Object} viewOptions The options to use when initializing the view
+         * @return {STL.Controller.Base}
+         * @author Thodoris Tsiridis
+         */
+        initializeController: function(attributes, controllerOptions, viewOptions) {
+            var ctl, model, view;
 
-        view = attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id});
-        model = attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id});
+            view = attributes.view || STL.Lookup.getView({type:attributes.type, id: attributes.id});
+            model = attributes.model || STL.Lookup.getModel({type:attributes.type, id: attributes.id});
 
-        ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
+            ctl = STL.Lookup.getController({type:attributes.type, id:attributes.id});
 
-        view.setController(ctl);
+            view.setController(ctl);
 
-        ctl.setView(view);
+            ctl.setView(view);
 
-        view.initialize(viewOptions);
-        view.draw();
-        view.postDraw();
+            view.initialize(viewOptions);
+            view.draw();
+            view.postDraw();
 
-        ctl.setModel(model);
-        ctl.postInitialize(controllerOptions);
+            ctl.setModel(model);
+            ctl.postInitialize(controllerOptions);
 
-        return ctl;
-    };
+            return ctl;
+        }
+    }
 
-    return this;
-
-}(window);
+})();
 /**
  * Lookup up utility that loads or creates controllers, views and models
  *
@@ -730,7 +730,7 @@ STL.ControllerManager = function(global) {
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-STL.Lookup = function(global) {
+STL.Lookup = (function() {
 
     /**
      * An object holding all the different models
@@ -756,166 +756,168 @@ STL.Lookup = function(global) {
      */
     var _controllers    = {};
 
-    /**
-     * Returns a controller with a specific name
-     *
-     * @param {Object} attributes The attributes that will be used to initialize the class
-     * @param {String} attributes.type The class type
-     * @param {String} attributes.id The unique id for this class
-     * @returns A controller
-     * @type STL.Controller.Base
-     * @author Thodoris Tsiridis
-     */
-    this.getController = function(attributes) {
-        var className, id, model, controllerObj;
-        var exists = -1;
 
-        className = attributes.type || 'Base';
-        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
+    return {
+        /**
+         * Returns a controller with a specific name
+         *
+         * @param {Object} attributes The attributes that will be used to initialize the class
+         * @param {String} attributes.type The class type
+         * @param {String} attributes.id The unique id for this class
+         * @returns A controller
+         * @type STL.Controller.Base
+         * @author Thodoris Tsiridis
+         */
+        getController: function(attributes) {
+            var className, id, model, controllerObj;
+            var exists = -1;
 
-        // Check if there is an array with objects of className type
-        // If not then create a new array
-        if(!_controllers[className] || !$.isArray(_controllers[className])) {
-            _controllers[className] = [];
-        }
+            className = attributes.type || 'Base';
+            id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
 
-        // Loop through al the items in the array
-        // to check if an item with this id already exists
-        for (var i = _controllers[className].length - 1; i >= 0; i--) {
-            if(_controllers[className][i].id == id){
-                exists = i;
-                break;
+            // Check if there is an array with objects of className type
+            // If not then create a new array
+            if(!_controllers[className] || !$.isArray(_controllers[className])) {
+                _controllers[className] = [];
             }
-        }
 
-        if(exists === -1){
+            // Loop through al the items in the array
+            // to check if an item with this id already exists
+            for (var i = _controllers[className].length - 1; i >= 0; i--) {
+                if(_controllers[className][i].id == id){
+                    exists = i;
+                    break;
+                }
+            }
 
-            // Check if the class that we want to load exists
-            if(STL.Controller[className] !== undefined){
-                controllerObj = {id: id, classType: new STL.Controller[className]()};
+            if(exists === -1){
+
+                // Check if the class that we want to load exists
+                if(STL.Controller[className] !== undefined){
+                    controllerObj = {id: id, classType: new STL.Controller[className]()};
+                } else {
+                    // Create a generic controller
+                    controllerObj = {id: id, classType: new STL.Controller.Base()};
+                }
+
+                _controllers[className].push(controllerObj);
+                controllerObj.classType.initialize({type:attributes.type, id:attributes.id});
+                return controllerObj.classType;
+
             } else {
-                // Create a generic controller
-                controllerObj = {id: id, classType: new STL.Controller.Base()};
+
+                return _controllers[className][exists].classType;
             }
 
-            _controllers[className].push(controllerObj);
-            controllerObj.classType.initialize({type:attributes.type, id:attributes.id});
-            return controllerObj.classType;
+        },
 
-        } else {
+        /**
+         * Returns a view with a specific name
+         *
+         * @param {Object} attributes The attributes that will be used to initialize the class
+         * @param {String} attributes.type The class type
+         * @param {String} attributes.id The unique id for this class
+         * @returns A view
+         * @type STL.View.Base
+         * @author Thodoris Tsiridis
+         */
+        getView: function(attributes) {
+            var exists = -1, viewObj, id, className;
+            className = attributes.type || 'Base';
+            id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
 
-            return _controllers[className][exists].classType;
-        }
-
-    };
-
-    /**
-     * Returns a view with a specific name
-     *
-     * @param {Object} attributes The attributes that will be used to initialize the class
-     * @param {String} attributes.type The class type
-     * @param {String} attributes.id The unique id for this class
-     * @returns A view
-     * @type STL.View.Base
-     * @author Thodoris Tsiridis
-     */
-    this.getView = function(attributes) {
-        var exists = -1, viewObj, id, className;
-        className = attributes.type || 'Base';
-        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
-
-        // Check if there is an array with objects of className type
-        // If not then create a new array
-        if(!_views[className] || !$.isArray(_views[className])) {
-            _views[className] = [];
-        }
-
-        // Loop through al the items in the array
-        // to check if an item with this id already exists
-        for (var i = _views[className].length - 1; i >= 0; i--) {
-            if(_views[className][i].id == id){
-                exists = i;
+            // Check if there is an array with objects of className type
+            // If not then create a new array
+            if(!_views[className] || !$.isArray(_views[className])) {
+                _views[className] = [];
             }
-        }
 
-        if(exists === -1){
+            // Loop through al the items in the array
+            // to check if an item with this id already exists
+            for (var i = _views[className].length - 1; i >= 0; i--) {
+                if(_views[className][i].id == id){
+                    exists = i;
+                }
+            }
 
-            exists = null;
+            if(exists === -1){
 
-            // Check if the class that we want to load exists
-            if(STL.View[className] !== undefined){
-                viewObj = {id: id, classType: new STL.View[className]()};
+                exists = null;
+
+                // Check if the class that we want to load exists
+                if(STL.View[className] !== undefined){
+                    viewObj = {id: id, classType: new STL.View[className]()};
+                } else {
+                    viewObj = {id: id, classType: new STL.View.Base()};
+                }
+
+                _views[className].push(viewObj);
+                viewObj.classType.preInitialize(attributes);
+                return viewObj.classType;
+
             } else {
-                viewObj = {id: id, classType: new STL.View.Base()};
+                return _views[className][exists].classType;
+            }
+        },
+
+        /**
+         * Returns a model with a specific name
+         *
+         * @param {Object} attributes The attributes that will be used to initialize the class
+         * @param {String} attributes.type The class type
+         * @param {String} attributes.id The unique id for this class
+         * @param {Object} attributes.data The data of the model
+         * @returns A model
+         * @type STL.Model.Base
+         * @author Thodoris Tsiridis
+         */
+        getModel: function(attributes) {
+            var exists = -1, modelObj, name, modelData;
+            modelData = attributes.data || {};
+            name = attributes.type || 'Base';
+            id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
+
+            // Check if there is an array with objects of className type
+            // If not then create a new array
+            if(!_models[name] || !$.isArray(_models[name])) {
+                _models[name] = [];
             }
 
-            _views[className].push(viewObj);
-            viewObj.classType.preInitialize(attributes);
-            return viewObj.classType;
-
-        } else {
-            return _views[className][exists].classType;
-        }
-    };
-
-    /**
-     * Returns a model with a specific name
-     *
-     * @param {Object} attributes The attributes that will be used to initialize the class
-     * @param {String} attributes.type The class type
-     * @param {String} attributes.id The unique id for this class
-     * @param {Object} attributes.data The data of the model
-     * @returns A model
-     * @type STL.Model.Base
-     * @author Thodoris Tsiridis
-     */
-    this.getModel = function(attributes) {
-        var exists = -1, modelObj, name, modelData;
-        modelData = attributes.data || {};
-        name = attributes.type || 'Base';
-        id = attributes.id || ('_id_' + Math.floor(Math.random()*10000).toString());
-
-        // Check if there is an array with objects of className type
-        // If not then create a new array
-        if(!_models[name] || !$.isArray(_models[name])) {
-            _models[name] = [];
-        }
-
-        // Loop through al the items in the array
-        // to check if an item with this id already exists
-        for (var i = _models[name].length - 1; i >= 0; i--) {
-            if(_models[name][i].id == id){
-                exists = i;
+            // Loop through al the items in the array
+            // to check if an item with this id already exists
+            for (var i = _models[name].length - 1; i >= 0; i--) {
+                if(_models[name][i].id == id){
+                    exists = i;
+                }
             }
-        }
 
-        if(exists === -1){
+            if(exists === -1){
 
-            exists = null;
+                exists = null;
 
-            // Check if the class that we want to load exists
-            if(STL.Model[name] !== undefined){
-                modelObj = {id: id, classType: new STL.Model[name]()};
+                // Check if the class that we want to load exists
+                if(STL.Model[name] !== undefined){
+                    modelObj = {id: id, classType: new STL.Model[name]()};
+                } else {
+                    modelObj = {id: id, classType: new STL.Model.Base()};
+                }
+
+                _models[name].push(modelObj);
+
+                modelObj.classType.setName(name);
+                modelObj.classType.setId(id);
+                modelObj.classType.setData(modelData);
+
+                return modelObj.classType;
+
             } else {
-                modelObj = {id: id, classType: new STL.Model.Base()};
+                return _models[name][exists].classType;
             }
-
-            _models[name].push(modelObj);
-
-            modelObj.classType.setName(name);
-            modelObj.classType.setId(id);
-            modelObj.classType.setData(modelData);
-
-            return modelObj.classType;
-
-        } else {
-            return _models[name][exists].classType;
         }
-    };
 
-    return this;
+    }
 
-}(window);
+})();
 /**
  * Console is used for outputing console.log messages
  *
@@ -925,34 +927,34 @@ STL.Lookup = function(global) {
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-STL.Console = function(global){
+STL.Console = ( function(){
 
-    /**
-     * Set to true and debug will be enabled
-     *
-     * @type {Boolean}
-     * @default true
-     */
-    this.debug = true;
+    return {
 
-    /**
-     * Logs out a message
-     *
-     * @param {Object || Array || Number || String || Arguments} arguments The message to pass down to console.log
-     * @author Thodoris Tsiridis
-     */
-    this.log = function() {
+        /**
+         * Set to true and debug will be enabled
+         *
+         * @type {Boolean}
+         * @default true
+         */
+        debug: true,
 
-        if(this.debug){
-            /*console.log(arguments)*/;
+        /**
+         * Logs out a message
+         *
+         * @param {Object || Array || Number || String || Arguments} arguments The message to pass down to console.log
+         * @author Thodoris Tsiridis
+         */
+        log: function() {
+
+            if(STL.Console.debug){
+                /*console.log(arguments)*/;
+            }
+
         }
+    }
 
-    };
-
-    // Return the api
-    return this;
-
-}(window);
+})();
 /**
  * Base View
  *
@@ -1432,7 +1434,6 @@ STL.Controller.Main = function() {
             model: STL.Lookup.getModel({})
         });
 
-
         sectionsManager  = STL.ControllerManager.initializeController({
             type:'SectionsManager',
             id:'sectionsmanager',
@@ -1627,6 +1628,16 @@ STL.Controller.SectionsManager = function() {
     var experiments;
 
     /**
+     * The Tag Controller
+     *
+     * @private
+     * @type STL.Controller.Tag
+     * @property tag
+     * @default undefined
+     */
+    var tag;
+
+    /**
      * The Blog Controller
      *
      * @private
@@ -1751,6 +1762,22 @@ STL.Controller.SectionsManager = function() {
         postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
         postDetails.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
+        // Initializing the experiments controller, view and model
+        tag = STL.ControllerManager.initializeController({
+            type:'Grid',
+            id:'tag',
+            view: STL.Lookup.getView({type:'Grid', id: 'tag'}),
+            model: STL.Lookup.getModel({
+                type:'Tag',
+                id:'tagsModel'
+            })
+        },
+        {categoryId:4, modelName:'Tag'},
+        {domElement: $('.tag'), title:'Tag'});
+
+        tag.addEventListener('onSectionLoaded', onSectionLoaded);
+        tag.addEventListener('onDataStartedLoading', onDataStartedLoading);
+
     };
 
     /**
@@ -1794,6 +1821,7 @@ STL.Controller.SectionsManager = function() {
             }
 
             postDetails.hide();
+            tag.hide();
 
         } else {
 
@@ -1802,22 +1830,48 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/' + state.path]);
 
-                section = state.pathSegments[state.pathSegments.length - 1];
+                if(state.pathSegments[0] === 'tag') {
 
-                //If this is the same section then don't do anything
-                if (currentSection === section) {
-                    return;
+                    section = state.pathSegments[state.pathSegments.length - 2];
+                    tagId = state.pathSegments[state.pathSegments.length - 1];
+
+                    //If this is the same section then don't do anything
+                    if (currentSection === section) {
+                        return;
+                    }
+
+                    currentSection = section;
+
+                    // if we don't have a path segment with category at its first position
+                    for (i = 0; i < len; i++) {
+                        sections[i].object.hide();
+                    }
+
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
+                    postDetails.hide();
+
+                    tag.loadData(tagId);
+
+
+                } else {
+
+                    section = state.pathSegments[state.pathSegments.length - 1];
+
+                    //If this is the same section then don't do anything
+                    if (currentSection === section) {
+                        return;
+                    }
+
+                    currentSection = section;
+
+                    // if we don't have a path segment with category at its first position
+                    for (i = 0; i < len; i++) {
+                        sections[i].object.hide();
+                    }
+
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
+                    postDetails.load(section);
                 }
-
-                currentSection = section;
-
-                // if we don't have a path segment with category at its first position
-                for (i = 0; i < len; i++) {
-                    sections[i].object.hide();
-                }
-
-                this.dispatchEvent({type:'onChangeSectionDispatched'});
-                postDetails.load(section);
 
 
             } else {
@@ -2495,9 +2549,9 @@ STL.Model.Categories = function(){
      *
      * @private
      * @type String
-     * @default '/api/getCategories.php'
+     * @default '/api/get.php'
      */
-    var CATEGORIES_URL = '/api/getCategories.php';
+    var CATEGORIES_URL = '/api/get.php';
 
     /**
      * The start offset for the categories
@@ -2534,7 +2588,7 @@ STL.Model.Categories = function(){
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
 
-        dataString = 's=' + start + '&t=' + total;
+        dataString = 'categories&s=' + start + '&t=' + total;
 
         if(req !== undefined){
             req.abort();
@@ -2576,9 +2630,9 @@ STL.Model.Posts = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getPosts.php'
+     * @default '/api/get.php'
      */
-    var POSTS_URL = '/api/getPosts.php';
+    var POSTS_URL = '/api/get.php';
 
     /**
      * The api url for the posts details
@@ -2586,9 +2640,9 @@ STL.Model.Posts = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getPostDetails.php'
+     * @default '/api/get.php'
      */
-    var POST_DETAILS_URL = '/api/getPostDetails.php';
+    var POST_DETAILS_URL = '/api/get.php';
 
     /**
      * The start offset for the categories
@@ -2655,7 +2709,7 @@ STL.Model.Posts = function(){
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
 
-        dataString = 's=' + start + '&t=' + total;
+        dataString = 'posts&s=' + start + '&t=' + total;
 
         if(categoryid !== null){
             dataString += '&cid=' + categoryid;
@@ -2699,7 +2753,7 @@ STL.Model.Posts = function(){
         reqDetails = $.ajax({
             url: POST_DETAILS_URL,
             dataType: 'json',
-            data: 'id=' + slug,
+            data: 'postdetails&id=' + slug,
             success: function(res){
                 me.set('post', res.Results);
                 if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
@@ -2731,9 +2785,9 @@ STL.Model.Footer = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getTweets.php'
+     * @default '/api/get.php'
      */
-    var TWITTER_URL = '/api/getTweets.php';
+    var TWITTER_URL = '/api/get.php';
 
     /**
      * The total number of tweets to get
@@ -2751,9 +2805,9 @@ STL.Model.Footer = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getFlickr.php'
+     * @default '/api/get.php?flickr'
      */
-    var FLICKR_URL = '/api/getFlickr.php';
+    var FLICKR_URL = '/api/get.php?flickr';
 
     /**
      * The ajax request as returned from jQuery.ajax()
@@ -2794,7 +2848,7 @@ STL.Model.Footer = function(){
         var dataString, me;
         me = this;
 
-        dataString = 't=' + TOTAL_TWEETS;
+        dataString = 'tweets&t=' + TOTAL_TWEETS;
 
         if(req !== undefined){
             req.abort();
@@ -2851,6 +2905,110 @@ STL.Model.Footer = function(){
 };
 
 STL.Model.Footer.prototype = new STL.Model.Base();
+/**
+ * Tag Model
+ *
+ * @module 72lions
+ * @class Tag
+ * @namespace STL.Model
+ * @extends STL.Model.Base
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+STL.Model.Tag = function(){
+
+    /**
+     * The api url for the posts
+     *
+     * @private
+     * @final
+     * @type String
+     * @default '/api/get.php'
+     */
+    var POSTS_URL = '/api/get.php';
+
+    /**
+     * The start offset for the categories
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 0
+     */
+    var DEFAULT_START = 0;
+
+    /**
+     * The total number of items to retrieve from the api
+     *
+     * @private
+     * @final
+     * @type Number
+     * @default 10
+     */
+    var DEFAULT_NUMBER_OF_ITEMS = 10;
+
+    /**
+     * The ajax request as returned from jQuery.ajax()
+     *
+     * @private
+     * @property req
+     * @type jqXHR
+     * @default undefined
+     */
+    var req;
+
+    /**
+     * The object that holds the data
+     *
+     * @type String
+     */
+    var data = {};
+
+    /**
+     * Gets an array of posts by doing an Ajax Call
+     *
+     * @param {Number} categoryId The category of the posts that we want to load
+     * @param {Number} start The start offset
+     * @param {Number} total The total number of items that we want to get
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @author Thodoris Tsiridis
+     */
+    this.getPosts = function(categoryid, start, total, callback, ctx) {
+        var dataString, me;
+
+        me = this;
+
+        start = start || DEFAULT_START;
+        total = total || DEFAULT_NUMBER_OF_ITEMS;
+
+        dataString = 'tag&s=' + start + '&t=' + total;
+
+        if(categoryid !== null){
+            dataString += '&tid=' + categoryid;
+        }
+
+        if(req !== undefined){
+            req.abort();
+        }
+
+        req = $.ajax({
+            url: POSTS_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('Tag', res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('Tag')]);
+                    req = undefined;
+                }
+            }
+        });
+    };
+
+};
+
+STL.Model.Tag.prototype = new STL.Model.Base();
 /**
  * Main View
  *
@@ -3479,7 +3637,7 @@ STL.View.Grid = function() {
                 _7 = (items[_b] > _7) ? items[_b] : _7;
 
             }
-            if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
+            if(!Modernizr.mq('all and (max-width: 600px)')) {
 
                 $(this).css({
                     left: target_x + "px",
@@ -3487,6 +3645,7 @@ STL.View.Grid = function() {
                 });
 
             }
+
             itemBottom = parseInt(target_y + COLUMN_MARGIN,0) + $(this).innerHeight();
 
             if(maxHeight < itemBottom){
@@ -3497,8 +3656,10 @@ STL.View.Grid = function() {
 
         });
 
-        if(!Modernizr.mq('only screen and (max-device-width: 480px)')) {
-            itemsContainer.css('height', maxHeight + 'px');
+        if(!Modernizr.mq('all and (max-width: 600px)')) {
+            if (maxHeight > 0 ){
+                itemsContainer.attr('style', 'height: ' + maxHeight + 'px');
+            }
         } else {
             itemsContainer.css('height', 'auto !important');
         }
@@ -3956,7 +4117,7 @@ STL.View.PostDetails = function() {
      *
      * @type Object
      */
-	this.domElement = $('.post-details');
+    this.domElement = $('.post-details');
 
     /**
      * The id of the current article
@@ -4087,7 +4248,7 @@ STL.View.PostDetails = function() {
      * @private
      * @type String
      */
-    var tagsTmpl = '<li>${tag}</li>';
+    var tagsTmpl = '<li><a href="${taglink}">${tag}</a></li>';
 
     /**
      * The back button DOM Element
@@ -4181,7 +4342,10 @@ STL.View.PostDetails = function() {
 
         for (i = 0; i < tags.length; i++) {
             tagTmpl = tagsTmpl;
-            tagsStr += tagTmpl.replace(/\${tag}/g, tags[i]);
+            tag = '';
+            tag = tagTmpl.replace(/\${tag}/g, tags[i]);
+            tag = tag.replace(/\${taglink}/g, '/tag/'+tags[i]+'/13');
+            tagsStr += tag;
         }
 
         if(tagsStr !== '') {
