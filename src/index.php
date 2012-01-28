@@ -180,7 +180,7 @@
 		</div>
 		<header class="navigation">
 			<div class="logo-container">
-				<a href="/category/blog" class="logo" title="Blog" class="logo">
+				<a href="/category/blog" class="logo" title="Blog">
 					<img src="/assets/images/logo.png" alt="72lions logo" />
 				</a>
 				<h1>
