@@ -68,11 +68,11 @@ Basic usage:
 				<file name="${src.js.dir}/controllers/thumbnailitem.js"/>
 				<file name="${src.js.dir}/controllers/postdetails.js"/>
 				<file name="${src.js.dir}/controllers/footer.js"/>
+				<file name="${src.js.dir}/controllers/tags.js"/>
 
 				<file name="${src.js.dir}/models/categories.js"/>
 				<file name="${src.js.dir}/models/posts.js"/>
 				<file name="${src.js.dir}/models/footer.js"/>
-				<file name="${src.js.dir}/models/tag.js"/>
 
 				<file name="${src.js.dir}/views/main.js"/>
 				<file name="${src.js.dir}/views/navigation.js"/>
@@ -84,6 +84,7 @@ Basic usage:
 				<file name="${src.js.dir}/views/thumbnailitem.js"/>
 				<file name="${src.js.dir}/views/postdetails.js"/>
 				<file name="${src.js.dir}/views/footer.js"/>
+				<file name="${src.js.dir}/views/tags.js"/>
 
 				<file name="${src.js.dir}/bootstrap.js"/>
 			</filelist>
