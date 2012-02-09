@@ -343,12 +343,12 @@
 		<script type="text/javascript" src="/assets/js/controllers/thumbnailitem.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/postdetails.js"></script>
 		<script type="text/javascript" src="/assets/js/controllers/footer.js"></script>
+		<script type="text/javascript" src="/assets/js/controllers/tags.js"></script>
 
 		<script type="text/javascript" src="/assets/js/models/base.js"></script>
 		<script type="text/javascript" src="/assets/js/models/categories.js"></script>
 		<script type="text/javascript" src="/assets/js/models/posts.js"></script>
 		<script type="text/javascript" src="/assets/js/models/footer.js"></script>
-		<script type="text/javascript" src="/assets/js/models/tag.js"></script>
 
 		<script type="text/javascript" src="/assets/js/views/base.js"></script>
 		<script type="text/javascript" src="/assets/js/views/main.js"></script>
@@ -361,6 +361,7 @@
 		<script type="text/javascript" src="/assets/js/views/thumbnailitem.js"></script>
 		<script type="text/javascript" src="/assets/js/views/postdetails.js"></script>
 		<script type="text/javascript" src="/assets/js/views/footer.js"></script>
+		<script type="text/javascript" src="/assets/js/views/tags.js"></script>
 
 		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 		<!--end source scripts-->
