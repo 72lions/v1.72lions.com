@@ -31,7 +31,7 @@
 		$id = 0;
 		$description = 'My name is Thodoris Tsiridis and I am a web developer from Greece. I am currently living a great life in Stockholm, Sweden!';
 		$title = 'Contact - ';
-	} else if($section == 'tag') {
+	} else if($path[1] == 'tag') {
 		$id = null;
 		$tid = $section;
 		$section = $path[count($path) - 2];
@@ -60,6 +60,7 @@
 	if(is_numeric($id) || $id === '' || ($id === null && is_numeric($tid))) {
 
 		$posts = $api->getPosts($id, $tid, $s, $t, $srt);
+
 		$totalPosts = count($posts);
 		$seoMarkup .= '<ul>';
 

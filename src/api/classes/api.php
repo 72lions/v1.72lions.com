@@ -327,7 +327,7 @@ class API {
         $resultTags= mysql_query($queryTags) or die('Class '.__CLASS__.' -> '.__FUNCTION__.' : ' . mysql_error());
         while($rowTags = mysql_fetch_array($resultTags, MYSQL_ASSOC)){
 
-            $post->addTag($rowTags['name']);
+            $post->addTag($rowTags['name'], $rowTags['slug'], $rowTags['term_id']);
         }
 
         unset($resultTags);

@@ -84,7 +84,9 @@ STL.Controller.Tags = function() {
      * @author Thodoris Tsiridis
      */
     this.loadData = function(tagId) {
+
         this.tagId = tagId;
+
         if(typeof(this.getModel().get(modelName+tagId)) === 'undefined'){
             this.dispatchEvent({type:'onDataStartedLoading'});
             this.getModel().getTags(tagId, 0, 80, onDataLoaded, this);
@@ -104,30 +106,25 @@ STL.Controller.Tags = function() {
     var onDataLoaded = function(result) {
         var i;
 
-        if(typeof(this.getModel().get(modelName+this.tagId)) === 'undefined'){
+        for (i = 0; i < result.length; i++) {
 
-            this.getModel().set(modelName+this.tagId, result);
+            portfolioItems.push(
+                STL.ControllerManager.initializeController({
+                    type:'ThumbnailItem',
+                    id:modelName + 'ThumbnailItem' + result[i].Id,
+                    model: STL.Lookup.getModel({
+                        data:result[i]
+                    })
+                 })
+            );
 
-            for (i = 0; i < result.length; i++) {
-
-                portfolioItems.push(
-                    STL.ControllerManager.initializeController({
-                        type:'ThumbnailItem',
-                        id:modelName + 'ThumbnailItem' + result[i].Id,
-                        model: STL.Lookup.getModel({
-                            data:result[i]
-                        })
-                     })
-                );
-
-
-                portfolioItems[i].getView().render();
-                portfolioItems[i].getView().showDescription();
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
-            }
-
-            this.getView().render();
+            portfolioItems[i].getView().setAsFeatured(false);
+            portfolioItems[i].getView().render();
+            portfolioItems[i].getView().showDescription();
+            this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
         }
+
+        this.getView().render();
 
         this.dispatchEvent({type:'onSectionLoaded'});
         this.getView().show();
@@ -136,4 +133,4 @@ STL.Controller.Tags = function() {
 
 };
 
-STL.Controller.Grid.prototype = new STL.Controller.Base();
+STL.Controller.Tags.prototype = new STL.Controller.Base();

@@ -149,7 +149,7 @@ STL.Model.Posts = function(){
 
         dataString = 'tag&s=' + start + '&t=' + total;
 
-        if(categoryid !== null){
+        if(tagId !== null){
             dataString += '&tid=' + tagId;
         }
 

@@ -127,8 +127,6 @@ STL.View.Tags = function() {
         //STL.Console.log('Show view with name ' + this.name);
         var that = this;
 
-        document.title = this.title + ' - ' + STL.Model.Locale.getPageTitle();
-
         this.domElement.addClass('active');
 
         setTimeout(function(){
@@ -281,4 +279,4 @@ STL.View.Tags = function() {
 
 };
 
-STL.View.Grid.prototype = new STL.View.Base();
+STL.View.Tags.prototype = new STL.View.Base();

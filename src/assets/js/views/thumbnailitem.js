@@ -19,6 +19,14 @@ STL.View.ThumbnailItem = function() {
     this.isFeatured = false;
 
     /**
+     * If the thumbnail item shouldn't explicity not be featured this would be true
+     *
+     * @type Boolean
+     * @default false
+     */
+    this.explicityNotFeatured = false;
+
+    /**
      * The DOM Element
      *
      * @type Object
@@ -80,9 +88,9 @@ STL.View.ThumbnailItem = function() {
      *
      * @author Thodoris Tsiridis
      */
-	this.draw = function() {
+    this.draw = function() {
 
-	};
+    };
 
    /**
      * Executed after the drawing of the view
@@ -107,6 +115,7 @@ STL.View.ThumbnailItem = function() {
             this.domElement.addClass('featured');
         } else {
             this.domElement.removeClass('featured');
+            this.explicityNotFeatured = true;
         }
 
     };
@@ -125,7 +134,7 @@ STL.View.ThumbnailItem = function() {
         body = tmpl;
 
         meta = model.get('Meta');
-        if(meta && meta.showcase !== undefined){
+        if(meta && meta.showcase !== undefined && !this.explicityNotFeatured){
             this.setAsFeatured(true);
         }
 

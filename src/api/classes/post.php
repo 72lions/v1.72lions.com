@@ -87,8 +87,8 @@ class Post {
      * Appends a tag to the tags array
      * @param {String} $tag The tag
      */
-    public function addTag($tag) {
-        $this->tags[] = $tag;
+    public function addTag($tag, $slug, $id) {
+        $this->tags[] = array('name'=>$tag, 'slug'=>$slug, 'id'=>$id);
     }
 }
 ?>

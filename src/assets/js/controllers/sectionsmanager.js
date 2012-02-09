@@ -183,16 +183,14 @@ STL.Controller.SectionsManager = function() {
 
         // Initializing the experiments controller, view and model
         tag = STL.ControllerManager.initializeController({
-            type:'Grid',
+            type:'Tags',
             id:'tag',
-            view: STL.Lookup.getView({type:'Grid', id: 'tag'}),
+            view: STL.Lookup.getView({type:'Tags', id: 'tag'}),
             model: STL.Lookup.getModel({
-                type:'Tag',
+                type:'Posts',
                 id:'tagsModel'
             })
-        },
-        {categoryId:4, modelName:'Tag'},
-        {domElement: $('.tag'), title:'Tag'});
+        });
 
         tag.addEventListener('onSectionLoaded', onSectionLoaded);
         tag.addEventListener('onDataStartedLoading', onDataStartedLoading);

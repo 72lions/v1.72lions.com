@@ -241,8 +241,8 @@ STL.View.PostDetails = function() {
         for (i = 0; i < tags.length; i++) {
             tagTmpl = tagsTmpl;
             tag = '';
-            tag = tagTmpl.replace(/\${tag}/g, tags[i]);
-            tag = tag.replace(/\${taglink}/g, '/tag/'+tags[i]+'/13');
+            tag = tagTmpl.replace(/\${tag}/g, tags[i].name);
+            tag = tag.replace(/\${taglink}/g, '/tag/'+tags[i].slug+'/' + tags[i].id);
             tagsStr += tag;
         }
 
