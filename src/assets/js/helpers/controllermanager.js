@@ -44,6 +44,6 @@ STL.ControllerManager = ( function() {
 
             return ctl;
         }
-    }
+    };
 
 })();

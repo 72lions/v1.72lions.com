@@ -192,6 +192,6 @@ STL.Lookup = (function() {
             }
         }
 
-    }
+    };
 
 })();

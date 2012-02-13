@@ -32,6 +32,6 @@ STL.Console = ( function(){
             }
 
         }
-    }
+    };
 
 })();
