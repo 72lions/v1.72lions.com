@@ -200,7 +200,7 @@ Basic usage:
 			<arg value="${basedir}/yuidoc/dana-template" />
 			<arg value="-s" />
 			<arg value="-v" />
-			<arg value="1.2.0" />
+			<arg value="1.3.0" />
 			<arg value="-m" />
 			<arg value="72lions" />
 			<arg value="-C" />
