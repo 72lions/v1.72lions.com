@@ -1,14 +1,14 @@
 <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Blog Controller</span>
+<span class="cm"> * Grid Controller</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
-<span class="cm"> * @class Blog</span>
+<span class="cm"> * @class Grid</span>
 <span class="cm"> * @namespace STL.Controller</span>
 <span class="cm"> * @extends STL.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Grid</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * A reference to this class</span>
@@ -113,7 +113,7 @@
                 <span class="nx">portfolioItems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
                     <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
                         <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span><span class="p">,</span>
-                        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Id</span><span class="p">,</span>
+                        <span class="nx">id</span><span class="o">:</span><span class="nx">modelName</span> <span class="o">+</span> <span class="s1">&#39;ThumbnailItem&#39;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Id</span><span class="p">,</span>
                         <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
                             <span class="nx">data</span><span class="o">:</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
                         <span class="p">})</span>
@@ -136,5 +136,5 @@
 
 <span class="p">};</span>
 
-<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Blog</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>

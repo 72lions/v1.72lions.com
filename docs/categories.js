@@ -33,9 +33,9 @@ STL.Model.Categories = function(){
      *
      * @private
      * @type String
-     * @default '/api/getCategories.php'
+     * @default '/api/get.php'
      */
-    var CATEGORIES_URL = '/api/getCategories.php';
+    var CATEGORIES_URL = '/api/get.php';
 
     /**
      * The start offset for the categories
@@ -72,7 +72,7 @@ STL.Model.Categories = function(){
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
 
-        dataString = 's=' + start + '&t=' + total;
+        dataString = 'categories&s=' + start + '&t=' + total;
 
         if(req !== undefined){
             req.abort();

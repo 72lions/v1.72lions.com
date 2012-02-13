@@ -47,6 +47,16 @@ STL.Controller.SectionsManager = function() {
     var experiments;
 
     /**
+     * The Tag Controller
+     *
+     * @private
+     * @type STL.Controller.Tag
+     * @property tag
+     * @default undefined
+     */
+    var tag;
+
+    /**
      * The Blog Controller
      *
      * @private
@@ -111,6 +121,7 @@ STL.Controller.SectionsManager = function() {
      */
     this.postInitialize = function(){
 
+        // Initializing the portfolio controller, view and model
         portfolio = STL.ControllerManager.initializeController({
                 type:'Portfolio',
                 id:'portfolio',
@@ -123,34 +134,41 @@ STL.Controller.SectionsManager = function() {
         portfolio.addEventListener('onSectionLoaded', onSectionLoaded);
         portfolio.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
+        // Initializing the experiments controller, view and model
         experiments = STL.ControllerManager.initializeController({
-            type:'Blog',
+            type:'Grid',
             id:'experiments',
-            view: STL.Lookup.getView({type:'Experiments', id: 'experiments'}),
+            view: STL.Lookup.getView({type:'Grid', id: 'experiments'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'experimentsModel'
             })
-        }, {categoryId:4, modelName:'Experiments'});
+        },
+        {categoryId:4, modelName:'Experiments'},
+        {domElement: $('.experiments'), title:'Experiments'});
 
         experiments.addEventListener('onSectionLoaded', onSectionLoaded);
         experiments.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
+        // Initializing the blog controller, view and model
         blog = STL.ControllerManager.initializeController({
-            type:'Blog',
+            type:'Grid',
             id:'blog',
-            view: STL.Lookup.getView({type:'Blog', id: 'blog'}),
+            view: STL.Lookup.getView({type:'Grid', id: 'blog'}),
             model: STL.Lookup.getModel({
                 type:'Posts',
                 id:'blogModel'
             })
-        }, {categoryId:3, modelName:'Blog'});
+        },
+        {categoryId:3, modelName:'Blog'},
+        {domElement: $('.blog'), title:'Blog'});
 
         blog.addEventListener('onSectionLoaded', onSectionLoaded);
         blog.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
         sections = [{name: 'portfolio', object: portfolio}, {name:'experiments', object: experiments}, {name:'blog', object: blog}];
 
+        // Initializing the article details controller, view and model
         postDetails = STL.ControllerManager.initializeController({
             type:'PostDetails',
             id:'postDetails',
@@ -162,6 +180,20 @@ STL.Controller.SectionsManager = function() {
 
         postDetails.addEventListener('onSectionLoaded', onSectionLoaded);
         postDetails.addEventListener('onDataStartedLoading', onDataStartedLoading);
+
+        // Initializing the experiments controller, view and model
+        tag = STL.ControllerManager.initializeController({
+            type:'Tags',
+            id:'tag',
+            view: STL.Lookup.getView({type:'Tags', id: 'tag'}),
+            model: STL.Lookup.getModel({
+                type:'Posts',
+                id:'tagsModel'
+            })
+        });
+
+        tag.addEventListener('onSectionLoaded', onSectionLoaded);
+        tag.addEventListener('onDataStartedLoading', onDataStartedLoading);
 
     };
 
@@ -206,6 +238,7 @@ STL.Controller.SectionsManager = function() {
             }
 
             postDetails.hide();
+            tag.hide();
 
         } else {
 
@@ -214,22 +247,48 @@ STL.Controller.SectionsManager = function() {
                 // Trackk ajax calls with google analytics
                 _gaq.push(['_trackPageview', '/' + state.path]);
 
-                section = state.pathSegments[state.pathSegments.length - 1];
+                if(state.pathSegments[0] === 'tag') {
 
-                //If this is the same section then don't do anything
-                if (currentSection === section) {
-                    return;
+                    section = state.pathSegments[state.pathSegments.length - 2];
+                    tagId = state.pathSegments[state.pathSegments.length - 1];
+
+                    //If this is the same section then don't do anything
+                    if (currentSection === section) {
+                        return;
+                    }
+
+                    currentSection = section;
+
+                    // if we don't have a path segment with category at its first position
+                    for (i = 0; i < len; i++) {
+                        sections[i].object.hide();
+                    }
+
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
+                    postDetails.hide();
+
+                    tag.loadData(tagId);
+
+
+                } else {
+
+                    section = state.pathSegments[state.pathSegments.length - 1];
+
+                    //If this is the same section then don't do anything
+                    if (currentSection === section) {
+                        return;
+                    }
+
+                    currentSection = section;
+
+                    // if we don't have a path segment with category at its first position
+                    for (i = 0; i < len; i++) {
+                        sections[i].object.hide();
+                    }
+
+                    this.dispatchEvent({type:'onChangeSectionDispatched'});
+                    postDetails.load(section);
                 }
-
-                currentSection = section;
-
-                // if we don't have a path segment with category at its first position
-                for (i = 0; i < len; i++) {
-                    sections[i].object.hide();
-                }
-
-                this.dispatchEvent({type:'onChangeSectionDispatched'});
-                postDetails.load(section);
 
 
             } else {

@@ -13,13 +13,14 @@ STL.View.Grid = function() {
     /**
      * The DOM Element
      *
-     * @type Object
+     * @property {Object} domElement The DOM element
      */
    this.domElement = $('.blog');
 
     /**
      * The section title
-     * @type String
+     *
+     * @property {String} title The section title
      */
     this.title = 'Blog';
 
@@ -35,6 +36,7 @@ STL.View.Grid = function() {
      * The items container DOM Element
      *
      * @private
+     * @property {Object} itemsContainer The items container DOM Element
      * @type Object
      */
     var itemsContainer;

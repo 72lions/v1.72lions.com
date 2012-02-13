@@ -113,13 +113,13 @@
                     <a href="STL.Controller.Base.html">STL.Controller.Base</a>
                   </li>
                   <li >
-                    <a href="STL.Controller.Blog.html">STL.Controller.Blog</a>
-                  </li>
-                  <li >
                     <a href="STL.Controller.Contact.html">STL.Controller.Contact</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Footer.html">STL.Controller.Footer</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Grid.html">STL.Controller.Grid</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Main.html">STL.Controller.Main</a>
@@ -135,6 +135,9 @@
                   </li>
                   <li >
                     <a href="STL.Controller.SectionsManager.html">STL.Controller.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Tags.html">STL.Controller.Tags</a>
                   </li>
                   <li >
                     <a href="STL.Controller.ThumbnailItem.html">STL.Controller.ThumbnailItem</a>
@@ -173,16 +176,13 @@
                     <a href="STL.View.Base.html">STL.View.Base</a>
                   </li>
                   <li >
-                    <a href="STL.View.Blog.html">STL.View.Blog</a>
-                  </li>
-                  <li >
                     <a href="STL.View.Contact.html">STL.View.Contact</a>
                   </li>
                   <li >
-                    <a href="STL.View.Experiments.html">STL.View.Experiments</a>
+                    <a href="STL.View.Footer.html">STL.View.Footer</a>
                   </li>
                   <li >
-                    <a href="STL.View.Footer.html">STL.View.Footer</a>
+                    <a href="STL.View.Grid.html">STL.View.Grid</a>
                   </li>
                   <li >
                     <a href="STL.View.Main.html">STL.View.Main</a>
@@ -200,6 +200,9 @@
                     <a href="STL.View.SectionsManager.html">STL.View.SectionsManager</a>
                   </li>
                   <li >
+                    <a href="STL.View.Tags.html">STL.View.Tags</a>
+                  </li>
+                  <li >
                     <a href="STL.View.ThumbnailItem.html">STL.View.ThumbnailItem</a>
                   </li>
               </ul>
@@ -213,9 +216,6 @@
                   </li>
                   <li >
                     <a href="base.js.html">base.js</a>
-                  </li>
-                  <li >
-                    <a href="blog.js.html">blog.js</a>
                   </li>
                   <li >
                     <a href="categories.js.html">categories.js</a>
@@ -233,10 +233,10 @@
                     <a href="eventtarget.js.html">eventtarget.js</a>
                   </li>
                   <li >
-                    <a href="experiments.js.html">experiments.js</a>
+                    <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="footer.js.html">footer.js</a>
+                    <a href="grid.js.html">grid.js</a>
                   </li>
                   <li >
                     <a href="locale_en.js.html">locale_en.js</a>
@@ -264,6 +264,9 @@
                   </li>
                   <li >
                     <a href="sectionsmanager.js.html">sectionsmanager.js</a>
+                  </li>
+                  <li >
+                    <a href="tags.js.html">tags.js</a>
                   </li>
                   <li >
                     <a href="thumbnailitem.js.html">thumbnailitem.js</a>
@@ -308,9 +311,19 @@
 <span class="cm">     * @private</span>
 <span class="cm">     * @final</span>
 <span class="cm">     * @type String</span>
-<span class="cm">     * @default &#39;/api/getPosts.php&#39;</span>
+<span class="cm">     * @default &#39;/api/get.php&#39;</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">POSTS_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/getPosts.php&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">POSTS_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/get.php&#39;</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The api url for the tags</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @final</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @default &#39;/api/get.php&#39;</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">TAGS_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/get.php&#39;</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * The api url for the posts details</span>
@@ -318,9 +331,9 @@
 <span class="cm">     * @private</span>
 <span class="cm">     * @final</span>
 <span class="cm">     * @type String</span>
-<span class="cm">     * @default &#39;/api/getPostDetails.php&#39;</span>
+<span class="cm">     * @default &#39;/api/get.php&#39;</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">POST_DETAILS_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/getPostDetails.php&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">POST_DETAILS_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/get.php&#39;</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * The start offset for the categories</span>
@@ -387,7 +400,7 @@
         <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">||</span> <span class="nx">DEFAULT_START</span><span class="p">;</span>
         <span class="nx">total</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">||</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span><span class="p">;</span>
 
-        <span class="nx">dataString</span> <span class="o">=</span> <span class="s1">&#39;s=&#39;</span> <span class="o">+</span> <span class="nx">start</span> <span class="o">+</span> <span class="s1">&#39;&amp;t=&#39;</span> <span class="o">+</span> <span class="nx">total</span><span class="p">;</span>
+        <span class="nx">dataString</span> <span class="o">=</span> <span class="s1">&#39;posts&amp;s=&#39;</span> <span class="o">+</span> <span class="nx">start</span> <span class="o">+</span> <span class="s1">&#39;&amp;t=&#39;</span> <span class="o">+</span> <span class="nx">total</span><span class="p">;</span>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">categoryid</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
             <span class="nx">dataString</span> <span class="o">+=</span> <span class="s1">&#39;&amp;cid=&#39;</span> <span class="o">+</span> <span class="nx">categoryid</span><span class="p">;</span>
@@ -405,6 +418,48 @@
                 <span class="nx">me</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Results</span><span class="p">);</span>
                 <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;null&#39;</span><span class="p">){</span>
                     <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">[</span><span class="nx">me</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">)]);</span>
+                    <span class="nx">req</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Gets an array of posts based on the tag id by doing an Ajax Call</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {Number} tagId The category of the posts that we want to load</span>
+<span class="cm">     * @param {Number} start The start offset</span>
+<span class="cm">     * @param {Number} total The total number of items that we want to get</span>
+<span class="cm">     * @param {Function} callback The callback function that will be executed</span>
+<span class="cm">     * @param {Function} ctx The context</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getTags</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tagId</span><span class="p">,</span> <span class="nx">start</span><span class="p">,</span> <span class="nx">total</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">dataString</span><span class="p">,</span> <span class="nx">me</span><span class="p">;</span>
+
+        <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">||</span> <span class="nx">DEFAULT_START</span><span class="p">;</span>
+        <span class="nx">total</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">||</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span><span class="p">;</span>
+
+        <span class="nx">dataString</span> <span class="o">=</span> <span class="s1">&#39;tag&amp;s=&#39;</span> <span class="o">+</span> <span class="nx">start</span> <span class="o">+</span> <span class="s1">&#39;&amp;t=&#39;</span> <span class="o">+</span> <span class="nx">total</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">tagId</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+            <span class="nx">dataString</span> <span class="o">+=</span> <span class="s1">&#39;&amp;tid=&#39;</span> <span class="o">+</span> <span class="nx">tagId</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">req</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
+            <span class="nx">req</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="nx">TAGS_URL</span><span class="p">,</span>
+            <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">dataString</span><span class="p">,</span>
+            <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
+                <span class="nx">me</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Tag&#39;</span> <span class="o">+</span> <span class="nx">tagId</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Results</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;null&#39;</span><span class="p">){</span>
+                    <span class="nx">callback</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">[</span><span class="nx">me</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Tag&#39;</span> <span class="o">+</span> <span class="nx">tagId</span><span class="p">)]);</span>
                     <span class="nx">req</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
                 <span class="p">}</span>
             <span class="p">}</span>
@@ -431,7 +486,7 @@
         <span class="nx">reqDetails</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
             <span class="nx">url</span><span class="o">:</span> <span class="nx">POST_DETAILS_URL</span><span class="p">,</span>
             <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
-            <span class="nx">data</span><span class="o">:</span> <span class="s1">&#39;id=&#39;</span> <span class="o">+</span> <span class="nx">slug</span><span class="p">,</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="s1">&#39;postdetails&amp;id=&#39;</span> <span class="o">+</span> <span class="nx">slug</span><span class="p">,</span>
             <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
                 <span class="nx">me</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Results</span><span class="p">);</span>
                 <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;null&#39;</span><span class="p">){</span>

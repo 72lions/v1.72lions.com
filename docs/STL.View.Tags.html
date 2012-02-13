@@ -12,7 +12,7 @@
   <title>
     API: 72lions
     
-      &rarr; STL.Controller.Blog class
+      &rarr; STL.View.Tags class
     
     
   </title>
@@ -77,7 +77,7 @@
         <a href="./index.html" title="72lions">72lions</a>
           &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
           
-            &rarr; class STL.Controller.Blog
+            &rarr; class STL.View.Tags
           
           
       </div>
@@ -112,14 +112,14 @@
                   <li >
                     <a href="STL.Controller.Base.html">STL.Controller.Base</a>
                   </li>
-                  <li  class="selected" >
-                    <a href="STL.Controller.Blog.html">STL.Controller.Blog</a>
-                  </li>
                   <li >
                     <a href="STL.Controller.Contact.html">STL.Controller.Contact</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Footer.html">STL.Controller.Footer</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Grid.html">STL.Controller.Grid</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Main.html">STL.Controller.Main</a>
@@ -135,6 +135,9 @@
                   </li>
                   <li >
                     <a href="STL.Controller.SectionsManager.html">STL.Controller.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Tags.html">STL.Controller.Tags</a>
                   </li>
                   <li >
                     <a href="STL.Controller.ThumbnailItem.html">STL.Controller.ThumbnailItem</a>
@@ -173,16 +176,13 @@
                     <a href="STL.View.Base.html">STL.View.Base</a>
                   </li>
                   <li >
-                    <a href="STL.View.Blog.html">STL.View.Blog</a>
-                  </li>
-                  <li >
                     <a href="STL.View.Contact.html">STL.View.Contact</a>
                   </li>
                   <li >
-                    <a href="STL.View.Experiments.html">STL.View.Experiments</a>
+                    <a href="STL.View.Footer.html">STL.View.Footer</a>
                   </li>
                   <li >
-                    <a href="STL.View.Footer.html">STL.View.Footer</a>
+                    <a href="STL.View.Grid.html">STL.View.Grid</a>
                   </li>
                   <li >
                     <a href="STL.View.Main.html">STL.View.Main</a>
@@ -198,6 +198,9 @@
                   </li>
                   <li >
                     <a href="STL.View.SectionsManager.html">STL.View.SectionsManager</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="STL.View.Tags.html">STL.View.Tags</a>
                   </li>
                   <li >
                     <a href="STL.View.ThumbnailItem.html">STL.View.ThumbnailItem</a>
@@ -215,9 +218,6 @@
                     <a href="base.js.html">base.js</a>
                   </li>
                   <li >
-                    <a href="blog.js.html">blog.js</a>
-                  </li>
-                  <li >
                     <a href="categories.js.html">categories.js</a>
                   </li>
                   <li >
@@ -233,10 +233,10 @@
                     <a href="eventtarget.js.html">eventtarget.js</a>
                   </li>
                   <li >
-                    <a href="experiments.js.html">experiments.js</a>
+                    <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="footer.js.html">footer.js</a>
+                    <a href="grid.js.html">grid.js</a>
                   </li>
                   <li >
                     <a href="locale_en.js.html">locale_en.js</a>
@@ -266,6 +266,9 @@
                     <a href="sectionsmanager.js.html">sectionsmanager.js</a>
                   </li>
                   <li >
+                    <a href="tags.js.html">tags.js</a>
+                  </li>
+                  <li >
                     <a href="thumbnailitem.js.html">thumbnailitem.js</a>
                   </li>
               </ul>
@@ -275,19 +278,37 @@
               <h4>Properties</h4>
               <ul>
                   <li class="private ">
-                    <a href="#property_categoryId">categoryId</a>
+                    <a href="#property_COLUMN_MARGIN">COLUMN_MARGIN</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_COLUMN_MIN">COLUMN_MIN</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_COLUMN_WIDTH">COLUMN_WIDTH</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_isFirstTime">isFirstTime</a>
+                      <span class="access-private">[priv]</span>
+                  </li>
+                  <li class="private ">
+                    <a href="#property_markup">markup</a>
                       <span class="access-private">[priv]</span>
                   </li>
                   <li class="private ">
                     <a href="#property_me">me</a>
                       <span class="access-private">[priv]</span>
                   </li>
-                  <li class="private ">
-                    <a href="#property_modelName">modelName</a>
-                      <span class="access-private">[priv]</span>
+                  <li class=" ">
+                    <a href="#property_title">title</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_{Object} domElement The DOM element">{Object} domElement The DOM element</a>
                   </li>
                   <li class="private ">
-                    <a href="#property_portfolioItems">portfolioItems</a>
+                    <a href="#property_{Object} itemsContainer The items container DOM Element">{Object} itemsContainer The items container DOM Element</a>
                       <span class="access-private">[priv]</span>
                   </li>
               </ul>
@@ -297,17 +318,29 @@
               <h4>Methods</h4>
               <ul>
                   <li class=" ">
+                    <a href="#method_addPortfolioItem">addPortfolioItem</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_draw">draw</a>
+                  </li>
+                  <li class=" ">
                     <a href="#method_hide">hide</a>
                   </li>
                   <li class=" ">
-                    <a href="#method_loadData">loadData</a>
+                    <a href="#method_initialize">initialize</a>
                   </li>
                   <li class="private ">
-                    <a href="#method_onDataLoaded">onDataLoaded</a>
+                    <a href="#method_onWindowResize">onWindowResize</a>
                       <span class="access-private">[priv]</span>
                   </li>
                   <li class=" ">
-                    <a href="#method_postInitialize">postInitialize</a>
+                    <a href="#method_positionItems">positionItems</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_postDraw">postDraw</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#method_render">render</a>
                   </li>
                   <li class=" ">
                     <a href="#method_show">show</a>
@@ -333,10 +366,10 @@
 
           
 
-          class <strong>STL.Controller.Blog</strong>
+          class <strong>STL.View.Tags</strong>
           
             <span class="extends">
-              <span class="class">class</span> extends <a href="STL.Controller.Base.html">STL.Controller.Base</a>
+              <span class="class">class</span> extends <a href="STL.View.Base.html">STL.View.Base</a>
             </span>
         </h2>
 
@@ -345,7 +378,7 @@
 
 
         <div class="summary description">
-          Blog Controller
+          Tags View
         </div>
         
 
@@ -374,17 +407,128 @@
                 </thead>
                 <tbody>
                 
-                    <tr class="private " resource="#property_categoryId">
+                    <tr class="private " resource="#property_COLUMN_MARGIN">
                   
                       <td class="names">
                         <code>
-                          <a name="property_categoryId">categoryId</a>
+                          <a name="property_COLUMN_MARGIN">COLUMN_MARGIN</a>
                         </code>
                       </td>
 
                       <td class="type">
                         <code>
                           Number
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                          <span class="final">final</span>
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The column margin
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>20</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_COLUMN_MIN">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_COLUMN_MIN">COLUMN_MIN</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Number
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                          <span class="final">final</span>
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The minimum columns that we can have
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>1</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_COLUMN_WIDTH">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_COLUMN_WIDTH">COLUMN_WIDTH</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Number
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                          <span class="final">final</span>
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The column width
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>218</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_isFirstTime">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_isFirstTime">isFirstTime</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Boolean
                         </code>
 
                         
@@ -399,11 +543,46 @@
 
                         <div>
 
-                          The id of the blog category
+                          Its true the first time we load the website
 
                             <p>
                               <strong>Default value:</strong>
-                              <code>3</code>.
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_markup">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_markup">markup</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
+                        </code>
+
+                        
+                          <span class="access-private">private</span>
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The markup that will be rendered on the page
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>''</code>.
                             </p>
                         </div>
                       </td>
@@ -419,7 +598,7 @@
 
                       <td class="type">
                         <code>
-                          STL.Controller.Blog
+                          STL.View.Blog
                         </code>
 
                         
@@ -440,11 +619,11 @@
                       </td>
 
                     </tr>
-                    <tr class="private " resource="#property_modelName">
+                    <tr class=" " resource="#property_title">
                   
                       <td class="names">
                         <code>
-                          <a name="property_modelName">modelName</a>
+                          <a name="property_title">title</a>
                         </code>
                       </td>
 
@@ -454,8 +633,6 @@
                         </code>
 
                         
-                          <span class="access-private">private</span>
-                        
                         
                         
                       </td>
@@ -465,27 +642,52 @@
 
                         <div>
 
-                          The name of the data from the model
+                          The section title
 
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>'Blog'</code>.
-                            </p>
                         </div>
                       </td>
 
                     </tr>
-                    <tr class="private " resource="#property_portfolioItems">
+                    <tr class=" " resource="#property_{Object} domElement The DOM element">
                   
                       <td class="names">
                         <code>
-                          <a name="property_portfolioItems">portfolioItems</a>
+                          <a name="property_{Object} domElement The DOM element">{Object} domElement The DOM element</a>
                         </code>
                       </td>
 
                       <td class="type">
                         <code>
-                          Array
+                          object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The DOM Element
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class="private " resource="#property_{Object} itemsContainer The items container DOM Element">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_{Object} itemsContainer The items container DOM Element">{Object} itemsContainer The items container DOM Element</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          Object
                         </code>
 
                         
@@ -500,12 +702,8 @@
 
                         <div>
 
-                          An array with all the portfolio items
+                          The items container DOM Element
 
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>[]</code>.
-                            </p>
                         </div>
                       </td>
 
@@ -517,7 +715,7 @@
               <div class="inherited-properties">
                   <h4>
                     Properties inherited from
-                    <a href="STL.Controller.Base.html" title="STL.Controller.Base">STL.Controller.Base</a>
+                    <a href="STL.View.Base.html" title="STL.View.Base">STL.View.Base</a>
                   </h4>
 
                   <table>
@@ -535,11 +733,11 @@
 
                       
 
-                        <tr class="private" resource="STL.Controller.Base.html#property__model">
+                        <tr class="" resource="STL.View.Base.html#property__controller">
 
                           <td class="names">
                             <code>
-                              <a href="STL.Controller.Base.html#property__model" title="_model">_model</a>
+                              <a href="STL.View.Base.html#property__controller" title="_controller">_controller</a>
                             </code>
                           </td>
 
@@ -553,11 +751,11 @@
                         </tr>
 
 
-                        <tr class="private" resource="STL.Controller.Base.html#property__view">
+                        <tr class="" resource="STL.View.Base.html#property__model">
 
                           <td class="names">
                             <code>
-                              <a href="STL.Controller.Base.html#property__view" title="_view">_view</a>
+                              <a href="STL.View.Base.html#property__model" title="_model">_model</a>
                             </code>
                           </td>
 
@@ -571,11 +769,11 @@
                         </tr>
 
 
-                        <tr class="" resource="STL.Controller.Base.html#property_id">
+                        <tr class="" resource="STL.View.Base.html#property_domElement">
 
                           <td class="names">
                             <code>
-                              <a href="STL.Controller.Base.html#property_id" title="id">id</a>
+                              <a href="STL.View.Base.html#property_domElement" title="domElement">domElement</a>
                             </code>
                           </td>
 
@@ -589,11 +787,47 @@
                         </tr>
 
 
-                        <tr class="" resource="STL.Controller.Base.html#property_name">
+                        <tr class="" resource="STL.View.Base.html#property_id">
 
                           <td class="names">
                             <code>
-                              <a href="STL.Controller.Base.html#property_name" title="name">name</a>
+                              <a href="STL.View.Base.html#property_id" title="id">id</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <div>
+                              <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                            </div>
+                          </td>
+
+                        </tr>
+
+
+                        <tr class="" resource="STL.View.Base.html#property_name">
+
+                          <td class="names">
+                            <code>
+                              <a href="STL.View.Base.html#property_name" title="name">name</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <div>
+                              <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                            </div>
+                          </td>
+
+                        </tr>
+
+
+                        <tr class="" resource="STL.View.Base.html#property_title">
+
+                          <td class="names">
+                            <code>
+                              <a href="STL.View.Base.html#property_title" title="title">title</a>
                             </code>
                           </td>
 
@@ -631,6 +865,78 @@
                 </thead>
                 <tbody>
 
+                    <tr class=" " resource="#method_addPortfolioItem">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_addPortfolioItem">addPortfolioItem</a>(
+                          item
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Adds a portfolio item to the view
+
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  item
+                                  &lt;Object&gt;
+                                </code>
+                                 The dom element that we want to append to the portfolio page
+                              </li>
+                          <ul>
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_draw">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_draw">draw</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Draws the specific view
+
+
+
+                      </td>
+
+                    </tr>
                     <tr class=" " resource="#method_hide">
 
                       <td class="names">
@@ -662,12 +968,12 @@
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#method_loadData">
+                    <tr class=" " resource="#method_initialize">
 
                       <td class="names">
                         <code>
-                          <a name="method_loadData">loadData</a>(
-                          
+                          <a name="method_initialize">initialize</a>(
+                          options
                           )
                         </code>
                       </td>
@@ -686,19 +992,29 @@
                         <a href="#top" class="top" title="Jump back to the top">↑</a>
 
 
-                        Loads the data from the model
+                        Initializes the view
 
+                          <p>Parameters:</p>
+                          <ul>
+                              <li>
+                                <code>
+                                  options
+                                  &lt;Object&gt;
+                                </code>
+                                 The options to use when initializing the view
+                              </li>
+                          <ul>
 
 
                       </td>
 
                     </tr>
-                    <tr class="private " resource="#method_onDataLoaded">
+                    <tr class="private " resource="#method_onWindowResize">
 
                       <td class="names">
                         <code>
-                          <a name="method_onDataLoaded">onDataLoaded</a>(
-                          result
+                          <a name="method_onWindowResize">onWindowResize</a>(
+                          
                           )
                         </code>
                       </td>
@@ -719,29 +1035,19 @@
                         <a href="#top" class="top" title="Jump back to the top">↑</a>
 
 
-                        Callback function for when we get all the data from the ajax call
+                        Triggered when the window is resized
 
-                          <p>Parameters:</p>
-                          <ul>
-                              <li>
-                                <code>
-                                  result
-                                  &lt;Object&gt;
-                                </code>
-                                 The result object
-                              </li>
-                          <ul>
 
 
                       </td>
 
                     </tr>
-                    <tr class=" " resource="#method_postInitialize">
+                    <tr class=" " resource="#method_positionItems">
 
                       <td class="names">
                         <code>
-                          <a name="method_postInitialize">postInitialize</a>(
-                          options
+                          <a name="method_positionItems">positionItems</a>(
+                          
                           )
                         </code>
                       </td>
@@ -760,18 +1066,70 @@
                         <a href="#top" class="top" title="Jump back to the top">↑</a>
 
 
-                        This function is executed right after the initialized function is called
+                        Positions the grid items based on the page width
 
-                          <p>Parameters:</p>
-                          <ul>
-                              <li>
-                                <code>
-                                  options
-                                  &lt;Object&gt;
-                                </code>
-                                 The options to use when initialing the controller
-                              </li>
-                          <ul>
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_postDraw">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_postDraw">postDraw</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Executed after the drawing of the view
+
+
+
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#method_render">
+
+                      <td class="names">
+                        <code>
+                          <a name="method_render">render</a>(
+                          
+                          )
+                        </code>
+                      </td>
+
+                      <td class="returns">
+                        <code>
+                          void
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+
+                        Renders the html markup on the page
+
 
 
                       </td>
@@ -814,9 +1172,9 @@
 
 
               <div class="inherited-methods">
-                  <h4 resource="STL.Controller.Base.html">
+                  <h4 resource="STL.View.Base.html">
                     Methods inherited from
-                    <a href="STL.Controller.Base.html" title="STL.Controller.Base">STL.Controller.Base</a>
+                    <a href="STL.View.Base.html" title="STL.View.Base">STL.View.Base</a>
                   </h4>
 
                   <table>
@@ -833,11 +1191,11 @@
                     <tbody>
 
 
-                        <tr class="" resource="STL.Controller.Base.html#method_getModel">
+                        <tr class="" resource="STL.View.Base.html#method_draw">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.Controller.Base.html#method_getModel" title="getModel">getModel</a>
+                              <a class="" href="STL.View.Base.html#method_draw" title="draw">draw</a>
                             </code>
                           </td>
 
@@ -848,11 +1206,11 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.Controller.Base.html#method_getView">
+                        <tr class="" resource="STL.View.Base.html#method_getController">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.Controller.Base.html#method_getView" title="getView">getView</a>
+                              <a class="" href="STL.View.Base.html#method_getController" title="getController">getController</a>
                             </code>
                           </td>
 
@@ -863,11 +1221,11 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.Controller.Base.html#method_initialize">
+                        <tr class="" resource="STL.View.Base.html#method_getDOMElement">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.Controller.Base.html#method_initialize" title="initialize">initialize</a>
+                              <a class="" href="STL.View.Base.html#method_getDOMElement" title="getDOMElement">getDOMElement</a>
                             </code>
                           </td>
 
@@ -878,11 +1236,11 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.Controller.Base.html#method_postInitialize">
+                        <tr class="" resource="STL.View.Base.html#method_getModel">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.Controller.Base.html#method_postInitialize" title="postInitialize">postInitialize</a>
+                              <a class="" href="STL.View.Base.html#method_getModel" title="getModel">getModel</a>
                             </code>
                           </td>
 
@@ -893,11 +1251,11 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.Controller.Base.html#method_setModel">
+                        <tr class="" resource="STL.View.Base.html#method_hide">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.Controller.Base.html#method_setModel" title="setModel">setModel</a>
+                              <a class="" href="STL.View.Base.html#method_hide" title="hide">hide</a>
                             </code>
                           </td>
 
@@ -908,11 +1266,101 @@
 
                         </tr>
 
-                        <tr class="" resource="STL.Controller.Base.html#method_setView">
+                        <tr class="" resource="STL.View.Base.html#method_initialize">
 
                           <td class="names">
                             <code>
-                              <a class="" href="STL.Controller.Base.html#method_setView" title="setView">setView</a>
+                              <a class="" href="STL.View.Base.html#method_initialize" title="initialize">initialize</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_postDraw">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_postDraw" title="postDraw">postDraw</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_preInitialize">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_preInitialize" title="preInitialize">preInitialize</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_setController">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_setController" title="setController">setController</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_setId">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_setId" title="setId">setId</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_setName">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_setName" title="setName">setName</a>
+                            </code>
+                          </td>
+
+                          <td class="description">
+                            <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                          </td>
+
+                        </tr>
+
+                        <tr class="" resource="STL.View.Base.html#method_show">
+
+                          <td class="names">
+                            <code>
+                              <a class="" href="STL.View.Base.html#method_show" title="show">show</a>
                             </code>
                           </td>
 

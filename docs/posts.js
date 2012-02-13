@@ -16,9 +16,19 @@ STL.Model.Posts = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getPosts.php'
+     * @default '/api/get.php'
      */
-    var POSTS_URL = '/api/getPosts.php';
+    var POSTS_URL = '/api/get.php';
+
+    /**
+     * The api url for the tags
+     *
+     * @private
+     * @final
+     * @type String
+     * @default '/api/get.php'
+     */
+    var TAGS_URL = '/api/get.php';
 
     /**
      * The api url for the posts details
@@ -26,9 +36,9 @@ STL.Model.Posts = function(){
      * @private
      * @final
      * @type String
-     * @default '/api/getPostDetails.php'
+     * @default '/api/get.php'
      */
-    var POST_DETAILS_URL = '/api/getPostDetails.php';
+    var POST_DETAILS_URL = '/api/get.php';
 
     /**
      * The start offset for the categories
@@ -95,7 +105,7 @@ STL.Model.Posts = function(){
         start = start || DEFAULT_START;
         total = total || DEFAULT_NUMBER_OF_ITEMS;
 
-        dataString = 's=' + start + '&t=' + total;
+        dataString = 'posts&s=' + start + '&t=' + total;
 
         if(categoryid !== null){
             dataString += '&cid=' + categoryid;
@@ -113,6 +123,48 @@ STL.Model.Posts = function(){
                 me.set('posts', res.Results);
                 if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
                     callback.apply(ctx, [me.get('posts')]);
+                    req = undefined;
+                }
+            }
+        });
+    };
+
+    /**
+     * Gets an array of posts based on the tag id by doing an Ajax Call
+     *
+     * @param {Number} tagId The category of the posts that we want to load
+     * @param {Number} start The start offset
+     * @param {Number} total The total number of items that we want to get
+     * @param {Function} callback The callback function that will be executed
+     * @param {Function} ctx The context
+     * @author Thodoris Tsiridis
+     */
+    this.getTags = function(tagId, start, total, callback, ctx) {
+        var dataString, me;
+
+        me = this;
+
+        start = start || DEFAULT_START;
+        total = total || DEFAULT_NUMBER_OF_ITEMS;
+
+        dataString = 'tag&s=' + start + '&t=' + total;
+
+        if(tagId !== null){
+            dataString += '&tid=' + tagId;
+        }
+
+        if(req !== undefined){
+            req.abort();
+        }
+
+        req = $.ajax({
+            url: TAGS_URL,
+            dataType: 'json',
+            data: dataString,
+            success: function(res){
+                me.set('Tag' + tagId, res.Results);
+                if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){
+                    callback.apply(ctx, [me.get('Tag' + tagId)]);
                     req = undefined;
                 }
             }
@@ -139,7 +191,7 @@ STL.Model.Posts = function(){
         reqDetails = $.ajax({
             url: POST_DETAILS_URL,
             dataType: 'json',
-            data: 'id=' + slug,
+            data: 'postdetails&id=' + slug,
             success: function(res){
                 me.set('post', res.Results);
                 if(typeof(callback) !== 'undefined' && typeof(callback) !== 'null'){

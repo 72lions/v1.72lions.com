@@ -1,14 +1,14 @@
 /**
- * Blog Controller
+ * Tags Controller
  *
  * @module 72lions
- * @class Blog
+ * @class Tags
  * @namespace STL.Controller
  * @extends STL.Controller.Base
  * @author Thodoris Tsiridis
  * @version 1.0
  */
-STL.Controller.Blog = function() {
+STL.Controller.Tags = function() {
 
     /**
      * A reference to this class
@@ -28,22 +28,22 @@ STL.Controller.Blog = function() {
     var portfolioItems = [];
 
     /**
-     * The id of the blog category
-     *
-     * @private
-     * @type Number
-     * @default 3
-     */
-    var categoryId = 3;
-
-    /**
      * The name of the data from the model
      *
      * @private
      * @type String
-     * @default 'Blog'
+     * @default 'Tag'
      */
-    var modelName = 'Blog';
+    var modelName = 'Tag';
+
+    /**
+     * The id of the tag
+     *
+     * @public
+     * @type Number
+     * @default 0
+     */
+    this.tagId = 0;
 
     /**
      * This function is executed right after the initialized function is called
@@ -55,7 +55,6 @@ STL.Controller.Blog = function() {
 
         if(options){
             modelName = options.modelName || modelName;
-            categoryId = options.categoryId || categoryId;
         }
 
     };
@@ -81,15 +80,18 @@ STL.Controller.Blog = function() {
 
     /**
      * Loads the data from the model
-     *
+     *@param {NUmber} tagId The id of the tag that we need to load
      * @author Thodoris Tsiridis
      */
-    this.loadData = function() {
-        if(typeof(this.getModel().get(modelName)) === 'undefined'){
+    this.loadData = function(tagId) {
+
+        this.tagId = tagId;
+
+        if(typeof(this.getModel().get(modelName+tagId)) === 'undefined'){
             this.dispatchEvent({type:'onDataStartedLoading'});
-            this.getModel().getPosts(categoryId, 0, 80, onDataLoaded, this);
+            this.getModel().getTags(tagId, 0, 80, onDataLoaded, this);
         } else {
-             onDataLoaded.call(this, this.getModel().get(modelName));
+             onDataLoaded.call(this, this.getModel().get(modelName+tagId));
         }
 
     };
@@ -104,30 +106,25 @@ STL.Controller.Blog = function() {
     var onDataLoaded = function(result) {
         var i;
 
-        if(typeof(this.getModel().get(modelName)) === 'undefined'){
+        for (i = 0; i < result.length; i++) {
 
-            this.getModel().set(modelName, result);
+            portfolioItems.push(
+                STL.ControllerManager.initializeController({
+                    type:'ThumbnailItem',
+                    id:modelName + 'ThumbnailItem' + result[i].Id,
+                    model: STL.Lookup.getModel({
+                        data:result[i]
+                    })
+                 })
+            );
 
-            for (i = 0; i < result.length; i++) {
-
-                portfolioItems.push(
-                    STL.ControllerManager.initializeController({
-                        type:'ThumbnailItem',
-                        id:'ThumbnailItem' + result[i].Id,
-                        model: STL.Lookup.getModel({
-                            data:result[i]
-                        })
-                     })
-                );
-
-
-                portfolioItems[i].getView().render();
-                portfolioItems[i].getView().showDescription();
-                this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
-            }
-
-            this.getView().render();
+            portfolioItems[i].getView().setAsFeatured(false);
+            portfolioItems[i].getView().render();
+            portfolioItems[i].getView().showDescription();
+            this.getView().addPortfolioItem(portfolioItems[i].getView().domElement);
         }
+
+        this.getView().render();
 
         this.dispatchEvent({type:'onSectionLoaded'});
         this.getView().show();
@@ -136,4 +133,4 @@ STL.Controller.Blog = function() {
 
 };
 
-STL.Controller.Blog.prototype = new STL.Controller.Base();
+STL.Controller.Tags.prototype = new STL.Controller.Base();

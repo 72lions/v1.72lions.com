@@ -13,7 +13,7 @@
     API: 72lions
     
     
-      &rarr; locale_en.js (file)
+      &rarr; tags.js (file)
     
   </title>
 
@@ -78,7 +78,7 @@
           &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
           
           
-            &rarr; file locale_en.js
+            &rarr; file tags.js
           
       </div>
     </div> <!--! end of #sub-hd -->
@@ -238,7 +238,7 @@
                   <li >
                     <a href="grid.js.html">grid.js</a>
                   </li>
-                  <li  class="selected" >
+                  <li >
                     <a href="locale_en.js.html">locale_en.js</a>
                   </li>
                   <li >
@@ -265,7 +265,7 @@
                   <li >
                     <a href="sectionsmanager.js.html">sectionsmanager.js</a>
                   </li>
-                  <li >
+                  <li  class="selected" >
                     <a href="tags.js.html">tags.js</a>
                   </li>
                   <li >
@@ -290,80 +290,145 @@
         <!--! source code view -->
         <div id="srcout">
           <h2>
-            file <strong>locale_en.js</strong>
+            file <strong>tags.js</strong>
           </h2>
 
           <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Locale Model</span>
+<span class="cm"> * Tags Controller</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
-<span class="cm"> * @class Locale</span>
-<span class="cm"> * @namespace STL.Model</span>
-<span class="cm"> * @extends STL.Model.Base</span>
+<span class="cm"> * @class Tags</span>
+<span class="cm"> * @namespace STL.Controller</span>
+<span class="cm"> * @extends STL.Controller.Base</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">STL</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">Locale</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">global</span><span class="p">){</span>
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Tags</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * An array of all the months</span>
+<span class="cm">     * A reference to this class</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type STL.Controller.Blog</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * An array with all the portfolio items</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
 <span class="cm">     * @type Array</span>
-<span class="cm">     * @default [&#39;January&#39;, &#39;February&#39;, &#39;March&#39;, &#39;April&#39;, &#39;May&#39;, &#39;June&#39;, &#39;July&#39;, &#39;August&#39;, &#39;September&#39;, &#39;October&#39;, &#39;November&#39;, &#39;December&#39;]</span>
+<span class="cm">     * @default []</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">portfolioItems</span> <span class="o">=</span> <span class="p">[];</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * An array of all the week days</span>
-<span class="cm">     *</span>
-<span class="cm">     * @private</span>
-<span class="cm">     * @type Array</span>
-<span class="cm">     * @default [&#39;Sunday&#39;, &#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;, &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39;]</span>
-<span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">days</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sunday&#39;</span><span class="p">,</span> <span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="s1">&#39;Saturday&#39;</span><span class="p">];</span>
-
-    <span class="cm">/**</span>
-<span class="cm">     * The page title</span>
+<span class="cm">     * The name of the data from the model</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
 <span class="cm">     * @type String</span>
-<span class="cm">     * @default &quot;72Lions - The playground of developer Thodoris Tsiridis&quot;</span>
+<span class="cm">     * @default &#39;Tag&#39;</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">pageTitle</span> <span class="o">=</span> <span class="s2">&quot;72Lions - The playground of developer Thodoris Tsiridis&quot;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">modelName</span> <span class="o">=</span> <span class="s1">&#39;Tag&#39;</span><span class="p">;</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Returns the name of the month</span>
+<span class="cm">     * The id of the tag</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param  {Number} monthIndex The month index</span>
-<span class="cm">     * @return {String}</span>
+<span class="cm">     * @public</span>
+<span class="cm">     * @type Number</span>
+<span class="cm">     * @default 0</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getMonthName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">monthIndex</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nx">months</span><span class="p">[</span><span class="nx">monthIndex</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tagId</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * This function is executed right after the initialized function is called</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {Object} options The options to use when initialing the controller</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+            <span class="nx">modelName</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">modelName</span> <span class="o">||</span> <span class="nx">modelName</span><span class="p">;</span>
+        <span class="p">}</span>
+
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Returns the name of a day of the week</span>
+<span class="cm">     * Shows the view</span>
 <span class="cm">     *</span>
-<span class="cm">     * @param  {Number} dayIndex The day of the week index</span>
-<span class="cm">     * @return {String}</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getDayName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dayIndex</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nx">days</span><span class="p">[</span><span class="nx">dayIndex</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span><span class="p">();</span>
+
+    <span class="p">};</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Hides the view</span>
+<span class="cm">     *</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">hide</span><span class="p">();</span>
     <span class="p">};</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Returns the title of the page</span>
-<span class="cm">     *</span>
-<span class="cm">     * @return {String}</span>
+<span class="cm">     * Loads the data from the model</span>
+<span class="cm">     *@param {NUmber} tagId The id of the tag that we need to load</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
 <span class="cm">     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getPageTitle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
-        <span class="k">return</span> <span class="nx">pageTitle</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tagId</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">tagId</span> <span class="o">=</span> <span class="nx">tagId</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="nx">modelName</span><span class="o">+</span><span class="nx">tagId</span><span class="p">))</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">});</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">getTags</span><span class="p">(</span><span class="nx">tagId</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="nx">onDataLoaded</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+             <span class="nx">onDataLoaded</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="nx">modelName</span><span class="o">+</span><span class="nx">tagId</span><span class="p">));</span>
+        <span class="p">}</span>
+
     <span class="p">};</span>
 
-    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Callback function for when we get all the data from the ajax call</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param  {Object} result The result object</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">onDataLoaded</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
 
-<span class="p">}(</span><span class="nb">window</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">portfolioItems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+                <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+                    <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;ThumbnailItem&#39;</span><span class="p">,</span>
+                    <span class="nx">id</span><span class="o">:</span><span class="nx">modelName</span> <span class="o">+</span> <span class="s1">&#39;ThumbnailItem&#39;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Id</span><span class="p">,</span>
+                    <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                        <span class="nx">data</span><span class="o">:</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+                    <span class="p">})</span>
+                 <span class="p">})</span>
+            <span class="p">);</span>
+
+            <span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">setAsFeatured</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+            <span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">render</span><span class="p">();</span>
+            <span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">showDescription</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">addPortfolioItem</span><span class="p">(</span><span class="nx">portfolioItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getView</span><span class="p">().</span><span class="nx">domElement</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">render</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">show</span><span class="p">();</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span>
+
+<span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Tags</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">Base</span><span class="p">();</span>
 </pre></div>
 
         </div>

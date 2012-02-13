@@ -33,9 +33,9 @@
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
 <span class="cm">     * @type String</span>
-<span class="cm">     * @default &#39;/api/getCategories.php&#39;</span>
+<span class="cm">     * @default &#39;/api/get.php&#39;</span>
 <span class="cm">     */</span>
-    <span class="kd">var</span> <span class="nx">CATEGORIES_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/getCategories.php&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">CATEGORIES_URL</span> <span class="o">=</span> <span class="s1">&#39;/api/get.php&#39;</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * The start offset for the categories</span>
@@ -72,7 +72,7 @@
         <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">||</span> <span class="nx">DEFAULT_START</span><span class="p">;</span>
         <span class="nx">total</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">||</span> <span class="nx">DEFAULT_NUMBER_OF_ITEMS</span><span class="p">;</span>
 
-        <span class="nx">dataString</span> <span class="o">=</span> <span class="s1">&#39;s=&#39;</span> <span class="o">+</span> <span class="nx">start</span> <span class="o">+</span> <span class="s1">&#39;&amp;t=&#39;</span> <span class="o">+</span> <span class="nx">total</span><span class="p">;</span>
+        <span class="nx">dataString</span> <span class="o">=</span> <span class="s1">&#39;categories&amp;s=&#39;</span> <span class="o">+</span> <span class="nx">start</span> <span class="o">+</span> <span class="s1">&#39;&amp;t=&#39;</span> <span class="o">+</span> <span class="nx">total</span><span class="p">;</span>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">req</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">){</span>
             <span class="nx">req</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>

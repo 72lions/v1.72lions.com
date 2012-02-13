@@ -113,13 +113,13 @@
                     <a href="STL.Controller.Base.html">STL.Controller.Base</a>
                   </li>
                   <li >
-                    <a href="STL.Controller.Blog.html">STL.Controller.Blog</a>
-                  </li>
-                  <li >
                     <a href="STL.Controller.Contact.html">STL.Controller.Contact</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Footer.html">STL.Controller.Footer</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Grid.html">STL.Controller.Grid</a>
                   </li>
                   <li >
                     <a href="STL.Controller.Main.html">STL.Controller.Main</a>
@@ -135,6 +135,9 @@
                   </li>
                   <li >
                     <a href="STL.Controller.SectionsManager.html">STL.Controller.SectionsManager</a>
+                  </li>
+                  <li >
+                    <a href="STL.Controller.Tags.html">STL.Controller.Tags</a>
                   </li>
                   <li >
                     <a href="STL.Controller.ThumbnailItem.html">STL.Controller.ThumbnailItem</a>
@@ -173,16 +176,13 @@
                     <a href="STL.View.Base.html">STL.View.Base</a>
                   </li>
                   <li >
-                    <a href="STL.View.Blog.html">STL.View.Blog</a>
-                  </li>
-                  <li >
                     <a href="STL.View.Contact.html">STL.View.Contact</a>
                   </li>
                   <li >
-                    <a href="STL.View.Experiments.html">STL.View.Experiments</a>
+                    <a href="STL.View.Footer.html">STL.View.Footer</a>
                   </li>
                   <li >
-                    <a href="STL.View.Footer.html">STL.View.Footer</a>
+                    <a href="STL.View.Grid.html">STL.View.Grid</a>
                   </li>
                   <li >
                     <a href="STL.View.Main.html">STL.View.Main</a>
@@ -200,6 +200,9 @@
                     <a href="STL.View.SectionsManager.html">STL.View.SectionsManager</a>
                   </li>
                   <li >
+                    <a href="STL.View.Tags.html">STL.View.Tags</a>
+                  </li>
+                  <li >
                     <a href="STL.View.ThumbnailItem.html">STL.View.ThumbnailItem</a>
                   </li>
               </ul>
@@ -213,9 +216,6 @@
                   </li>
                   <li >
                     <a href="base.js.html">base.js</a>
-                  </li>
-                  <li >
-                    <a href="blog.js.html">blog.js</a>
                   </li>
                   <li >
                     <a href="categories.js.html">categories.js</a>
@@ -233,10 +233,10 @@
                     <a href="eventtarget.js.html">eventtarget.js</a>
                   </li>
                   <li >
-                    <a href="experiments.js.html">experiments.js</a>
+                    <a href="footer.js.html">footer.js</a>
                   </li>
                   <li >
-                    <a href="footer.js.html">footer.js</a>
+                    <a href="grid.js.html">grid.js</a>
                   </li>
                   <li >
                     <a href="locale_en.js.html">locale_en.js</a>
@@ -264,6 +264,9 @@
                   </li>
                   <li  class="selected" >
                     <a href="sectionsmanager.js.html">sectionsmanager.js</a>
+                  </li>
+                  <li >
+                    <a href="tags.js.html">tags.js</a>
                   </li>
                   <li >
                     <a href="thumbnailitem.js.html">thumbnailitem.js</a>
@@ -339,6 +342,16 @@
     <span class="kd">var</span> <span class="nx">experiments</span><span class="p">;</span>
 
     <span class="cm">/**</span>
+<span class="cm">     * The Tag Controller</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type STL.Controller.Tag</span>
+<span class="cm">     * @property tag</span>
+<span class="cm">     * @default undefined</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">tag</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
 <span class="cm">     * The Blog Controller</span>
 <span class="cm">     *</span>
 <span class="cm">     * @private</span>
@@ -403,6 +416,7 @@
 <span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">postInitialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 
+        <span class="c1">// Initializing the portfolio controller, view and model</span>
         <span class="nx">portfolio</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
                 <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Portfolio&#39;</span><span class="p">,</span>
                 <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;portfolio&#39;</span><span class="p">,</span>
@@ -415,34 +429,41 @@
         <span class="nx">portfolio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
         <span class="nx">portfolio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
+        <span class="c1">// Initializing the experiments controller, view and model</span>
         <span class="nx">experiments</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
-            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Grid&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;experiments&#39;</span><span class="p">,</span>
-            <span class="nx">view</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Experiments&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;experiments&#39;</span><span class="p">}),</span>
+            <span class="nx">view</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Grid&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;experiments&#39;</span><span class="p">}),</span>
             <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
                 <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Posts&#39;</span><span class="p">,</span>
                 <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;experimentsModel&#39;</span>
             <span class="p">})</span>
-        <span class="p">},</span> <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Experiments&#39;</span><span class="p">});</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">4</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Experiments&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="nx">domElement</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.experiments&#39;</span><span class="p">),</span> <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Experiments&#39;</span><span class="p">});</span>
 
         <span class="nx">experiments</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
         <span class="nx">experiments</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
+        <span class="c1">// Initializing the blog controller, view and model</span>
         <span class="nx">blog</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
-            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Grid&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span>
-            <span class="nx">view</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;blog&#39;</span><span class="p">}),</span>
+            <span class="nx">view</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Grid&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;blog&#39;</span><span class="p">}),</span>
             <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
                 <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Posts&#39;</span><span class="p">,</span>
                 <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;blogModel&#39;</span>
             <span class="p">})</span>
-        <span class="p">},</span> <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">});</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="nx">categoryId</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span> <span class="nx">modelName</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="nx">domElement</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.blog&#39;</span><span class="p">),</span> <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Blog&#39;</span><span class="p">});</span>
 
         <span class="nx">blog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
         <span class="nx">blog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
         <span class="nx">sections</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;portfolio&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">portfolio</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;experiments&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">experiments</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="nx">object</span><span class="o">:</span> <span class="nx">blog</span><span class="p">}];</span>
 
+        <span class="c1">// Initializing the article details controller, view and model</span>
         <span class="nx">postDetails</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
             <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;PostDetails&#39;</span><span class="p">,</span>
             <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;postDetails&#39;</span><span class="p">,</span>
@@ -454,6 +475,20 @@
 
         <span class="nx">postDetails</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
         <span class="nx">postDetails</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
+
+        <span class="c1">// Initializing the experiments controller, view and model</span>
+        <span class="nx">tag</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span><span class="p">.</span><span class="nx">initializeController</span><span class="p">({</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span>
+            <span class="nx">view</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;tag&#39;</span><span class="p">}),</span>
+            <span class="nx">model</span><span class="o">:</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span>
+                <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;Posts&#39;</span><span class="p">,</span>
+                <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;tagsModel&#39;</span>
+            <span class="p">})</span>
+        <span class="p">});</span>
+
+        <span class="nx">tag</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onSectionLoaded&#39;</span><span class="p">,</span> <span class="nx">onSectionLoaded</span><span class="p">);</span>
+        <span class="nx">tag</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onDataStartedLoading&#39;</span><span class="p">,</span> <span class="nx">onDataStartedLoading</span><span class="p">);</span>
 
     <span class="p">};</span>
 
@@ -498,6 +533,7 @@
             <span class="p">}</span>
 
             <span class="nx">postDetails</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+            <span class="nx">tag</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
 
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 
@@ -506,22 +542,48 @@
                 <span class="c1">// Trackk ajax calls with google analytics</span>
                 <span class="nx">_gaq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;_trackPageview&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">state</span><span class="p">.</span><span class="nx">path</span><span class="p">]);</span>
 
-                <span class="nx">section</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">[</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;tag&#39;</span><span class="p">)</span> <span class="p">{</span>
 
-                <span class="c1">//If this is the same section then don&#39;t do anything</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">currentSection</span> <span class="o">===</span> <span class="nx">section</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">return</span><span class="p">;</span>
+                    <span class="nx">section</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">[</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">];</span>
+                    <span class="nx">tagId</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">[</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+                    <span class="c1">//If this is the same section then don&#39;t do anything</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">currentSection</span> <span class="o">===</span> <span class="nx">section</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+
+                    <span class="nx">currentSection</span> <span class="o">=</span> <span class="nx">section</span><span class="p">;</span>
+
+                    <span class="c1">// if we don&#39;t have a path segment with category at its first position</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">object</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+                    <span class="p">}</span>
+
+                    <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">});</span>
+                    <span class="nx">postDetails</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+                    <span class="nx">tag</span><span class="p">.</span><span class="nx">loadData</span><span class="p">(</span><span class="nx">tagId</span><span class="p">);</span>
+
+
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+                    <span class="nx">section</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">[</span><span class="nx">state</span><span class="p">.</span><span class="nx">pathSegments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+                    <span class="c1">//If this is the same section then don&#39;t do anything</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">currentSection</span> <span class="o">===</span> <span class="nx">section</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+
+                    <span class="nx">currentSection</span> <span class="o">=</span> <span class="nx">section</span><span class="p">;</span>
+
+                    <span class="c1">// if we don&#39;t have a path segment with category at its first position</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">object</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+                    <span class="p">}</span>
+
+                    <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">});</span>
+                    <span class="nx">postDetails</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">section</span><span class="p">);</span>
                 <span class="p">}</span>
-
-                <span class="nx">currentSection</span> <span class="o">=</span> <span class="nx">section</span><span class="p">;</span>
-
-                <span class="c1">// if we don&#39;t have a path segment with category at its first position</span>
-                <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">object</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-                <span class="p">}</span>
-
-                <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;onChangeSectionDispatched&#39;</span><span class="p">});</span>
-                <span class="nx">postDetails</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">section</span><span class="p">);</span>
 
 
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
