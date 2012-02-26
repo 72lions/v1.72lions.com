@@ -300,7 +300,7 @@
 			</aside>
 
 			<aside class="flickr-photos">
-				<hgroup><h1>My photos at Flickr</h1></hgroup>
+				<hgroup><h1>My photos on Flickr</h1></hgroup>
 				<nav>
 
 				</nav>

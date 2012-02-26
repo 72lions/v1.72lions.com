@@ -166,9 +166,6 @@
 	</head>
 
 	<body>
-		<div id="awwwards">
-			<a href="http://www.awwwards.com/best-websites/72lions-the-playground-of-thodoris-tsiridis" target="_blank">best websites</a>
-		</div>
 		<header class="navigation">
 			<div class="logo-container">
 				<a href="/category/blog" class="logo" title="Blog">
@@ -293,7 +290,7 @@
 			</aside>
 
 			<aside class="flickr-photos">
-				<hgroup><h1>My photos at Flickr</h1></hgroup>
+				<hgroup><h1>My photos on Flickr</h1></hgroup>
 				<nav>
 
 				</nav>
