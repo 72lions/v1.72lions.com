@@ -432,8 +432,168 @@ body {
 }
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 @-webkit-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-moz-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-o-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}header.navigation{display:block;width:100%;min-width:505px;border-top:3px solid #F02311}header.navigation .logo-container{padding:20px 30px 0 40px}header.navigation .logo-container .logo{position:fixed;top:25px;left:24px;z-index:1000}header.navigation .logo-container .logo img{-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;border-radius:5px;-webkit-box-shadow:1px 1px 1px rgba(255,255,255,.5);-moz-box-shadow:1px 1px 1px rgba(255,255,255,.5);-o-box-shadow:1px 1px 1px rgba(255,255,255,.5);box-shadow:1px 1px 1px rgba(255,255,255,.5)}header.navigation .logo-container h1{padding:0 0 5px 0;margin:2px 0 0 84px;text-shadow:0 1px #fff;font-family:'Oswald';font-size:22px;font-weight:400;color:#666}header.navigation .logo-container p{font-family:Georgia;text-shadow:0 1px #fff;font-size:14px;line-height:18px;display:block;color:#666;margin:0 0 0 84px;padding:5px 0 0 0}header.navigation nav{display:block;overflow:hidden;margin:10px 0 20px 0;padding:0 30px 0 125px;height:60px}header.navigation nav img{width:70px}header.navigation nav ul{margin-top:20px}header.navigation nav ul li{float:left;line-height:25px;list-style:none;margin:0 9px;cursor:pointer;border-bottom:1px dashed #ccc;text-shadow:0 1px #fff;outline:0;-webkit-transition:border-bottom-color .2s,border-bottom-style .2s;-moz-transition:border-bottom-color .2s,border-bottom-style .2s;-o-transition:border-bottom-color .2s,border-bottom-style .2s;transition:border-bottom-color .2s,border-bottom-style .2s}header.navigation nav ul li:first-child{margin-left:0}header.navigation nav ul li.active,header.navigation nav ul li:hover{border-bottom-color:#666;border-bottom-width:2px;border-bottom-style:inset}header.navigation nav ul li.active a:link,header.navigation nav ul li:hover a:link,header.navigation nav ul li.active a:visited,header.navigation nav ul li:hover a:visited,header.navigation nav ul li.active a:hover,header.navigation nav ul li:hover a:hover{color:#F02311}header.navigation nav ul li a:link,header.navigation nav ul li a:visited{text-decoration:none;color:#666;padding:6px 5px 6px 6px;display:inline-block;font-family:'Oswald';font-size:18px;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s}
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-@-webkit-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-moz-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-o-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}section.portfolio .centered{position:relative}section.portfolio .centered article{list-style:none;color:#666;display:block;width:100%;border-bottom:1px dashed #ccc;padding:20px 0 20px 0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box}section.portfolio .centered article.featured{width:100%}section.portfolio .centered article:last-child{border-bottom:0}section.portfolio .centered article a.title:link,section.portfolio .centered article a.title:visited{margin-top:5px;display:inline-block;color:#666;text-decoration:none;font-size:11px;text-shadow:0 1px #fff;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s}section.portfolio .centered article a.title:link:hover,section.portfolio .centered article a.title:visited:hover{color:#F02311}section.portfolio .centered article .photo{line-height:0;margin-bottom:0;position:relative;float:left;margin-right:20px;width:462px;background-image:url('/assets/images/portfolio-thumbnail-shadow.png');background-repeat:no-repeat;background-position:left bottom;padding-bottom:40px}section.portfolio .centered article .photo .github-ribbon{display:none;position:absolute;top:-6px;right:-12px;z-index:10}section.portfolio .centered article .photo .github-ribbon img{border:0;-webkit-box-shadow:0 0 0 rgba(0,0,0,0);-moz-box-shadow:0 0 0 rgba(0,0,0,0);-o-box-shadow:0 0 0 rgba(0,0,0,0);box-shadow:0 0 0 rgba(0,0,0,0)}section.portfolio .centered article .photo img{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;border:3px solid #fff;z-index:1;position:relative;display:block;-webkit-transition:border-color .3s;-moz-transition:border-color .3s;-o-transition:border-color .3s;transition:border-color .3s}section.portfolio .centered article .photo img:hover{border-color:#fff}section.portfolio .centered article .description{width:400px;float:left}section.portfolio .centered article .description h1{padding:0 0 5px 0;margin:0;text-shadow:0 1px #fff;font-family:'Oswald';font-size:30px;font-weight:400}section.portfolio .centered article .description .body{padding:15px}section.portfolio .centered article .description p,section.portfolio .centered article .description aside,section.portfolio .centered article .description time{font-family:Georgia;font-size:13px;line-height:18px;display:block}section.portfolio .centered article .description p{margin:0 0 10px 0;color:#555}section.portfolio .centered article .description aside,section.portfolio .centered article .description time{color:#F02311;font-style:italic;font-size:12px}section.portfolio .centered article .description aside{padding-bottom:10px}section.portfolio .centered article .description time{font-size:12px;color:#666;display:block;font-style:italic}section.portfolio .centered.animated article{-webkit-transition:left .3s ease-in-out,top .3s ease-in-out;-moz-transition:left .3s ease-in-out,top .3s ease-in-out;-o-transition:left .3s ease-in-out,top .3s ease-in-out;transition:left .3s ease-in-out,top .3s ease-in-out}
+@-webkit-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+section.portfolio .centered {
+  position: relative;
+}
+section.portfolio .centered article {
+  list-style: none;
+  color: #666;
+  display: block;
+  width: 100%;
+  border-bottom: 1px dashed #ccc;
+  padding: 20px 0px 20px 0px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+section.portfolio .centered article.featured {
+  width: 100%;
+}
+section.portfolio .centered article:last-child {
+  border-bottom: none;
+}
+section.portfolio .centered article a.title:link, section.portfolio .centered article a.title:visited {
+  margin-top: 5px;
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-size: 11px;
+  text-shadow: 0px 1px #ffffff;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
+  color: #F02311;
+}
+section.portfolio .centered article .photo {
+  line-height: 0px;
+  margin-bottom: 0px;
+  position: relative;
+  float: left;
+  margin-right: 20px;
+  width: 462px;
+  background-image: url('/assets/images/portfolio-thumbnail-shadow.png');
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-bottom: 40px;
+}
+section.portfolio .centered article .photo .github-ribbon {
+  display: none;
+  position: absolute;
+  top: -6px;
+  right: -12px;
+  z-index: 10;
+}
+section.portfolio .centered article .photo .github-ribbon img {
+  border: none;
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+section.portfolio .centered article .photo .fwasotd-ribbon {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 10;
+}
+section.portfolio .centered article .photo .fwasotd-ribbon img {
+  border: none;
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+section.portfolio .centered article .photo img {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  z-index: 1;
+  position: relative;
+  display: block;
+  -webkit-transition: border-color 0.3s;
+  -moz-transition: border-color 0.3s;
+  -o-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+}
+section.portfolio .centered article .photo img:hover {
+  border-color: #fff;
+}
+section.portfolio .centered article .description {
+  width: 400px;
+  float: left;
+}
+section.portfolio .centered article .description h1 {
+  padding: 0px 0px 5px 0px;
+  margin: 0px;
+  text-shadow: 0px 1px #ffffff;
+  font-family: 'Oswald';
+  font-size: 30px;
+  font-weight: normal;
+}
+section.portfolio .centered article .description .body {
+  padding: 15px;
+}
+section.portfolio .centered article .description p, section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
+  font-family: Georgia;
+  font-size: 13px;
+  line-height: 18px;
+  display: block;
+}
+section.portfolio .centered article .description p {
+  margin: 0px 0px 10px 0px;
+  color: #555;
+}
+section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
+  color: #F02311;
+  font-style: italic;
+  font-size: 12px;
+}
+section.portfolio .centered article .description aside {
+  padding-bottom: 10px;
+}
+section.portfolio .centered article .description time {
+  font-size: 12px;
+  color: #666;
+  display: block;
+  font-style: italic;
+}
+section.portfolio .centered.animated article {
+  -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+}
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
 @-webkit-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-moz-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-o-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}section.about{font-family:Georgia;padding-top:10px;color:#999;margin-left:20px}section.about .left{float:left;width:200px}section.about .columns{float:left;width:640px}section.about .column{float:left;width:280px;margin-right:20px}section.about p{padding:0;margin:6px 0 6px 0}
 @-webkit-keyframes preloader-move{0%{background-position:0 0}100%{background-position:50px 50px}}@-moz-keyframes preloader-move{0%{background-position:0 0}100%{background-position:50px 50px}}@-o-keyframes preloader-move{0%{background-position:0 0}100%{background-position:50px 50px}}section.experiments .centered,section.tag .centered,section.blog .centered{position:relative}section.experiments .centered article,section.tag .centered article,section.blog .centered article{position:absolute;list-style:none;color:#666;display:block;width:218px;border-bottom:1px dashed #ccc;padding-bottom:20px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;float:left}section.experiments .centered article.featured,section.tag .centered article.featured,section.blog .centered article.featured{width:456px}section.experiments .centered article a.title:link,section.tag .centered article a.title:link,section.blog .centered article a.title:link,section.experiments .centered article a.title:visited,section.tag .centered article a.title:visited,section.blog .centered article a.title:visited{margin-top:5px;display:inline-block;color:#666;text-decoration:none;font-size:11px;text-shadow:0 1px #fff;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s}section.experiments .centered article a.title:link:hover,section.tag .centered article a.title:link:hover,section.blog .centered article a.title:link:hover,section.experiments .centered article a.title:visited:hover,section.tag .centered article a.title:visited:hover,section.blog .centered article a.title:visited:hover{color:#f02311}section.experiments .centered article .photo,section.tag .centered article .photo,section.blog .centered article .photo{line-height:0;margin-bottom:10px;position:relative}section.experiments .centered article .photo .github-ribbon,section.tag .centered article .photo .github-ribbon,section.blog .centered article .photo .github-ribbon{display:none;position:absolute;top:-6px;right:-12px;z-index:10}section.experiments .centered article .photo .github-ribbon img,section.tag .centered article .photo .github-ribbon img,section.blog .centered article .photo .github-ribbon img{border:0;-webkit-box-shadow:0 0 0 rgba(0,0,0,0);-moz-box-shadow:0 0 0 rgba(0,0,0,0);-o-box-shadow:0 0 0 rgba(0,0,0,0);box-shadow:0 0 0 rgba(0,0,0,0)}section.experiments .centered article .photo img,section.tag .centered article .photo img,section.blog .centered article .photo img{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;border:3px solid #fff;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.2);-moz-box-shadow:1px 1px 2px rgba(0,0,0,0.2);-o-box-shadow:1px 1px 2px rgba(0,0,0,0.2);box-shadow:1px 1px 2px rgba(0,0,0,0.2);-webkit-transition:border-color .3s;-moz-transition:border-color .3s;-o-transition:border-color .3s;transition:border-color .3s}section.experiments .centered article .photo img:hover,section.tag .centered article .photo img:hover,section.blog .centered article .photo img:hover{border-color:#fff}section.experiments .centered article .description h1,section.tag .centered article .description h1,section.blog .centered article .description h1{padding:0 0 5px 0;margin:0;text-shadow:0 1px #fff;font-family:'Oswald';font-size:22px;font-weight:normal}section.experiments .centered article .description .body,section.tag .centered article .description .body,section.blog .centered article .description .body{padding:15px}section.experiments .centered article .description p,section.tag .centered article .description p,section.blog .centered article .description p,section.experiments .centered article .description aside,section.tag .centered article .description aside,section.blog .centered article .description aside,section.experiments .centered article .description time,section.tag .centered article .description time,section.blog .centered article .description time{font-family:Georgia;font-size:13px;line-height:18px;display:block}section.experiments .centered article .description p,section.tag .centered article .description p,section.blog .centered article .description p{margin:0 0 10px 0;color:#555}section.experiments .centered article .description aside,section.tag .centered article .description aside,section.blog .centered article .description aside,section.experiments .centered article .description time,section.tag .centered article .description time,section.blog .centered article .description time{color:#f02311;font-style:italic;font-size:12px}section.experiments .centered article .description aside,section.tag .centered article .description aside,section.blog .centered article .description aside{padding-bottom:10px}section.experiments .centered article .description time,section.tag .centered article .description time,section.blog .centered article .description time{font-size:12px;color:#666;display:block;font-style:italic}section.experiments .centered.animated article,section.tag .centered.animated article,section.blog .centered.animated article{-webkit-transition:left 0s ease-in-out,top 0s ease-in-out;-moz-transition:left 0s ease-in-out,top 0s ease-in-out;-o-transition:left 0s ease-in-out,top 0s ease-in-out;transition:left 0s ease-in-out,top 0s ease-in-out}
@@ -708,5 +868,189 @@ section.post-details a:link, section.post-details a:visited {
 section.post-details a:link:hover, section.post-details a:visited:hover {
   border-bottom: 1px dotted #F02311;
 }
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-@-webkit-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-moz-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-o-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}footer{-webkit-box-shadow:inset 0 0 4px rgba(0,0,0,.2);-moz-box-shadow:inset 0 0 4px rgba(0,0,0,.2);-o-box-shadow:inset 0 0 4px rgba(0,0,0,.2);box-shadow:inset 0 0 4px rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.4);background-color:rgba(0,0,0,.02);display:block;opacity:0}footer.active{-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s;opacity:1}footer aside{padding:20px;display:inline-block}footer aside.menu{padding-left:120px;float:left;min-width:60px}footer aside.menu nav a:link,footer aside.menu nav a:visited{text-decoration:none;color:#666;text-shadow:0 1px 1px #fff;display:block;font-size:15px;font-family:'Oswald';padding:2px 0 2px 0;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s}footer aside.menu nav a:link:hover,footer aside.menu nav a:visited:hover{color:#F02311}footer aside.menu .html5logo{display:inline-block;margin-top:30px}footer aside.menu .html5logo img{width:50px;height:50px}footer aside.latest-tweets{float:left;color:#ccc;width:30%;font-size:15px;font-family:'Oswald'}footer aside.latest-tweets a:link,footer aside.latest-tweets a:visited{color:#F02311;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s;text-decoration:none;border-bottom:1px dotted #F02311}footer aside.latest-tweets hgroup h1{padding:0 40px 0 0;display:inline-block;margin:0;font-weight:400;color:#666;font-size:20px;line-height:27px;background-image:url('/assets/images/twitter-footer-icon.png');background-repeat:no-repeat;background-position:right 1px;text-shadow:0 1px 1px #fff}footer aside.latest-tweets p{font-family:Georgia;font-size:12px;color:#666;margin:0;padding:15px 0 15px 0;text-shadow:0 1px 1px #fff;border-bottom:1px dashed #ccc;line-height:18px}footer aside.copy{font-size:11px;padding-left:240px;font-family:Georgia;text-shadow:0 1px 1px rgba(255,255,255,.8);font-style:italic;color:#666}footer aside.copy a:link,footer aside.copy a:visited{color:#F02311;text-decoration:none;border-bottom:1px dotted rgba(0,0,0,0);-webkit-transition:border-bottom .2s;-moz-transition:border-bottom .2s;-o-transition:border-bottom .2s;transition:border-bottom .2s}footer aside.copy a:link:hover,footer aside.copy a:visited:hover{border-bottom:1px dotted #F02311}footer aside.flickr-photos{padding-top:0;clear:both;display:block;padding-left:240px;color:#ccc;max-width:256px;font-size:15px;font-family:'Oswald'}footer aside.flickr-photos hgroup h1{padding:0 40px 20px 0;display:inline-block;margin:0;font-weight:400;color:#666;font-size:20px;line-height:27px;text-shadow:0 1px 1px #fff}footer aside.flickr-photos nav a:link,footer aside.flickr-photos nav a:visited{text-align:center;width:50px;height:50px;overflow:hidden;display:inline-block;margin-right:10px;margin-bottom:10px;opacity:.9;-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s;-webkit-border-radius:2px;-moz-border-radius:2px;-o-border-radius:2px;border-radius:2px;border:2px solid white;-webkit-box-shadow:1px 1px 1px rgba(0,0,0,.2);-moz-box-shadow:1px 1px 1px rgba(0,0,0,.2);-o-box-shadow:1px 1px 1px rgba(0,0,0,.2);box-shadow:1px 1px 1px rgba(0,0,0,.2)}footer aside.flickr-photos nav a:link img,footer aside.flickr-photos nav a:visited img{height:50px}footer aside.flickr-photos nav a:link:hover,footer aside.flickr-photos nav a:visited:hover{opacity:1}footer aside.footer-logo{float:right}
+@-webkit-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+footer {
+  -webkit-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.02);
+  display: block;
+  opacity: 0;
+}
+footer.active {
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  opacity: 1;
+}
+footer aside {
+  padding: 20px;
+  display: inline-block;
+}
+footer aside.menu {
+  padding-left: 120px;
+  float: left;
+  min-width: 60px;
+}
+footer aside.menu nav a:link, footer aside.menu nav a:visited {
+  text-decoration: none;
+  color: #666;
+  text-shadow: 0px 1px 1px #ffffff;
+  display: block;
+  font-size: 15px;
+  font-family: 'Oswald';
+  padding: 2px 0px 2px 0px;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+footer aside.menu nav a:link:hover, footer aside.menu nav a:visited:hover {
+  color: #F02311;
+}
+footer aside.menu .html5logo {
+  display: inline-block;
+  margin-top: 30px;
+}
+footer aside.menu .html5logo img {
+  width: 50px;
+  height: 50px;
+}
+footer aside.latest-tweets {
+  float: left;
+  color: #ccc;
+  width: 30%;
+  font-size: 15px;
+  font-family: 'Oswald';
+}
+footer aside.latest-tweets a:link, footer aside.latest-tweets a:visited {
+  color: #F02311;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+  text-decoration: none;
+  border-bottom: 1px dotted #F02311;
+}
+footer aside.latest-tweets hgroup h1 {
+  padding: 0px 30px 0px 0px;
+  display: inline-block;
+  margin: 0px;
+  font-weight: normal;
+  color: #666;
+  font-size: 20px;
+  line-height: 27px;
+  background-image: url('/assets/images/twitter-footer-icon.png');
+  background-repeat: no-repeat;
+  background-position: right 5px;
+  background-size: 24px 20px;
+  text-shadow: 0px 1px 1px #ffffff;
+}
+footer aside.latest-tweets p {
+  font-family: Georgia;
+  font-size: 12px;
+  color: #666;
+  margin: 0px;
+  padding: 15px 0px 15px 0px;
+  text-shadow: 0px 1px 1px #ffffff;
+  border-bottom: 1px dashed #ccc;
+  line-height: 18px;
+}
+footer aside.copy {
+  font-size: 11px;
+  padding-left: 240px;
+  font-family: Georgia;
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
+  font-style: italic;
+  color: #666;
+}
+footer aside.copy a:link, footer aside.copy a:visited {
+  color: #F02311;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0);
+  -webkit-transition: border-bottom 0.2s;
+  -moz-transition: border-bottom 0.2s;
+  -o-transition: border-bottom 0.2s;
+  transition: border-bottom 0.2s;
+}
+footer aside.copy a:link:hover, footer aside.copy a:visited:hover {
+  border-bottom: 1px dotted #F02311;
+}
+footer aside.flickr-photos {
+  padding-top: 0px;
+  clear: both;
+  display: block;
+  padding-left: 240px;
+  color: #ccc;
+  max-width: 256px;
+  font-size: 15px;
+  font-family: 'Oswald';
+}
+footer aside.flickr-photos hgroup h1 {
+  padding: 0px 40px 20px 0px;
+  display: inline-block;
+  margin: 0px;
+  font-weight: normal;
+  color: #666;
+  font-size: 20px;
+  line-height: 27px;
+  text-shadow: 0px 1px 1px #ffffff;
+}
+footer aside.flickr-photos nav a:link, footer aside.flickr-photos nav a:visited {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  border: 2px solid white;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+footer aside.flickr-photos nav a:link img, footer aside.flickr-photos nav a:visited img {
+  height: 50px;
+}
+footer aside.flickr-photos nav a:link:hover, footer aside.flickr-photos nav a:visited:hover {
+  opacity: 1;
+}
+footer aside.footer-logo {
+  float: right;
+}

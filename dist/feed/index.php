@@ -12,7 +12,7 @@
         $api = new API();
 
         // Make sure to get all the posts
-        $posts = $api->getPosts(null, 0, 2000, Post::$SORT_DATE_DESC);
+        $posts = $api->getPosts(null, null, 0, 2000, Post::$SORT_DATE_DESC);
 
         $totalPosts = count($posts);
 
