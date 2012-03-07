@@ -59,6 +59,7 @@ STL.View.ThumbnailItem = function() {
      */
     var tmpl = '<div class="photo">'+
                     '<a href="${github}" target="_blank" class="github-ribbon"><img src="/assets/images/github-ribbon.png" border="0" alt="Fork me on github" /></a>'+
+                    '<a href="${fwa}" target="_blank" class="fwasotd-ribbon"><img src="/assets/images/fwa_sotd.png" border="0" alt="FWA Site of the day" /></a>'+
                     '<a href="${link}" title="${title}"><img class="thumbnail-image" src="${image}" alt="${title}" width="${imagewidth}" height="${imageheight}"  /></a>'+
                 '</div>'+
                 '<div class="description">'+
@@ -198,12 +199,22 @@ STL.View.ThumbnailItem = function() {
             body = body.replace(/\${github}/g, meta.github);
         }
 
+        if(meta && meta.fwa_sotd !== undefined){
+            body = body.replace(/\${fwa}/g, meta.fwa_sotd);
+        }
+
         this.domElement.html(body);
 
         if(meta.github !== undefined){
           this.domElement.find('.github-ribbon').css('display', 'block');
         } else {
             this.domElement.find('.github-ribbon').remove();
+        }
+
+        if(meta.fwa_sotd !== undefined){
+            this.domElement.find('.fwasotd-ribbon').css('display', 'block');
+        } else {
+            this.domElement.find('.fwasotd-ribbon').remove();
         }
 
         if(!hasThumbnail) {
