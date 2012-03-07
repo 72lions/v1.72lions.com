@@ -15,7 +15,7 @@ Basic usage:
 <project name="JS and CSS compressor for 72lions" basedir="." default="main">
 
 	<property name="yuidoc.exec" value="${basedir}/yuidoc/bin/yuidoc.py"/>
-
+	<property name="htmlcompressor.dir" value="lib/htmlcompressor-1.5.2.jar"/>
 	<property name="compressor.dir" value="lib/yuicompressor-2.4.4.jar"/>
 	<property name="antcontrib.dir" value="lib/ant-contrib.jar"/>
 
@@ -28,6 +28,7 @@ Basic usage:
 	<property name="dist.dir" value="${basedir}/../dist"/>
 
 	<property name="docs.dir" value="${basedir}/../docs"/>
+	<property name="temp.dir" value="${basedir}/../temp"/>
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
@@ -165,23 +166,53 @@ Basic usage:
 		</copy>
 	</target>
 
-    <target name="clean">
-        <delete dir="${dist.dir}" />
-        <mkdir dir="${dist.dir}" />
-        <mkdir dir="${dist.dir}/assets/" />
-        <mkdir dir="${dist.dir}/assets/js" />
-        <mkdir dir="${dist.dir}/assets/css" />
-    </target>
+	<target name="clean">
+	    <delete dir="${dist.dir}" />
+	    <mkdir dir="${dist.dir}" />
+	    <mkdir dir="${dist.dir}/assets/" />
+	    <mkdir dir="${dist.dir}/assets/js" />
+	    <mkdir dir="${dist.dir}/assets/css" />
+	</target>
 
-    <!-- Replace the source files with the minified and concatenated -->
-    <target name="update-source-with-new-compiled-files">
+	<!-- Replace the source files with the minified and concatenated -->
+	<target name="update-source-with-new-compiled-files">
 		<replaceregexp match="\&lt;!--source scripts--\&gt;(.*?)\&lt;!--end source scripts--\&gt;" replace="\&lt;script src='/assets/js/72lions.merged.min.js'\&gt;\&lt;/script\&gt;" flags="gs" encoding="utf8">
 		        <fileset dir="${dist.dir}" includes="index.php"/>
 		</replaceregexp>
 		<replaceregexp match="\&lt;!--source css--\&gt;(.*?)\&lt;!--end source css--\&gt;" replace="\&lt;link rel='stylesheet' href='/assets/css/72lions.merged.min.css' /\&gt;" flags="gs"  encoding="utf8">
 		        <fileset dir="${dist.dir}" includes="index.php"/>
 		</replaceregexp>
-    </target>
+	</target>
+
+	<!-- Minifying HTML code -->
+	<target name="compress-html" description="Compressing html files...">
+		<echo>Compressing html files...</echo>
+
+		<mkdir dir="${temp.dir}" />
+
+		<apply executable="java" parallel="false">
+		  <fileset dir="${dist.dir}/">
+		    <include name="**/*.html" />
+		    <include name="index.php" />
+		  </fileset>
+		  <arg value="-jar"/>
+		  <arg path="${htmlcompressor.dir}"/>
+		  <arg line="--type html"/>
+		  <arg line="--recursive"/>
+		  <srcfile/>
+		  <arg value="-o"/>
+		  <mapper type="glob" from="*" to="${temp.dir}/*"/>
+		  <targetfile/>
+		</apply>
+
+		<copy todir="${dist.dir}/" flatten="false" overwrite="yes">
+		  <fileset dir="${temp.dir}" includes="**/*.html"/>
+		  <fileset dir="${temp.dir}" includes="**/*.php"/>
+		</copy>
+
+		<delete dir="${temp.dir}" />
+
+	</target>
 
 
 	<target name="jsdocs">
@@ -209,7 +240,7 @@ Basic usage:
 	</target>
 
 	<!-- run all tasks -->
-	<target name="main" depends="clean, compress-global-js, compress-global-css, copy-selected-files, update-source-with-new-compiled-files">
+	<target name="main" depends="clean, compress-global-js, compress-global-css, copy-selected-files, update-source-with-new-compiled-files, compress-html">
     </target>
 
 	<!-- run all tasks -->
