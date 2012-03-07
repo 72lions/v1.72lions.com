@@ -72,3 +72,5 @@ You also need to enable the mod_rewrite module.
 1. Go into the build folder
 2. Run ant (make sure that you have properly installed ant on your computer)
 
+## LICENSE
+The source code for 72lions.com is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
