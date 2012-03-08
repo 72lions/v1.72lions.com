@@ -17,16 +17,8 @@ STL.View.Footer = function() {
      * @type Number
      * @default 4
      */
-    var TOTAL_FLICKR_PHOTOS = 8;
+    var TOTAL_FLICKR_PHOTOS = 14;
 
-    /**
-     * The total flickr photos per row
-     *
-     * final
-     * @type Number
-     * @default 2
-     */
-    var FLICKR_PHOTOS_PER_ROW = 2;
     /**
      * The links DOM Elements
      *

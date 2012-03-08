@@ -164,6 +164,7 @@ footer .menu {
     float:none;
     position:relative;
     width:85%;
+    max-height:30px;
 }
 
 footer .menu .html5logo {
@@ -188,6 +189,8 @@ footer .latest-tweets  {
 footer .flickr-photos  {
     padding-left:20px !important;
     margin-top:0px;
+    max-height: 148px;
+    overflow-y: hidden;
 }
 
 footer .copy  {
