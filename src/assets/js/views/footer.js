@@ -31,8 +31,7 @@ STL.View.Footer = function() {
     /**
      * A reference to this class
      *
-     * @private
-     * @type STL.View.Footer
+     * @
      */
     var me = this;
 
