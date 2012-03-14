@@ -311,18 +311,19 @@
 			</aside>
 
 		</footer>
-		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-		<!--
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="/assets/js/libs/jquery-1.6.4.min.js"><\/script>')</script>
- 		-->
 
- 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<canvas id="background"></canvas>
+
+		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/assets/js/libs/jquery-1.6.4.min.js"><\/script>')</script>
 		<script type="text/javascript" src="/assets/js/libs/jquery.easing.1.3.js"></script>
 
  		<!--source scripts-->
+ 		<script type="text/javascript" src="/assets/js/helpers/requestAnimationFrame.js"></script>
 		<script type="text/javascript" src="/assets/js/helpers/router.js"></script>
 		<script type="text/javascript" src="/assets/js/helpers/eventtarget.js"></script>
+		<script type="text/javascript" src="/assets/js/helpers/canvasdisplayobject.js"></script>
 
 		<script type="text/javascript" src="/assets/js/namespaces.js"></script>
 		<script type="text/javascript" src="/assets/js/models/locale_en.js"></script>
@@ -360,6 +361,8 @@
 		<script type="text/javascript" src="/assets/js/views/postdetails.js"></script>
 		<script type="text/javascript" src="/assets/js/views/footer.js"></script>
 		<script type="text/javascript" src="/assets/js/views/tags.js"></script>
+
+		<script type="text/javascript" src="/assets/js/fx/canvasbackground.js"></script>
 
 		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 		<!--end source scripts-->

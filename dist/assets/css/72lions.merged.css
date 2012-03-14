@@ -337,6 +337,12 @@ body {
   -o-box-orient: vertical;
   box-orient: vertical;
 }
+#background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
 #awwwards {
   position: absolute;
   top: 20px;
@@ -365,6 +371,7 @@ body {
 }
 #wrapper #sections-wrapper {
   position: relative;
+  z-index: 1;
   width: 100%;
   padding: 0px 20px 20px 125px;
   -webkit-transition: left 0.3s ease-in-out;
@@ -430,8 +437,131 @@ body {
 #wrapper #sections-wrapper section.active {
   display: block;
 }
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
-@-webkit-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-moz-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}@-o-keyframes preloader-move{0%{ background-position:0 0}100%{background-position:50px 50px}}header.navigation{display:block;width:100%;min-width:505px;border-top:3px solid #F02311}header.navigation .logo-container{padding:20px 30px 0 40px}header.navigation .logo-container .logo{position:fixed;top:25px;left:24px;z-index:1000}header.navigation .logo-container .logo img{-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;border-radius:5px;-webkit-box-shadow:1px 1px 1px rgba(255,255,255,.5);-moz-box-shadow:1px 1px 1px rgba(255,255,255,.5);-o-box-shadow:1px 1px 1px rgba(255,255,255,.5);box-shadow:1px 1px 1px rgba(255,255,255,.5)}header.navigation .logo-container h1{padding:0 0 5px 0;margin:2px 0 0 84px;text-shadow:0 1px #fff;font-family:'Oswald';font-size:22px;font-weight:400;color:#666}header.navigation .logo-container p{font-family:Georgia;text-shadow:0 1px #fff;font-size:14px;line-height:18px;display:block;color:#666;margin:0 0 0 84px;padding:5px 0 0 0}header.navigation nav{display:block;overflow:hidden;margin:10px 0 20px 0;padding:0 30px 0 125px;height:60px}header.navigation nav img{width:70px}header.navigation nav ul{margin-top:20px}header.navigation nav ul li{float:left;line-height:25px;list-style:none;margin:0 9px;cursor:pointer;border-bottom:1px dashed #ccc;text-shadow:0 1px #fff;outline:0;-webkit-transition:border-bottom-color .2s,border-bottom-style .2s;-moz-transition:border-bottom-color .2s,border-bottom-style .2s;-o-transition:border-bottom-color .2s,border-bottom-style .2s;transition:border-bottom-color .2s,border-bottom-style .2s}header.navigation nav ul li:first-child{margin-left:0}header.navigation nav ul li.active,header.navigation nav ul li:hover{border-bottom-color:#666;border-bottom-width:2px;border-bottom-style:inset}header.navigation nav ul li.active a:link,header.navigation nav ul li:hover a:link,header.navigation nav ul li.active a:visited,header.navigation nav ul li:hover a:visited,header.navigation nav ul li.active a:hover,header.navigation nav ul li:hover a:hover{color:#F02311}header.navigation nav ul li a:link,header.navigation nav ul li a:visited{text-decoration:none;color:#666;padding:6px 5px 6px 6px;display:inline-block;font-family:'Oswald';font-size:18px;-webkit-transition:color .2s;-moz-transition:color .2s;-o-transition:color .2s;transition:color .2s}
+@-webkit-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes preloader-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+header.navigation {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  min-width: 505px;
+  border-top: 3px solid #F02311;
+}
+header.navigation .logo-container {
+  padding: 20px 30px 0px 40px;
+}
+header.navigation .logo-container .logo {
+  position: fixed;
+  top: 25px;
+  left: 24px;
+  z-index: 1000;
+}
+header.navigation .logo-container .logo img {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  -o-box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+header.navigation .logo-container h1 {
+  padding: 0px 0px 5px 0px;
+  margin: 2px 0px 0px 84px;
+  text-shadow: 0px 1px #ffffff;
+  font-family: 'Oswald';
+  font-size: 22px;
+  font-weight: normal;
+  color: #666;
+}
+header.navigation .logo-container p {
+  font-family: Georgia;
+  text-shadow: 0px 1px #ffffff;
+  font-size: 14px;
+  line-height: 18px;
+  display: block;
+  color: #666;
+  margin: 0px 0px 0px 84px;
+  padding: 5px 0px 0px 0px;
+}
+header.navigation nav {
+  display: block;
+  overflow: hidden;
+  margin: 10px 0px 20px 0px;
+  padding: 0px 30px 0px 125px;
+  height: 60px;
+}
+header.navigation nav img {
+  width: 70px;
+}
+header.navigation nav ul {
+  margin-top: 20px;
+}
+header.navigation nav ul li {
+  float: left;
+  line-height: 25px;
+  list-style: none;
+  margin: 0px 9px;
+  cursor: pointer;
+  border-bottom: 1px dashed #ccc;
+  text-shadow: 0px 1px #fff;
+  outline: none;
+  -webkit-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+  -moz-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+  -o-transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+  transition: border-bottom-color 0.2s, border-bottom-style 0.2s;
+}
+header.navigation nav ul li:first-child {
+  margin-left: 0px;
+}
+header.navigation nav ul li.active, header.navigation nav ul li:hover {
+  border-bottom-color: #666;
+  border-bottom-width: 2px;
+  border-bottom-style: inset;
+}
+header.navigation nav ul li.active a:link,
+header.navigation nav ul li:hover a:link,
+header.navigation nav ul li.active a:visited,
+header.navigation nav ul li:hover a:visited,
+header.navigation nav ul li.active a:hover,
+header.navigation nav ul li:hover a:hover {
+  color: #F02311;
+}
+header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
+  text-decoration: none;
+  color: #666;
+  padding: 6px 5px 6px 6px;
+  display: inline-block;
+  font-family: 'Oswald';
+  font-size: 18px;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
 @-webkit-keyframes preloader-move {
   0% {
     background-position: 0 0;
@@ -893,6 +1023,8 @@ section.post-details a:link:hover, section.post-details a:visited:hover {
   }
 }
 footer {
+  position: relative;
+  z-index: 3;
   -webkit-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
   -o-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);

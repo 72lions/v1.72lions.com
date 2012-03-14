@@ -1,3 +1,27 @@
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelRequestAnimationFrame = window[vendors[x]+
+          'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());
 /**
  * Routing manager is responsible for listening to popstates in order to dispatch events. Clients can register their interest on these events
  *
@@ -595,6 +619,141 @@ var EventTarget = function () {
         }
 
     };
+
+};
+/**
+ * Simulates a display object just like in AS3
+ *
+ * @module 72lions
+ * @class Router
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+
+var CanvasDisplayObject = function() {
+
+    var _children = [];
+
+    this.name = '';
+    this.x = 0;
+    this.y  = 0;
+    this.rotation = 0;
+    this.scaleX = 1;
+    this.scaleY = 1;
+    this.visible = true;
+    this.alpha = 1;
+    this.extra = {};
+
+    /**
+     * It is set to true the first time we get a popstate
+     *
+     * @private
+     * @type ST.CanvasDisplayObject
+     * @default null
+     */
+    this.parent = null;
+
+    /**
+     * Adds a child to the display object
+     *
+     * @param {CanvasDisplayObject} child The display object to add as a child
+     * @author Thodoris Tsiridis
+     */
+    this.addChild = function(child) {
+
+        //Check if the child doesn't already exist
+        if (_children.indexOf(child) === - 1) {
+
+            //Check if the child already has a parent
+            if( child.parent !== null ) {
+
+                //If it already has a parent then remove it from it's parent
+                child.parent.removeChild( child );
+
+            }
+
+            //Set the parent of the child
+            child.parent = this;
+
+            //Push the child in the array
+            _children.push( child );
+
+        }
+
+    };
+    /**
+     * Removes a child
+     *
+     * @param {CanvasDisplayObject} child  The display object to remove
+     * @author Thodoris Tsiridis
+     */
+    this.removeChild = function(child) {
+
+        var childIndex = _children.indexOf( child );
+
+        //Check the child index
+        if (  childIndex !== - 1 ) {
+
+            child.parent = null;
+
+            //Remove the child from the children array
+            _children.splice( childIndex, 1 );
+
+        }
+    };
+    /**
+     * Returns an array with all the children
+     *
+     * @returns {Array} The array with all the children
+     * @author Thodoris Tsiridis
+     */
+    this.getChildren = function() {
+        return _children;
+    };
+    /**
+     * Updates the object
+     *
+     * @param {CanvasContext} ctx The context on which everything will be drawn
+     * @author Thodoris Tsiridis
+     */
+    this.update = function(ctx) {
+
+        if(this.visible !== false) {
+
+            //Save the current translation, rotation
+            ctx.save();
+
+            //Translate Scale and Rotate
+            ctx.translate(this.x, this.y);
+            ctx.scale(this.scaleX,this.scaleY);
+            ctx.rotate(this.rotation);
+            ctx.globalAlpha = ctx.globalAlpha * this.alpha;
+
+            this.draw();
+
+            //Invoke the update function for each child
+            var d = 0;
+
+            while(d < _children.length) {
+
+                _children[d].update(ctx);
+
+                d++;
+            }
+
+            //Restore the translation, rotation
+            ctx.restore();
+
+            d = null;
+
+        }
+    };
+};
+
+/**
+ * Generic function for overwritting and adding the your code
+ */
+CanvasDisplayObject.prototype.draw = function() {
 
 };
 var STL = {};
@@ -4616,8 +4775,7 @@ STL.View.Footer = function() {
     /**
      * A reference to this class
      *
-     * @private
-     * @type STL.View.Footer
+     * @
      */
     var me = this;
 
@@ -5120,8 +5278,177 @@ STL.View.Tags = function() {
 };
 
 STL.View.Tags.prototype = new STL.View.Base();
+/**
+ * Responsible for managing the background canvas fx
+ *
+ * @module 72lions
+ * @class CanvasBackground
+ * @author Thodoris Tsiridis
+ * @version 1.0
+ */
+var CanvasBackground = function() {
+
+    var canvas;
+    var context;
+    var stage;
+    var boxes = [];
+
+    var WINDOW_WIDTH = 0;
+    var WINDOW_HEIGHT = 0;
+    var COLUMNS = 10;
+    var ROWS = 10;
+    var MAX_BOX_SIZE = 100;
+    var MAX_DISTANCE = 300;
+
+    var mouseX = 0;
+    var mouseY = 0;
+
+    var self = this;
+
+    /**
+     * Draws the boxes
+     * @author Thodoris Tsiridis
+     */
+    var boxDraw = function () {
+
+        var xs = 0;
+        var ys = 0;
+
+        xs = mouseX - (this.x + this.extra.width * 0.5);
+        xs = xs * xs;
+        ys = mouseY - (this.y + this.extra.height * 0.5);
+        ys = ys * ys;
+
+        this.extra.distance =Math.sqrt(xs + ys);
+        this.extra.alpha = 1 - (1 / (MAX_DISTANCE / this.extra.distance)) ;
+        //this.rotation = Math.sin(this.extra.alpha) + 180;
+        context.fillStyle = 'rgba(0, 0, 0, '+this.extra.alpha * 0.03+')';
+        context.fillRect(0, 0, this.extra.width - 1, this.extra.height - 1);
+        context.fill();
+
+    };
+
+    /**
+     * Initializes the plugin
+     * @author Thodoris Tsiridis
+     */
+    this.init = function() {
+
+        //Create the canvas & the context
+        canvas = document.getElementById('background');
+        context = canvas.getContext('2d');
+
+        stage = new CanvasDisplayObject();
+        stage.name = 'Stage';
+        stage.x = 0;
+        stage.y = 0;
+
+        //Add event listeners
+        this.addEventListeners();
+
+        // Run the resize function the first time
+        this.resize();
+
+        // Create the boxes
+        this.createBoxes();
+
+        //Start drawing
+        window.requestAnimationFrame(this.draw);
+
+    };
+
+    /**
+     * Registers all the event listeners
+     * @author Thodoris Tsiridis
+     */
+    this.addEventListeners = function() {
+        $(window).bind("resize", this.resize);
+        $(window).bind("mousemove", this.onMouseMove);
+    };
+
+    /**
+     * Creates all the boxes
+     * @author Thodoris Tsiridis
+     */
+    this.createBoxes = function() {
+
+        boxes = [];
+
+        // Calculate how many boxes per row
+        var boxWidth = Math.ceil(WINDOW_WIDTH / COLUMNS);
+        var boxHeight = Math.ceil(WINDOW_HEIGHT / ROWS);
+
+        if (boxWidth > boxHeight) {
+            boxHeight = boxWidth;
+        } else if (boxHeight > boxWidth) {
+            boxWidth = boxHeight;
+        }
+
+        for (var z = 0; z < ROWS; z++) {
+
+            for (var i = 0; i < COLUMNS; i++) {
+
+                var box = new CanvasDisplayObject();
+
+                box.x = i * boxWidth;
+                box.y = z * boxHeight;
+
+                box.extra.width = boxWidth;
+                box.extra.height = boxHeight;
+
+                box.draw = boxDraw;
+                stage.addChild(box);
+                boxes.push(box);
+            }
+
+        }
+
+    };
+
+    /**
+     * Triggered when the mouse is moving
+     * @param  {Object} event The event
+     * @author Thodoris Tsiridis
+     */
+    this.onMouseMove = function(event) {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    };
+
+    /**
+     * Triggered whent the window is resized
+     * @author Thodoris Tsiridis
+     */
+    this.resize = function() {
+        canvas.width = WINDOW_WIDTH = window.innerWidth;
+        canvas.height = WINDOW_HEIGHT = window.innerHeight;
+
+        this.createBoxes();
+    };
+
+    /**
+     * Responsible for drawing on the canvas
+     * @author Thodoris Tsiridis
+     */
+    this.draw = function() {
+
+        //Clear the canvas
+        context.clearRect(0,0,window.innerWidth, window.innerHeight);
+
+        // Update the stage
+        stage.update(context);
+        //Loop
+        window.requestAnimationFrame(self.draw);
+
+    };
+
+
+};
 STL.ControllerManager.initializeController({
     type:'Main',
     id:'main',
     model: STL.Lookup.getModel({})
 });
+
+var canvasgb = new CanvasBackground();
+canvasgb.init();

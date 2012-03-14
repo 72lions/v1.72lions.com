@@ -47,8 +47,10 @@ Basic usage:
 		<concat destfile="${dist.merged.file.js}" fixlastline="yes" append="no">
 			<filelist>
 
+				<file name="${src.js.dir}/helpers/requestAnimationFrame.js"/>
 				<file name="${src.js.dir}/helpers/router.js"/>
 				<file name="${src.js.dir}/helpers/eventtarget.js"/>
+				<file name="${src.js.dir}/helpers/canvasdisplayobject.js"/>
 				<file name="${src.js.dir}/namespaces.js"/>
 				<file name="${src.js.dir}/models/locale_en.js"/>
 				<file name="${src.js.dir}/helpers/controllermanager.js"/>
@@ -86,6 +88,8 @@ Basic usage:
 				<file name="${src.js.dir}/views/postdetails.js"/>
 				<file name="${src.js.dir}/views/footer.js"/>
 				<file name="${src.js.dir}/views/tags.js"/>
+
+				<file name="${src.js.dir}/fx/canvasbackground.js"/>
 
 				<file name="${src.js.dir}/bootstrap.js"/>
 			</filelist>

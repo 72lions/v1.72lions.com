@@ -20,6 +20,13 @@ body {
     .box-orient(vertical);
 }
 
+#background {
+  position: fixed;
+  top:0px;
+  left:0px;
+  z-index: 0;
+}
+
 #awwwards{
   position:absolute;
   top:20px;
@@ -27,7 +34,7 @@ body {
   z-index:555;
 }
 
-#awwwards a{
+#awwwards a {
   width:69px;
   height:105px;
   text-indent:-8000px;
@@ -37,15 +44,16 @@ body {
 }
 
 #wrapper {
-
     min-width:505px;
     margin-top:20px;
     box-sizing: border-box;
+
     .box-flex(1);
 
     #sections-wrapper {
 
         position:relative;
+        z-index:1;
         width:100%;
         padding:0px 20px 20px 125px;
         .transition(left 0.3s ease-in-out);
