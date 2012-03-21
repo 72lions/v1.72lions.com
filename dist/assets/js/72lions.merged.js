@@ -5449,6 +5449,3 @@ STL.ControllerManager.initializeController({
     id:'main',
     model: STL.Lookup.getModel({})
 });
-
-var canvasgb = new CanvasBackground();
-canvasgb.init();
