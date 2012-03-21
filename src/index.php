@@ -312,7 +312,7 @@
 
 		</footer>
 
-		<canvas id="background"></canvas>
+		<!--<canvas id="background"></canvas>-->
 
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
