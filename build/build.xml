@@ -244,7 +244,7 @@ Basic usage:
 	</target>
 
 	<!-- run all tasks -->
-	<target name="main" depends="clean, compress-global-js, compress-global-css, copy-selected-files, update-source-with-new-compiled-files, compress-html">
+	<target name="main" depends="clean, compress-global-js, compress-global-css, copy-selected-files, update-source-with-new-compiled-files">
     </target>
 
 	<!-- run all tasks -->
