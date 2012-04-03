@@ -217,10 +217,16 @@
 								<time></time>
 								<div class="categories"></div>
 								<a href="#" class="github-link" target="_blank"><span>Fork it</span></a>
-							<a href="#" class="download-link" target="_blank"><span>Download</span></a>
-							<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
-							<a href="#" class="website-link" target="_blank"><span>Visit website</span></a>
+								<a href="#" class="download-link" target="_blank"><span>Download</span></a>
+								<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
+								<a href="#" class="website-link" target="_blank"><span>Visit website</span></a>
 								<ul class="tags"></ul>
+								<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+									<a class="addthis_button_facebook"></a>
+									<a class="addthis_button_twitter"></a>
+									<a class="addthis_button_tumblr"></a>
+									<a class="addthis_button_stumbleupon"></a>
+								</div>
 							</div>
 							<div class="details">
 								<div class="text"></div>
@@ -373,6 +379,8 @@
 
 		<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 		<!--end source scripts-->
+
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e9bdcf14cb884fd"></script>
 
 		<!--[if lt IE 7 ]>
 		<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

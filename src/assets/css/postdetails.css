@@ -114,6 +114,14 @@ section.post-details .content .sidebar h2 {
   padding: 8px 0px 8px 0px;
   border-top: 1px dashed #ccc;
 }
+section.post-details .content .sidebar .addthis_toolbox {
+  border-top: 1px dashed #ccc;
+  padding: 8px 0px 0px 0px;
+}
+section.post-details .content .sidebar .addthis_toolbox a:hover {
+  text-decoration: none;
+  border-bottom: none;
+}
 section.post-details .content .details {
   margin-left: 260px;
 }
@@ -126,6 +134,7 @@ section.post-details .content .categories {
 section.post-details .content .tags {
   padding-top: 10px;
   font-style: italic;
+  margin-bottom: 6px;
 }
 section.post-details .content .tags li {
   display: inline-block;
