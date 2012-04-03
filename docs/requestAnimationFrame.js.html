@@ -12,8 +12,8 @@
   <title>
     API: 72lions
     
-      &rarr; STL.Console class
     
+      &rarr; requestAnimationFrame.js (file)
     
   </title>
 
@@ -77,8 +77,8 @@
         <a href="./index.html" title="72lions">72lions</a>
           &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
           
-            &rarr; class STL.Console
           
+            &rarr; file requestAnimationFrame.js
           
       </div>
     </div> <!--! end of #sub-hd -->
@@ -106,7 +106,7 @@
                   <li >
                     <a href="Router.html">Router</a>
                   </li>
-                  <li  class="selected" >
+                  <li >
                     <a href="STL.Console.html">STL.Console</a>
                   </li>
                   <li >
@@ -265,7 +265,7 @@
                   <li >
                     <a href="posts.js.html">posts.js</a>
                   </li>
-                  <li >
+                  <li  class="selected" >
                     <a href="requestAnimationFrame.js.html">requestAnimationFrame.js</a>
                   </li>
                   <li >
@@ -283,23 +283,7 @@
               </ul>
             </div>
 
-            <div id="propertyList" class="module">
-              <h4>Properties</h4>
-              <ul>
-                  <li class=" ">
-                    <a href="#property_debug">debug</a>
-                  </li>
-              </ul>
-            </div>
 
-            <div id="methodsList" class="module">
-              <h4>Methods</h4>
-              <ul>
-                  <li class=" ">
-                    <a href="#method_log">log</a>
-                  </li>
-              </ul>
-            </div>
 
 
 
@@ -311,163 +295,40 @@
     <div id="content" class="grid_12">
       
 
-      
-        <h2>
-          
 
-          
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>requestAnimationFrame.js</strong>
+          </h2>
 
-          
+          <div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">lastTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">vendors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ms&#39;</span><span class="p">,</span> <span class="s1">&#39;moz&#39;</span><span class="p">,</span> <span class="s1">&#39;webkit&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">vendors</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span><span class="p">;</span> <span class="o">++</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span> <span class="o">=</span> <span class="nb">window</span><span class="p">[</span><span class="nx">vendors</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;RequestAnimationFrame&#39;</span><span class="p">];</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">cancelRequestAnimationFrame</span> <span class="o">=</span> <span class="nb">window</span><span class="p">[</span><span class="nx">vendors</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span><span class="o">+</span>
+          <span class="s1">&#39;CancelRequestAnimationFrame&#39;</span><span class="p">];</span>
+    <span class="p">}</span>
 
-          class <strong>STL.Console</strong>
-          
-        </h2>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span><span class="p">)</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">currTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
+            <span class="kd">var</span> <span class="nx">timeToCall</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span> <span class="o">-</span> <span class="p">(</span><span class="nx">currTime</span> <span class="o">-</span> <span class="nx">lastTime</span><span class="p">));</span>
+            <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">currTime</span> <span class="o">+</span> <span class="nx">timeToCall</span><span class="p">);</span> <span class="p">},</span>
+              <span class="nx">timeToCall</span><span class="p">);</span>
+            <span class="nx">lastTime</span> <span class="o">=</span> <span class="nx">currTime</span> <span class="o">+</span> <span class="nx">timeToCall</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">id</span><span class="p">;</span>
+        <span class="p">};</span>
 
-        <!-- class tree goes here -->
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">cancelAnimationFrame</span><span class="p">)</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">cancelAnimationFrame</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+        <span class="p">};</span>
+<span class="p">}());</span>
+</pre></div>
 
-
-
-        <div class="summary description">
-          Console is used for outputing console.log messages
         </div>
-        
-
-
-
-        <div class="clear"></div>
-
-
-
-
-          <div class="section properties" resource="#properties">
-              <h3>Properties</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>
-                      Properties
-                    </th>
-                    <th>
-                      Type
-                    </th>
-                    <th>
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                
-                    <tr class=" " resource="#property_debug">
-                  
-                      <td class="names">
-                        <code>
-                          <a name="property_debug">debug</a>
-                        </code>
-                      </td>
-
-                      <td class="type">
-                        <code>
-                          {Boolean}
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-                        <div>
-
-                          Set to true and debug will be enabled
-
-                            <p>
-                              <strong>Default value:</strong>
-                              <code>true</code>.
-                            </p>
-                        </div>
-                      </td>
-
-                    </tr>
-              
-                </tbody>
-              </table>
-
-          </div>
-
-
-          <div class="section methods" resource="#methods">
-              <h3>Methods</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>
-                      Methods
-                    </th>
-                    <th>
-                      Returns
-                    </th>
-                    <th>
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                    <tr class=" " resource="#method_log">
-
-                      <td class="names">
-                        <code>
-                          <a name="method_log">log</a>(
-                          arguments
-                          )
-                        </code>
-                      </td>
-
-                      <td class="returns">
-                        <code>
-                          void
-                        </code>
-
-                        
-                        
-                        
-                      </td>
-
-                      <td class="description">
-                        <a href="#top" class="top" title="Jump back to the top">↑</a>
-
-
-                        Logs out a message
-
-                          <p>Parameters:</p>
-                          <ul>
-                              <li>
-                                <code>
-                                  arguments
-                                  &lt;Object || Array || Number || String || Arguments&gt;
-                                </code>
-                                 The message to pass down to console.log
-                              </li>
-                          <ul>
-
-
-                      </td>
-
-                    </tr>
-
-                </tbody>
-              </table>
-
-
-
-          </div>
-
-
-
-
-
 
     </div>
 

@@ -25,7 +25,8 @@
 html {
   height: 100%;
 }
-html, body {
+html,
+body {
   background-color: #f2f0f0;
   -webkit-font-smoothing: antialiased;
   background-color: #ebebeb;
@@ -39,10 +40,6 @@ body {
   display: -webkit-box;
   display: -o-box;
   display: box;
-  -webkit-box-flex: ;
-  -moz-box-flex: ;
-  -o-box-flex: ;
-  box-flex: ;
   -webkit-box-orient: vertical;
   -mox-box-orient: vertical;
   -o-box-orient: vertical;
@@ -72,9 +69,6 @@ body {
   min-width: 505px;
   margin-top: 20px;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -o-box;
-  display: box;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;

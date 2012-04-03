@@ -13,7 +13,7 @@
     API: 72lions
     
     
-      &rarr; controllermanager.js (file)
+      &rarr; canvasdisplayobject.js (file)
     
   </title>
 
@@ -78,7 +78,7 @@
           &rarr; module <a href="./module_72lions.html" title="72lions">72lions</a>
           
           
-            &rarr; file controllermanager.js
+            &rarr; file canvasdisplayobject.js
           
       </div>
     </div> <!--! end of #sub-hd -->
@@ -220,7 +220,7 @@
                   <li >
                     <a href="base.js.html">base.js</a>
                   </li>
-                  <li >
+                  <li  class="selected" >
                     <a href="canvasdisplayobject.js.html">canvasdisplayobject.js</a>
                   </li>
                   <li >
@@ -232,7 +232,7 @@
                   <li >
                     <a href="contact.js.html">contact.js</a>
                   </li>
-                  <li  class="selected" >
+                  <li >
                     <a href="controllermanager.js.html">controllermanager.js</a>
                   </li>
                   <li >
@@ -299,58 +299,144 @@
         <!--! source code view -->
         <div id="srcout">
           <h2>
-            file <strong>controllermanager.js</strong>
+            file <strong>canvasdisplayobject.js</strong>
           </h2>
 
           <div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * The controller manager is responsible for instantiating controllers</span>
+<span class="cm"> * Simulates a display object just like in AS3</span>
 <span class="cm"> *</span>
 <span class="cm"> * @module 72lions</span>
-<span class="cm"> * @class ControllerManager</span>
-<span class="cm"> * @namespace STL</span>
+<span class="cm"> * @class Router</span>
 <span class="cm"> * @author Thodoris Tsiridis</span>
 <span class="cm"> * @version 1.0</span>
 <span class="cm"> */</span>
-<span class="nx">STL</span><span class="p">.</span><span class="nx">ControllerManager</span> <span class="o">=</span> <span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="cm">/**</span>
-<span class="cm">         * Initializes a controller with a specific type, id, view and model</span>
-<span class="cm">         *</span>
-<span class="cm">         * @param {Object} attributes The attributes that will be used to initialize the class</span>
-<span class="cm">         * @param {String} attributes.type The class type</span>
-<span class="cm">         * @param {String} attributes.id The unique id for this class</span>
-<span class="cm">         * @param {STL.Model.Base} attributes.model The model to be used by this controller</span>
-<span class="cm">         * @param {STL.View.Base} attributes.view The view to be used by this controller</span>
-<span class="cm">         * @param {Object} controllerOptions The options to use when initializing the controller</span>
-<span class="cm">         * @param {Object} viewOptions The options to use when initializing the view</span>
-<span class="cm">         * @return {STL.Controller.Base}</span>
-<span class="cm">         * @author Thodoris Tsiridis</span>
-<span class="cm">         */</span>
-        <span class="nx">initializeController</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">,</span> <span class="nx">controllerOptions</span><span class="p">,</span> <span class="nx">viewOptions</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">ctl</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">view</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">CanvasDisplayObject</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
-            <span class="nx">view</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">view</span> <span class="o">||</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getView</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
-            <span class="nx">model</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">model</span> <span class="o">||</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getModel</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">_children</span> <span class="o">=</span> <span class="p">[];</span>
 
-            <span class="nx">ctl</span> <span class="o">=</span> <span class="nx">STL</span><span class="p">.</span><span class="nx">Lookup</span><span class="p">.</span><span class="nx">getController</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">extra</span> <span class="o">=</span> <span class="p">{};</span>
 
-            <span class="nx">view</span><span class="p">.</span><span class="nx">setController</span><span class="p">(</span><span class="nx">ctl</span><span class="p">);</span>
+    <span class="cm">/**</span>
+<span class="cm">     * It is set to true the first time we get a popstate</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @type ST.CanvasDisplayObject</span>
+<span class="cm">     * @default null</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-            <span class="nx">ctl</span><span class="p">.</span><span class="nx">setView</span><span class="p">(</span><span class="nx">view</span><span class="p">);</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Adds a child to the display object</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {CanvasDisplayObject} child The display object to add as a child</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addChild</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
 
-            <span class="nx">view</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">viewOptions</span><span class="p">);</span>
-            <span class="nx">view</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
-            <span class="nx">view</span><span class="p">.</span><span class="nx">postDraw</span><span class="p">();</span>
+        <span class="c1">//Check if the child doesn&#39;t already exist</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">_children</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 
-            <span class="nx">ctl</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
-            <span class="nx">ctl</span><span class="p">.</span><span class="nx">postInitialize</span><span class="p">(</span><span class="nx">controllerOptions</span><span class="p">);</span>
+            <span class="c1">//Check if the child already has a parent</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nx">child</span><span class="p">.</span><span class="nx">parent</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">)</span> <span class="p">{</span>
 
-            <span class="k">return</span> <span class="nx">ctl</span><span class="p">;</span>
+                <span class="c1">//If it already has a parent then remove it from it&#39;s parent</span>
+                <span class="nx">child</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span> <span class="nx">child</span> <span class="p">);</span>
+
+            <span class="p">}</span>
+
+            <span class="c1">//Set the parent of the child</span>
+            <span class="nx">child</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+            <span class="c1">//Push the child in the array</span>
+            <span class="nx">_children</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="nx">child</span> <span class="p">);</span>
+
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Removes a child</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {CanvasDisplayObject} child  The display object to remove</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">removeChild</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">childIndex</span> <span class="o">=</span> <span class="nx">_children</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span> <span class="nx">child</span> <span class="p">);</span>
+
+        <span class="c1">//Check the child index</span>
+        <span class="k">if</span> <span class="p">(</span>  <span class="nx">childIndex</span> <span class="o">!==</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">child</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+            <span class="c1">//Remove the child from the children array</span>
+            <span class="nx">_children</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span> <span class="nx">childIndex</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
+
         <span class="p">}</span>
     <span class="p">};</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Returns an array with all the children</span>
+<span class="cm">     *</span>
+<span class="cm">     * @returns {Array} The array with all the children</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getChildren</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">_children</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Updates the object</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {CanvasContext} ctx The context on which everything will be drawn</span>
+<span class="cm">     * @author Thodoris Tsiridis</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="p">})();</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="c1">//Save the current translation, rotation</span>
+            <span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+            <span class="c1">//Translate Scale and Rotate</span>
+            <span class="nx">ctx</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+            <span class="nx">ctx</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">);</span>
+            <span class="nx">ctx</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rotation</span><span class="p">);</span>
+            <span class="nx">ctx</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span><span class="p">;</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+
+            <span class="c1">//Invoke the update function for each child</span>
+            <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="k">while</span><span class="p">(</span><span class="nx">d</span> <span class="o">&lt;</span> <span class="nx">_children</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="nx">_children</span><span class="p">[</span><span class="nx">d</span><span class="p">].</span><span class="nx">update</span><span class="p">(</span><span class="nx">ctx</span><span class="p">);</span>
+
+                <span class="nx">d</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">//Restore the translation, rotation</span>
+            <span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+
+            <span class="nx">d</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Generic function for overwritting and adding the your code</span>
+<span class="cm"> */</span>
+<span class="nx">CanvasDisplayObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="p">};</span>
 </pre></div>
 
         </div>

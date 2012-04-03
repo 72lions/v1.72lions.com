@@ -43,7 +43,8 @@ section.portfolio .centered article.featured {
 section.portfolio .centered article:last-child {
   border-bottom: none;
 }
-section.portfolio .centered article a.title:link, section.portfolio .centered article a.title:visited {
+section.portfolio .centered article a.title:link,
+section.portfolio .centered article a.title:visited {
   margin-top: 5px;
   display: inline-block;
   color: #666;
@@ -55,7 +56,8 @@ section.portfolio .centered article a.title:link, section.portfolio .centered ar
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-section.portfolio .centered article a.title:link:hover, section.portfolio .centered article a.title:visited:hover {
+section.portfolio .centered article a.title:link:hover,
+section.portfolio .centered article a.title:visited:hover {
   color: #F02311;
 }
 section.portfolio .centered article .photo {
@@ -130,7 +132,9 @@ section.portfolio .centered article .description h1 {
 section.portfolio .centered article .description .body {
   padding: 15px;
 }
-section.portfolio .centered article .description p, section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
+section.portfolio .centered article .description p,
+section.portfolio .centered article .description aside,
+section.portfolio .centered article .description time {
   font-family: Georgia;
   font-size: 13px;
   line-height: 18px;
@@ -140,7 +144,8 @@ section.portfolio .centered article .description p {
   margin: 0px 0px 10px 0px;
   color: #555;
 }
-section.portfolio .centered article .description aside, section.portfolio .centered article .description time {
+section.portfolio .centered article .description aside,
+section.portfolio .centered article .description time {
   color: #F02311;
   font-style: italic;
   font-size: 12px;

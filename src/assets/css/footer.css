@@ -50,7 +50,8 @@ footer aside.menu {
   float: left;
   min-width: 60px;
 }
-footer aside.menu nav a:link, footer aside.menu nav a:visited {
+footer aside.menu nav a:link,
+footer aside.menu nav a:visited {
   text-decoration: none;
   color: #666;
   text-shadow: 0px 1px 1px #ffffff;
@@ -63,7 +64,8 @@ footer aside.menu nav a:link, footer aside.menu nav a:visited {
   -o-transition: color 0.2s;
   transition: color 0.2s;
 }
-footer aside.menu nav a:link:hover, footer aside.menu nav a:visited:hover {
+footer aside.menu nav a:link:hover,
+footer aside.menu nav a:visited:hover {
   color: #F02311;
 }
 footer aside.menu .html5logo {
@@ -81,7 +83,8 @@ footer aside.latest-tweets {
   font-size: 15px;
   font-family: 'Oswald';
 }
-footer aside.latest-tweets a:link, footer aside.latest-tweets a:visited {
+footer aside.latest-tweets a:link,
+footer aside.latest-tweets a:visited {
   color: #F02311;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -122,7 +125,8 @@ footer aside.copy {
   font-style: italic;
   color: #666;
 }
-footer aside.copy a:link, footer aside.copy a:visited {
+footer aside.copy a:link,
+footer aside.copy a:visited {
   color: #F02311;
   text-decoration: none;
   border-bottom: 1px dotted rgba(0, 0, 0, 0);
@@ -131,7 +135,8 @@ footer aside.copy a:link, footer aside.copy a:visited {
   -o-transition: border-bottom 0.2s;
   transition: border-bottom 0.2s;
 }
-footer aside.copy a:link:hover, footer aside.copy a:visited:hover {
+footer aside.copy a:link:hover,
+footer aside.copy a:visited:hover {
   border-bottom: 1px dotted #F02311;
 }
 footer aside.flickr-photos {
@@ -154,7 +159,8 @@ footer aside.flickr-photos hgroup h1 {
   line-height: 27px;
   text-shadow: 0px 1px 1px #ffffff;
 }
-footer aside.flickr-photos nav a:link, footer aside.flickr-photos nav a:visited {
+footer aside.flickr-photos nav a:link,
+footer aside.flickr-photos nav a:visited {
   text-align: center;
   width: 50px;
   height: 50px;
@@ -178,10 +184,12 @@ footer aside.flickr-photos nav a:link, footer aside.flickr-photos nav a:visited 
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   background-color: #000;
 }
-footer aside.flickr-photos nav a:link img, footer aside.flickr-photos nav a:visited img {
+footer aside.flickr-photos nav a:link img,
+footer aside.flickr-photos nav a:visited img {
   height: 50px;
 }
-footer aside.flickr-photos nav a:link:hover, footer aside.flickr-photos nav a:visited:hover {
+footer aside.flickr-photos nav a:link:hover,
+footer aside.flickr-photos nav a:visited:hover {
   opacity: 1;
 }
 footer aside.footer-logo {

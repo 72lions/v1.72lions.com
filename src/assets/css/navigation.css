@@ -98,7 +98,8 @@ header.navigation nav ul li {
 header.navigation nav ul li:first-child {
   margin-left: 0px;
 }
-header.navigation nav ul li.active, header.navigation nav ul li:hover {
+header.navigation nav ul li.active,
+header.navigation nav ul li:hover {
   border-bottom-color: #666;
   border-bottom-width: 2px;
   border-bottom-style: inset;
@@ -111,7 +112,8 @@ header.navigation nav ul li.active a:hover,
 header.navigation nav ul li:hover a:hover {
   color: #F02311;
 }
-header.navigation nav ul li a:link, header.navigation nav ul li a:visited {
+header.navigation nav ul li a:link,
+header.navigation nav ul li a:visited {
   text-decoration: none;
   color: #666;
   padding: 6px 5px 6px 6px;

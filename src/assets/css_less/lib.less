@@ -2,21 +2,21 @@
 @fontMain: 'Oswald';
 @bodyColor: #F2F0F0;
 
-.transition () {
+.transition (@params) {
     -webkit-transition: @arguments;
     -moz-transition: @arguments;
     -o-transition: @arguments;
     transition: @arguments;
 }
 
-.box-shadow (){
+.box-shadow (@params){
     -webkit-box-shadow: @arguments;
     -moz-box-shadow: @arguments;
     -o-box-shadow: @arguments;
     box-shadow: @arguments;
 }
 
-.border-radius (){
+.border-radius (@params){
     -webkit-border-radius: @arguments;
     -moz-border-radius: @arguments;
     -o-border-radius: @arguments;
@@ -30,48 +30,48 @@
     transform: translateZ(0);
 }
 
-.transform () {
+.transform (@params) {
     -webkit-transform: rotate(@arguments);
     -moz-transform: rotate(@arguments);
     transform: rotate(@arguments);
 }
 
-.box-sizing () {
+.box-sizing (@params) {
     -webkit-box-sizing:@arguments;
     -moz-box-sizing:@arguments;
     -o-box-sizing:@arguments;
     box-sizing:@arguments;
 }
 
-.box-flex () {
+.box () {
     display:-webkit-box;
     display:-o-box;
     display:box;
 }
 
 
-.box-orient () {
+.box-orient (@params) {
     -webkit-box-orient: @arguments;
     -mox-box-orient: @arguments;
     -o-box-orient: @arguments;
     box-orient: @arguments;
 }
 
-.box-flex () {
+.box-flex (@params) {
     -webkit-box-flex: @arguments;
     -moz-box-flex: @arguments;
     -o-box-flex: @arguments;
     box-flex: @arguments;
 }
 
-.background-size() {
+.background-size(@params) {
     -webkit-background-size: @arguments;
     -moz-background-size: @arguments;
     -o-background-size: @arguments;
     background-size: @arguments;
 }
 
-.animation() {
+.animation(@params) {
     -webkit-animation: @arguments;
     -moz-animation: @arguments;
     -o-animation: @arguments;

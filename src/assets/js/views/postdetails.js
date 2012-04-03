@@ -51,6 +51,14 @@ STL.View.PostDetails = function() {
     var contentDomElement = this.domElement.find('.content');
 
     /**
+     * The subtitle DOM Element
+     *
+     * @private
+     * @type Object
+     */
+    var subtitleDomElement = this.domElement.find('.sidebar h2');
+
+    /**
      * The aside DOM Element
      *
      * @private
@@ -301,6 +309,15 @@ STL.View.PostDetails = function() {
         } else {
             commentsDomElement.css('display', 'none');
         }
+
+        if(details.Description !== '') {
+            subtitleDomElement.html(details.Description);
+            subtitleDomElement.css('display', 'block');
+        } else {
+            subtitleDomElement.css('display', 'none');
+        }
+
+
 
         document.title = details.Title + ' - ' + STL.Model.Locale.getPageTitle();
     };

@@ -12,14 +12,14 @@ a.readmore:visited {
     border:1px solid #DDD;
     padding:5px 10px 5px 10px;
     .transition(e('background-image 0.2s, border-color 0.2s !important'));
-    color:#333 !important;
+    color:#666 !important;
     text-decoration:none;
-    font-size:11px;
+    font-size:12px;
+    font-family:@fontMain;
 
     &:hover {
 
         color:#F02311 !important;
-
         background-image: linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
         background-image: -o-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
         background-image: -moz-linear-gradient(bottom, rgb(220,220,220) 0%, rgb(242,240,240) 50%);
@@ -71,7 +71,6 @@ a.website-link:link,
 a.website-link:visited {
 
     color: #555 !important;
-    font-weight: bold;
     font-size: 11px;
     text-shadow: 0 1px 0 white;
     text-shadow: 0 0 0 transparent,0 1px 0 white;
@@ -129,8 +128,8 @@ a.website-link:visited {
 
     span {
         padding-left:25px;
-        font-family:Arial;
-        font-size:11px;
+        font-family:@fontMain;
+        font-size:12px;
         font-style:normal;
         display:inline-block;
         background-image:url('/assets/images/icon-github.png');

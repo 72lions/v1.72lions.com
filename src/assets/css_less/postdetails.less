@@ -84,12 +84,30 @@ section.post-details {
     .content {
 
         padding-top:10px;
-        max-width:550px;
+        max-width:825px;
         font-family:@fontGeorgia;
         color:#444;
         font-size:13px;
         line-height:18px;
         float:left;
+
+        .sidebar {
+
+            float:left;
+            width: 200px;
+
+            h2 {
+                font-family: @fontGeorgia;
+                line-height: 24px;
+                font-size: 18px;
+                padding: 8px 0px 8px 0px;
+                border-top: 1px dashed #ccc;
+            }
+        }
+
+        .details {
+            margin-left: 260px;
+        }
 
         object {
 
@@ -98,22 +116,26 @@ section.post-details {
         .categories {
             color:#F02311;
             font-style:italic;
+            padding: 4px 0px 6px 0px;
+            border-bottom: 1px dashed #ccc;
         }
 
         .tags {
-            padding-top:5px;
+
+            padding-top:10px;
             font-style:italic;
 
             li {
                 display:inline-block;
-                background-color:rgba(0,0,0,0.2);
+                background-color:#333;
                 padding:2px 4px 2px 4px;
                 margin-right:2px;
                 margin-left:0px;
-                font-size:11px;
+                margin-bottom: 5px;
+                font-size:12px;
                 .border-radius(2px);
-                .box-shadow(inset 0px 0px 5px rgba(0,0,0,0.2));
-                border-bottom:1px solid rgba(255,255,255,1);
+                font-style: normal;
+                font-family:@fontMain;
 
                 a:link,
                 a:visited {
@@ -127,11 +149,13 @@ section.post-details {
         }
 
         time {
-            font-size:11px;
+            font-size:12px;
             color:#666;
             display:block;
             font-style:italic;
             margin-bottom:0px;
+            padding: 5px 0px 0px 0px;
+            border-top: 1px dashed #ccc;
         }
 
         h1 {
@@ -140,9 +164,10 @@ section.post-details {
             font-weight:normal;
             text-shadow:0px 1px 1px rgba(255,255,255,0.8);
             padding:0px;
-            margin:0px 0px 5px 0px;
+            margin:0px 0px 25px 0px;
             line-height:45px;
             color:#666;
+
         }
 
         h2 {
@@ -206,14 +231,15 @@ section.post-details {
                 -moz-tab-size:4;
                 -webkit-tab-size:4;
 
-                font-size: 11px;
-                background-color: rgba(255, 255, 255, 0.4);
+                font-size: 14px;
+                background-color: rgba(39, 40, 34, 1);
                 .box-sizing(border-box);
                 padding: 10px;
                 .border-radius(4px);
-                .box-shadow (e('inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1)'));
+                border: 4px solid white;
+                //.box-shadow (e('inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1)'));
                 overflow-x: auto;
-                color: #333;
+                color: #fff;
                 margin:0px 0px 15px 0px;
 
             }

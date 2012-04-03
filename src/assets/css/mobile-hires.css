@@ -159,6 +159,19 @@ section.post-details aside {
     display:none;
 }
 
+section.post-details .sidebar {
+    float:none !important;
+    width: 100% !important;
+}
+
+section.post-details .sidebar h2 {
+
+}
+
+section.post-details .details {
+    margin-left: 0px !important;
+}
+
 footer .menu {
     padding-left:20px !important;
     float:none;

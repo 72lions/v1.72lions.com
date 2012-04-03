@@ -198,16 +198,23 @@
 				<section class="post-details clearfix">
 					<a href="#" title="Back" class="back"><span></span></a>
 					<div class="centered clearfix">
-						<div class="content">
+						<div class="content clearfix">
+							<div>
 							<h1 class="title"></h1>
-							<time></time>
-							<div class="categories"></div>
-							<ul class="tags"></ul>
-							<a href="#" class="github-link" target="_blank"><span>Fork it</span></a>
+							<div>
+							<div class="sidebar">
+								<h2></h2>
+								<time></time>
+								<div class="categories"></div>
+								<a href="#" class="github-link" target="_blank"><span>Fork it</span></a>
 							<a href="#" class="download-link" target="_blank"><span>Download</span></a>
 							<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
 							<a href="#" class="website-link" target="_blank"><span>Visit website</span></a>
-							<div class="text"></div>
+								<ul class="tags"></ul>
+							</div>
+							<div class="details">
+								<div class="text"></div>
+							</div>
 							<div class="comments">
 									<div id="disqus_thread"></div>
 									<script type="text/javascript">

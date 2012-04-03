@@ -96,51 +96,69 @@ section.post-details .alignnone {
 }
 section.post-details .content {
   padding-top: 10px;
-  max-width: 550px;
+  max-width: 825px;
   font-family: Georgia;
   color: #444;
   font-size: 13px;
   line-height: 18px;
   float: left;
 }
+section.post-details .content .sidebar {
+  float: left;
+  width: 200px;
+}
+section.post-details .content .sidebar h2 {
+  font-family: Georgia;
+  line-height: 24px;
+  font-size: 18px;
+  padding: 8px 0px 8px 0px;
+  border-top: 1px dashed #ccc;
+}
+section.post-details .content .details {
+  margin-left: 260px;
+}
 section.post-details .content .categories {
   color: #F02311;
   font-style: italic;
+  padding: 4px 0px 6px 0px;
+  border-bottom: 1px dashed #ccc;
 }
 section.post-details .content .tags {
-  padding-top: 5px;
+  padding-top: 10px;
   font-style: italic;
 }
 section.post-details .content .tags li {
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #333;
   padding: 2px 4px 2px 4px;
   margin-right: 2px;
   margin-left: 0px;
-  font-size: 11px;
+  margin-bottom: 5px;
+  font-size: 12px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  -o-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid #ffffff;
+  font-style: normal;
+  font-family: 'Oswald';
 }
-section.post-details .content .tags li a:link, section.post-details .content .tags li a:visited {
+section.post-details .content .tags li a:link,
+section.post-details .content .tags li a:visited {
   color: #ffffff;
   text-decoration: none;
 }
-section.post-details .content .tags li a:link:hover, section.post-details .content .tags li a:visited:hover {
+section.post-details .content .tags li a:link:hover,
+section.post-details .content .tags li a:visited:hover {
   border-bottom: none;
 }
 section.post-details .content time {
-  font-size: 11px;
+  font-size: 12px;
   color: #666;
   display: block;
   font-style: italic;
   margin-bottom: 0px;
+  padding: 5px 0px 0px 0px;
+  border-top: 1px dashed #ccc;
 }
 section.post-details .content h1 {
   font-family: 'Oswald';
@@ -148,7 +166,7 @@ section.post-details .content h1 {
   font-weight: normal;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
   padding: 0px;
-  margin: 0px 0px 5px 0px;
+  margin: 0px 0px 25px 0px;
   line-height: 45px;
   color: #666;
 }
@@ -188,10 +206,12 @@ section.post-details .content img {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   display: block;
 }
-section.post-details .content ul, section.post-details .content ol {
+section.post-details .content ul,
+section.post-details .content ol {
   margin: 0px 0px 15px 0px;
 }
-section.post-details .content ul li, section.post-details .content ol li {
+section.post-details .content ul li,
+section.post-details .content ol li {
   margin-left: 20px;
 }
 section.post-details .content iframe {
@@ -213,8 +233,8 @@ section.post-details .content .text pre {
   -o-tab-size: 4;
   -moz-tab-size: 4;
   -webkit-tab-size: 4;
-  font-size: 11px;
-  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  background-color: #272822;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
@@ -224,12 +244,9 @@ section.post-details .content .text pre {
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
-  -moz-box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
-  -o-box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
-  box-shadow: inset 0px 0px 12px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,1);
+  border: 4px solid white;
   overflow-x: auto;
-  color: #333;
+  color: #fff;
   margin: 0px 0px 15px 0px;
 }
 section.post-details .content .comments {
@@ -257,7 +274,8 @@ section.post-details .content .comments #dsq-content .dsq-toolbar-item {
 section.post-details .content .comments .dsq-toolbar-label {
   color: #fff;
 }
-section.post-details a:link, section.post-details a:visited {
+section.post-details a:link,
+section.post-details a:visited {
   color: #F02311;
   text-decoration: none;
   border-bottom: 1px dotted rgba(0, 0, 0, 0);
@@ -266,6 +284,7 @@ section.post-details a:link, section.post-details a:visited {
   -o-transition: border-bottom 0.2s;
   transition: border-bottom 0.2s;
 }
-section.post-details a:link:hover, section.post-details a:visited:hover {
+section.post-details a:link:hover,
+section.post-details a:visited:hover {
   border-bottom: 1px dotted #F02311;
 }
