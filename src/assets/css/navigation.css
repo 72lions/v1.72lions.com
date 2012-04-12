@@ -24,7 +24,7 @@
 }
 header.navigation {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   display: block;
   width: 100%;
   min-width: 505px;

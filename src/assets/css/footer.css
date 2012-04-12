@@ -109,7 +109,7 @@ footer aside.latest-tweets hgroup h1 {
 }
 footer aside.latest-tweets p {
   font-family: Georgia;
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
   margin: 0px;
   padding: 15px 0px 15px 0px;
@@ -139,7 +139,8 @@ footer aside.copy a:link:hover,
 footer aside.copy a:visited:hover {
   border-bottom: 1px dotted #F02311;
 }
-footer aside.flickr-photos {
+footer aside.flickr-photos,
+footer aside.spotify-play-now {
   padding-top: 0px;
   clear: both;
   display: block;
@@ -149,7 +150,8 @@ footer aside.flickr-photos {
   font-size: 15px;
   font-family: 'Oswald';
 }
-footer aside.flickr-photos hgroup h1 {
+footer aside.flickr-photos hgroup h1,
+footer aside.spotify-play-now hgroup h1 {
   padding: 0px 40px 20px 0px;
   display: inline-block;
   margin: 0px;
@@ -160,7 +162,9 @@ footer aside.flickr-photos hgroup h1 {
   text-shadow: 0px 1px 1px #ffffff;
 }
 footer aside.flickr-photos nav a:link,
-footer aside.flickr-photos nav a:visited {
+footer aside.spotify-play-now nav a:link,
+footer aside.flickr-photos nav a:visited,
+footer aside.spotify-play-now nav a:visited {
   text-align: center;
   width: 50px;
   height: 50px;
@@ -185,11 +189,15 @@ footer aside.flickr-photos nav a:visited {
   background-color: #000;
 }
 footer aside.flickr-photos nav a:link img,
-footer aside.flickr-photos nav a:visited img {
+footer aside.spotify-play-now nav a:link img,
+footer aside.flickr-photos nav a:visited img,
+footer aside.spotify-play-now nav a:visited img {
   height: 50px;
 }
 footer aside.flickr-photos nav a:link:hover,
-footer aside.flickr-photos nav a:visited:hover {
+footer aside.spotify-play-now nav a:link:hover,
+footer aside.flickr-photos nav a:visited:hover,
+footer aside.spotify-play-now nav a:visited:hover {
   opacity: 1;
 }
 footer aside.footer-logo {

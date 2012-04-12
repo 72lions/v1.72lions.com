@@ -199,11 +199,15 @@ footer .latest-tweets  {
     width: 85% !important;
 }
 
-footer .flickr-photos  {
+footer .flickr-photos {
     padding-left:20px !important;
     margin-top:0px;
     max-height: 148px;
     overflow-y: hidden;
+}
+
+footer .spotify-play-now {
+    display: none !important;
 }
 
 footer .copy  {

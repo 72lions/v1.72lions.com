@@ -199,6 +199,7 @@ section.post-details .content h3 {
 }
 section.post-details .content p {
   margin: 0px 0px 15px 0px;
+  font-size: 14px !important;
 }
 section.post-details .content img {
   margin: 0px 0px 15px 0px;

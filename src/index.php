@@ -312,6 +312,11 @@
 				</article>
 			</aside>
 
+			<aside class="spotify-play-now">
+				<hgroup><h1>My favorite songs on Spotify</h1></hgroup>
+				<iframe src="https://embed.spotify.com/?uri=spotify:user:72lions:playlist:4iAlNkFcWTsx7p0usxfsGT" width="435" height="80" frameborder="0" allowtransparency="true"></iframe>
+			</aside>
+
 			<aside class="flickr-photos">
 				<hgroup><h1>My photos on Flickr</h1></hgroup>
 				<nav>
