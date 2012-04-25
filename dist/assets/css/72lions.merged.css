@@ -1075,6 +1075,24 @@ section.blog .centered article .photo .github-ribbon img {
   -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
+section.experiments .centered article .photo .fwasotd-ribbon,
+section.tag .centered article .photo .fwasotd-ribbon,
+section.blog .centered article .photo .fwasotd-ribbon {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: -6px;
+  z-index: 10;
+}
+section.experiments .centered article .photo .fwasotd-ribbon img,
+section.tag .centered article .photo .fwasotd-ribbon img,
+section.blog .centered article .photo .fwasotd-ribbon img {
+  border: none;
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
 section.experiments .centered article .photo img,
 section.tag .centered article .photo img,
 section.blog .centered article .photo img {
