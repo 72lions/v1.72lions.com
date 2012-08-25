@@ -27,6 +27,7 @@
 
     <!--source css-->
     <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
     <!--end source css-->
 
 

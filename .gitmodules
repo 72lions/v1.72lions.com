@@ -1,3 +1,6 @@
 [submodule "src/wordpress-api"]
 	path = src/wordpress-api
 	url = git://github.com/72lions/wordpress-api.git
+[submodule "src/static/js/libs/frameworkjs"]
+	path = src/static/js/libs/frameworkjs
+	url = git@github.com:72lions/FrameworkJS.git
