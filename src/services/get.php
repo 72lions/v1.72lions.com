@@ -1,11 +1,16 @@
 <?php
+
+    error_reporting(E_ALL ^ E_NOTICE);
+
     header ("Content-Type:text/plain");
 
-    include('classes/db.php');
-    include('classes/api.php');
-    include('classes/post.php');
-    include('classes/category.php');
-    include('classes/mc.php');
+    include('../wordpress-api/db/mysql_db.php');
+    include('../wordpress-api/wp_api.php');
+    include('../wordpress-api/wp_categories.php');
+    include('../wordpress-api/wp_category.php');
+    include('../wordpress-api/wp_post.php');
+    include('../wordpress-api/cache/base_cache_interface.php');
+    include('../wordpress-api/cache/memcache_interface.php');
     include('classes/flickrfetcher.php');
     include('classes/tweetsfetcher.php');
 
@@ -16,9 +21,9 @@
         if(isset($_REQUEST['tid'])) { $tid = (int)$_REQUEST['tid']; } else { $tid = null; }
         if(isset($_REQUEST['s'])) { $s = (int)$_REQUEST['s']; } else { $s = 0; }
         if(isset($_REQUEST['t'])) { $t = (int)$_REQUEST['t']; } else { $t = 10; }
-        if(isset($_REQUEST['srt'])) { $srt = $_REQUEST['srt']; } else { $srt = Post::$SORT_DATE_DESC; }
+        if(isset($_REQUEST['srt'])) { $srt = $_REQUEST['srt']; } else { $srt = WpPost::$SORT_DATE_DESC; }
 
-        $api = new API();
+        $api = new WpApi();
 
         $posts = $api->getPosts($cid, $tid, $s, $t, $srt);
 
@@ -68,7 +73,7 @@
         // Get all the post/get variables
         if(isset($_REQUEST['id'])) { $id = $_REQUEST['id']; } else { $id = null; }
 
-        $api = new API();
+        $api = new wpApi();
 
         $post = $api->getPostDetails($id);
 
@@ -111,9 +116,9 @@
 
         if(isset($_REQUEST['s'])) { $s = (int)$_REQUEST['s']; } else { $s = 0; }
         if(isset($_REQUEST['t'])) { $t = (int)$_REQUEST['t']; } else { $t = 10; }
-        if(isset($_REQUEST['srt'])) { $srt = $_REQUEST['srt']; } else { $srt = Category::$SORT_NAME_ASC; }
+        if(isset($_REQUEST['srt'])) { $srt = $_REQUEST['srt']; } else { $srt = WpCategory::$SORT_NAME_ASC; }
 
-        $api = new API();
+        $api = new wpApi();
 
         $categories = $api->getCategories($s, $t, $srt);
 
