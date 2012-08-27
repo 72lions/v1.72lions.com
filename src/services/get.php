@@ -11,8 +11,8 @@
     include('../wordpress-api/wp_post.php');
     include('../wordpress-api/cache/base_cache_interface.php');
     include('../wordpress-api/cache/memcache_interface.php');
-    include('classes/flickrfetcher.php');
-    include('classes/tweetsfetcher.php');
+    include('flickrfetcher.php');
+    include('tweetsfetcher.php');
 
     if(isset($_GET['posts']) || isset($_GET['tag'])){
 
@@ -72,10 +72,11 @@
 
         // Get all the post/get variables
         if(isset($_REQUEST['id'])) { $id = $_REQUEST['id']; } else { $id = null; }
+        if(isset($_REQUEST['byId'])) { $byId = $_REQUEST['byId']; } else { $byId = false; }
 
         $api = new wpApi();
 
-        $post = $api->getPostDetails($id);
+        $post = $api->getPostDetails($id, (bool)$byId);
 
         // Create the JSON object
         echo '{ "Results":';
