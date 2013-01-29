@@ -211,12 +211,6 @@
 								<a href="#" class="demo-link" target="_blank"><span>Demo</span></a>
 								<a href="#" class="website-link" target="_blank"><span>Visit website</span></a>
 								<ul class="tags"></ul>
-								<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-									<a class="addthis_button_facebook"></a>
-									<a class="addthis_button_twitter"></a>
-									<a class="addthis_button_tumblr"></a>
-									<a class="addthis_button_stumbleupon"></a>
-								</div>
 							</div>
 							<div class="details">
 								<div class="text"></div>
@@ -302,11 +296,6 @@
 				</article>
 			</aside>
 
-			<aside class="spotify-play-now">
-				<hgroup><h1>My favorite songs on Spotify</h1></hgroup>
-				<iframe src="https://embed.spotify.com/?uri=spotify:user:72lions:playlist:4iAlNkFcWTsx7p0usxfsGT" width="435" height="80" frameborder="0" allowtransparency="true"></iframe>
-			</aside>
-
 			<aside class="flickr-photos">
 				<hgroup><h1>My photos on Flickr</h1></hgroup>
 				<nav>
@@ -328,8 +317,6 @@
 		<script type="text/javascript" src="/assets/js/libs/jquery.easing.1.3.js"></script>
 
  		<script src='/assets/js/72lions.merged.min.js'></script>
-
-		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e9bdcf14cb884fd"></script>
 
 		<!--[if lt IE 7 ]>
 		<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
